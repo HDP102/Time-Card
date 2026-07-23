@@ -14,8 +14,8 @@ What this script does:
   6. Logs all notifications sent to a CSV for tracking
 
 Usage:
-  pip install openpyxl requests
-  python notify_rule_owners.py
+  py -m pip install openpyxl requests
+  py notify_rule_owners.py
 
 Configuration (edit CONFIG block below):
   EXCEL_PATH      — path to Leonard's spreadsheet
@@ -46,7 +46,7 @@ from openpyxl import load_workbook
 # ─────────────────────────────────────────────
 EXCEL_PATH      = "Timesheet.xlsx"              # Path to Leonard's spreadsheet
 NOTIFY_EMAIL    = True                           # Send email notifications
-NOTIFY_TEAMS    = True                           # Send Teams notifications
+NOTIFY_TEAMS    = False                          # Send Teams notifications
 DRY_RUN         = True                           # True = print only, don't send
 
 SENDER_EMAIL    = "hardik.patel@pge.com"         # Your CorpID@pge.com
@@ -56,6 +56,11 @@ SMTP_PORT       = 25
 TEAMS_WEBHOOK   = "<YOUR_TEAMS_WEBHOOK_URL>"    # Teams incoming webhook URL
 
 LOG_FILE        = f"notifications_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+
+# TEST MODE — sends only ONE email to SENDER_EMAIL (yourself) using the first
+# owner's rules as sample data. Use this to verify formatting before going live.
+# Set DRY_RUN = False and TEST_MODE = True to send a single real test email.
+TEST_MODE       = False
 
 # Tags to SKIP — base rules and standard exceptions don't need owner notifications
 SKIP_TAGS       = {"BaseRule", "ToolsRule", "ToolsRules"}
@@ -193,8 +198,9 @@ def load_rules(excel_path):
                 "business_justification": g("Policy Name + tag + FER close date + Business Justification"),
             })
 
+    total_sheets = len(wb.sheetnames)
     wb.close()
-    log.info(f"Loaded {len(rules)} rules across {len(wb.sheetnames)} devices")
+    log.info(f"Loaded {len(rules)} rules across {total_sheets} devices")
     return rules
 
 
@@ -228,19 +234,40 @@ def build_owner_rule_map(rules):
 
 def format_email(owner, rules):
     """Build HTML email body."""
-    name = owner["name"].split(",")[0]  # First word of last name for greeting
+    # Name format is "Lastname, Firstname" — extract first name for greeting
+    parts = owner["name"].split(",")
+    name = parts[1].strip().split()[0] if len(parts) > 1 else parts[0].strip()
 
     rows = ""
     for r in rules:
         last_hit = str(r.get("last_hit") or "Never")
+
+        # Fix ticket ID — Excel sometimes reads as float (e.g. 0.110789 100376)
+        raw_ticket = r.get("ticket_id") or ""
+        ticket_lines = []
+        for t in str(raw_ticket).strip().split("\n"):
+            t = t.strip()
+            if t and t not in ("0", "0.0"):
+                try:
+                    ticket_lines.append(str(int(float(t))) if "." in t else t)
+                except ValueError:
+                    ticket_lines.append(t)
+        ticket_display = ", ".join(ticket_lines) if ticket_lines else "N/A"
+
+        # Truncate long source/destination strings for readability
+        src = str(r.get("source") or "")
+        dst = str(r.get("destination") or "")
+        src = (src[:60] + "...") if len(src) > 60 else src
+        dst = (dst[:60] + "...") if len(dst) > 60 else dst
+
         rows += f"""
         <tr>
           <td style='padding:6px;border:1px solid #ddd'>{r['device_name'] or ''}</td>
           <td style='padding:6px;border:1px solid #ddd'>{r['rule_name'] or ''}</td>
-          <td style='padding:6px;border:1px solid #ddd'>{r['source'] or ''}</td>
-          <td style='padding:6px;border:1px solid #ddd'>{r['destination'] or ''}</td>
+          <td style='padding:6px;border:1px solid #ddd;font-size:11px'>{src}</td>
+          <td style='padding:6px;border:1px solid #ddd;font-size:11px'>{dst}</td>
           <td style='padding:6px;border:1px solid #ddd'>{last_hit}</td>
-          <td style='padding:6px;border:1px solid #ddd'>{r['ticket_id'] or 'N/A'}</td>
+          <td style='padding:6px;border:1px solid #ddd'>{ticket_display}</td>
         </tr>"""
 
     html = f"""
@@ -294,13 +321,24 @@ def format_email(owner, rules):
 
 def format_teams_card(owner, rules):
     """Build Teams adaptive card payload for incoming webhook."""
-    name = owner["name"]
+    parts = owner["name"].split(",")
+    name = parts[1].strip().split()[0] if len(parts) > 1 else parts[0].strip()
     rule_lines = []
     for r in rules:
         last_hit = str(r.get("last_hit") or "Never")
+        raw_ticket = r.get("ticket_id") or ""
+        ticket_lines = []
+        for t in str(raw_ticket).strip().split("\n"):
+            t = t.strip()
+            if t and t not in ("0", "0.0"):
+                try:
+                    ticket_lines.append(str(int(float(t))) if "." in t else t)
+                except ValueError:
+                    ticket_lines.append(t)
+        ticket_display = ", ".join(ticket_lines) if ticket_lines else "N/A"
         rule_lines.append(
             f"• **{r['rule_name'] or 'Unnamed'}** | Device: {r['device_name']} | "
-            f"Last Hit: {last_hit} | Ticket: {r['ticket_id'] or 'N/A'}"
+            f"Last Hit: {last_hit} | Ticket: {ticket_display}"
         )
 
     rules_text = "\n\n".join(rule_lines)
@@ -454,6 +492,20 @@ def main():
 
     # 3. Notify each owner
     log_rows = []
+
+    # TEST MODE: take the first owner's rules, redirect email to SENDER_EMAIL
+    if TEST_MODE and not DRY_RUN:
+        log.info("=" * 60)
+        log.info("TEST MODE — sending ONE sample email to yourself")
+        log.info(f"Recipient overridden to: {SENDER_EMAIL}")
+        log.info("=" * 60)
+        first_email, first_data = next(iter(owner_map.items()))
+        test_owner = first_data["owner"].copy()
+        test_rules = first_data["rules"]
+        send_email(SENDER_EMAIL, test_owner, test_rules, dry_run=False)
+        log.info("Test email sent. Review your inbox, then set TEST_MODE = False to run for real.")
+        return
+
     for email, data in owner_map.items():
         owner = data["owner"]
         owner_rules = data["rules"]
