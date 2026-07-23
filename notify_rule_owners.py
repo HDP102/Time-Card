@@ -2,10 +2,10 @@
 notify_rule_owners.py
 =====================
 Workstream 1 — Rule Recertification Owner Notifications
-PG&E | Project Bluetooth Mode
+PG&E | NPS Automation
 
 What this script does:
-  1. Reads Leonard's Excel spreadsheet (all 218 device tabs)
+  1. Reads the firewall rule spreadsheet (all device tabs)
   2. Parses each rule's AMPS owner data from Source/Destination columns
   3. Deduplicates owners across rules — one notification per owner
   4. Sends each owner a notification listing their rules with three options:
@@ -18,7 +18,7 @@ Usage:
   py notify_rule_owners.py
 
 Configuration (edit CONFIG block below):
-  EXCEL_PATH      — path to Leonard's spreadsheet
+  EXCEL_PATH      — path to the firewall rule spreadsheet
   NOTIFY_EMAIL    — True/False
   NOTIFY_TEAMS    — True/False
   DRY_RUN         — True = print only, do NOT send anything
@@ -44,12 +44,12 @@ from openpyxl import load_workbook
 # ─────────────────────────────────────────────
 # CONFIG
 # ─────────────────────────────────────────────
-EXCEL_PATH      = "Timesheet.xlsx"              # Path to Leonard's spreadsheet
+EXCEL_PATH      = "firewall_rule_report.xlsx"      # Path to the firewall rule spreadsheet
 NOTIFY_EMAIL    = True                           # Send email notifications
 NOTIFY_TEAMS    = False                          # Send Teams notifications
 DRY_RUN         = True                           # True = print only, don't send
 
-SENDER_EMAIL    = "hardik.patel@pge.com"         # Your CorpID@pge.com
+SENDER_EMAIL    = "corpid@pge.com"         # Your CorpID@pge.com
 SMTP_HOST       = "mailhost"                     # PG&E internal mailhost
 SMTP_PORT       = 25
 
@@ -77,7 +77,7 @@ log = logging.getLogger(__name__)
 
 def parse_owner_string(raw):
     """
-    Parse the AMPS owner string from Leonard's spreadsheet.
+    Parse the AMPS owner string from the firewall rule spreadsheet.
     Format: "10.x.x.x = {'APP-123': {'hostname': {'APP-123': {'Client Owner': 'Name (ID)'}}}}\n..."
     Returns list of dicts: [{email, name, role, app_id, ip}]
     """
@@ -143,7 +143,7 @@ def extract_primary_owner(owners):
 
 def load_rules(excel_path):
     """
-    Read all tabs from Leonard's spreadsheet.
+    Read all device tabs from the firewall rule spreadsheet.
     Returns list of rule dicts.
     """
     log.info(f"Loading spreadsheet: {excel_path}")
