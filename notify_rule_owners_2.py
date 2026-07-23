@@ -49,6 +49,7 @@ import requests
 from openpyxl import load_workbook, Workbook
 from openpyxl.styles import PatternFill, Font, Alignment
 from openpyxl.utils import get_column_letter
+from openpyxl.worksheet.datavalidation import DataValidation
 
 # ─────────────────────────────────────────────
 # CONFIG
@@ -262,6 +263,23 @@ def build_excel_attachment(owner, rules):
         ws.cell(row=row_idx, column=6, value=clean_ticket_id(r.get("ticket_id")))
         decision_cell = ws.cell(row=row_idx, column=7, value="")
         decision_cell.alignment = Alignment(horizontal="center")
+
+    # Dropdown data validation for Decision column (G2 to last data row)
+    last_data_row = len(rules) + 1
+    dv = DataValidation(
+        type="list",
+        formula1='"A) Recertify,B) Clean up / Remove,C) Review with team"',
+        allow_blank=True,
+        showDropDown=False,  # False = show the dropdown arrow
+        showErrorMessage=True,
+        errorTitle="Invalid Entry",
+        error="Please select A) Recertify, B) Clean up / Remove, or C) Review with team",
+        showInputMessage=True,
+        promptTitle="Decision Required",
+        prompt="Select your decision for this rule"
+    )
+    ws.add_data_validation(dv)
+    dv.sqref = f"G2:G{last_data_row}"
 
     # Column widths
     col_widths = [25, 30, 45, 45, 15, 20, 22]
