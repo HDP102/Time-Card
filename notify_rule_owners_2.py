@@ -237,61 +237,68 @@ def truncate(text, length=60):
 # ── Excel attachment builder ───────────────────────────────────────────────────
 
 def build_excel_attachment(owner, rules):
-    """Build an Excel file in memory with a Decision column for the owner to fill in."""
+    """Build an Excel file in memory with a Decision dropdown column for the owner to fill in."""
     wb = Workbook()
     ws = wb.active
     ws.title = "Rules for Review"
 
-    # Header style
-    header_fill = PatternFill(start_color="003366", end_color="003366", fill_type="solid")
-    header_font = Font(color="FFFFFF", bold=True)
+    blue_fill  = PatternFill(start_color="003366", end_color="003366", fill_type="solid")
+    light_fill = PatternFill(start_color="D9E1F2", end_color="D9E1F2", fill_type="solid")
 
+    # Row 1 — instruction banner
+    ws.merge_cells("A1:G1")
+    ws["A1"] = "Firewall Rule Recertification — Please fill in the Decision column for each rule using the dropdown, then reply with this completed file."
+    ws["A1"].font = Font(bold=True, color="FFFFFF", size=11)
+    ws["A1"].fill = blue_fill
+    ws["A1"].alignment = Alignment(horizontal="left", vertical="center", wrap_text=True)
+    ws.row_dimensions[1].height = 32
+
+    # Row 2 — A/B/C legend
+    ws.merge_cells("A2:G2")
+    ws["A2"] = (
+        "A) Recertify — Rule is still needed and should remain active     |     "
+        "B) Clean up / Remove — Rule is no longer needed and can be disabled/deleted     |     "
+        "C) Review with team — Unsure, would like to discuss with the NPS Automation team"
+    )
+    ws["A2"].font = Font(bold=True, color="003366", size=10)
+    ws["A2"].fill = light_fill
+    ws["A2"].alignment = Alignment(horizontal="left", vertical="center", wrap_text=True)
+    ws.row_dimensions[2].height = 28
+
+    # Row 3 — column headers
     headers = ["Device", "Rule Name", "Source", "Destination", "Last Hit", "Ticket ID", "Decision (A / B / C)"]
     for col_idx, header in enumerate(headers, 1):
-        cell = ws.cell(row=1, column=col_idx, value=header)
-        cell.fill = header_fill
-        cell.font = header_font
+        cell = ws.cell(row=3, column=col_idx, value=header)
+        cell.fill = blue_fill
+        cell.font = Font(color="FFFFFF", bold=True)
         cell.alignment = Alignment(horizontal="left")
 
-    # Data rows
-    for row_idx, r in enumerate(rules, 2):
+    # Data rows starting at row 4
+    for row_idx, r in enumerate(rules, 4):
         ws.cell(row=row_idx, column=1, value=str(r.get("device_name") or ""))
         ws.cell(row=row_idx, column=2, value=str(r.get("rule_name") or ""))
         ws.cell(row=row_idx, column=3, value=str(r.get("source") or ""))
         ws.cell(row=row_idx, column=4, value=str(r.get("destination") or ""))
         ws.cell(row=row_idx, column=5, value=str(r.get("last_hit") or "Never"))
         ws.cell(row=row_idx, column=6, value=clean_ticket_id(r.get("ticket_id")))
-        decision_cell = ws.cell(row=row_idx, column=7, value="")
-        decision_cell.alignment = Alignment(horizontal="center")
+        cell = ws.cell(row=row_idx, column=7, value="")
+        cell.alignment = Alignment(horizontal="center")
 
-    # Dropdown data validation for Decision column (G2 to last data row)
-    last_data_row = len(rules) + 1
+    # Dropdown on Decision column — rows 4 to end of data
+    last_data_row = len(rules) + 3
     dv = DataValidation(
         type="list",
         formula1='"A) Recertify,B) Clean up / Remove,C) Review with team"',
         allow_blank=True,
-        showDropDown=False,  # False = show the dropdown arrow
-        showErrorMessage=True,
-        errorTitle="Invalid Entry",
-        error="Please select A) Recertify, B) Clean up / Remove, or C) Review with team",
-        showInputMessage=True,
-        promptTitle="Decision Required",
-        prompt="Select your decision for this rule"
+        showDropDown=False,
     )
+    dv.sqref = f"G4:G{last_data_row}"
     ws.add_data_validation(dv)
-    dv.sqref = f"G2:G{last_data_row}"
 
     # Column widths
-    col_widths = [25, 30, 45, 45, 15, 20, 22]
+    col_widths = [25, 30, 40, 40, 15, 15, 28]
     for i, width in enumerate(col_widths, 1):
         ws.column_dimensions[get_column_letter(i)].width = width
-
-    # Legend below the table
-    legend_row = len(rules) + 3
-    ws.cell(row=legend_row, column=1, value="Decision Options:").font = Font(bold=True)
-    ws.cell(row=legend_row + 1, column=1, value="A) Recertify — The rule is still needed and should remain active.")
-    ws.cell(row=legend_row + 2, column=1, value="B) Clean up / Remove — The rule is no longer needed and can be disabled/deleted.")
-    ws.cell(row=legend_row + 3, column=1, value="C) Review with team — You are unsure and would like to discuss with the NPS Automation team.")
 
     # Save to bytes
     buffer = io.BytesIO()
