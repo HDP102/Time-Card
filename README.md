@@ -13,7 +13,7 @@ Reads the firewall rule spreadsheet, identifies the owner of each rule via AMPS 
 
 Supports both **Email** (PG&E internal SMTP) and **Teams** (incoming webhook).
 
-Owners with a small number of rules get an inline table in the email body. Owners with more rules get an Excel attachment with a dropdown in the Decision column. The cutoff is set by `ATTACHMENT_THRESHOLD`.
+**Every owner receives an Excel attachment** with a Decision dropdown, regardless of how many rules they have. The response format is deliberately uniform — one parseable artifact per owner keeps the audit trail consistent and avoids hand-transcribing free-text email replies.
 
 ---
 
@@ -47,23 +47,31 @@ Put these in the same folder:
 Open `notify_rule_owners.py` in a text editor or VS Code and edit the **CONFIG block** near the top of the file.
 
 ```python
-EXCEL_PATH           = "firewall_rule_report.xlsx"  # Path to the rule spreadsheet
-NOTIFY_EMAIL         = True          # Send email notifications
-NOTIFY_TEAMS         = False         # Send Teams notifications (need webhook URL first)
-DRY_RUN              = True          # True = print only, don't send anything real
+RUN_MODE             = "notify"      # notify | remind | announce | digest
+
+EXCEL_PATH           = "firewall_rule_report.xlsx"
+NOTIFY_EMAIL         = True
+NOTIFY_TEAMS         = False
+DRY_RUN              = True
+TEST_MODE            = False
 
 SENDER_EMAIL         = "corpid@pge.com"   # Your CorpID@pge.com
 SMTP_HOST            = "mailhost"         # PG&E internal SMTP — do not change
-SMTP_PORT            = 25                 # Do not change
+SMTP_PORT            = 25
 
-TEAMS_WEBHOOK        = "<YOUR_TEAMS_WEBHOOK_URL>"   # Fill in once webhook is received
+TEAMS_WEBHOOK        = "<CHANNEL_WEBHOOK>"   # team channel — announce, digest
+TEAMS_USER_WEBHOOK   = ""                    # Power Automate flow that DMs an owner
+TEAMS_WEBHOOK_TEST   = ""                    # test destination, "" reuses the above
+TEAMS_DELAY_SECONDS  = 1                     # pause between posts to avoid throttling
 
-TEST_MODE            = False   # True = send to yourself instead of the real owners
-ATTACHMENT_THRESHOLD = 8       # Above this rule count, send an Excel attachment
+RESPONDED_FILE       = "responded.csv"       # owners who have already replied
+RESPONSES_DIR        = "responses"           # save replied-to spreadsheets here
+LOGS_DIR             = "logs"                # run logs; reminders read these
+REMIND_AFTER_DAYS    = 14                    # only chase after this long
 
-NOTIFY_ONLY          = []      # Whitelist of CorpIDs — [] = notify everyone
-EXCLUDE_OWNERS       = []      # Blacklist of CorpIDs — [] = exclude nobody
-NOTIFY_DEVICES       = []      # Only these devices/sites — [] = all devices
+NOTIFY_ONLY          = []      # whitelist of CorpIDs — [] = everyone
+EXCLUDE_OWNERS       = []      # blacklist of CorpIDs — [] = exclude nobody
+NOTIFY_DEVICES       = []      # only these devices/sites — [] = all devices
 
 SKIP_TAGS            = {"BaseRule", "ToolsRule", "ToolsRules"}
 SKIP_SHADOWED        = True
@@ -73,7 +81,82 @@ SKIP_SHADOWED        = True
 
 ---
 
-## The Three Modes
+## Run Modes
+
+`RUN_MODE` picks the job. Filters apply to all four.
+
+| Mode | Contacts owners? | What it does |
+|------|------------------|--------------|
+| `notify` | Yes | The main run. Emails each owner their rules as an Excel attachment, plus an optional companion Teams card |
+| `remind` | Yes | Chases owners who have not responded, with a days-outstanding count |
+| `announce` | No | One heads-up card to the team channel before a wave goes out |
+| `digest` | No | One status card to the team channel: notified / responded / outstanding |
+
+### `notify`
+The standard run. The companion Teams card carries no rule data — it tells the owner to check their email and confirms the message is legitimate. That last part matters: an unexpected internal email with an Excel attachment asking you to fill in a form and reply is exactly what security awareness training tells people to distrust, and this is a security team sending dozens of them.
+
+### `remind`
+Reads `RESPONDED_FILE` and skips anyone listed. Reads the `notifications_*.csv` logs from previous runs to work out how long each owner has been outstanding, and skips anyone notified less than `REMIND_AFTER_DAYS` ago. Reminder wording replaces the original pitch and includes the wait time.
+
+Requires at least one prior real `notify` run — dry runs and test sends are deliberately excluded from history, so rehearsing never makes the script think someone was contacted.
+
+### `announce`
+Posts once to the team channel describing what is about to land, what it looks like, and who to ask. Cuts down "is this phishing?" traffic before it starts. Contacts nobody.
+
+### `digest`
+Posts a status roll-up to the team channel: response rate, counts notified / responded / outstanding, rules still outstanding, age of the oldest outstanding request, and the five largest holdouts by rule count. Contacts nobody, needs no per-user setup, and is the cheapest way to give the team a live picture of progress.
+
+---
+
+## Response Tracking
+
+### Folder layout
+
+The script creates these itself — you do not need to make them by hand:
+
+```
+Notify/
+├── notify_rule_owners.py
+├── firewall_rule_report.xlsx     ← must match EXCEL_PATH
+├── responded.csv                 ← created after the first real send
+├── responses/                    ← created after the first real send
+└── logs/
+    ├── notifications_*.csv       ← one per owner-contacting run
+    └── discarded/                ← move a bad run's log here to void it
+```
+
+`responded.csv`, `responses/` and `logs/discarded/` appear only once a real send has actually delivered at least one email. Dry runs and test sends write a log and nothing else, so rehearsing never litters the folder.
+
+### Recording who replied
+
+`responded.csv` is a plain list, one CorpID per line under a `corpid` header:
+
+```
+corpid
+ABC1
+XYZ2
+```
+
+Add a line as each reply arrives. `remind` skips anyone listed; `digest` counts them as responded. Nothing writes to this file automatically — it is yours to maintain.
+
+Save the returned spreadsheets into `responses/`. They are named after the owner's CorpID, so the folder doubles as a record of who has replied and what they decided.
+
+### Discarding a bad run
+
+Real sends to a small group are the sensible way to pilot this, but a real send writes real history — the script will then believe those people were notified, and reminders will age from that date.
+
+To void a run, delete its log from `logs/`, or move it into `logs/discarded/`. Anything inside `discarded/` is ignored when history is read, and moving it back restores it. Deleting is permanent; moving is reversible, so prefer moving if you might want the record later.
+
+The console prints the exact path after every real send, so you always know which file to remove:
+
+```
+INFO To discard this run, delete logs/notifications_20260724_141553.csv
+     or move it into logs/discarded — it will stop counting as notified
+```
+
+---
+
+## Dry Run / Test / Production
 
 | Mode | Config | Filters apply? | Who receives mail |
 |------|--------|----------------|-------------------|
@@ -82,6 +165,31 @@ SKIP_SHADOWED        = True
 | **Production** | `DRY_RUN = False`, `TEST_MODE = False` | Yes | The actual rule owners |
 
 Test mode does not change what the script builds — only where it sends. The email an owner would have received arrives in your inbox exactly as they would see it, greeting and all.
+
+### A Note on Teams
+
+Filters apply to Teams cards exactly as they apply to email, in every run mode.
+
+Routing is the part that differs. A webhook posts to one fixed destination, so there is no per-owner address to override the way there is with email. Three settings handle this:
+
+| Setting | Destination | Used by |
+|---------|-------------|---------|
+| `TEAMS_WEBHOOK` | Team channel | `announce`, `digest`, and owner cards if no per-user flow exists |
+| `TEAMS_USER_WEBHOOK` | An individual owner's chat | `notify` and `remind` owner cards |
+| `TEAMS_WEBHOOK_TEST` | Your own chat or a private channel | Anything, whenever `TEST_MODE = True` |
+
+**Owner-directed cards need `TEAMS_USER_WEBHOOK`** — a Power Automate flow that reads a `recipient` field from the request body and posts to that person's chat. The script sends the owner's CorpID address as `recipient`, which is their UPN. Without this flow, owner cards fall back to the channel and the script warns you each time.
+
+Cards built during a test run carry a `🧪 TEST — not an official notification` header naming the owner they were generated for, so a stray test card is never mistaken for a real one.
+
+Practical guidance:
+- Point the channel webhook at a private or team-only channel until the process is approved
+- Always scope test runs with `NOTIFY_ONLY` so you post one or two cards, not dozens
+- `TEAMS_DELAY_SECONDS` spaces out the posts; webhooks throttle a tight loop
+- Email and Teams are independent — set `NOTIFY_EMAIL = False` to exercise Teams on its own
+- Cards never contain rule data. They point the owner at the email, which keeps rule detail out of a channel where it may not belong
+
+> ⚠️ Classic Office 365 connector webhooks were retired by Microsoft in May 2026 and no longer deliver. Any webhook URL you are given must come from the **Workflows / Power Automate** app. Workflows can post to a chat as well as a channel, which is what makes per-user and personal-test webhooks possible. Note that Adaptive Cards posted this way appear as the default Flow bot — custom bot name and icon are not supported. Confirm current behaviour with whoever provisions the webhook.
 
 ---
 
@@ -154,7 +262,7 @@ INFO Loaded rules across all devices
 INFO Unique owners before filters: XX
 INFO Unique owners after filters:  XX
 INFO   No filters active — all owners in scope
-INFO [DRY RUN] Would email: corpid@pge.com | X rules | inline table
+INFO [DRY RUN] Would email: corpid@pge.com | X rules | Subject: Action Required...
 ...
 NOTIFICATION SUMMARY
   Total rules loaded:       XXXX
@@ -194,9 +302,9 @@ Review:
 - Does the rule table look clean and readable?
 - Are the ticket IDs correct?
 - Are source/destination columns truncated cleanly?
-- For a large owner, does the Excel attachment open with a working Decision dropdown?
+- Does the Excel attachment open with a working Decision dropdown in column G?
 
-To check both formats, pick one CorpID with more rules than `ATTACHMENT_THRESHOLD` and one with fewer.
+Pick one CorpID with many rules and one with only a few — the attachment should look right either way.
 
 ✅ If the emails look good, you're ready for team review.
 
@@ -218,29 +326,69 @@ TEAMS_WEBHOOK = "https://outlook.office.com/webhook/..."
 NOTIFY_TEAMS  = True
 ```
 
-Set `TEST_MODE = True` and `DRY_RUN = False` with a filter in place to send one Teams notification and verify it lands correctly before going live.
+Then scope the run so only one card goes out and verify it lands correctly:
+
+```python
+DRY_RUN     = False
+TEST_MODE   = True
+NOTIFY_ONLY = ["ABC1"]
+NOTIFY_TEAMS = True
+```
+
+The card will arrive in the webhook's channel with a TEST banner on it. Set `NOTIFY_EMAIL = False` first if you want to check Teams without also sending yourself email.
 
 ---
 
-### Step 5 — Production Run
+### Step 5 — Announce (optional but recommended)
+Before the first real wave, post a heads-up to the team channel:
+```python
+RUN_MODE  = "announce"
+DRY_RUN   = False
+TEST_MODE = False
+```
+Contacts no owners. Gives the team something to point at when someone asks whether the email is real.
+
+---
+
+### Step 6 — Production Run
 Once everything is approved:
 
 ```python
+RUN_MODE  = "notify"
 DRY_RUN   = False
 TEST_MODE = False
 ```
 
-Consider starting with a single site in `NOTIFY_DEVICES` as a pilot before opening it up to everyone. When you're ready for the full run, clear all three filter lists.
+Consider starting with a single site in `NOTIFY_DEVICES` as a pilot before opening it up to everyone. When you are ready for the full run, clear all three filter lists.
 
-The script will send emails (and Teams if configured) to the owners in scope. The CSV log records every notification sent.
+The script emails every owner in scope and records the run in the CSV log. Keep that log — reminders and digests read it.
 
-> ⚠️ Before every production run, confirm `TEST_MODE = False` and check the filter lists are what you intend. The console prints the owner count and active filters before sending — read it.
+> ⚠️ Before every production run, confirm `TEST_MODE = False` and check `RUN_MODE` and the filter lists are what you intend. The console prints the mode, owner count, and active filters before sending — read it.
+
+---
+
+### Step 7 — Track and Chase
+As replies come in, add each responder's CorpID to `responded.csv`.
+
+Status roll-up to the team channel at any time:
+```python
+RUN_MODE = "digest"
+```
+
+Chase the stragglers once enough time has passed:
+```python
+RUN_MODE          = "remind"
+REMIND_AFTER_DAYS = 14
+```
+Dry run both first — `remind` in particular, so you can confirm the skip counts look right before anything goes out.
 
 ---
 
 ## Output Files
 
-Each run generates a timestamped CSV log:
+Owner-contacting runs (`notify`, `remind`) write a timestamped CSV log into `logs/`. `announce` and `digest` contact nobody and write no log.
+
+
 ```
 notifications_YYYYMMDD_HHMMSS.csv
 ```
@@ -254,7 +402,9 @@ Columns:
 | corpid | Owner's CorpID |
 | role | Owner role (Client Owner, Cyber Owner, etc.) |
 | rule_count | Number of rules in their notification |
-| attachment_sent | True if their rules were sent as an Excel attachment |
+| attachment_sent | Always True — every owner gets an attachment |
+| dry_run | True if this row came from a rehearsal, not a real send |
+| test_mode | True if the mail was redirected to you rather than the owner |
 | email_sent | True/False |
 | teams_sent | True/False |
 | device_list | Sites/devices their rules cover |
@@ -279,15 +429,21 @@ The script automatically skips:
 | Email not arriving | Must be on PG&E network or VPN. Check you're not using an `@exchange.pge.com` address as sender |
 | "No owners matched the filters" | A filter list is too narrow or has a typo. CorpIDs are matched case-insensitively; device names are partial matches |
 | Far more test emails than expected | Test mode sends one per owner in scope. Set `NOTIFY_ONLY` to narrow it |
-| Expected an attachment but got an inline table | The owner's rule count is at or below `ATTACHMENT_THRESHOLD`. Lower the threshold to force attachments |
 | Ticket ID shows unexpected format | Update to latest version of the script |
 | Greeting shows last name instead of first | Update to latest version of the script |
 | Teams notification not sending | Check webhook URL is filled in and `NOTIFY_TEAMS = True` |
+| Teams posts failing partway through a run | The webhook is throttling. Raise `TEAMS_DELAY_SECONDS` |
+| `RUN_MODE "..." not recognised` | Use exactly one of: notify, remind, announce, digest |
+| Owner cards landing in the channel instead of a DM | `TEAMS_USER_WEBHOOK` is empty. The script warns each time this happens |
+| "Nobody is due a reminder right now" | Everyone has responded, or nobody was notified more than `REMIND_AFTER_DAYS` ago. Reminders need a prior real notify run — dry runs and test sends do not count |
+| Reminder says an owner was never notified | History comes from `logs/notifications_*.csv`. Check the log was not deleted or moved into `logs/discarded/` |
+| Test cards indistinguishable from real ones | Test-run cards carry a TEST banner. If it is missing, the run was not in test mode |
 
 ---
 
 ## Important Notes
 
+- Keep the `logs/` folder — `remind` and `digest` read it for history. Removing a log voids that run
 - **Never hard-code passwords** in the script — SMTP requires no authentication, keep it that way
 - **Do not use `@exchange.pge.com`** addresses as sender or recipient — PG&E blocks these
 - **Label the script as Confidential** when sharing internally via email
