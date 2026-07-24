@@ -109,6 +109,15 @@ LOG_FILE             = f"notifications_{datetime.now().strftime('%Y%m%d_%H%M%S')
 #   real source once response tracking is settled.
 RESPONDED_FILE       = "responded.csv"
 
+# RESPONSES_DIR — drop replied-to spreadsheets here. Both this folder and the file
+#   above are created automatically after the first real send.
+RESPONSES_DIR        = "responses"
+
+# LOGS_DIR — run logs live here. Reminders and digests read them for history.
+#   To throw away a bad run, delete its log or move it into LOGS_DIR/discarded —
+#   anything in that subfolder is ignored, so the run stops counting as notified.
+LOGS_DIR             = "logs"
+
 # REMIND_AFTER_DAYS — only chase owners notified at least this many days ago.
 #   Notification dates are read from the notifications_*.csv logs of previous runs.
 REMIND_AFTER_DAYS    = 14
@@ -529,7 +538,10 @@ def load_responded():
 def load_notification_history():
     """First-notified timestamp per CorpID, read from previous notifications_*.csv logs."""
     history = {}
-    for path in sorted(Path(".").glob("notifications_*.csv")):
+    # glob is non-recursive, so anything moved into LOGS_DIR/discarded is ignored
+    candidates = list(Path(LOGS_DIR).glob("notifications_*.csv"))
+    candidates += list(Path(".").glob("notifications_*.csv"))   # logs from older runs
+    for path in sorted(set(candidates)):
         if path.name == LOG_FILE:
             continue
         try:
@@ -802,6 +814,8 @@ def send_teams_channel(payload, description, dry_run=True, test_mode=False):
 # ── Logging ────────────────────────────────────────────────────────────────────
 
 def write_log(log_file, rows):
+    Path(LOGS_DIR).mkdir(exist_ok=True)
+    log_file = Path(LOGS_DIR) / log_file
     with open(log_file, "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=[
             "timestamp", "email", "name", "corpid", "role",
@@ -811,6 +825,25 @@ def write_log(log_file, rows):
         writer.writeheader()
         writer.writerows(rows)
     log.info(f"Notification log written to: {log_file}")
+
+
+def ensure_workspace(log_rows):
+    """After a genuine send, create the folders and files used to track replies."""
+    if DRY_RUN or TEST_MODE:
+        return
+    if not any(r["email_sent"] for r in log_rows):
+        return
+
+    if not Path(RESPONSES_DIR).exists():
+        Path(RESPONSES_DIR).mkdir(exist_ok=True)
+        log.info(f"Created {RESPONSES_DIR}/ — save replied-to spreadsheets here")
+
+    Path(LOGS_DIR, "discarded").mkdir(parents=True, exist_ok=True)
+
+    responded = Path(RESPONDED_FILE)
+    if not responded.exists():
+        responded.write_text("corpid\n", encoding="utf-8")
+        log.info(f"Created {RESPONDED_FILE} — add one CorpID per line as replies arrive")
 
 
 # ── Main ───────────────────────────────────────────────────────────────────────
@@ -930,6 +963,10 @@ def main():
 
     if log_rows:
         write_log(LOG_FILE, log_rows)
+        ensure_workspace(log_rows)
+        if not DRY_RUN and not TEST_MODE:
+            log.info(f"To discard this run, delete {LOGS_DIR}/{LOG_FILE} or move it into "
+                     f"{LOGS_DIR}/discarded — it will stop counting as notified")
 
     print("\n" + "=" * 60)
     print("  RUN SUMMARY")
@@ -950,7 +987,7 @@ def main():
     print(f"  Test mode:                {TEST_MODE}")
     print(f"  Dry run:                  {DRY_RUN}")
     if log_rows:
-        print(f"  Log file:                 {LOG_FILE}")
+        print(f"  Log file:                 {LOGS_DIR}/{LOG_FILE}")
     print("=" * 60)
 
 
