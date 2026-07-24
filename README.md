@@ -54,6 +54,7 @@ NOTIFY_EMAIL         = True
 NOTIFY_TEAMS         = False
 DRY_RUN              = True
 TEST_MODE            = False
+TEST_LIMIT           = 1             # max emails a test run sends you; 0 = no cap
 
 SENDER_EMAIL         = "corpid@pge.com"   # Your CorpID@pge.com
 SMTP_HOST            = "mailhost"         # PG&E internal SMTP — do not change
@@ -88,7 +89,7 @@ SKIP_SHADOWED        = True
 | Mode | Contacts owners? | What it does |
 |------|------------------|--------------|
 | `notify` | Yes | The main run. Emails each owner their rules as an Excel attachment, plus an optional companion Teams card |
-| `remind` | Yes | Chases owners who have not responded, with a days-outstanding count |
+| `remind` | Yes | Chases owners who have not responded. Distinct subject and body — no process explainer, states how long it has been, re-attaches the same spreadsheet |
 | `announce` | No | One heads-up card to the team channel before a wave goes out |
 | `digest` | No | One status card to the team channel: notified / responded / outstanding |
 
@@ -96,7 +97,16 @@ SKIP_SHADOWED        = True
 The standard run. The companion Teams card carries no rule data — it tells the owner to check their email and confirms the message is legitimate. That last part matters: an unexpected internal email with an Excel attachment asking you to fill in a form and reply is exactly what security awareness training tells people to distrust, and this is a security team sending dozens of them.
 
 ### `remind`
-Reads `RESPONDED_FILE` and skips anyone listed. Reads the `notifications_*.csv` logs from previous runs to work out how long each owner has been outstanding, and skips anyone notified less than `REMIND_AFTER_DAYS` ago. Reminder wording replaces the original pitch and includes the wait time.
+Reads `RESPONDED_FILE` and skips anyone listed. Reads the `notifications_*.csv` logs from previous runs to work out how long each owner has been outstanding, and skips anyone notified less than `REMIND_AFTER_DAYS` ago. Reminder wording replaces the original entirely:
+
+| | Original | Reminder |
+|---|---|---|
+| Subject | Action Required: Firewall Rule Recertification (12 rules) | Reminder: Firewall Rule Recertification Still Outstanding (12 rules) |
+| Opening | Explains the annual recertification process | States no decisions have been received, and how many days it has been |
+| Attachment | Their rule list | The same list again, so they need not hunt for the original email |
+| Extra | — | Invites them to flag if they already replied or no longer own the rules |
+
+The days-outstanding line is omitted when there is no notification history to age against.
 
 Requires at least one prior real `notify` run — dry runs and test sends are deliberately excluded from history, so rehearsing never makes the script think someone was contacted.
 
@@ -161,7 +171,7 @@ INFO To discard this run, delete logs/notifications_20260724_141553.csv
 | Mode | Config | Filters apply? | Who receives mail |
 |------|--------|----------------|-------------------|
 | **Dry run** | `DRY_RUN = True` | Yes | Nobody. Prints what would be sent and writes the CSV log |
-| **Test** | `DRY_RUN = False`, `TEST_MODE = True` | Yes | You. One email per matched owner, all sent to `SENDER_EMAIL` |
+| **Test** | `DRY_RUN = False`, `TEST_MODE = True` | Yes | You. Up to `TEST_LIMIT` emails, all sent to `SENDER_EMAIL` |
 | **Production** | `DRY_RUN = False`, `TEST_MODE = False` | Yes | The actual rule owners |
 
 Test mode does not change what the script builds — only where it sends. The email an owner would have received arrives in your inbox exactly as they would see it, greeting and all.
@@ -290,7 +300,7 @@ Run the script. Every matched owner's email is sent to your own address (`SENDER
 
 > ⚠️ You must be on the PG&E network or VPN for this to work — the script connects to `mailhost` on port 25.
 >
-> ⚠️ Running test mode with no filters sends one email per owner to your own inbox, which can be dozens of messages. The script warns you when the count is high. Use `NOTIFY_ONLY` to keep it small.
+> `TEST_LIMIT` caps how many emails a test run can send you — it defaults to 1, so an unfiltered test gives you a single sample rather than dozens. Raise it to see more, or set it to 0 to send one per matched owner. The cap applies to test mode only and never limits a real send.
 
 Check your inbox. You should receive an email titled:
 ```
@@ -428,7 +438,7 @@ The script automatically skips:
 | `ModuleNotFoundError: openpyxl` | Run `py -m pip install openpyxl requests` |
 | Email not arriving | Must be on PG&E network or VPN. Check you're not using an `@exchange.pge.com` address as sender |
 | "No owners matched the filters" | A filter list is too narrow or has a typo. CorpIDs are matched case-insensitively; device names are partial matches |
-| Far more test emails than expected | Test mode sends one per owner in scope. Set `NOTIFY_ONLY` to narrow it |
+| Far more test emails than expected | Raise or lower `TEST_LIMIT` — it caps test sends and defaults to 1. `TEST_LIMIT = 0` removes the cap |
 | Ticket ID shows unexpected format | Update to latest version of the script |
 | Greeting shows last name instead of first | Update to latest version of the script |
 | Teams notification not sending | Check webhook URL is filled in and `NOTIFY_TEAMS = True` |
