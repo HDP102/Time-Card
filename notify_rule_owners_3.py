@@ -127,6 +127,11 @@ REMIND_AFTER_DAYS    = 14
 # TEAMS_WEBHOOK_TEST. Cards are labelled as tests. Scope it with the filters below.
 TEST_MODE            = False
 
+# TEST_LIMIT — hard cap on how many emails a test run sends you, so an unfiltered
+#   test cannot flood your inbox. 1 = one sample owner, 0 = no cap (send them all).
+#   Combine with NOTIFY_ONLY to choose exactly whose email you want to see.
+TEST_LIMIT           = 1
+
 # ── FILTERS — scope who gets notified. Apply in ALL modes: dry run, test, real send.
 #    All three stack: an owner must pass every active filter to be notified.
 #    Leave a list empty to turn that filter off.
@@ -477,13 +482,51 @@ def format_email_attachment(owner, rules):
     """
 
 
+def format_email_reminder(owner, rules, days_outstanding=None):
+    """Chase email. Assumes they have already read the original — no process explainer."""
+    name   = get_first_name(owner)
+    count  = len(rules)
+    waited = (f" It has been <strong>{days_outstanding} days</strong> since that request."
+              if days_outstanding else "")
+
+    return f"""
+    <html><body style='font-family:Arial,sans-serif;color:#333'>
+    <p>Hi {name},</p>
+    <p>We have not yet received your recertification decisions for
+    <strong>{count} firewall rule{'s' if count != 1 else ''}</strong>
+    associated with applications or assets you own.{waited}</p>
+    <p>The same rule list is attached again so you do not need to look for the original
+    email. <strong>Please fill in the Decision column for each rule and reply with the
+    completed file:</strong></p>
+    <ol>
+      <li><strong>A) Recertify</strong> — The rule is still needed and should remain active.</li>
+      <li><strong>B) Clean up / Remove</strong> — The rule is no longer needed and can be disabled/deleted.</li>
+      <li><strong>C) Review with the team</strong> — You are unsure and would like to discuss with the NPS Automation team.</li>
+    </ol>
+    <p>If you have already replied, or if these rules belong to someone else now,
+    let us know and we will update our records.</p>
+    <p>If you would prefer to walk through the list together, contact the NPS Automation
+    team and we will set up a review session.</p>
+    <p>Thank you,<br><strong>NPS Automation Team</strong><br>PG&E Network &amp; Platform Security</p>
+    <p style='font-size:11px;color:#888'>This is an automated reminder from the NPS firewall
+    recertification process. Rule count in this notification: {count}</p>
+    </body></html>
+    """
+
+
 # ── Sending ────────────────────────────────────────────────────────────────────
 
-def send_email(to_email, owner, rules, dry_run=True):
+def send_email(to_email, owner, rules, dry_run=True, reminder=False, days_outstanding=None):
     """Every owner gets an Excel attachment — the response format is uniform by design."""
     rule_count = len(rules)
-    subject    = f"Action Required: Firewall Rule Recertification ({rule_count} rule{'s' if rule_count > 1 else ''})"
-    html_body  = format_email_attachment(owner, rules)
+    plural     = "s" if rule_count != 1 else ""
+
+    if reminder:
+        subject   = f"Reminder: Firewall Rule Recertification Still Outstanding ({rule_count} rule{plural})"
+        html_body = format_email_reminder(owner, rules, days_outstanding)
+    else:
+        subject   = f"Action Required: Firewall Rule Recertification ({rule_count} rule{plural})"
+        html_body = format_email_attachment(owner, rules)
 
     if dry_run:
         log.info(f"[DRY RUN] Would email: {to_email} | {rule_count} rules | Subject: {subject}")
@@ -854,6 +897,11 @@ def notify_run(owner_map, reminder=False, responded=None, history=None):
     history   = history or {}
     log_rows  = []
 
+    if TEST_MODE and TEST_LIMIT > 0 and len(owner_map) > TEST_LIMIT:
+        log.warning(f"TEST MODE — capping at {TEST_LIMIT} of {len(owner_map)} owner(s). "
+                    f"Raise TEST_LIMIT, or set it to 0, to send them all.")
+        owner_map = dict(list(owner_map.items())[:TEST_LIMIT])
+
     for email, data in owner_map.items():
         owner, owner_rules = data["owner"], data["rules"]
         days = days_since(history.get(owner["corpid"].upper()))
@@ -861,7 +909,8 @@ def notify_run(owner_map, reminder=False, responded=None, history=None):
         email_ok = teams_ok = False
 
         if NOTIFY_EMAIL:
-            email_ok = send_email(to, owner, owner_rules, dry_run=DRY_RUN)
+            email_ok = send_email(to, owner, owner_rules, dry_run=DRY_RUN,
+                                  reminder=reminder, days_outstanding=days)
         if NOTIFY_TEAMS:
             teams_ok = send_teams(owner, owner_rules, dry_run=DRY_RUN, test_mode=TEST_MODE,
                                   reminder=reminder, days_outstanding=days)
