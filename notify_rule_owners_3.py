@@ -101,7 +101,7 @@ TEAMS_WEBHOOK_TEST   = ""
 # Seconds between Teams posts. Webhooks throttle a tight loop — keep at 1 or higher.
 TEAMS_DELAY_SECONDS  = 1
 
-LOG_FILE             = f"notifications_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+LOG_FILE             = "notifications.csv"   # one running log; runs append to it
 
 # ── Response tracking (used by "remind" and "digest") ────────────────
 # RESPONDED_FILE — CSV of owners who have already replied, so reminders skip them.
@@ -581,11 +581,12 @@ def load_responded():
 def load_notification_history():
     """First-notified timestamp per CorpID, read from previous notifications_*.csv logs."""
     history = {}
-    # glob is non-recursive, so anything moved into LOGS_DIR/discarded is ignored
-    candidates = list(Path(LOGS_DIR).glob("notifications_*.csv"))
+    # the running log, plus any older timestamped logs still lying around
+    candidates = [Path(LOGS_DIR) / LOG_FILE]
+    candidates += list(Path(LOGS_DIR).glob("notifications_*.csv"))
     candidates += list(Path(".").glob("notifications_*.csv"))   # logs from older runs
     for path in sorted(set(candidates)):
-        if path.name == LOG_FILE:
+        if not path.exists():
             continue
         try:
             with open(path, newline="", encoding="utf-8-sig") as f:
@@ -859,15 +860,19 @@ def send_teams_channel(payload, description, dry_run=True, test_mode=False):
 def write_log(log_file, rows):
     Path(LOGS_DIR).mkdir(exist_ok=True)
     log_file = Path(LOGS_DIR) / log_file
-    with open(log_file, "w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=[
-            "timestamp", "email", "name", "corpid", "role",
-            "rule_count", "attachment_sent", "dry_run", "test_mode",
-            "email_sent", "teams_sent", "device_list"
-        ])
-        writer.writeheader()
+    fieldnames = [
+        "timestamp", "email", "name", "corpid", "role",
+        "rule_count", "attachment_sent", "dry_run", "test_mode",
+        "email_sent", "teams_sent", "device_list"
+    ]
+    # Append to one running log; write the header only when the file is new.
+    new_file = not log_file.exists()
+    with open(log_file, "a", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        if new_file:
+            writer.writeheader()
         writer.writerows(rows)
-    log.info(f"Notification log written to: {log_file}")
+    log.info(f"Logged {len(rows)} row(s) to: {log_file}")
 
 
 def ensure_workspace(log_rows):
@@ -1014,8 +1019,8 @@ def main():
         write_log(LOG_FILE, log_rows)
         ensure_workspace(log_rows)
         if not DRY_RUN and not TEST_MODE:
-            log.info(f"To discard this run, delete {LOGS_DIR}/{LOG_FILE} or move it into "
-                     f"{LOGS_DIR}/discarded — it will stop counting as notified")
+            log.info(f"To void a run, delete its rows from {LOGS_DIR}/{LOG_FILE} — "
+                     f"those owners will stop counting as notified")
 
     print("\n" + "=" * 60)
     print("  RUN SUMMARY")
