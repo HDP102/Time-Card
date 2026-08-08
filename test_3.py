@@ -7,7 +7,7 @@ policies to build a complete inventory.
 
 PowerShell:
     pip install openpyxl
-    python zia_category_extractor.py Zscaler.har url_filtering.json sslpol.json
+    python zia_category.py Zscaler.har url_filtering.json sslpol.json
 
 Output (in current directory):
     - ZIA_Web_Category_Inventory.xlsx
@@ -315,22 +315,32 @@ def main():
         print(__doc__)
         sys.exit(1)
 
-    har_path = os.path.abspath(sys.argv[1])
-    url_path = os.path.abspath(sys.argv[2])
-    ssl_path = os.path.abspath(sys.argv[3])
+    har_path = sys.argv[1]
+    url_path = sys.argv[2]
+    ssl_path = sys.argv[3]
 
-    # Skip os.path.exists() — OneDrive cloud-only files report as missing
-    # but are still readable. Just try opening them directly.
+    # Test each file with detailed error reporting
     for path in [har_path, url_path, ssl_path]:
         try:
-            with open(path, "r", encoding="utf-8") as f:
-                f.read(1)
-        except FileNotFoundError:
-            print(f"ERROR: File not found: {path}")
-            sys.exit(1)
+            f = open(path, "r", encoding="utf-8")
+            f.close()
+            print(f"  OK: {path}")
         except Exception as e:
-            print(f"ERROR: Cannot read {path}: {e}")
-            sys.exit(1)
+            print(f"ERROR opening {path}: {type(e).__name__}: {e}")
+            print(f"  Trying absolute path...")
+            try:
+                full = os.path.join(os.getcwd(), path)
+                f = open(full, "r", encoding="utf-8")
+                f.close()
+                print(f"  OK with absolute: {full}")
+                # Update the path variable
+                if path == har_path: har_path = full
+                elif path == url_path: url_path = full
+                else: ssl_path = full
+            except Exception as e2:
+                print(f"  Also failed: {type(e2).__name__}: {e2}")
+                print(f"\n  Files Python can see: {os.listdir('.')}")
+                sys.exit(1)
 
     print("Step 1: Extracting custom categories from HAR...")
     categories = parse_har(har_path)
