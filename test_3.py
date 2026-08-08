@@ -315,13 +315,21 @@ def main():
         print(__doc__)
         sys.exit(1)
 
-    har_path = sys.argv[1]
-    url_path = sys.argv[2]
-    ssl_path = sys.argv[3]
+    har_path = os.path.abspath(sys.argv[1])
+    url_path = os.path.abspath(sys.argv[2])
+    ssl_path = os.path.abspath(sys.argv[3])
 
+    # Skip os.path.exists() — OneDrive cloud-only files report as missing
+    # but are still readable. Just try opening them directly.
     for path in [har_path, url_path, ssl_path]:
-        if not os.path.exists(path):
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                f.read(1)
+        except FileNotFoundError:
             print(f"ERROR: File not found: {path}")
+            sys.exit(1)
+        except Exception as e:
+            print(f"ERROR: Cannot read {path}: {e}")
             sys.exit(1)
 
     print("Step 1: Extracting custom categories from HAR...")
