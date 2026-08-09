@@ -1,0 +1,9 @@
+PS C:\Users\<redacted>\OneDrive - COUNTRY Financial\Documents\Zscalar Policy clean up> Get-Content "2026-08-09T12-44-19_UTC_WEB_log.csv" -First 15
+
+...Department,None,None,None,None,None,None,NA,N/A,NA,NA,NA,Unknown,None,None,None,None,None,None,
+
+10,"June 30, 2026 9:00:00 PM PDT",Country Data Centers,westus-0.in.applicationinsights.azure.com,Allowed,Hosting Providers,Microsoft Azure,Business Use,Business and Economy,Professional Services,Country Data Centers,Default Department,None,None,None,None,None,None,NA,N/A,NA,NA,NA,Unknown,None,None,None,None,None,None,
+
+11,"June 30, 2026 9:00:00 PM PDT",user_7f3a91c4@countryfinancial.com,okta-featureflag-edge.azureedge.net,Allowed,Hosting Providers,Microsoft Azure,Bandwidth Loss,User-Defined,SSL_Inspection_Bypass_for_Servers,None,None,Road Warrior,Market 4,None,None,None,None,None,dev_2b8e05da,Zscaler Client Connector,,id_9c41f7b2,dev_5e10a3cf,Unknown,None,None,None,None,None,None,
+
+12,"June 30, 2026 9:00:00 PM PDT",user_c05d8e17@countryfinancial.com,pubads.g.doubleclick.net,Allowed,Sales & Marketing,DoubleClick,Business Use,Information Technology,Advertising,None,None,Road Warrior,Default Department,None,Pass,Yes,No,None,None,dev_a47b62e9,Zscaler Client Connector,HP EliteBook 660 16 inch G11 Notebook PC,id_3d8f04ba,dev_881ce6f7,N/A,None,None,None,None,None,None,
