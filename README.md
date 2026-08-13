@@ -70,6 +70,17 @@ RESPONSES_DIR        = "responses"           # save replied-to spreadsheets here
 LOGS_DIR             = "logs"                # run logs; reminders read these
 REMIND_AFTER_DAYS    = 14                    # only chase after this long
 
+NOTIFY_ROLES         = ["IT SME", "IT SME Backup", "IT Lead", "Client Owner"]
+GROUP_BY             = "app_id"   # "app_id" (one email per app) or "owner" (one per person)
+RESPONSE_METHOD      = "sharepoint"   # "sharepoint" (owners edit the list) or "attachment" (reply with file)
+SHAREPOINT_LINK      = "<SHAREPOINT_LIST_LINK>"   # the list link for this network — set per run
+EMAIL_SCOPE          = ""             # network/list label shown in the subject (GDN/ODN/Medium)
+RECERT_DEADLINE      = "9/18"         # "all rules must be recertified by" date
+RECERT_WINDOW        = "one week"     # "please respond within" phrasing
+FAQ_LINK             = "<pre-filled>" # public How-To / FAQ doc link
+OFFICE_HOURS_INFO    = "<pre-filled>" # office-hours Teams blocks (update if meetings change)
+SENDER_SIGNATURE     = "<pre-filled>" # sign-off; set to whoever/whichever mailbox sends
+
 NOTIFY_ONLY          = []      # whitelist of CorpIDs — [] = everyone
 EXCLUDE_OWNERS       = []      # blacklist of CorpIDs — [] = exclude nobody
 NOTIFY_DEVICES       = []      # only these devices/sites — [] = all devices
@@ -196,6 +207,68 @@ NOTIFY_DEVICES = ["Site_Name_A", "Site_Name_B"]   # [] = all devices
 | Full production run | All three lists `[]`, `TEST_MODE = False`, `DRY_RUN = False` |
 
 Every run prints the owner count before and after filtering, plus which filters were active, so you can confirm the scope before anything goes out.
+
+---
+
+## Spreadsheet Formats
+
+The script auto-detects which of two source formats it's given — no setting to change:
+
+**Role-column format** (the current one). A single flat sheet with owner role columns already filled in (IT SME, IT SME Backup, IT Lead, IT Lead Delegate, Client Owner, IT Director, IT Senior Leader), each as `Last, First (CORPID)`, plus a `Single APPID` / `App-ID` column. Owners are pre-resolved in the sheet — no AMPS lookup needed.
+
+**AMPS-string format** (the original). Many device-group tabs, owners parsed out of the `Source/Destination AMPS owners list` columns. Still supported for older files.
+
+### Which config applies to which format
+
+| Setting | Old (AMPS) | New (role-column) |
+|---|---|---|
+| `RUN_MODE`, `NOTIFY_EMAIL`, `NOTIFY_TEAMS`, `DRY_RUN`, `TEST_MODE`, `TEST_LIMIT`, `SENDER_EMAIL`, `SKIP_TAGS`, `SKIP_SHADOWED` | yes | yes |
+| `NOTIFY_ONLY` / `EXCLUDE_OWNERS` | yes | yes — checks every recipient of a grouped email |
+| `NOTIFY_DEVICES` | yes | yes |
+| `NOTIFY_ROLES`, `GROUP_BY` | ignored | yes |
+
+`NOTIFY_ONLY` on the new format keeps any app whose email includes a whitelisted person; `EXCLUDE_OWNERS` drops a blacklisted person from a grouped email but still notifies the rest. So scoping a test with `NOTIFY_ONLY = ["<corpid>"]` works the same way in both formats.
+
+### Who gets notified, and how it's grouped (role-column format)
+
+`NOTIFY_ROLES` controls which role columns are contacted. Default is IT SME, IT SME Backup, IT Lead, and Client Owner — the set agreed in review. IT Director and IT Senior Leader are deliberately left out; add them to the list if that changes.
+
+`GROUP_BY` controls the grouping:
+- `"app_id"` (default) — **one email per app ID**, sent to all that app's role-holders together, each getting the same attachment. This matches the "by app ID so people don't get a message per policy" requirement.
+- `"owner"` — one email per person, covering every rule they own across all app IDs.
+
+In a group email the greeting names everyone on it and a line calls out the app ID and the listed owners, noting any one of them can complete the review.
+
+---
+
+## How Owners Respond
+
+`RESPONSE_METHOD` controls the email that goes out:
+
+- **`sharepoint`** (default) — sends the full recertification email: the ask, the four
+  disposition options (Recertify / Recertify–DR / Cleanup–Remove / Need Assistance),
+  background, how-to steps, FAQ, office hours, and a sign-off. Owners record their decisions
+  directly in the linked SharePoint list. **No attachment** and no per-rule content in the
+  body — the list holds the rules. Requires `SHAREPOINT_LINK`; the script refuses to send if
+  it's still the placeholder.
+- **`attachment`** — sends a shorter email with the owner's rules attached as Excel; they fill
+  in the Decision column and reply with the file.
+
+### Editable email content
+
+The long instructional prose is built into the script. The parts that change between runs or
+that shouldn't be buried in code are config values, pre-filled with the current content:
+
+| Setting | What it is |
+|---|---|
+| `SHAREPOINT_LINK` | The list link — **differs per list** (ODN Part1/Part2, GDN, Medium). Set it to match the sheet you're sending. Use the list share link (`.../:l:/r/...`), not a single-item link. Left as a placeholder because it's per-run and contains a personal-site path. |
+| `EMAIL_SCOPE` | The network/list label added to the subject so recipients getting multiple emails can tell them apart, e.g. `GDN` → "...Firewall Rules - GDN". Set it per run next to `SHAREPOINT_LINK`; leave `""` to omit it. |
+| `RECERT_DEADLINE` / `RECERT_WINDOW` | The due date and response window shown in the email. |
+| `FAQ_LINK` | The public How-To / FAQ document link. |
+| `OFFICE_HOURS_INFO` | The office-hours Teams blocks. Update if the meetings change (they carry live join links and passcodes). |
+| `SENDER_SIGNATURE` | The sign-off. Set it to whoever — or whichever mailbox — is actually sending. |
+
+The subject in SharePoint mode is **"ACT: Execute Recertification of Firewall Rules"**.
 
 ---
 
