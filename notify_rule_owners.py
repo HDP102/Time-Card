@@ -149,6 +149,72 @@ NOTIFY_ROLES = [
 #   "owner"  — one email per person, covering every rule they own across app IDs.
 GROUP_BY             = "app_id"
 
+# ── Response method ──────────────────────────────────────────────────
+# RESPONSE_METHOD — how owners record their decisions:
+#   "sharepoint" — email points to the SharePoint list; owners edit the
+#                  recertification column there. No file to send back.
+#   "attachment" — owners fill in the Excel attachment and reply with it.
+# "sharepoint" still includes the attachment so owners can see their rules;
+# it just directs them to record decisions in the list instead of replying.
+RESPONSE_METHOD      = "sharepoint"      # "sharepoint" | "attachment"
+
+# SHAREPOINT_LINK — the list owners are sent to when RESPONSE_METHOD = "sharepoint".
+#   This differs per network (ODN vs GDN), so set it to match the sheet you're
+#   sending. Use the list share link (the ".../:l:/r/..." form), not a single item.
+#   Example (GDN):
+#   https://pge-my.sharepoint.com/:l:/r/personal/<owner>/Lists/GDN%20Rule%20Recertification?e=XXXX
+SHAREPOINT_LINK      = "<SHAREPOINT_LIST_LINK>"
+
+# EMAIL_SCOPE — which list/network this run is for, shown in the subject so recipients
+#   getting multiple emails can tell them apart (e.g. "GDN", "ODN", "ODN Part 2",
+#   "Medium"). Set it per run alongside SHAREPOINT_LINK to match the sheet you're
+#   sending. Leave "" to omit it from the subject.
+EMAIL_SCOPE          = ""
+
+# ── Email content (editable text shown to owners) ────────────────────
+# The stable instructional prose (the ask, the four options, background, how-to,
+# FAQ questions) lives in the email builder. The values below are the parts that
+# change between runs or shouldn't be buried in code — edit them here.
+
+# RECERT_DEADLINE — the hard "all rules must be recertified by" date shown in the email.
+RECERT_DEADLINE      = "9/18"
+# RECERT_WINDOW — the softer "please respond within" phrasing.
+RECERT_WINDOW        = "one week"
+
+# FAQ_LINK — the public How-To / FAQ document.
+FAQ_LINK             = "https://pge.sharepoint.com/:w:/r/sites/NetworkProtectionServicesPublic/_layouts/15/Doc.aspx?sourcedoc=%7B63AB99B0-3F4D-4F8B-8AD2-5965EC76F1FE%7D&file=Firewall%20Recertification%20How-To%20and%20FAQ.docx&action=default&mobileredirect=true&DefaultItemOpen=1"
+
+# OFFICE_HOURS_INFO — HTML shown in the office-hours section. Pre-filled with the
+#   current office hours; update here if the meetings change (they carry live Teams
+#   join links and passcodes).
+OFFICE_HOURS_INFO    = (
+    "<p><strong>AFTERNOON 2-3PM</strong> (Monday, Tuesday, Wednesday and Thursday)<br>"
+    "Microsoft Teams meeting<br>"
+    "Join: <a href=\"https://teams.microsoft.com/meet/237151648973835?p=oqRjctCrmJ53CH9QpF\">"
+    "https://teams.microsoft.com/meet/237151648973835?p=oqRjctCrmJ53CH9QpF</a><br>"
+    "Meeting ID: 237 151 648 973 835 &nbsp;|&nbsp; Passcode: e2fU6RY6<br>"
+    "Dial in: +1 415-906-0873,,425270707# (San Francisco) &nbsp;|&nbsp; "
+    "Phone conference ID: 425 270 707#</p>"
+    "<p><strong>MORNING 10:30-11:30 AM</strong> (Monday, Tuesday, Wednesday, and Friday)<br>"
+    "Microsoft Teams meeting<br>"
+    "Join: <a href=\"https://teams.microsoft.com/meet/258618918930560?p=3bKX6QK8D2RcjLR1Wx\">"
+    "https://teams.microsoft.com/meet/258618918930560?p=3bKX6QK8D2RcjLR1Wx</a><br>"
+    "Meeting ID: 258 618 918 930 560 &nbsp;|&nbsp; Passcode: 3bJ2ZJ3Q<br>"
+    "Dial in: +1 415-906-0873,,748003855# (San Francisco) &nbsp;|&nbsp; "
+    "Phone conference ID: 748 003 855#</p>"
+)
+
+# SENDER_SIGNATURE — the sign-off shown at the bottom of the email. Pre-filled with
+#   the current sender; change it to whoever (or whichever mailbox) is sending.
+SENDER_SIGNATURE     = (
+    "Megan Merritt<br>"
+    "Manager, Network Protection Services<br>"
+    "Cybersecurity Architecture, Engineering &amp; Operations<br>"
+    "Pacific Gas and Electric Company<br>"
+    "Megan.Merritt@pge.com<br>"
+    "Desk: +1 916.386.5104 &nbsp;|&nbsp; Mobile: +1 916.317.5597"
+)
+
 # ── Mode ─────────────────────────────────────────────────────────────
 # TEST MODE — same filters, but email goes to SENDER_EMAIL and Teams cards go to
 # TEAMS_WEBHOOK_TEST. Cards are labelled as tests. Scope it with the filters below.
@@ -694,9 +760,125 @@ def get_first_name(owner):
     return parts[1].strip().split()[0] if len(parts) > 1 else parts[0].strip()
 
 
+def _recert_background():
+    return """
+    <p><strong>Background</strong></p>
+    <p>A brief set of points signals the drivers for this effort:</p>
+    <ol>
+      <li>Heightened geopolitical strain and regional volatility are increasing the
+      likelihood of opportunistic and state-aligned cyber activity, prompting a prudent
+      reassessment of perimeter and inter-node controls.</li>
+      <li>An evolving threat narrative — where automation, AI-assisted actors, and
+      asymmetric techniques compress attack timelines — requires sharper situational
+      awareness across all exposed attack surfaces.</li>
+      <li>Growth in connectivity and exception-based access over time necessitates
+      periodic rationalization to ensure firewall rules remain intentionally aligned to
+      today's risk posture, not yesterday's needs.</li>
+      <li>Proactive governance and operational readiness demonstrates disciplined control
+      hygiene and reinforces that we are ahead of emerging risk vectors, not reacting to them.</li>
+      <li>Compliance with PG&E and industry standards.</li>
+    </ol>"""
+
+
+def _recert_howto():
+    return """
+    <p><strong>How to Recertify your Applications</strong></p>
+    <ol>
+      <li>Open the SharePoint list linked above.</li>
+      <li>Click the <strong>Edit in grid view</strong> button at the top of the page.</li>
+      <li>Filter the list to show only your applications.
+        <ul>
+          <li>Filter by selecting a column heading and choosing "Filter by" (you can apply
+          this to multiple headings).</li>
+          <li>If you know your Application ID(s), that column will be the most effective.</li>
+          <li>Alternatively, filter by your IT Director, then filter the IT SME, IT SME Backup,
+          or Client Owner fields for your name. Filtering by IT Director first reduces the
+          number of options in the other fields.</li>
+        </ul>
+      </li>
+      <li>Review each rule and select the appropriate disposition in the
+      <strong>Recertification</strong> column. You will need to <strong>double-click</strong>
+      the cell in the Recertification column to bring up the pick list.</li>
+    </ol>
+    <p><strong>Note:</strong> The "Last Hit" column shows the last time a rule was used.
+    If it is blank, the rule has never been used. If a rule has never been hit, or was last
+    used more than 365 days ago, please consider it for deletion or mark it as Disaster
+    Recovery if needed.</p>"""
+
+
+def _recert_faq():
+    return f"""
+    <p><strong>Frequently Asked Questions</strong></p>
+    <ol>
+      <li>I can't access the recertification pick list, or I can't access the list at all.
+        <ul><li>Make sure you click the "Edit in Grid View" button at the top left.</li></ul></li>
+      <li>How do I get help if I don't know whether a rule is needed?
+        <ul><li>Please come to office hours, or mark the line as "Need Assistance / Unsure"
+        and NPS will reach out to you.</li></ul></li>
+      <li>I don't think this rule should belong to me. How do I get assistance?
+        <ul><li>Please come to office hours, or mark the line as "Need Assistance / Unsure"
+        and NPS will reach out to you.</li></ul></li>
+      <li>Can I update multiple rows at once?
+        <ul><li>Yes. Update the first row with the option you want, select that cell and press
+        CTRL-C to copy, then highlight the next cells and press CTRL-V to paste. You can paste
+        into roughly 10-15 rows at a time.</li></ul></li>
+    </ol>
+    <p>The online FAQ will be updated as additional questions arise:
+    <a href="{FAQ_LINK}">Firewall Recertification How-To and FAQ</a></p>"""
+
+
+def format_email_recert(owner, rules, recipients=None):
+    """
+    The full recertification email (SharePoint mode) — matches the approved comms:
+    the ask + four options, background, how-to, FAQ, office hours, signature.
+    Static instructional content; owners record decisions in the linked SharePoint list.
+    No attachment and no per-rule content in the body — the list holds the rules.
+    """
+    return f"""
+    <html><body style='font-family:Arial,sans-serif;color:#333;line-height:1.5'>
+    <p><strong>ASK</strong> — Our IT coworkers to review &amp; recertify all firewall rules
+    so that we have a full understanding of our attack surface area. Please access the
+    SharePoint list linked in this email to recertify your rules. The list has a simple
+    drop-down option in the Recertification field:</p>
+    <ol>
+      <li><strong>Recertify</strong> — Use this option for actively used rules that are
+      required for your application.</li>
+      <li><strong>Recertify — Disaster Recovery (DR)</strong> — Use this option for rules
+      that are necessary for disaster recovery, but may not be used frequently. The rule will
+      be kept and tagged so it is not removed if unused for longer than 365 days.</li>
+      <li><strong>Cleanup / Remove</strong> — Use this option if the rule is no longer
+      necessary and can be removed. It will be disabled and deleted later via CRQs.</li>
+      <li><strong>Need Assistance</strong> — If you are unsure which option to select, please
+      attend office hours (times and links are at the bottom of this message). NPS will reach
+      out to provide assistance.</li>
+    </ol>
+
+    <p><a href="{SHAREPOINT_LINK}"><strong>Open the recertification list</strong></a></p>
+
+    <p>Please respond to this request and update your assigned rules within
+    <strong>{RECERT_WINDOW}</strong>. You may receive multiple emails for different groups of
+    rules due to limitations of SharePoint lists. <strong>All</strong> rules
+    <strong>must</strong> be recertified by <strong>{RECERT_DEADLINE}</strong>.</p>
+
+    {_recert_background()}
+    {_recert_howto()}
+    {_recert_faq()}
+
+    <p><strong>OFFICE HOURS</strong></p>
+    {OFFICE_HOURS_INFO}
+
+    <hr>
+    <p>{SENDER_SIGNATURE}</p>
+    </body></html>
+    """
+
+
 def format_email_attachment(owner, rules, recipients=None):
-    """Email body; rules are always in the attachment. Greets a group when app-ID grouped."""
-    # greeting: first names of everyone on the email, or the single owner
+    """
+    Attachment-mode email (RESPONSE_METHOD = "attachment"): owners fill in the attached
+    Excel and reply. Greets the group when app-ID grouped. SharePoint mode uses
+    format_email_recert instead.
+    """
     if recipients and len(recipients) > 1:
         firsts = [get_first_name(r) for r in recipients]
         if len(firsts) == 2:
@@ -706,7 +888,6 @@ def format_email_attachment(owner, rules, recipients=None):
     else:
         greeting = get_first_name(owner)
 
-    # optional line naming the app and who was notified, for a group email
     context = ""
     app_ids = sorted({r.get("app_id") for r in rules if r.get("app_id")})
     if recipients and len(recipients) > 1 and app_ids:
@@ -727,9 +908,9 @@ def format_email_attachment(owner, rules, recipients=None):
     <p><strong>Please open the attached file, fill in the Decision column for each rule,
     and reply to this email with the completed attachment:</strong></p>
     <ol>
-      <li><strong>A) Recertify</strong> — The rule is still needed and should remain active.</li>
-      <li><strong>B) Clean up / Remove</strong> — The rule is no longer needed and can be disabled/deleted.</li>
-      <li><strong>C) Review with the team</strong> — You are unsure and would like to discuss with the NPS Automation team.</li>
+      <li><strong>Recertify</strong> — The rule is still needed and should remain active.</li>
+      <li><strong>Change / Clean up</strong> — The rule is no longer needed and can be disabled or removed.</li>
+      <li><strong>Need assistance</strong> — You are unsure and would like to discuss with the NPS Automation team.</li>
     </ol>
     <p>If you have any questions or would like to schedule a review session,
     please contact the NPS Automation team directly.</p>
@@ -779,16 +960,23 @@ def send_email(to_email, owner, rules, dry_run=True, reminder=False, days_outsta
     """
     Send one recertification email. to_email may be a single address or a list — for
     app-ID grouping the same email goes to all the app's role-holders at once.
-    Every recipient gets the Excel attachment; the response format is uniform by design.
+    SharePoint mode sends the full instructional email with no attachment (owners use
+    the linked list); attachment mode sends the per-owner Excel to fill in and return.
     """
     to_list = [to_email] if isinstance(to_email, str) else list(to_email)
     to_header = ", ".join(to_list)
     rule_count = len(rules)
     plural     = "s" if rule_count != 1 else ""
+    sharepoint = (RESPONSE_METHOD == "sharepoint")
 
     if reminder:
         subject   = f"Reminder: Firewall Rule Recertification Still Outstanding ({rule_count} rule{plural})"
         html_body = format_email_reminder(owner, rules, days_outstanding)
+    elif sharepoint:
+        subject   = "ACT: Execute Recertification of Firewall Rules"
+        if EMAIL_SCOPE.strip():
+            subject += f" - {EMAIL_SCOPE.strip()}"
+        html_body = format_email_recert(owner, rules, recipients=recipients)
     else:
         subject   = f"Action Required: Firewall Rule Recertification ({rule_count} rule{plural})"
         html_body = format_email_attachment(owner, rules, recipients=recipients)
@@ -804,13 +992,16 @@ def send_email(to_email, owner, rules, dry_run=True, reminder=False, days_outsta
     msg["To"]      = to_header
     msg.attach(MIMEText(html_body, "html"))
 
-    excel_bytes = build_excel_attachment(owner, rules)
-    part = MIMEBase("application", "octet-stream")
-    part.set_payload(excel_bytes)
-    encoders.encode_base64(part)
-    filename = f"Firewall_Rules_Recertification_{owner['corpid']}.xlsx"
-    part.add_header("Content-Disposition", f"attachment; filename={filename}")
-    msg.attach(part)
+    # SharePoint mode carries no attachment — the rules live in the linked list.
+    # Reminder and attachment modes attach the per-owner Excel.
+    if not sharepoint:
+        excel_bytes = build_excel_attachment(owner, rules)
+        part = MIMEBase("application", "octet-stream")
+        part.set_payload(excel_bytes)
+        encoders.encode_base64(part)
+        filename = f"Firewall_Rules_Recertification_{owner['corpid']}.xlsx"
+        part.add_header("Content-Disposition", f"attachment; filename={filename}")
+        msg.attach(part)
 
     try:
         with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
@@ -1223,6 +1414,19 @@ def main():
         return
 
     log.info(f"RUN_MODE: {mode}")
+
+    # If owners are being directed to SharePoint, make sure a real link is set —
+    # otherwise every email would carry the placeholder. Warn loudly; don't send blind.
+    if mode in ("notify", "remind") and NOTIFY_EMAIL and RESPONSE_METHOD == "sharepoint":
+        if not SHAREPOINT_LINK or SHAREPOINT_LINK.startswith("<"):
+            log.error("RESPONSE_METHOD is 'sharepoint' but SHAREPOINT_LINK is not set. "
+                      "Set the list link for this network (ODN/GDN), or switch "
+                      "RESPONSE_METHOD to 'attachment'.")
+            return
+        log.info(f"Response method: SharePoint list — {SHAREPOINT_LINK}")
+    elif mode in ("notify", "remind") and NOTIFY_EMAIL:
+        log.info("Response method: Excel attachment (reply with completed file)")
+
     if DRY_RUN:
         log.info("=" * 60)
         log.info("DRY RUN MODE — no notifications will actually be sent")
