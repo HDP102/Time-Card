@@ -1,6 +1,18 @@
 AzureDiagnostics
 | where TimeGenerated > ago(48h)
-| where Category in ("AZFWIdpsSignature", "AZFWThreatIntel")
-| where Action_s == "deny"
-| project TimeGenerated, SourceIP, DestinationIp_s, DestinationPort_d, Action_s, Description_s
+| where Category == "AZFWIdpsSignature"
+| where Action_s == "drop"
+| summarize count() by Description_s, DestinationPort_d
+| order by count_ desc
+| take 30
+
+
+
+AzureDiagnostics
+| where TimeGenerated > ago(48h)
+| where Category == "AZFWIdpsSignature"
+| where Action_s == "drop"
+| where DestinationPort_d in (80, 443)
+| project TimeGenerated, SourceIP, DestinationIp_s, DestinationPort_d, Description_s, Severity
 | order by TimeGenerated desc
+| take 50
