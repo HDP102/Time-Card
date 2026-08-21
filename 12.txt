@@ -1,209 +1,222 @@
-FIREMON NON-CHECK POINT DEVICES
+FIREMON LICENSING POSITION
 Source: Device Health Report 8/19/2026 + device inventory export
 Generated 8/21/2026
 
-35 devices total (34 licensed, 1 unlicensed). 33 Critical, 1 Healthy.
-Check Point (108 devices) excluded pending decom confirmation from Network Eng.
+NOTE: derived from the Device Health Report, not the Device Inventory Report.
+Device Inventory failed on "No valid configurations exist for device 122"
+(N01FWLAPL001, normalization error since 1/27/26). Rerun with 122 excluded to
+confirm against FireMon's own licensing view before quoting externally.
 
-CONTEXT: migration took the FireMon server down, rebuild could not restore
-healthy state. Credentials across all vendors went stale ~6/29/26 as a result.
+==============================================================================
+
+SUMMARY
+------------------------------------------------------------------------------
+  Total devices in system      143
+  Licensed                     82   (67 Critical, 15 Healthy)
+  Unlicensed                   27
+  Inactive                     34
+
+  Licensed by vendor:
+    Check Point    48
+    Cisco          16
+    Zscaler        11
+    Microsoft      7
+
+  Unlicensed / inactive by vendor:
+    Check Point    60
+    F5             1
+
+THE POINT FOR JONATHAN
+------------------------------------------------------------------------------
+  All 60 unlicensed-or-inactive devices are Check Point except one F5.
+  A further 48 Check Point are consuming licenses.
+  The live non-Check Point footprint is 34 devices.
+
+  If the on-prem Check Point estate is decommissioned, CF is holding up to
+  48 licenses on dead hardware going into Friday's license conversion.
+  Needs Seth / Rob to confirm which Check Point are genuinely gone.
+
+  Caveat: the CloudGuard BYOL gateways in Azure (V50FWLAPL001/002/701/702
+  and the NorCen B2B VPN pairs) appear to be live, so this is not all 88.
 
 ==============================================================================
 
-AZURE - EXPIRED CLIENT SECRET  (7)
+LICENSED - CRITICAL  (67)
 ------------------------------------------------------------------------------
-Single secret rotation on app reg aa6bd634-3d99-4f28-93c6-153d9ba72891
-fixes all 7. Owner unknown - Elijah / cloud eng. HIGHEST VALUE FIX.
+Consuming a license, not retrieving.
 
-  ID 10    Azure-COUNTRY Financial Disaster Recovery
-        vendor: Microsoft   type: CLOUD   rules: 1783   health: Critical
-        mgmt IP: No Management IP   last revision: 2026-02-20
-        last retrieval: Last updated on 6/29/26 at 8:43:34 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app &#39; aa6bd634-3d99-4f28-93c6-153d9ba72891 &#39; . Trace ID: 533a82
+  ID 120   lab-vsx-fw1                                          Check Point  rules:     8  lastrev:2025-02-05
+  ID 21    lab-vsx-fw1_lab-ext-sw                               Check Point  rules:     -  lastrev:-
+  ID 17    lab-vsx-fw2_lab-border-fw                            Check Point  rules:    10  lastrev:2025-02-12
+  ID 29    labfw1                                               Check Point  rules:    40  lastrev:2025-02-12
+  ID 72    n00fwlapl002                                         Check Point  rules:   138  lastrev:2025-03-01
+  ID 122   N01FWLAPL001                                         Check Point  rules:     0  lastrev:2026-01-27
+  ID 75    N01FWLAPL001_aurora-border-fw                        Check Point  rules:     0  lastrev:2026-02-18
+  ID 93    N01FWLAPL001_aurora-dmz-fw                           Check Point  rules:     0  lastrev:2026-02-18
+  ID 64    N01FWLAPL001_aurora-ext-fw                           Check Point  rules:     0  lastrev:2026-02-18
+  ID 59    N01FWLAPL001_aurora-ext-sw                           Check Point  rules:     0  lastrev:2026-02-18
+  ID 89    N01FWLAPL002_aurora-dmz-sw                           Check Point  rules:     0  lastrev:2026-02-18
+  ID 90    N01FWLAPL002_aurora-wan-fw                           Check Point  rules:     0  lastrev:2026-02-18
+  ID 118   N01FWLAPL401                                         Check Point  rules:     0  lastrev:2026-01-27
+  ID 31    N01FWLAPL401_aurora-tst-dmz-fw                       Check Point  rules:     0  lastrev:2026-01-27
+  ID 36    N01FWLAPL402_aurora-tst-border-fw                    Check Point  rules:     0  lastrev:2026-01-27
+  ID 40    N01FWLAPL402_aurora-tst-dmz-sw                       Check Point  rules:     0  lastrev:2026-01-27
+  ID 39    N01FWLAPL402_aurora-tst-ext-fw                       Check Point  rules:     0  lastrev:2026-01-27
+  ID 32    N01FWLAPL402_aurora-tst-ext-sw                       Check Point  rules:     0  lastrev:2026-01-27
+  ID 41    N01FWLAPL402_aurora-tst-wan-fw                       Check Point  rules:     0  lastrev:2026-01-27
+  ID 57    n05fwlapl001                                         Check Point  rules:    85  lastrev:2025-03-14
+  ID 83    N14FWLAPL002                                         Check Point  rules:    88  lastrev:2025-03-14
+  ID 92    NorCenPRODB2BVPN1                                    Check Point  rules:    69  lastrev:2026-04-02
+  ID 37    NorCenQAB2BVPN1                                      Check Point  rules:     5  lastrev:2026-03-07
+  ID 97    V01FWLAPL042                                         Check Point  rules:    75  lastrev:2026-02-26
+  ID 79    V01FWLAPL051                                         Check Point  rules:   104  lastrev:2026-02-26
+  ID 34    V01FWLAPL442                                         Check Point  rules:    60  lastrev:2026-02-26
+  ID 47    V01FWLAPL452                                         Check Point  rules:    73  lastrev:2025-02-12
+  ID 86    V50FWLAPL002                                         Check Point  rules:  1430  lastrev:2026-04-08
+  ID 18    V50FWLAPL402                                         Check Point  rules:     0  lastrev:2026-01-27
+  ID 48    V50FWLAPL702                                         Check Point  rules:  1812  lastrev:2026-03-07
+  ID 63    V51FWLAPL001                                         Check Point  rules:     0  lastrev:2026-02-18
+  ID 101   V51FWLAPL102                                         Check Point  rules:     0  lastrev:2026-02-18
+  ID 67    V51FWLAPL302                                         Check Point  rules:     0  lastrev:2026-02-18
+  ID 42    V51FWLAPL702                                         Check Point  rules:     0  lastrev:2026-01-27
+  ID 129   n01aggrtr001                                         Cisco        rules:     5  lastrev:2025-08-11
+  ID 136   n01ipsrtr001                                         Cisco        rules:    26  lastrev:2025-03-26
+  ID 133   n01pubrtr001                                         Cisco        rules:    24  lastrev:2025-08-11
+  ID 135   n01pubrtr002                                         Cisco        rules:    57  lastrev:2025-08-11
+  ID 137   n01pvtrtr001                                         Cisco        rules:    64  lastrev:2025-07-22
+  ID 138   n01pvtrtr002                                         Cisco        rules:    64  lastrev:2025-07-22
+  ID 139   n01vpnapl001                                         Cisco        rules:   221  lastrev:2025-08-11
+  ID 140   n01vpnapl002                                         Cisco        rules:   199  lastrev:2025-08-11
+  ID 130   n02aggrtr001                                         Cisco        rules:     1  lastrev:2025-08-11
+  ID 125   n02disrtr001                                         Cisco        rules:    14  lastrev:2025-02-18
+  ID 134   n05aggrtr001                                         Cisco        rules:    64  lastrev:2025-02-25
+  ID 131   n09aggrtr001                                         Cisco        rules:     1  lastrev:2025-08-11
+  ID 126   n11disrtr001                                         Cisco        rules:    21  lastrev:2025-08-11
+  ID 141   v50vpnapl001                                         Cisco        rules:    71  lastrev:2025-08-11
+  ID 179   v50vpnapl002-1.countrylan.com                        Cisco        rules:     -  lastrev:-
+  ID 10    Azure-COUNTRY Financial Disaster Recovery            Microsoft    rules:  1783  lastrev:2026-02-20
+  ID 5     Azure-COUNTRY Financial Non Prod                     Microsoft    rules:  6046  lastrev:2026-02-20
+  ID 6     Azure-COUNTRY Financial Production                   Microsoft    rules:  7192  lastrev:2026-02-20
+  ID 7     Azure-COUNTRY Financial Production Shared Services   Microsoft    rules:  2849  lastrev:2026-02-20
+  ID 8     Azure-COUNTRY Financial QA                           Microsoft    rules:  1058  lastrev:2026-02-20
+  ID 11    Azure-COUNTRY Financial Sandbox                      Microsoft    rules:     -  lastrev:-
+  ID 143   Azure-COUNTRY Financial Sandbox - NextGen            Microsoft    rules:  2997  lastrev:2026-02-20
+  ID 145   Zscaler ZIA-Aurora Non-Production                    Zscaler      rules:    53  lastrev:2025-03-28
+  ID 146   Zscaler ZIA-Aurora Production                        Zscaler      rules:    53  lastrev:2025-03-28
+  ID 147   Zscaler ZIA-Azure South Central DR                   Zscaler      rules:    53  lastrev:2025-03-28
+  ID 148   Zscaler ZIA-Chaska DR                                Zscaler      rules:    53  lastrev:2025-03-28
+  ID 176   Zscaler ZIA-CO Office Prod Aruba SDWAN               Zscaler      rules:    60  lastrev:2026-03-31
+  ID 177   Zscaler ZIA-Country Data Centers                     Zscaler      rules:    60  lastrev:2026-03-31
+  ID 149   Zscaler ZIA-Home Office Labs                         Zscaler      rules:    53  lastrev:2025-03-28
+  ID 150   Zscaler ZIA-Home-office-(BLM)                        Zscaler      rules:    53  lastrev:2025-03-28
+  ID 152   Zscaler ZIA-Road Warrior                             Zscaler      rules:    53  lastrev:2025-03-28
+  ID 178   Zscaler ZIA-SO  Office Prod Aruba SDWAN              Zscaler      rules:    60  lastrev:2026-03-31
+  ID 151   Zscaler ZIA-Southern Office                          Zscaler      rules:    53  lastrev:2025-03-28
 
-  ID 5     Azure-COUNTRY Financial Non Prod
-        vendor: Microsoft   type: CLOUD   rules: 6046   health: Critical
-        mgmt IP: No Management IP   last revision: 2026-02-20
-        last retrieval: Last updated on 6/29/26 at 8:43:33 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app &#39; aa6bd634-3d99-4f28-93c6-153d9ba72891 &#39; . Trace ID: 32682f
 
-  ID 6     Azure-COUNTRY Financial Production
-        vendor: Microsoft   type: CLOUD   rules: 7192   health: Critical
-        mgmt IP: No Management IP   last revision: 2026-02-20
-        last retrieval: Last updated on 6/29/26 at 8:44:34 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app &#39; aa6bd634-3d99-4f28-93c6-153d9ba72891 &#39; . Trace ID: 592e41
-
-  ID 7     Azure-COUNTRY Financial Production Shared Services Subscription
-        vendor: Microsoft   type: CLOUD   rules: 2849   health: Critical
-        mgmt IP: No Management IP   last revision: 2026-02-20
-        last retrieval: Last updated on 6/29/26 at 8:24:33 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app &#39; aa6bd634-3d99-4f28-93c6-153d9ba72891 &#39; . Trace ID: 549c56
-
-  ID 8     Azure-COUNTRY Financial QA
-        vendor: Microsoft   type: CLOUD   rules: 1058   health: Critical
-        mgmt IP: No Management IP   last revision: 2026-02-20
-        last retrieval: Last updated on 6/29/26 at 8:23:33 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app &#39; aa6bd634-3d99-4f28-93c6-153d9ba72891 &#39; . Trace ID: a203f2
-
-  ID 11    Azure-COUNTRY Financial Sandbox
-        vendor: Microsoft   type: -   rules: -   health: Critical
-        mgmt IP: No Management IP   last revision: -
-        last retrieval: Last updated on 6/29/26 at 7:01:34 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app &#39; aa6bd634-3d99-4f28-93c6-153d9ba72891 &#39; . Trace ID: 3ad90c
-
-  ID 143   Azure-COUNTRY Financial Sandbox - NextGen
-        vendor: Microsoft   type: CLOUD   rules: 2997   health: Critical
-        mgmt IP: No Management IP   last revision: 2026-02-20
-        last retrieval: Last updated on 6/29/26 at 8:32:33 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app &#39; aa6bd634-3d99-4f28-93c6-153d9ba72891 &#39; . Trace ID: 11a3e9
-
-
-CISCO - INVALID CREDENTIALS  (5)
+LICENSED - HEALTHY  (15)
 ------------------------------------------------------------------------------
-Service account Z_firemon. Needs new creds from Seth / Rob (Network Eng).
+14 of 15 are Check Point log servers with retrieval "Not applicable".
+No policy-bearing firewall in the system is currently healthy.
 
-  ID 133   n01pubrtr001
-        vendor: Cisco   type: ROUTER_SWITCH   rules: 24   health: Critical
-        mgmt IP: 10.16.1.7   last revision: 2025-08-11
-        last retrieval: Last updated on 6/29/26 at 8:00:20 AM. Invalid credentials.
-
-  ID 135   n01pubrtr002
-        vendor: Cisco   type: ROUTER_SWITCH   rules: 57   health: Critical
-        mgmt IP: 10.16.1.8   last revision: 2025-08-11
-        last retrieval: Last updated on 6/29/26 at 6:00:23 AM. Invalid credentials.
-
-  ID 130   n02aggrtr001
-        vendor: Cisco   type: ROUTER_SWITCH   rules: 1   health: Critical
-        mgmt IP: 10.76.0.3   last revision: 2025-08-11
-        last retrieval: Last updated on 6/29/26 at 6:00:23 AM. INVALID_CREDENTIALS
-
-  ID 131   n09aggrtr001
-        vendor: Cisco   type: ROUTER_SWITCH   rules: 1   health: Critical
-        mgmt IP: 10.76.0.4   last revision: 2025-08-11
-        last retrieval: Last updated on 6/29/26 at 6:00:21 AM. INVALID_CREDENTIALS
-
-  ID 126   n11disrtr001
-        vendor: Cisco   type: ROUTER_SWITCH   rules: 21   health: Critical
-        mgmt IP: 10.74.2.1   last revision: 2025-08-11
-        last retrieval: Last updated on 6/29/26 at 6:00:21 AM. Invalid credentials.
+  ID 54    BLM-DMS-BLM-DLS-COLOB-logserver                      Check Point  rules:     -  lastrev:-
+  ID 53    BLM-DMS-BLM-DLS-DR-logserver                         Check Point  rules:     -  lastrev:-
+  ID 56    BLM-DMS-BLM-DMS-DR-logserver                         Check Point  rules:     -  lastrev:-
+  ID 55    BLM-DMS-logserver                                    Check Point  rules:     -  lastrev:-
+  ID 27    QA-DMS-logserver                                     Check Point  rules:     -  lastrev:-
+  ID 28    QA-DMS-QA-DLS-COLOB-logserver                        Check Point  rules:     -  lastrev:-
+  ID 26    QA-DMS-QA-DLS-DR-logserver                           Check Point  rules:     -  lastrev:-
+  ID 25    QA-DMS-QA-DMS-DR-logserver                           Check Point  rules:     -  lastrev:-
+  ID 15    SB-DMS-logserver                                     Check Point  rules:     -  lastrev:-
+  ID 13    SB-DMS-SB-DLS-COLOB-logserver                        Check Point  rules:     -  lastrev:-
+  ID 16    SB-DMS-SB-DLS-DR-logserver                           Check Point  rules:     -  lastrev:-
+  ID 14    SB-DMS-SB-DMS-DR-logserver                           Check Point  rules:     -  lastrev:-
+  ID 115   VSX-DMS-logserver                                    Check Point  rules:     -  lastrev:-
+  ID 114   VSX-DMS-VSX-DMS-DR-logserver                         Check Point  rules:     -  lastrev:-
+  ID 132   n14aggrtr001.countrylan.com                          Cisco        rules:    58  lastrev:2025-02-07
 
 
-CISCO - SSH KEY CHANGED  (2)
+UNLICENSED  (27)
 ------------------------------------------------------------------------------
-"Automatically Update SSH Keys" enabled on both 8/20 but 8/21 3:00 AM
-scheduled retrieval still errored the same way. Unresolved - verify setting saved.
+Present in the system, not consuming a license.
 
-  ID 125   n02disrtr001
-        vendor: Cisco   type: ROUTER_SWITCH   rules: 14   health: Critical
-        mgmt IP: 10.76.2.1   last revision: 2025-02-18
-        last retrieval: Last updated on 6/29/26 at 7:00:21 AM. SSH Key changed. SSH Key Reset not allowed on this device. Modify the device settings to enable SSH key reset
+  ID 117   coloa-vsx-fw1                                        Check Point  rules:     6  lastrev:2025-02-05
+  ID 62    coloa-vsx-fw1_chaska-dr-border-fw                    Check Point  rules:    97  lastrev:2025-02-06
+  ID 65    coloa-vsx-fw1_chaska-dr-dmz-fw                       Check Point  rules:   164  lastrev:2025-02-06
+  ID 110   coloa-vsx-fw1_chaska-dr-dmz-sw                       Check Point  rules:     -  lastrev:-
+  ID 96    coloa-vsx-fw1_chaska-dr-ext-fw                       Check Point  rules:   110  lastrev:2025-02-06
+  ID 87    coloa-vsx-fw1_chaska-dr-ext-sw                       Check Point  rules:     -  lastrev:-
+  ID 77    coloa-vsx-fw1_chaska-dr-iso-fw                       Check Point  rules:    10  lastrev:2025-02-06
+  ID 76    coloa-vsx-fw1_coloa-border-fw                        Check Point  rules:    58  lastrev:2025-02-06
+  ID 105   coloa-vsx-fw1_coloa-dmz-fw                           Check Point  rules:    93  lastrev:2025-02-06
+  ID 95    coloa-vsx-fw1_coloa-dmz-sw                           Check Point  rules:     -  lastrev:-
+  ID 78    coloa-vsx-fw1_coloa-ext-fw                           Check Point  rules:    42  lastrev:2025-02-06
+  ID 70    coloa-vsx-fw1_coloa-ext-sw                           Check Point  rules:     -  lastrev:-
+  ID 91    coloa-vsx-fw1_coloa-wan-fw                           Check Point  rules:     4  lastrev:2025-02-06
+  ID 116   coloa-vsx-fw2                                        Check Point  rules:     6  lastrev:2025-02-05
+  ID 69    coloa-vsx-fw2_chaska-dr-border-fw                    Check Point  rules:    97  lastrev:2025-02-06
+  ID 103   coloa-vsx-fw2_chaska-dr-dmz-fw                       Check Point  rules:   164  lastrev:2025-02-06
+  ID 98    coloa-vsx-fw2_chaska-dr-dmz-sw                       Check Point  rules:     -  lastrev:-
+  ID 84    coloa-vsx-fw2_chaska-dr-ext-fw                       Check Point  rules:   110  lastrev:2025-02-06
+  ID 100   coloa-vsx-fw2_chaska-dr-ext-sw                       Check Point  rules:     -  lastrev:-
+  ID 108   coloa-vsx-fw2_chaska-dr-iso-fw                       Check Point  rules:    10  lastrev:2025-02-06
+  ID 107   coloa-vsx-fw2_coloa-border-fw                        Check Point  rules:    58  lastrev:2025-02-06
+  ID 112   coloa-vsx-fw2_coloa-dmz-fw                           Check Point  rules:    93  lastrev:2025-02-06
+  ID 60    coloa-vsx-fw2_coloa-dmz-sw                           Check Point  rules:     -  lastrev:-
+  ID 82    coloa-vsx-fw2_coloa-ext-fw                           Check Point  rules:    42  lastrev:2025-02-06
+  ID 71    coloa-vsx-fw2_coloa-ext-sw                           Check Point  rules:     -  lastrev:-
+  ID 61    coloa-vsx-fw2_coloa-wan-fw                           Check Point  rules:     4  lastrev:2025-02-06
+  ID 124   V51ADCAPL352.countrylan.com                          F5           rules:     -  lastrev:-
 
-  ID 134   n05aggrtr001
-        vendor: Cisco   type: ROUTER_SWITCH   rules: 64   health: Critical
-        mgmt IP: 10.178.127.193   last revision: 2025-02-25
-        last retrieval: Last updated on 6/29/26 at 6:00:21 AM. SSH Key changed. SSH Key Reset not allowed on this device. Modify the device settings to enable SSH key reset
 
-
-ZSCALER - CONNECT TIMEOUT TO API  (5)
+INACTIVE  (34)
 ------------------------------------------------------------------------------
-NOT credentials. ZIA account firemon@countryfinancial.zslogin.net is Enabled,
-API key pOa5QJp17P9w (rotated by System 2/18/26) already updated on mgmt station.
-zsapi.zscalertwo.net:443 answers 200 from a workstation, times out from collector.
-Egress from V01SECAPL067 (100.64.1.29, Linux) - needs Jonathan / collector owner.
+All Check Point. Removal candidates pending decom confirmation.
 
-  ID 145   Zscaler ZIA-Aurora Non-Production
-        vendor: Zscaler   type: FIREWALL   rules: 53   health: Critical
-        mgmt IP: No Management IP   last revision: 2025-03-28
-        last retrieval: Last updated on 1/23/26 at 5:19:38 PM. HTTPSConnectionPool(host= &#39; zsapi.zscalertwo.net &#39; , port=443): Max retries exceeded with url: /api/v1/authenticatedSession (Caused by ConnectTimeoutError( &lt; urllib3.connection.HTTPSConnection object at 0x7fe2f51934d0 &gt; &#39; Connection to zsapi.z
-
-  ID 147   Zscaler ZIA-Azure South Central DR
-        vendor: Zscaler   type: FIREWALL   rules: 53   health: Critical
-        mgmt IP: No Management IP   last revision: 2025-03-28
-        last retrieval: Last updated on 1/23/26 at 5:13:04 PM. HTTPSConnectionPool(host= &#39; zsapi.zscalertwo.net &#39; , port=443): Max retries exceeded with url: /api/v1/authenticatedSession (Caused by ConnectTimeoutError( &lt; urllib3.connection.HTTPSConnection object at 0x7fc50fe9b4d0 &gt; &#39; Connection to zsapi.z
-
-  ID 148   Zscaler ZIA-Chaska DR
-        vendor: Zscaler   type: FIREWALL   rules: 53   health: Critical
-        mgmt IP: No Management IP   last revision: 2025-03-28
-        last retrieval: Last updated on 1/23/26 at 5:15:15 PM. HTTPSConnectionPool(host= &#39; zsapi.zscalertwo.net &#39; , port=443): Max retries exceeded with url: /api/v1/authenticatedSession (Caused by ConnectTimeoutError( &lt; urllib3.connection.HTTPSConnection object at 0x7ff94b0034d0 &gt; &#39; Connection to zsapi.z
-
-  ID 149   Zscaler ZIA-Home Office Labs
-        vendor: Zscaler   type: FIREWALL   rules: 53   health: Critical
-        mgmt IP: No Management IP   last revision: 2025-03-28
-        last retrieval: Last updated on 1/23/26 at 5:17:26 PM. HTTPSConnectionPool(host= &#39; zsapi.zscalertwo.net &#39; , port=443): Max retries exceeded with url: /api/v1/authenticatedSession (Caused by ConnectTimeoutError( &lt; urllib3.connection.HTTPSConnection object at 0x7fc0e39a34d0 &gt; &#39; Connection to zsapi.z
-
-  ID 152   Zscaler ZIA-Road Warrior
-        vendor: Zscaler   type: FIREWALL   rules: 53   health: Critical
-        mgmt IP: No Management IP   last revision: 2025-03-28
-        last retrieval: Last updated on 1/23/26 at 5:08:42 PM. HTTPSConnectionPool(host= &#39; zsapi.zscalertwo.net &#39; , port=443): Max retries exceeded with url: /api/v1/authenticatedSession (Caused by ConnectTimeoutError( &lt; urllib3.connection.HTTPSConnection object at 0x7f39f4126c90 &gt; &#39; Connection to zsapi.z
-
-
-NEVER RETRIEVED  (1)
-------------------------------------------------------------------------------
-Data collector has never received a retrieval status. Onboarding issue, not a break.
-
-  ID 179   v50vpnapl002-1.countrylan.com
-        vendor: Cisco   type: -   rules: -   health: Critical
-        mgmt IP: 10.199.41.212   last revision: -
-        last retrieval: The data collector has never received a retrieval status for this device
-
-
-CRITICAL - NO RETRIEVAL ERROR RECORDED  (15)
-------------------------------------------------------------------------------
-Failing but no error string captured. Zscaler ones are almost certainly the same
-connect timeout as the group above.
-
-  ID 129   n01aggrtr001
-        vendor: Cisco   type: ROUTER_SWITCH   rules: 5   health: Critical
-        mgmt IP: 10.16.1.9   last revision: 2025-08-11
-
-  ID 136   n01ipsrtr001
-        vendor: Cisco   type: ROUTER_SWITCH   rules: 26   health: Critical
-        mgmt IP: 10.16.1.10   last revision: 2025-03-26
-
-  ID 137   n01pvtrtr001
-        vendor: Cisco   type: ROUTER_SWITCH   rules: 64   health: Critical
-        mgmt IP: 10.16.1.5   last revision: 2025-07-22
-
-  ID 138   n01pvtrtr002
-        vendor: Cisco   type: ROUTER_SWITCH   rules: 64   health: Critical
-        mgmt IP: 10.16.1.6   last revision: 2025-07-22
-
-  ID 139   n01vpnapl001
-        vendor: Cisco   type: FIREWALL   rules: 221   health: Critical
-        mgmt IP: 10.16.1.21   last revision: 2025-08-11
-
-  ID 140   n01vpnapl002
-        vendor: Cisco   type: FIREWALL   rules: 199   health: Critical
-        mgmt IP: 10.16.1.57   last revision: 2025-08-11
-
-  ID 132   n14aggrtr001.countrylan.com
-        vendor: Cisco   type: ROUTER_SWITCH   rules: 58   health: Healthy
-        mgmt IP: 10.184.127.1   last revision: 2025-02-07
-
-  ID 141   v50vpnapl001
-        vendor: Cisco   type: FIREWALL   rules: 71   health: Critical
-        mgmt IP: 10.199.3.100   last revision: 2025-08-11
-
-  ID 124   V51ADCAPL352.countrylan.com
-        vendor: F5   type: -   rules: -   health: Unlicensed
-        mgmt IP: 10.205.112.143   last revision: -
-
-  ID 146   Zscaler ZIA-Aurora Production
-        vendor: Zscaler   type: FIREWALL   rules: 53   health: Critical
-        mgmt IP: No Management IP   last revision: 2025-03-28
-
-  ID 176   Zscaler ZIA-CO Office Prod Aruba SDWAN
-        vendor: Zscaler   type: FIREWALL   rules: 60   health: Critical
-        mgmt IP: No Management IP   last revision: 2026-03-31
-
-  ID 177   Zscaler ZIA-Country Data Centers
-        vendor: Zscaler   type: FIREWALL   rules: 60   health: Critical
-        mgmt IP: No Management IP   last revision: 2026-03-31
-
-  ID 150   Zscaler ZIA-Home-office-(BLM)
-        vendor: Zscaler   type: FIREWALL   rules: 53   health: Critical
-        mgmt IP: No Management IP   last revision: 2025-03-28
-
-  ID 178   Zscaler ZIA-SO  Office Prod Aruba SDWAN
-        vendor: Zscaler   type: FIREWALL   rules: 60   health: Critical
-        mgmt IP: No Management IP   last revision: 2026-03-31
-
-  ID 151   Zscaler ZIA-Southern Office
-        vendor: Zscaler   type: FIREWALL   rules: 53   health: Critical
-        mgmt IP: No Management IP   last revision: 2025-03-28
+  ID 20    lab-vsx-fw1_lab-border-fw                            Check Point  rules:    10  lastrev:2025-02-12
+  ID 121   lab-vsx-fw2                                          Check Point  rules:     8  lastrev:2025-02-05
+  ID 22    lab-vsx-fw2_lab-ext-sw                               Check Point  rules:     -  lastrev:-
+  ID 30    labfw2                                               Check Point  rules:    40  lastrev:2025-02-12
+  ID 74    n00fwlapl001                                         Check Point  rules:   138  lastrev:2025-03-01
+  ID 106   N01FWLAPL001_aurora-dmz-sw                           Check Point  rules:     0  lastrev:2026-02-18
+  ID 109   N01FWLAPL001_aurora-wan-fw                           Check Point  rules:     0  lastrev:2026-02-18
+  ID 123   N01FWLAPL002                                         Check Point  rules:     0  lastrev:2026-01-27
+  ID 104   N01FWLAPL002_aurora-border-fw                        Check Point  rules:     0  lastrev:2026-02-18
+  ID 111   N01FWLAPL002_aurora-dmz-fw                           Check Point  rules:     0  lastrev:2026-02-18
+  ID 80    N01FWLAPL002_aurora-ext-fw                           Check Point  rules:     0  lastrev:2026-02-18
+  ID 73    N01FWLAPL002_aurora-ext-sw                           Check Point  rules:     0  lastrev:2026-02-18
+  ID 44    N01FWLAPL401_aurora-tst-border-fw                    Check Point  rules:     0  lastrev:2026-01-27
+  ID 50    N01FWLAPL401_aurora-tst-dmz-sw                       Check Point  rules:     0  lastrev:2026-01-27
+  ID 45    N01FWLAPL401_aurora-tst-ext-fw                       Check Point  rules:     0  lastrev:2026-01-27
+  ID 46    N01FWLAPL401_aurora-tst-ext-sw                       Check Point  rules:     0  lastrev:2026-01-27
+  ID 52    N01FWLAPL401_aurora-tst-wan-fw                       Check Point  rules:     0  lastrev:2026-01-27
+  ID 119   N01FWLAPL402                                         Check Point  rules:     0  lastrev:2026-01-27
+  ID 33    N01FWLAPL402_aurora-tst-dmz-fw                       Check Point  rules:     0  lastrev:2026-01-27
+  ID 58    n05fwlapl002                                         Check Point  rules:    85  lastrev:2025-03-14
+  ID 85    N14FWLAPL001                                         Check Point  rules:    88  lastrev:2025-03-14
+  ID 94    NorCenPRODB2BVPN2                                    Check Point  rules:    69  lastrev:2026-04-02
+  ID 38    NorCenQAB2BVPN2                                      Check Point  rules:     5  lastrev:2026-03-07
+  ID 99    V01FWLAPL041                                         Check Point  rules:    75  lastrev:2026-02-26
+  ID 81    V01FWLAPL052                                         Check Point  rules:   104  lastrev:2026-02-26
+  ID 35    V01FWLAPL441                                         Check Point  rules:    60  lastrev:2026-02-26
+  ID 51    V01FWLAPL451                                         Check Point  rules:    73  lastrev:2025-02-12
+  ID 88    V50FWLAPL001                                         Check Point  rules:  1430  lastrev:2026-04-08
+  ID 19    V50FWLAPL401                                         Check Point  rules:     0  lastrev:2026-01-27
+  ID 49    V50FWLAPL701                                         Check Point  rules:  1812  lastrev:2026-03-07
+  ID 66    V51FWLAPL002                                         Check Point  rules:     0  lastrev:2026-02-18
+  ID 102   V51FWLAPL101                                         Check Point  rules:     0  lastrev:2026-02-18
+  ID 68    V51FWLAPL301                                         Check Point  rules:     0  lastrev:2026-02-18
+  ID 43    V51FWLAPL701                                         Check Point  rules:     0  lastrev:2026-01-27
 
 
 ==============================================================================
+
+OPEN QUESTIONS FOR THE LICENSE CONVERSION
+------------------------------------------------------------------------------
+  - Should the inactive/unlicensed Check Point be removed before conversion
+  - How does the new Azure licensing model count the 7 cloud subscriptions
+    (Drake flagged the cloud licensing change as the reason conversion must
+    precede the version upgrade)
+  - Does the conversion count licensed devices at time of conversion, i.e.
+    does shrinking the estate first change the outcome
+  - Confirm against a clean Device Inventory Report run
