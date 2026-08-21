@@ -2,19 +2,24 @@
 """
 FireMon Device Health Report -> Excel
 
-Parses the text export of FireMon's Device Health Report and produces a workbook
-with a summary, a full device table, an action list, and a licensing view.
+Self-contained. The Device Health Report of 21 Aug 2026 (143 devices) is embedded
+below, so running this with no arguments reproduces the workbook exactly:
 
-Usage:
+    python firemon_health_to_excel.py
+
+To use a newer export instead, pass it as an argument:
+
     python firemon_health_to_excel.py DeviceHealthReport.txt [output.xlsx]
 
-Export the source file from Security Manager:
+Export the source from Security Manager:
     Reports -> Reports Library -> Health Check -> Device Health Report
     Run against All Devices, then export/copy as text.
 
 Requires openpyxl (pip install openpyxl).
 """
 
+import base64
+import gzip
 import re
 import sys
 from collections import Counter
@@ -26,6 +31,133 @@ from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.table import Table, TableStyleInfo
 
 FONT = "Arial"
+
+# ---------------------------------------------------------------- embedded report
+# Device Health Report, 21 Aug 2026 8:13:14 PM UTC, 143 devices.
+# gzip + base64 of the raw text export. Used when no input file is given.
+
+_EMBEDDED = """
+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
++qMB4v8BvXdS9dpJAQA=
+"""
+
+
+def embedded_report():
+    return gzip.decompress(base64.b64decode("".join(_EMBEDDED.split()))).decode("utf-8")
+
 
 # ---------------------------------------------------------------- classification
 
@@ -115,9 +247,9 @@ def _collect(lines, start_label, stop_labels):
     return " ".join(x for x in out if x).strip()
 
 
-def parse_report(path):
-    with open(path, "r", encoding="utf-8", errors="replace") as fh:
-        raw = fh.read().splitlines()
+def parse_report(text):
+    """text is the report contents, not a path."""
+    raw = text.splitlines()
 
     devices = []
     i = 0
@@ -506,14 +638,19 @@ def build(devices, src, report_date, out_path):
 
 
 def main():
-    if len(sys.argv) < 2:
-        print(__doc__)
-        sys.exit(1)
+    if len(sys.argv) > 1:
+        src = sys.argv[1]
+        with open(src, "r", encoding="utf-8", errors="replace") as fh:
+            text = fh.read()
+        out = sys.argv[2] if len(sys.argv) > 2 else "firemon_device_health.xlsx"
+    else:
+        src = "embedded report (21 Aug 2026)"
+        text = embedded_report()
+        out = "firemon_device_health.xlsx"
+        print("No input file given - using the embedded 21 Aug 2026 report.")
+        print("Pass a newer export as an argument to use that instead.\n")
 
-    src = sys.argv[1]
-    out = sys.argv[2] if len(sys.argv) > 2 else "firemon_device_health.xlsx"
-
-    devices = parse_report(src)
+    devices = parse_report(text)
     if not devices:
         print("No devices parsed. Is this the Device Health Report text export?")
         sys.exit(1)
@@ -522,11 +659,10 @@ def main():
         d["category"] = classify(d)
 
     report_date = ""
-    with open(src, "r", encoding="utf-8", errors="replace") as fh:
-        for ln in fh.read().splitlines()[:5]:
-            if re.match(r"^[A-Z][a-z]+ \d+, \d{4}", ln.strip()):
-                report_date = ln.strip()
-                break
+    for ln in text.splitlines()[:5]:
+        if re.match(r"^[A-Z][a-z]+ \d+, \d{4}", ln.strip()):
+            report_date = ln.strip()
+            break
 
     build(devices, src, report_date, out)
 
