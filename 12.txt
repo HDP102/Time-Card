@@ -1,18 +1,3 @@
-ODN_MPLS_Rules_Part1.xlsx
-https://pge-my.sharepoint.com/personal/n1v3_pge_com/Lists/ODN_MPLS_Rules_Part1/DispForm.aspx?ID=3&e=yLiz82
+Hey Nithin, wanted to get your take before I start pinging people on the credential stuff. Twelve devices are failing, 7 azure subs on an expired client secret for app registration aa6bd634-3d99-4f28-93c6-153d9ba72891, and 5 cisco routers on invalid creds. Two more cisco boxes, n02disrtr001 and n05aggrtr001, are failing on a changed SSH key. I enabled the automatically update SSH keys setting on both but the scheduled retrieval this morning still errored with the same message, so either the setting isn't taking or something else is going on there, still digging. The azure one is the big win since a single secret rotation brings back all 7 subs, but I don't know who owns that app reg, figured Elijah or cloud eng. For the routers I'm assuming Seth or Rob. Do you want me going direct to them or is there a better path? Also curious whether these are actually rotated or just stale from the restore, everything died within hours of each other on 6/29 which seems like a lot of coincidence.
 
-
-GDN Rule Recertification.xlsx
-https://pge-my.sharepoint.com/:l:/r/personal/s9ch_pge_com/Lists/GDN%20Rule%20Recertification?e=ugBafO
-
-ODN_NERC_Low_Medium_Part1.xlsx
-https://pge-my.sharepoint.com/:l:/r/personal/s9ch_pge_com/Lists/ODN_NERC_Low_Medium_Part1?e=H1amcw
-
-ODN_NERC_Low_Medium_Part2.xlsx
-https://pge-my.sharepoint.com/:l:/r/personal/n1v3_pge_com/Lists/ODN_NERC_Low_Medium_Part2?e=58RSJF
-
-Remaining_ODN_Firewalls_Part2.xlsx
-https://pge-my.sharepoint.com/:l:/r/personal/n1v3_pge_com/Lists/Remaining_ODN_Firewalls_Part2?e=7bSjXf
-
-Remaining_ODN_Firewalls_Part1.xlsx
-https://pge-my.sharepoint.com/:l:/r/personal/n1v3_pge_com/Lists/ODN_except_MPLS_Part1?e=TPiSNH
+Separately on Zscaler, that one isn't credentials. The ZIA account is enabled and I updated the current API key on the management station, but retrieval still fails with a connect timeout to zsapi.zscalertwo.net on 443. It responds fine from my workstation so it looks specific to egress from the collector V01SECAPL067, and I can't get onto that box to test.
