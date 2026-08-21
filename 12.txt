@@ -1,3 +1,209 @@
-Hey Nithin, wanted to get your take before I start pinging people on the credential stuff. Twelve devices are failing, 7 azure subs on an expired client secret for app registration aa6bd634-3d99-4f28-93c6-153d9ba72891, and 5 cisco routers on invalid creds. Two more cisco boxes, n02disrtr001 and n05aggrtr001, are failing on a changed SSH key. I enabled the automatically update SSH keys setting on both but the scheduled retrieval this morning still errored with the same message, so either the setting isn't taking or something else is going on there, still digging. The azure one is the big win since a single secret rotation brings back all 7 subs, but I don't know who owns that app reg, figured Elijah or cloud eng. For the routers I'm assuming Seth or Rob. Do you want me going direct to them or is there a better path? Also curious whether these are actually rotated or just stale from the restore, everything died within hours of each other on 6/29 which seems like a lot of coincidence.
+FIREMON NON-CHECK POINT DEVICES
+Source: Device Health Report 8/19/2026 + device inventory export
+Generated 8/21/2026
 
-Separately on Zscaler, that one isn't credentials. The ZIA account is enabled and I updated the current API key on the management station, but retrieval still fails with a connect timeout to zsapi.zscalertwo.net on 443. It responds fine from my workstation so it looks specific to egress from the collector V01SECAPL067, and I can't get onto that box to test.
+35 devices total (34 licensed, 1 unlicensed). 33 Critical, 1 Healthy.
+Check Point (108 devices) excluded pending decom confirmation from Network Eng.
+
+CONTEXT: migration took the FireMon server down, rebuild could not restore
+healthy state. Credentials across all vendors went stale ~6/29/26 as a result.
+
+==============================================================================
+
+AZURE - EXPIRED CLIENT SECRET  (7)
+------------------------------------------------------------------------------
+Single secret rotation on app reg aa6bd634-3d99-4f28-93c6-153d9ba72891
+fixes all 7. Owner unknown - Elijah / cloud eng. HIGHEST VALUE FIX.
+
+  ID 10    Azure-COUNTRY Financial Disaster Recovery
+        vendor: Microsoft   type: CLOUD   rules: 1783   health: Critical
+        mgmt IP: No Management IP   last revision: 2026-02-20
+        last retrieval: Last updated on 6/29/26 at 8:43:34 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app &#39; aa6bd634-3d99-4f28-93c6-153d9ba72891 &#39; . Trace ID: 533a82
+
+  ID 5     Azure-COUNTRY Financial Non Prod
+        vendor: Microsoft   type: CLOUD   rules: 6046   health: Critical
+        mgmt IP: No Management IP   last revision: 2026-02-20
+        last retrieval: Last updated on 6/29/26 at 8:43:33 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app &#39; aa6bd634-3d99-4f28-93c6-153d9ba72891 &#39; . Trace ID: 32682f
+
+  ID 6     Azure-COUNTRY Financial Production
+        vendor: Microsoft   type: CLOUD   rules: 7192   health: Critical
+        mgmt IP: No Management IP   last revision: 2026-02-20
+        last retrieval: Last updated on 6/29/26 at 8:44:34 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app &#39; aa6bd634-3d99-4f28-93c6-153d9ba72891 &#39; . Trace ID: 592e41
+
+  ID 7     Azure-COUNTRY Financial Production Shared Services Subscription
+        vendor: Microsoft   type: CLOUD   rules: 2849   health: Critical
+        mgmt IP: No Management IP   last revision: 2026-02-20
+        last retrieval: Last updated on 6/29/26 at 8:24:33 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app &#39; aa6bd634-3d99-4f28-93c6-153d9ba72891 &#39; . Trace ID: 549c56
+
+  ID 8     Azure-COUNTRY Financial QA
+        vendor: Microsoft   type: CLOUD   rules: 1058   health: Critical
+        mgmt IP: No Management IP   last revision: 2026-02-20
+        last retrieval: Last updated on 6/29/26 at 8:23:33 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app &#39; aa6bd634-3d99-4f28-93c6-153d9ba72891 &#39; . Trace ID: a203f2
+
+  ID 11    Azure-COUNTRY Financial Sandbox
+        vendor: Microsoft   type: -   rules: -   health: Critical
+        mgmt IP: No Management IP   last revision: -
+        last retrieval: Last updated on 6/29/26 at 7:01:34 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app &#39; aa6bd634-3d99-4f28-93c6-153d9ba72891 &#39; . Trace ID: 3ad90c
+
+  ID 143   Azure-COUNTRY Financial Sandbox - NextGen
+        vendor: Microsoft   type: CLOUD   rules: 2997   health: Critical
+        mgmt IP: No Management IP   last revision: 2026-02-20
+        last retrieval: Last updated on 6/29/26 at 8:32:33 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app &#39; aa6bd634-3d99-4f28-93c6-153d9ba72891 &#39; . Trace ID: 11a3e9
+
+
+CISCO - INVALID CREDENTIALS  (5)
+------------------------------------------------------------------------------
+Service account Z_firemon. Needs new creds from Seth / Rob (Network Eng).
+
+  ID 133   n01pubrtr001
+        vendor: Cisco   type: ROUTER_SWITCH   rules: 24   health: Critical
+        mgmt IP: 10.16.1.7   last revision: 2025-08-11
+        last retrieval: Last updated on 6/29/26 at 8:00:20 AM. Invalid credentials.
+
+  ID 135   n01pubrtr002
+        vendor: Cisco   type: ROUTER_SWITCH   rules: 57   health: Critical
+        mgmt IP: 10.16.1.8   last revision: 2025-08-11
+        last retrieval: Last updated on 6/29/26 at 6:00:23 AM. Invalid credentials.
+
+  ID 130   n02aggrtr001
+        vendor: Cisco   type: ROUTER_SWITCH   rules: 1   health: Critical
+        mgmt IP: 10.76.0.3   last revision: 2025-08-11
+        last retrieval: Last updated on 6/29/26 at 6:00:23 AM. INVALID_CREDENTIALS
+
+  ID 131   n09aggrtr001
+        vendor: Cisco   type: ROUTER_SWITCH   rules: 1   health: Critical
+        mgmt IP: 10.76.0.4   last revision: 2025-08-11
+        last retrieval: Last updated on 6/29/26 at 6:00:21 AM. INVALID_CREDENTIALS
+
+  ID 126   n11disrtr001
+        vendor: Cisco   type: ROUTER_SWITCH   rules: 21   health: Critical
+        mgmt IP: 10.74.2.1   last revision: 2025-08-11
+        last retrieval: Last updated on 6/29/26 at 6:00:21 AM. Invalid credentials.
+
+
+CISCO - SSH KEY CHANGED  (2)
+------------------------------------------------------------------------------
+"Automatically Update SSH Keys" enabled on both 8/20 but 8/21 3:00 AM
+scheduled retrieval still errored the same way. Unresolved - verify setting saved.
+
+  ID 125   n02disrtr001
+        vendor: Cisco   type: ROUTER_SWITCH   rules: 14   health: Critical
+        mgmt IP: 10.76.2.1   last revision: 2025-02-18
+        last retrieval: Last updated on 6/29/26 at 7:00:21 AM. SSH Key changed. SSH Key Reset not allowed on this device. Modify the device settings to enable SSH key reset
+
+  ID 134   n05aggrtr001
+        vendor: Cisco   type: ROUTER_SWITCH   rules: 64   health: Critical
+        mgmt IP: 10.178.127.193   last revision: 2025-02-25
+        last retrieval: Last updated on 6/29/26 at 6:00:21 AM. SSH Key changed. SSH Key Reset not allowed on this device. Modify the device settings to enable SSH key reset
+
+
+ZSCALER - CONNECT TIMEOUT TO API  (5)
+------------------------------------------------------------------------------
+NOT credentials. ZIA account firemon@countryfinancial.zslogin.net is Enabled,
+API key pOa5QJp17P9w (rotated by System 2/18/26) already updated on mgmt station.
+zsapi.zscalertwo.net:443 answers 200 from a workstation, times out from collector.
+Egress from V01SECAPL067 (100.64.1.29, Linux) - needs Jonathan / collector owner.
+
+  ID 145   Zscaler ZIA-Aurora Non-Production
+        vendor: Zscaler   type: FIREWALL   rules: 53   health: Critical
+        mgmt IP: No Management IP   last revision: 2025-03-28
+        last retrieval: Last updated on 1/23/26 at 5:19:38 PM. HTTPSConnectionPool(host= &#39; zsapi.zscalertwo.net &#39; , port=443): Max retries exceeded with url: /api/v1/authenticatedSession (Caused by ConnectTimeoutError( &lt; urllib3.connection.HTTPSConnection object at 0x7fe2f51934d0 &gt; &#39; Connection to zsapi.z
+
+  ID 147   Zscaler ZIA-Azure South Central DR
+        vendor: Zscaler   type: FIREWALL   rules: 53   health: Critical
+        mgmt IP: No Management IP   last revision: 2025-03-28
+        last retrieval: Last updated on 1/23/26 at 5:13:04 PM. HTTPSConnectionPool(host= &#39; zsapi.zscalertwo.net &#39; , port=443): Max retries exceeded with url: /api/v1/authenticatedSession (Caused by ConnectTimeoutError( &lt; urllib3.connection.HTTPSConnection object at 0x7fc50fe9b4d0 &gt; &#39; Connection to zsapi.z
+
+  ID 148   Zscaler ZIA-Chaska DR
+        vendor: Zscaler   type: FIREWALL   rules: 53   health: Critical
+        mgmt IP: No Management IP   last revision: 2025-03-28
+        last retrieval: Last updated on 1/23/26 at 5:15:15 PM. HTTPSConnectionPool(host= &#39; zsapi.zscalertwo.net &#39; , port=443): Max retries exceeded with url: /api/v1/authenticatedSession (Caused by ConnectTimeoutError( &lt; urllib3.connection.HTTPSConnection object at 0x7ff94b0034d0 &gt; &#39; Connection to zsapi.z
+
+  ID 149   Zscaler ZIA-Home Office Labs
+        vendor: Zscaler   type: FIREWALL   rules: 53   health: Critical
+        mgmt IP: No Management IP   last revision: 2025-03-28
+        last retrieval: Last updated on 1/23/26 at 5:17:26 PM. HTTPSConnectionPool(host= &#39; zsapi.zscalertwo.net &#39; , port=443): Max retries exceeded with url: /api/v1/authenticatedSession (Caused by ConnectTimeoutError( &lt; urllib3.connection.HTTPSConnection object at 0x7fc0e39a34d0 &gt; &#39; Connection to zsapi.z
+
+  ID 152   Zscaler ZIA-Road Warrior
+        vendor: Zscaler   type: FIREWALL   rules: 53   health: Critical
+        mgmt IP: No Management IP   last revision: 2025-03-28
+        last retrieval: Last updated on 1/23/26 at 5:08:42 PM. HTTPSConnectionPool(host= &#39; zsapi.zscalertwo.net &#39; , port=443): Max retries exceeded with url: /api/v1/authenticatedSession (Caused by ConnectTimeoutError( &lt; urllib3.connection.HTTPSConnection object at 0x7f39f4126c90 &gt; &#39; Connection to zsapi.z
+
+
+NEVER RETRIEVED  (1)
+------------------------------------------------------------------------------
+Data collector has never received a retrieval status. Onboarding issue, not a break.
+
+  ID 179   v50vpnapl002-1.countrylan.com
+        vendor: Cisco   type: -   rules: -   health: Critical
+        mgmt IP: 10.199.41.212   last revision: -
+        last retrieval: The data collector has never received a retrieval status for this device
+
+
+CRITICAL - NO RETRIEVAL ERROR RECORDED  (15)
+------------------------------------------------------------------------------
+Failing but no error string captured. Zscaler ones are almost certainly the same
+connect timeout as the group above.
+
+  ID 129   n01aggrtr001
+        vendor: Cisco   type: ROUTER_SWITCH   rules: 5   health: Critical
+        mgmt IP: 10.16.1.9   last revision: 2025-08-11
+
+  ID 136   n01ipsrtr001
+        vendor: Cisco   type: ROUTER_SWITCH   rules: 26   health: Critical
+        mgmt IP: 10.16.1.10   last revision: 2025-03-26
+
+  ID 137   n01pvtrtr001
+        vendor: Cisco   type: ROUTER_SWITCH   rules: 64   health: Critical
+        mgmt IP: 10.16.1.5   last revision: 2025-07-22
+
+  ID 138   n01pvtrtr002
+        vendor: Cisco   type: ROUTER_SWITCH   rules: 64   health: Critical
+        mgmt IP: 10.16.1.6   last revision: 2025-07-22
+
+  ID 139   n01vpnapl001
+        vendor: Cisco   type: FIREWALL   rules: 221   health: Critical
+        mgmt IP: 10.16.1.21   last revision: 2025-08-11
+
+  ID 140   n01vpnapl002
+        vendor: Cisco   type: FIREWALL   rules: 199   health: Critical
+        mgmt IP: 10.16.1.57   last revision: 2025-08-11
+
+  ID 132   n14aggrtr001.countrylan.com
+        vendor: Cisco   type: ROUTER_SWITCH   rules: 58   health: Healthy
+        mgmt IP: 10.184.127.1   last revision: 2025-02-07
+
+  ID 141   v50vpnapl001
+        vendor: Cisco   type: FIREWALL   rules: 71   health: Critical
+        mgmt IP: 10.199.3.100   last revision: 2025-08-11
+
+  ID 124   V51ADCAPL352.countrylan.com
+        vendor: F5   type: -   rules: -   health: Unlicensed
+        mgmt IP: 10.205.112.143   last revision: -
+
+  ID 146   Zscaler ZIA-Aurora Production
+        vendor: Zscaler   type: FIREWALL   rules: 53   health: Critical
+        mgmt IP: No Management IP   last revision: 2025-03-28
+
+  ID 176   Zscaler ZIA-CO Office Prod Aruba SDWAN
+        vendor: Zscaler   type: FIREWALL   rules: 60   health: Critical
+        mgmt IP: No Management IP   last revision: 2026-03-31
+
+  ID 177   Zscaler ZIA-Country Data Centers
+        vendor: Zscaler   type: FIREWALL   rules: 60   health: Critical
+        mgmt IP: No Management IP   last revision: 2026-03-31
+
+  ID 150   Zscaler ZIA-Home-office-(BLM)
+        vendor: Zscaler   type: FIREWALL   rules: 53   health: Critical
+        mgmt IP: No Management IP   last revision: 2025-03-28
+
+  ID 178   Zscaler ZIA-SO  Office Prod Aruba SDWAN
+        vendor: Zscaler   type: FIREWALL   rules: 60   health: Critical
+        mgmt IP: No Management IP   last revision: 2026-03-31
+
+  ID 151   Zscaler ZIA-Southern Office
+        vendor: Zscaler   type: FIREWALL   rules: 53   health: Critical
+        mgmt IP: No Management IP   last revision: 2025-03-28
+
+
+==============================================================================
