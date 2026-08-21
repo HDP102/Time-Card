@@ -1,222 +1,2416 @@
-FIREMON LICENSING POSITION
-Source: Device Health Report 8/19/2026 + device inventory export
-Generated 8/21/2026
-
-NOTE: derived from the Device Health Report, not the Device Inventory Report.
-Device Inventory failed on "No valid configurations exist for device 122"
-(N01FWLAPL001, normalization error since 1/27/26). Rerun with 122 excluded to
-confirm against FireMon's own licensing view before quoting externally.
-
-==============================================================================
-
-SUMMARY
-------------------------------------------------------------------------------
-  Total devices in system      143
-  Licensed                     82   (67 Critical, 15 Healthy)
-  Unlicensed                   27
-  Inactive                     34
-
-  Licensed by vendor:
-    Check Point    48
-    Cisco          16
-    Zscaler        11
-    Microsoft      7
-
-  Unlicensed / inactive by vendor:
-    Check Point    60
-    F5             1
-
-THE POINT FOR JONATHAN
-------------------------------------------------------------------------------
-  All 60 unlicensed-or-inactive devices are Check Point except one F5.
-  A further 48 Check Point are consuming licenses.
-  The live non-Check Point footprint is 34 devices.
-
-  If the on-prem Check Point estate is decommissioned, CF is holding up to
-  48 licenses on dead hardware going into Friday's license conversion.
-  Needs Seth / Rob to confirm which Check Point are genuinely gone.
-
-  Caveat: the CloudGuard BYOL gateways in Azure (V50FWLAPL001/002/701/702
-  and the NorCen B2B VPN pairs) appear to be live, so this is not all 88.
-
-==============================================================================
-
-LICENSED - CRITICAL  (67)
-------------------------------------------------------------------------------
-Consuming a license, not retrieving.
-
-  ID 120   lab-vsx-fw1                                          Check Point  rules:     8  lastrev:2025-02-05
-  ID 21    lab-vsx-fw1_lab-ext-sw                               Check Point  rules:     -  lastrev:-
-  ID 17    lab-vsx-fw2_lab-border-fw                            Check Point  rules:    10  lastrev:2025-02-12
-  ID 29    labfw1                                               Check Point  rules:    40  lastrev:2025-02-12
-  ID 72    n00fwlapl002                                         Check Point  rules:   138  lastrev:2025-03-01
-  ID 122   N01FWLAPL001                                         Check Point  rules:     0  lastrev:2026-01-27
-  ID 75    N01FWLAPL001_aurora-border-fw                        Check Point  rules:     0  lastrev:2026-02-18
-  ID 93    N01FWLAPL001_aurora-dmz-fw                           Check Point  rules:     0  lastrev:2026-02-18
-  ID 64    N01FWLAPL001_aurora-ext-fw                           Check Point  rules:     0  lastrev:2026-02-18
-  ID 59    N01FWLAPL001_aurora-ext-sw                           Check Point  rules:     0  lastrev:2026-02-18
-  ID 89    N01FWLAPL002_aurora-dmz-sw                           Check Point  rules:     0  lastrev:2026-02-18
-  ID 90    N01FWLAPL002_aurora-wan-fw                           Check Point  rules:     0  lastrev:2026-02-18
-  ID 118   N01FWLAPL401                                         Check Point  rules:     0  lastrev:2026-01-27
-  ID 31    N01FWLAPL401_aurora-tst-dmz-fw                       Check Point  rules:     0  lastrev:2026-01-27
-  ID 36    N01FWLAPL402_aurora-tst-border-fw                    Check Point  rules:     0  lastrev:2026-01-27
-  ID 40    N01FWLAPL402_aurora-tst-dmz-sw                       Check Point  rules:     0  lastrev:2026-01-27
-  ID 39    N01FWLAPL402_aurora-tst-ext-fw                       Check Point  rules:     0  lastrev:2026-01-27
-  ID 32    N01FWLAPL402_aurora-tst-ext-sw                       Check Point  rules:     0  lastrev:2026-01-27
-  ID 41    N01FWLAPL402_aurora-tst-wan-fw                       Check Point  rules:     0  lastrev:2026-01-27
-  ID 57    n05fwlapl001                                         Check Point  rules:    85  lastrev:2025-03-14
-  ID 83    N14FWLAPL002                                         Check Point  rules:    88  lastrev:2025-03-14
-  ID 92    NorCenPRODB2BVPN1                                    Check Point  rules:    69  lastrev:2026-04-02
-  ID 37    NorCenQAB2BVPN1                                      Check Point  rules:     5  lastrev:2026-03-07
-  ID 97    V01FWLAPL042                                         Check Point  rules:    75  lastrev:2026-02-26
-  ID 79    V01FWLAPL051                                         Check Point  rules:   104  lastrev:2026-02-26
-  ID 34    V01FWLAPL442                                         Check Point  rules:    60  lastrev:2026-02-26
-  ID 47    V01FWLAPL452                                         Check Point  rules:    73  lastrev:2025-02-12
-  ID 86    V50FWLAPL002                                         Check Point  rules:  1430  lastrev:2026-04-08
-  ID 18    V50FWLAPL402                                         Check Point  rules:     0  lastrev:2026-01-27
-  ID 48    V50FWLAPL702                                         Check Point  rules:  1812  lastrev:2026-03-07
-  ID 63    V51FWLAPL001                                         Check Point  rules:     0  lastrev:2026-02-18
-  ID 101   V51FWLAPL102                                         Check Point  rules:     0  lastrev:2026-02-18
-  ID 67    V51FWLAPL302                                         Check Point  rules:     0  lastrev:2026-02-18
-  ID 42    V51FWLAPL702                                         Check Point  rules:     0  lastrev:2026-01-27
-  ID 129   n01aggrtr001                                         Cisco        rules:     5  lastrev:2025-08-11
-  ID 136   n01ipsrtr001                                         Cisco        rules:    26  lastrev:2025-03-26
-  ID 133   n01pubrtr001                                         Cisco        rules:    24  lastrev:2025-08-11
-  ID 135   n01pubrtr002                                         Cisco        rules:    57  lastrev:2025-08-11
-  ID 137   n01pvtrtr001                                         Cisco        rules:    64  lastrev:2025-07-22
-  ID 138   n01pvtrtr002                                         Cisco        rules:    64  lastrev:2025-07-22
-  ID 139   n01vpnapl001                                         Cisco        rules:   221  lastrev:2025-08-11
-  ID 140   n01vpnapl002                                         Cisco        rules:   199  lastrev:2025-08-11
-  ID 130   n02aggrtr001                                         Cisco        rules:     1  lastrev:2025-08-11
-  ID 125   n02disrtr001                                         Cisco        rules:    14  lastrev:2025-02-18
-  ID 134   n05aggrtr001                                         Cisco        rules:    64  lastrev:2025-02-25
-  ID 131   n09aggrtr001                                         Cisco        rules:     1  lastrev:2025-08-11
-  ID 126   n11disrtr001                                         Cisco        rules:    21  lastrev:2025-08-11
-  ID 141   v50vpnapl001                                         Cisco        rules:    71  lastrev:2025-08-11
-  ID 179   v50vpnapl002-1.countrylan.com                        Cisco        rules:     -  lastrev:-
-  ID 10    Azure-COUNTRY Financial Disaster Recovery            Microsoft    rules:  1783  lastrev:2026-02-20
-  ID 5     Azure-COUNTRY Financial Non Prod                     Microsoft    rules:  6046  lastrev:2026-02-20
-  ID 6     Azure-COUNTRY Financial Production                   Microsoft    rules:  7192  lastrev:2026-02-20
-  ID 7     Azure-COUNTRY Financial Production Shared Services   Microsoft    rules:  2849  lastrev:2026-02-20
-  ID 8     Azure-COUNTRY Financial QA                           Microsoft    rules:  1058  lastrev:2026-02-20
-  ID 11    Azure-COUNTRY Financial Sandbox                      Microsoft    rules:     -  lastrev:-
-  ID 143   Azure-COUNTRY Financial Sandbox - NextGen            Microsoft    rules:  2997  lastrev:2026-02-20
-  ID 145   Zscaler ZIA-Aurora Non-Production                    Zscaler      rules:    53  lastrev:2025-03-28
-  ID 146   Zscaler ZIA-Aurora Production                        Zscaler      rules:    53  lastrev:2025-03-28
-  ID 147   Zscaler ZIA-Azure South Central DR                   Zscaler      rules:    53  lastrev:2025-03-28
-  ID 148   Zscaler ZIA-Chaska DR                                Zscaler      rules:    53  lastrev:2025-03-28
-  ID 176   Zscaler ZIA-CO Office Prod Aruba SDWAN               Zscaler      rules:    60  lastrev:2026-03-31
-  ID 177   Zscaler ZIA-Country Data Centers                     Zscaler      rules:    60  lastrev:2026-03-31
-  ID 149   Zscaler ZIA-Home Office Labs                         Zscaler      rules:    53  lastrev:2025-03-28
-  ID 150   Zscaler ZIA-Home-office-(BLM)                        Zscaler      rules:    53  lastrev:2025-03-28
-  ID 152   Zscaler ZIA-Road Warrior                             Zscaler      rules:    53  lastrev:2025-03-28
-  ID 178   Zscaler ZIA-SO  Office Prod Aruba SDWAN              Zscaler      rules:    60  lastrev:2026-03-31
-  ID 151   Zscaler ZIA-Southern Office                          Zscaler      rules:    53  lastrev:2025-03-28
-
-
-LICENSED - HEALTHY  (15)
-------------------------------------------------------------------------------
-14 of 15 are Check Point log servers with retrieval "Not applicable".
-No policy-bearing firewall in the system is currently healthy.
-
-  ID 54    BLM-DMS-BLM-DLS-COLOB-logserver                      Check Point  rules:     -  lastrev:-
-  ID 53    BLM-DMS-BLM-DLS-DR-logserver                         Check Point  rules:     -  lastrev:-
-  ID 56    BLM-DMS-BLM-DMS-DR-logserver                         Check Point  rules:     -  lastrev:-
-  ID 55    BLM-DMS-logserver                                    Check Point  rules:     -  lastrev:-
-  ID 27    QA-DMS-logserver                                     Check Point  rules:     -  lastrev:-
-  ID 28    QA-DMS-QA-DLS-COLOB-logserver                        Check Point  rules:     -  lastrev:-
-  ID 26    QA-DMS-QA-DLS-DR-logserver                           Check Point  rules:     -  lastrev:-
-  ID 25    QA-DMS-QA-DMS-DR-logserver                           Check Point  rules:     -  lastrev:-
-  ID 15    SB-DMS-logserver                                     Check Point  rules:     -  lastrev:-
-  ID 13    SB-DMS-SB-DLS-COLOB-logserver                        Check Point  rules:     -  lastrev:-
-  ID 16    SB-DMS-SB-DLS-DR-logserver                           Check Point  rules:     -  lastrev:-
-  ID 14    SB-DMS-SB-DMS-DR-logserver                           Check Point  rules:     -  lastrev:-
-  ID 115   VSX-DMS-logserver                                    Check Point  rules:     -  lastrev:-
-  ID 114   VSX-DMS-VSX-DMS-DR-logserver                         Check Point  rules:     -  lastrev:-
-  ID 132   n14aggrtr001.countrylan.com                          Cisco        rules:    58  lastrev:2025-02-07
-
-
-UNLICENSED  (27)
-------------------------------------------------------------------------------
-Present in the system, not consuming a license.
-
-  ID 117   coloa-vsx-fw1                                        Check Point  rules:     6  lastrev:2025-02-05
-  ID 62    coloa-vsx-fw1_chaska-dr-border-fw                    Check Point  rules:    97  lastrev:2025-02-06
-  ID 65    coloa-vsx-fw1_chaska-dr-dmz-fw                       Check Point  rules:   164  lastrev:2025-02-06
-  ID 110   coloa-vsx-fw1_chaska-dr-dmz-sw                       Check Point  rules:     -  lastrev:-
-  ID 96    coloa-vsx-fw1_chaska-dr-ext-fw                       Check Point  rules:   110  lastrev:2025-02-06
-  ID 87    coloa-vsx-fw1_chaska-dr-ext-sw                       Check Point  rules:     -  lastrev:-
-  ID 77    coloa-vsx-fw1_chaska-dr-iso-fw                       Check Point  rules:    10  lastrev:2025-02-06
-  ID 76    coloa-vsx-fw1_coloa-border-fw                        Check Point  rules:    58  lastrev:2025-02-06
-  ID 105   coloa-vsx-fw1_coloa-dmz-fw                           Check Point  rules:    93  lastrev:2025-02-06
-  ID 95    coloa-vsx-fw1_coloa-dmz-sw                           Check Point  rules:     -  lastrev:-
-  ID 78    coloa-vsx-fw1_coloa-ext-fw                           Check Point  rules:    42  lastrev:2025-02-06
-  ID 70    coloa-vsx-fw1_coloa-ext-sw                           Check Point  rules:     -  lastrev:-
-  ID 91    coloa-vsx-fw1_coloa-wan-fw                           Check Point  rules:     4  lastrev:2025-02-06
-  ID 116   coloa-vsx-fw2                                        Check Point  rules:     6  lastrev:2025-02-05
-  ID 69    coloa-vsx-fw2_chaska-dr-border-fw                    Check Point  rules:    97  lastrev:2025-02-06
-  ID 103   coloa-vsx-fw2_chaska-dr-dmz-fw                       Check Point  rules:   164  lastrev:2025-02-06
-  ID 98    coloa-vsx-fw2_chaska-dr-dmz-sw                       Check Point  rules:     -  lastrev:-
-  ID 84    coloa-vsx-fw2_chaska-dr-ext-fw                       Check Point  rules:   110  lastrev:2025-02-06
-  ID 100   coloa-vsx-fw2_chaska-dr-ext-sw                       Check Point  rules:     -  lastrev:-
-  ID 108   coloa-vsx-fw2_chaska-dr-iso-fw                       Check Point  rules:    10  lastrev:2025-02-06
-  ID 107   coloa-vsx-fw2_coloa-border-fw                        Check Point  rules:    58  lastrev:2025-02-06
-  ID 112   coloa-vsx-fw2_coloa-dmz-fw                           Check Point  rules:    93  lastrev:2025-02-06
-  ID 60    coloa-vsx-fw2_coloa-dmz-sw                           Check Point  rules:     -  lastrev:-
-  ID 82    coloa-vsx-fw2_coloa-ext-fw                           Check Point  rules:    42  lastrev:2025-02-06
-  ID 71    coloa-vsx-fw2_coloa-ext-sw                           Check Point  rules:     -  lastrev:-
-  ID 61    coloa-vsx-fw2_coloa-wan-fw                           Check Point  rules:     4  lastrev:2025-02-06
-  ID 124   V51ADCAPL352.countrylan.com                          F5           rules:     -  lastrev:-
-
-
-INACTIVE  (34)
-------------------------------------------------------------------------------
-All Check Point. Removal candidates pending decom confirmation.
-
-  ID 20    lab-vsx-fw1_lab-border-fw                            Check Point  rules:    10  lastrev:2025-02-12
-  ID 121   lab-vsx-fw2                                          Check Point  rules:     8  lastrev:2025-02-05
-  ID 22    lab-vsx-fw2_lab-ext-sw                               Check Point  rules:     -  lastrev:-
-  ID 30    labfw2                                               Check Point  rules:    40  lastrev:2025-02-12
-  ID 74    n00fwlapl001                                         Check Point  rules:   138  lastrev:2025-03-01
-  ID 106   N01FWLAPL001_aurora-dmz-sw                           Check Point  rules:     0  lastrev:2026-02-18
-  ID 109   N01FWLAPL001_aurora-wan-fw                           Check Point  rules:     0  lastrev:2026-02-18
-  ID 123   N01FWLAPL002                                         Check Point  rules:     0  lastrev:2026-01-27
-  ID 104   N01FWLAPL002_aurora-border-fw                        Check Point  rules:     0  lastrev:2026-02-18
-  ID 111   N01FWLAPL002_aurora-dmz-fw                           Check Point  rules:     0  lastrev:2026-02-18
-  ID 80    N01FWLAPL002_aurora-ext-fw                           Check Point  rules:     0  lastrev:2026-02-18
-  ID 73    N01FWLAPL002_aurora-ext-sw                           Check Point  rules:     0  lastrev:2026-02-18
-  ID 44    N01FWLAPL401_aurora-tst-border-fw                    Check Point  rules:     0  lastrev:2026-01-27
-  ID 50    N01FWLAPL401_aurora-tst-dmz-sw                       Check Point  rules:     0  lastrev:2026-01-27
-  ID 45    N01FWLAPL401_aurora-tst-ext-fw                       Check Point  rules:     0  lastrev:2026-01-27
-  ID 46    N01FWLAPL401_aurora-tst-ext-sw                       Check Point  rules:     0  lastrev:2026-01-27
-  ID 52    N01FWLAPL401_aurora-tst-wan-fw                       Check Point  rules:     0  lastrev:2026-01-27
-  ID 119   N01FWLAPL402                                         Check Point  rules:     0  lastrev:2026-01-27
-  ID 33    N01FWLAPL402_aurora-tst-dmz-fw                       Check Point  rules:     0  lastrev:2026-01-27
-  ID 58    n05fwlapl002                                         Check Point  rules:    85  lastrev:2025-03-14
-  ID 85    N14FWLAPL001                                         Check Point  rules:    88  lastrev:2025-03-14
-  ID 94    NorCenPRODB2BVPN2                                    Check Point  rules:    69  lastrev:2026-04-02
-  ID 38    NorCenQAB2BVPN2                                      Check Point  rules:     5  lastrev:2026-03-07
-  ID 99    V01FWLAPL041                                         Check Point  rules:    75  lastrev:2026-02-26
-  ID 81    V01FWLAPL052                                         Check Point  rules:   104  lastrev:2026-02-26
-  ID 35    V01FWLAPL441                                         Check Point  rules:    60  lastrev:2026-02-26
-  ID 51    V01FWLAPL451                                         Check Point  rules:    73  lastrev:2025-02-12
-  ID 88    V50FWLAPL001                                         Check Point  rules:  1430  lastrev:2026-04-08
-  ID 19    V50FWLAPL401                                         Check Point  rules:     0  lastrev:2026-01-27
-  ID 49    V50FWLAPL701                                         Check Point  rules:  1812  lastrev:2026-03-07
-  ID 66    V51FWLAPL002                                         Check Point  rules:     0  lastrev:2026-02-18
-  ID 102   V51FWLAPL101                                         Check Point  rules:     0  lastrev:2026-02-18
-  ID 68    V51FWLAPL301                                         Check Point  rules:     0  lastrev:2026-02-18
-  ID 43    V51FWLAPL701                                         Check Point  rules:     0  lastrev:2026-01-27
-
-
-==============================================================================
-
-OPEN QUESTIONS FOR THE LICENSE CONVERSION
-------------------------------------------------------------------------------
-  - Should the inactive/unlicensed Check Point be removed before conversion
-  - How does the new Azure licensing model count the 7 cloud subscriptions
-    (Drake flagged the cloud licensing change as the reason conversion must
-    precede the version upgrade)
-  - Does the conversion count licensed devices at time of conversion, i.e.
-    does shrinking the estate first change the outcome
-  - Confirm against a clean Device Inventory Report run
+Device Health Report
+August 21, 2026, 8:13:14 PM UTC
+Provides an overview of the state of devices or management stations, and can include health check results.
+Filter: None
+Devices:143
+Device	Description	Cluster	Management IP Address	Vendor	Health
+Azure-COUNTRY Financial Disaster Recovery (ID: 10)	Discovered by Azure		No Management IP	Microsoft	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 8:43:34 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app 'aa6bd634-3d99-4f28-93c6-153d9ba72891'. Trace ID: 533a82e3-dad1-476d-a493-52ffebdf3b00 Correlation ID: a4a75d8b-fb58-41d2-8788-9025d5c539b6 Timestamp: 2026-06-29 20:43:32Z
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16206
+Type: Automatic Retrieval - On Change
+Date/Time: August 21, 2026, 5:39:29 PM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected by an automatic retrieval
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+Azure-COUNTRY Financial Non Prod (ID: 5)	Discovered by Azure		No Management IP	Microsoft	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 8:43:33 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app 'aa6bd634-3d99-4f28-93c6-153d9ba72891'. Trace ID: 32682f1a-ef32-428e-b052-884d65ff3900 Correlation ID: 49d858db-e77e-4d28-8e0f-c91a01007e09 Timestamp: 2026-06-29 20:43:32Z
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16205
+Type: Automatic Retrieval - On Change
+Date/Time: August 21, 2026, 5:39:27 PM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected by an automatic retrieval
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+Azure-COUNTRY Financial Production (ID: 6)	Discovered by Azure		No Management IP	Microsoft	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 8:44:34 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app 'aa6bd634-3d99-4f28-93c6-153d9ba72891'. Trace ID: 592e4179-fb50-40f9-91db-848f85e53b00 Correlation ID: 61fed92c-8b14-4d02-bcb1-051c418965f6 Timestamp: 2026-06-29 20:44:32Z
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16201
+Type: Automatic Retrieval - On Change
+Date/Time: August 21, 2026, 5:39:26 PM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected by an automatic retrieval
+USAGE
+LOG MONITORING
+Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app 'aa6bd634-3d99-4f28-93c6-153d9ba72891'. Trace ID: a423c21d-f5f2-4655-b5eb-39d57de62d00 Correlation ID: 43220734-b326-4731-8711-0b09aa913a10 Timestamp: 2026-08-21 20:06:52Z. Last updated on 8/21/26 at 8:06:53 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+Azure-COUNTRY Financial Production Shared Services Subscription (ID: 7)	Discovered by Azure		No Management IP	Microsoft	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 8:24:33 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app 'aa6bd634-3d99-4f28-93c6-153d9ba72891'. Trace ID: 549c5615-7e7c-484b-9d90-52b1b7aa0a00 Correlation ID: c0712259-28b4-45db-b632-a73a79fb2877 Timestamp: 2026-06-29 20:24:32Z
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16202
+Type: Automatic Retrieval - On Change
+Date/Time: August 21, 2026, 5:39:26 PM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected by an automatic retrieval
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+Azure-COUNTRY Financial QA (ID: 8)	Discovered by Azure		No Management IP	Microsoft	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 8:23:33 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app 'aa6bd634-3d99-4f28-93c6-153d9ba72891'. Trace ID: a203f229-315f-4d87-a795-45f40bcc2e00 Correlation ID: 7b0b1a8f-3c04-4596-a448-9c1c8a385c81 Timestamp: 2026-06-29 20:23:32Z
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16204
+Type: Automatic Retrieval - On Change
+Date/Time: August 21, 2026, 5:39:26 PM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected by an automatic retrieval
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+Azure-COUNTRY Financial Sandbox (ID: 11)	Discovered by Azure		No Management IP	Microsoft	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 7:01:34 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app 'aa6bd634-3d99-4f28-93c6-153d9ba72891'. Trace ID: 3ad90ca4-8268-4866-8fcc-efcfb0083700 Correlation ID: 80fc862a-685d-469e-8926-adb62ebcda30 Timestamp: 2026-06-29 19:01:33Z
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16207
+Type: Automatic Retrieval - On Change
+Date/Time: August 21, 2026, 5:39:32 PM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected by an automatic retrieval
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+Azure-COUNTRY Financial Sandbox - NextGen (ID: 143)	Discovered by Azure		No Management IP	Microsoft	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 8:32:33 PM. Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app 'aa6bd634-3d99-4f28-93c6-153d9ba72891'. Trace ID: 11a3e9c5-478a-46f3-ba0c-de43859d3500 Correlation ID: 4794ca1a-aff4-4211-988d-6cf8fcab0e24 Timestamp: 2026-06-29 20:32:32Z
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16208
+Type: Automatic Retrieval - On Change
+Date/Time: August 21, 2026, 5:39:34 PM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected by an automatic retrieval
+USAGE
+LOG MONITORING
+Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app 'aa6bd634-3d99-4f28-93c6-153d9ba72891'. Trace ID: e3764101-dfb4-4820-8e41-6e0ba5844b00 Correlation ID: d686a428-c841-4fe1-8cc8-a71297bae5b0 Timestamp: 2026-08-21 20:06:51Z. Last updated on 8/21/26 at 8:06:51 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+BLM-DMS-BLM-DLS-COLOB-logserver (ID: 54)	Log Server created for CMA - 10.16.107.220		10.16.107.225	Check Point	
+Healthy
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Not applicable
+LAST REVISION
+Not applicable
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+BLM-DMS-BLM-DLS-DR-logserver (ID: 53)	Log Server created for CMA - 10.16.107.220		10.200.24.63	Check Point	
+Healthy
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Not applicable
+LAST REVISION
+Not applicable
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+BLM-DMS-BLM-DMS-DR-logserver (ID: 56)	Log Server created for CMA - 10.16.107.220		10.200.24.58	Check Point	
+Healthy
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Not applicable
+LAST REVISION
+Not applicable
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+BLM-DMS-logserver (ID: 55)	Log Server created for CMA - 10.16.107.220		10.16.107.220	Check Point	
+Healthy
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Not applicable
+LAST REVISION
+Not applicable
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+coloa-vsx-fw1 (ID: 117)	Orphaned by CMA - 10.16.107.219	coloa-vsx-fw	10.8.100.14	Check Point	
+Unlicensed
+coloa-vsx-fw1_chaska-dr-border-fw (ID: 62)	Orphaned by CMA - 10.16.107.220	chaska-dr-border-fw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw1_chaska-dr-dmz-fw (ID: 65)	Orphaned by CMA - 10.16.107.220	chaska-dr-dmz-fw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw1_chaska-dr-dmz-sw (ID: 110)	Orphaned by CMA - 10.16.107.220	chaska-dr-dmz-sw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw1_chaska-dr-ext-fw (ID: 96)	Orphaned by CMA - 10.16.107.220	chaska-dr-ext-fw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw1_chaska-dr-ext-sw (ID: 87)	Orphaned by CMA - 10.16.107.220	chaska-dr-ext-sw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw1_chaska-dr-iso-fw (ID: 77)	Orphaned by CMA - 10.16.107.220	chaska-dr-iso-fw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw1_coloa-border-fw (ID: 76)	Orphaned by CMA - 10.16.107.220	coloa-border-fw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw1_coloa-dmz-fw (ID: 105)	Orphaned by CMA - 10.16.107.220	coloa-dmz-fw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw1_coloa-dmz-sw (ID: 95)	Orphaned by CMA - 10.16.107.220	coloa-dmz-sw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw1_coloa-ext-fw (ID: 78)	Orphaned by CMA - 10.16.107.220	coloa-ext-fw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw1_coloa-ext-sw (ID: 70)	Orphaned by CMA - 10.16.107.220	coloa-ext-sw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw1_coloa-wan-fw (ID: 91)	Orphaned by CMA - 10.16.107.220	coloa-wan-fw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw2 (ID: 116)	Orphaned by CMA - 10.16.107.219	coloa-vsx-fw	10.8.100.15	Check Point	
+Unlicensed
+coloa-vsx-fw2_chaska-dr-border-fw (ID: 69)	Orphaned by CMA - 10.16.107.220	chaska-dr-border-fw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw2_chaska-dr-dmz-fw (ID: 103)	Orphaned by CMA - 10.16.107.220	chaska-dr-dmz-fw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw2_chaska-dr-dmz-sw (ID: 98)	Orphaned by CMA - 10.16.107.220	chaska-dr-dmz-sw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw2_chaska-dr-ext-fw (ID: 84)	Orphaned by CMA - 10.16.107.220	chaska-dr-ext-fw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw2_chaska-dr-ext-sw (ID: 100)	Orphaned by CMA - 10.16.107.220	chaska-dr-ext-sw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw2_chaska-dr-iso-fw (ID: 108)	Orphaned by CMA - 10.16.107.220	chaska-dr-iso-fw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw2_coloa-border-fw (ID: 107)	Orphaned by CMA - 10.16.107.220	coloa-border-fw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw2_coloa-dmz-fw (ID: 112)	Orphaned by CMA - 10.16.107.220	coloa-dmz-fw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw2_coloa-dmz-sw (ID: 60)	Orphaned by CMA - 10.16.107.220	coloa-dmz-sw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw2_coloa-ext-fw (ID: 82)	Orphaned by CMA - 10.16.107.220	coloa-ext-fw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw2_coloa-ext-sw (ID: 71)	Orphaned by CMA - 10.16.107.220	coloa-ext-sw	0.0.0.0	Check Point	
+Unlicensed
+coloa-vsx-fw2_coloa-wan-fw (ID: 61)	Orphaned by CMA - 10.16.107.220	coloa-wan-fw	0.0.0.0	Check Point	
+Unlicensed
+labfw1 (ID: 29)	Orphaned by CMA - 10.16.107.221	labfw	10.73.1.18	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successfully retrieved configuration (Manual) File count: 8, Total size: 74.9MB. Last updated on 2/14/25 at 7:11:51 PM
+LAST REVISION
+The last revision normalized, but issues were detected in one or more of the following areas: network objects, service objects, user objects, application objects, virtual routers, interfaces or routes
+Revision ID: 448
+Type: Policy Install
+Date/Time: February 12, 2025, 8:06:54 AM UTC
+User: oc96442@10.192.226.134
+Change Count: 96
+Result: Normalized
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected during policy installation
+USAGE
+LOG MONITORING
+No recent usage data received. Last updated on 2/15/25 at 8:03:07 AM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+labfw2 (ID: 30)	Orphaned by CMA - 10.16.107.221	labfw	10.73.1.19	Check Point	
+Inactive
+lab-vsx-fw1 (ID: 120)	Orphaned by CMA - 10.16.107.219	lab-vsx-fw	10.73.1.66	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successfully retrieved configuration (Manual) File count: 8, Total size: 51MB. Last updated on 2/14/25 at 7:11:16 PM
+LAST REVISION
+The last revision normalized, but issues were detected in one or more of the following areas: network objects, service objects, user objects, application objects, virtual routers, interfaces or routes
+Revision ID: 195
+Type: Policy Install
+Date/Time: February 5, 2025, 11:54:04 PM UTC
+User: id93588@10.19.2.32
+Change Count: 0
+Result: Normalized
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected during policy installation
+USAGE
+LOG MONITORING
+No recent usage data received. Last updated on 2/15/25 at 8:01:07 AM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+lab-vsx-fw1_lab-border-fw (ID: 20)	Orphaned by CMA - 10.16.107.223	lab-border-fw	0.0.0.0	Check Point	
+Inactive
+lab-vsx-fw1_lab-ext-sw (ID: 21)	Orphaned by CMA - 10.16.107.223	lab-ext-sw	0.0.0.0	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successfully retrieved configuration (Scheduled) File count: 8, Total size: 53.9MB. Last updated on 2/15/25 at 8:03:01 AM
+LAST REVISION
+No revisions exist for this device
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+No revisions exist for this device
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 2/15/25 at 8:03:07 AM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+lab-vsx-fw2 (ID: 121)	Orphaned by CMA - 10.16.107.219	lab-vsx-fw	10.73.1.67	Check Point	
+Inactive
+lab-vsx-fw2_lab-border-fw (ID: 17)	Orphaned by CMA - 10.16.107.223	lab-border-fw	0.0.0.0	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successfully retrieved configuration (Manual) File count: 8, Total size: 53.5MB. Last updated on 2/14/25 at 7:13:34 PM
+LAST REVISION
+The last revision normalized, but issues were detected in one or more of the following areas: network objects, service objects, user objects, application objects, virtual routers, interfaces or routes
+Revision ID: 443
+Type: Policy Install
+Date/Time: February 12, 2025, 8:06:23 AM UTC
+User: id93588@10.19.2.32
+Change Count: 95
+Result: Normalized
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected during policy installation
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 2/15/25 at 8:01:07 AM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+lab-vsx-fw2_lab-ext-sw (ID: 22)	Orphaned by CMA - 10.16.107.223	lab-ext-sw	0.0.0.0	Check Point	
+Inactive
+n00fwlapl001 (ID: 74)	Orphaned by CMA - 10.16.107.220	blm-fw	10.72.64.18	Check Point	
+Inactive
+n00fwlapl002 (ID: 72)	Orphaned by CMA - 10.16.107.220	blm-fw	10.72.64.19	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successfully retrieved configuration (Scheduled) File count: 10, Total size: 110MB. Last updated on 3/18/25 at 7:14:17 AM
+LAST REVISION
+The last revision normalized, but issues were detected in one or more of the following areas: network objects, service objects, user objects, application objects, virtual routers, interfaces or routes
+Revision ID: 1066
+Type: Policy Install
+Date/Time: March 1, 2025, 8:11:03 AM UTC
+User: oc97170@10.192.225.148
+Change Count: 16
+Result: Normalized
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected during policy installation
+USAGE
+LOG MONITORING
+No recent usage data received. Last updated on 3/19/25 at 7:04:29 AM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+n01aggrtr001 (ID: 129)			10.16.1.9	Cisco	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 6:02:20 AM. Timeout exceeded. <pexpect.pty_spawn.spawn object at 0x7f8ef2fe8290> command: /usr/bin/ssh args: ['/usr/bin/ssh', '-p', '22', 'z_firemon@10.16.1.9'] buffer (last 100 chars): b'' after: <class 'pexpect.exceptions.TIMEOUT'> match: None match_index: None exitstatus: None flag_eof: False pid: 1631319 child_fd: 9 closed: False timeout: 30 delimiter: <class 'pexpect.exceptions.EOF'> logfile: None logfile_read: None logfile_send: None maxread: 2000 ignorecase: False searchwindowsize: None delaybeforesend: 0.05 delayafterclose: 0.1 delayafterterminate: 0.1 searcher: searcher_re: 0: re.compile(b'assword required, but none se') 1: re.compile(b'sername:|serName:') 2: re.compile(b'[Pp]assword:|PASSCODE:|PASSWORD:|Clave:') 3: re.compile(b'[#*+]$') 4: re.compile(b'>\\s*$') 5: re.compile(b'(^|\\n|\\r)[^>^(\\n|\\r)]+>\\s*$') 6: re.compile(b'(^|\\n|\\r)!*[^#^\\n^\\r]+#\\s*$|[^#^\\n^\\r]+#\\s*[^\\s#]+#\\s*$') 7: re.compile(b'any key') 8: re.compile(b'User Interface Menu') 9: re.compile(b'(?:yes\\/no|y\\/n)') 10: re.compile(b'RSA modulus too small') 11: re.compile(b'Incompatible remote version|Protocol major versions differ') 12: re.compile(b'Unable to negotiate a key exchange method') 13: re.compile(b'exchange method found\\. Their offer:') 14: re.compile(b'Host key verification failed|ssh-rsa host key mismatch for')
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16184
+Type: Scheduled Retrieval
+Date/Time: August 21, 2026, 6:02:29 AM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+N01FWLAPL001 (ID: 122)	Discovered by Check Point SCS or CMA - 10.16.107.219	aurora-vsx-fw	10.16.100.14	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successfully retrieved configuration (Automatic) File count: 10. Last updated on 6/29/26 at 7:32:15 AM
+LAST REVISION
+The last revision for this device had a normalization error
+Revision ID: 12316
+Type: Manual Retrieval
+Date/Time: January 27, 2026, 5:22:12 AM UTC
+User: firemon
+Change Count: 104
+Result: Normalization Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were retrieved by a manual retrieval instead of an automatic retrieval
+USAGE
+LOG MONITORING
+Not receiving usage information. Check status of device [VSX-DMS-logserver]. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+N01FWLAPL001_aurora-border-fw (ID: 75)	Discovered by Check Point SCS or CMA - 10.16.107.220	aurora-border-fw	0.0.0.0	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 12:17:08 PM
+LAST REVISION
+The last revision for this device had a normalization error
+Revision ID: 13089
+Type: Manual Retrieval
+Date/Time: February 18, 2026, 5:07:21 PM UTC
+User: oc96891
+Change Count: 8
+Result: Normalization Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were retrieved by a manual retrieval instead of an automatic retrieval
+USAGE
+LOG MONITORING
+Not receiving usage information. Check status of device [BLM-DMS-logserver]. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+N01FWLAPL001_aurora-dmz-fw (ID: 93)	Discovered by Check Point SCS or CMA - 10.16.107.220	aurora-dmz-fw	0.0.0.0	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 12:17:08 PM
+LAST REVISION
+The last revision for this device had a normalization error
+Revision ID: 13098
+Type: Manual Retrieval
+Date/Time: February 18, 2026, 5:07:23 PM UTC
+User: oc96891
+Change Count: 8
+Result: Normalization Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were retrieved by a manual retrieval instead of an automatic retrieval
+USAGE
+LOG MONITORING
+Not receiving usage information. Check status of device [BLM-DMS-logserver]. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+N01FWLAPL001_aurora-dmz-sw (ID: 106)	Discovered by Check Point SCS or CMA - 10.16.107.220	aurora-dmz-sw	0.0.0.0	Check Point	
+Inactive
+N01FWLAPL001_aurora-ext-fw (ID: 64)	Discovered by Check Point SCS or CMA - 10.16.107.220	aurora-ext-fw	0.0.0.0	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 12:17:08 PM
+LAST REVISION
+The last revision for this device had a normalization error
+Revision ID: 13085
+Type: Manual Retrieval
+Date/Time: February 18, 2026, 5:07:20 PM UTC
+User: oc96891
+Change Count: 8
+Result: Normalization Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were retrieved by a manual retrieval instead of an automatic retrieval
+USAGE
+LOG MONITORING
+Not receiving usage information. Check status of device [BLM-DMS-logserver]. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+N01FWLAPL001_aurora-ext-sw (ID: 59)	Discovered by Check Point SCS or CMA - 10.16.107.220	aurora-ext-sw	0.0.0.0	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 12:17:08 PM
+LAST REVISION
+The last revision for this device had a normalization error
+Revision ID: 13086
+Type: Manual Retrieval
+Date/Time: February 18, 2026, 5:07:20 PM UTC
+User: oc96891
+Change Count: 8
+Result: Normalization Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were retrieved by a manual retrieval instead of an automatic retrieval
+USAGE
+LOG MONITORING
+Not receiving usage information. Check status of device [BLM-DMS-logserver]. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+N01FWLAPL001_aurora-wan-fw (ID: 109)	Discovered by Check Point SCS or CMA - 10.16.107.220	aurora-wan-fw	0.0.0.0	Check Point	
+Inactive
+N01FWLAPL002 (ID: 123)	Discovered by Check Point SCS or CMA - 10.16.107.219	aurora-vsx-fw	10.16.100.15	Check Point	
+Inactive
+N01FWLAPL002_aurora-border-fw (ID: 104)	Discovered by Check Point SCS or CMA - 10.16.107.220	aurora-border-fw	0.0.0.0	Check Point	
+Inactive
+N01FWLAPL002_aurora-dmz-fw (ID: 111)	Discovered by Check Point SCS or CMA - 10.16.107.220	aurora-dmz-fw	0.0.0.0	Check Point	
+Inactive
+N01FWLAPL002_aurora-dmz-sw (ID: 89)	Discovered by Check Point SCS or CMA - 10.16.107.220	aurora-dmz-sw	0.0.0.0	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 12:17:08 PM
+LAST REVISION
+The last revision for this device had a normalization error
+Revision ID: 13100
+Type: Manual Retrieval
+Date/Time: February 18, 2026, 5:07:24 PM UTC
+User: oc96891
+Change Count: 8
+Result: Normalization Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were retrieved by a manual retrieval instead of an automatic retrieval
+USAGE
+LOG MONITORING
+Not receiving usage information. Check status of device [BLM-DMS-logserver]. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+N01FWLAPL002_aurora-ext-fw (ID: 80)	Discovered by Check Point SCS or CMA - 10.16.107.220	aurora-ext-fw	0.0.0.0	Check Point	
+Inactive
+N01FWLAPL002_aurora-ext-sw (ID: 73)	Discovered by Check Point SCS or CMA - 10.16.107.220	aurora-ext-sw	0.0.0.0	Check Point	
+Inactive
+N01FWLAPL002_aurora-wan-fw (ID: 90)	Discovered by Check Point SCS or CMA - 10.16.107.220	aurora-wan-fw	0.0.0.0	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 12:17:08 PM
+LAST REVISION
+The last revision for this device had a normalization error
+Revision ID: 13093
+Type: Manual Retrieval
+Date/Time: February 18, 2026, 5:07:22 PM UTC
+User: oc96891
+Change Count: 8
+Result: Normalization Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were retrieved by a manual retrieval instead of an automatic retrieval
+USAGE
+LOG MONITORING
+Not receiving usage information. Check status of device [BLM-DMS-logserver]. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+N01FWLAPL401 (ID: 118)	Discovered by Check Point SCS or CMA - 10.16.107.219	aurora-tst-vsx-fw	10.16.100.11	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successfully retrieved configuration (Automatic) File count: 10. Last updated on 6/29/26 at 7:32:15 AM
+LAST REVISION
+The last revision for this device had a normalization error
+Revision ID: 12317
+Type: Manual Retrieval
+Date/Time: January 27, 2026, 5:22:13 AM UTC
+User: firemon
+Change Count: 103
+Result: Normalization Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were retrieved by a manual retrieval instead of an automatic retrieval
+USAGE
+LOG MONITORING
+Not receiving usage information. Check status of device [VSX-DMS-logserver]. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+N01FWLAPL401_aurora-tst-border-fw (ID: 44)	Discovered by Check Point SCS or CMA - 10.16.107.221	aurora-tst-border-fw	0.0.0.0	Check Point	
+Inactive
+N01FWLAPL401_aurora-tst-dmz-fw (ID: 31)	Discovered by Check Point SCS or CMA - 10.16.107.221	aurora-tst-dmz-fw	0.0.0.0	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 8:55:34 AM
+LAST REVISION
+The last revision for this device had a normalization error
+Revision ID: 12293
+Type: Manual Retrieval
+Date/Time: January 27, 2026, 5:12:06 AM UTC
+User: firemon
+Change Count: 894
+Result: Normalization Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were retrieved by a manual retrieval instead of an automatic retrieval
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+N01FWLAPL401_aurora-tst-dmz-sw (ID: 50)	Discovered by Check Point SCS or CMA - 10.16.107.221	aurora-tst-dmz-sw	0.0.0.0	Check Point	
+Inactive
+N01FWLAPL401_aurora-tst-ext-fw (ID: 45)	Discovered by Check Point SCS or CMA - 10.16.107.221	aurora-tst-ext-fw	0.0.0.0	Check Point	
+Inactive
+N01FWLAPL401_aurora-tst-ext-sw (ID: 46)	Discovered by Check Point SCS or CMA - 10.16.107.221	aurora-tst-ext-sw	0.0.0.0	Check Point	
+Inactive
+N01FWLAPL401_aurora-tst-wan-fw (ID: 52)	Discovered by Check Point SCS or CMA - 10.16.107.221	aurora-tst-wan-fw	0.0.0.0	Check Point	
+Inactive
+N01FWLAPL402 (ID: 119)	Discovered by Check Point SCS or CMA - 10.16.107.219	aurora-tst-vsx-fw	10.16.100.12	Check Point	
+Inactive
+N01FWLAPL402_aurora-tst-border-fw (ID: 36)	Discovered by Check Point SCS or CMA - 10.16.107.221	aurora-tst-border-fw	0.0.0.0	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 8:55:34 AM
+LAST REVISION
+The last revision for this device had a normalization error
+Revision ID: 12296
+Type: Manual Retrieval
+Date/Time: January 27, 2026, 5:12:09 AM UTC
+User: firemon
+Change Count: 329
+Result: Normalization Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were retrieved by a manual retrieval instead of an automatic retrieval
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+N01FWLAPL402_aurora-tst-dmz-fw (ID: 33)	Discovered by Check Point SCS or CMA - 10.16.107.221	aurora-tst-dmz-fw	0.0.0.0	Check Point	
+Inactive
+N01FWLAPL402_aurora-tst-dmz-sw (ID: 40)	Discovered by Check Point SCS or CMA - 10.16.107.221	aurora-tst-dmz-sw	0.0.0.0	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 8:55:34 AM
+LAST REVISION
+The last revision for this device had a normalization error
+Revision ID: 12301
+Type: Manual Retrieval
+Date/Time: January 27, 2026, 5:12:13 AM UTC
+User: firemon
+Change Count: 0
+Result: Normalization Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were retrieved by a manual retrieval instead of an automatic retrieval
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+N01FWLAPL402_aurora-tst-ext-fw (ID: 39)	Discovered by Check Point SCS or CMA - 10.16.107.221	aurora-tst-ext-fw	0.0.0.0	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 8:55:34 AM
+LAST REVISION
+The last revision for this device had a normalization error
+Revision ID: 12300
+Type: Manual Retrieval
+Date/Time: January 27, 2026, 5:12:13 AM UTC
+User: firemon
+Change Count: 334
+Result: Normalization Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were retrieved by a manual retrieval instead of an automatic retrieval
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+N01FWLAPL402_aurora-tst-ext-sw (ID: 32)	Discovered by Check Point SCS or CMA - 10.16.107.221	aurora-tst-ext-sw	0.0.0.0	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 8:55:34 AM
+LAST REVISION
+The last revision for this device had a normalization error
+Revision ID: 12292
+Type: Manual Retrieval
+Date/Time: January 27, 2026, 5:12:05 AM UTC
+User: firemon
+Change Count: 0
+Result: Normalization Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were retrieved by a manual retrieval instead of an automatic retrieval
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+N01FWLAPL402_aurora-tst-wan-fw (ID: 41)	Discovered by Check Point SCS or CMA - 10.16.107.221	aurora-tst-wan-fw	0.0.0.0	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 8:55:34 AM
+LAST REVISION
+The last revision for this device had a normalization error
+Revision ID: 12303
+Type: Manual Retrieval
+Date/Time: January 27, 2026, 5:12:14 AM UTC
+User: firemon
+Change Count: 296
+Result: Normalization Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were retrieved by a manual retrieval instead of an automatic retrieval
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+n01ipsrtr001 (ID: 136)			10.16.1.10	Cisco	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 6:02:23 AM. Timeout exceeded. <pexpect.pty_spawn.spawn object at 0x7fe4ffd68080> command: /usr/bin/ssh args: ['/usr/bin/ssh', '-p', '22', 'z_firemon@10.16.1.10'] buffer (last 100 chars): b'' after: <class 'pexpect.exceptions.TIMEOUT'> match: None match_index: None exitstatus: None flag_eof: False pid: 1631339 child_fd: 9 closed: False timeout: 30 delimiter: <class 'pexpect.exceptions.EOF'> logfile: None logfile_read: None logfile_send: None maxread: 2000 ignorecase: False searchwindowsize: None delaybeforesend: 0.05 delayafterclose: 0.1 delayafterterminate: 0.1 searcher: searcher_re: 0: re.compile(b'assword required, but none se') 1: re.compile(b'sername:|serName:') 2: re.compile(b'[Pp]assword:|PASSCODE:|PASSWORD:|Clave:') 3: re.compile(b'[#*+]$') 4: re.compile(b'>\\s*$') 5: re.compile(b'(^|\\n|\\r)[^>^(\\n|\\r)]+>\\s*$') 6: re.compile(b'(^|\\n|\\r)!*[^#^\\n^\\r]+#\\s*$|[^#^\\n^\\r]+#\\s*[^\\s#]+#\\s*$') 7: re.compile(b'any key') 8: re.compile(b'User Interface Menu') 9: re.compile(b'(?:yes\\/no|y\\/n)') 10: re.compile(b'RSA modulus too small') 11: re.compile(b'Incompatible remote version|Protocol major versions differ') 12: re.compile(b'Unable to negotiate a key exchange method') 13: re.compile(b'exchange method found\\. Their offer:') 14: re.compile(b'Host key verification failed|ssh-rsa host key mismatch for')
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16186
+Type: Scheduled Retrieval
+Date/Time: August 21, 2026, 6:02:32 AM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+n01pubrtr001 (ID: 133)			10.16.1.7	Cisco	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 8:00:20 AM. Invalid credentials.
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16197
+Type: Scheduled Retrieval
+Date/Time: August 21, 2026, 8:00:30 AM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+n01pubrtr002 (ID: 135)			10.16.1.8	Cisco	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 6:00:23 AM. Invalid credentials.
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16183
+Type: Scheduled Retrieval
+Date/Time: August 21, 2026, 6:00:33 AM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+n01pvtrtr001 (ID: 137)			10.16.1.5	Cisco	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 6:02:23 AM. Timeout exceeded. <pexpect.pty_spawn.spawn object at 0x7f774debc290> command: /usr/bin/ssh args: ['/usr/bin/ssh', '-p', '22', 'z_firemon@10.16.1.5'] buffer (last 100 chars): b'' after: <class 'pexpect.exceptions.TIMEOUT'> match: None match_index: None exitstatus: None flag_eof: False pid: 1631341 child_fd: 9 closed: False timeout: 30 delimiter: <class 'pexpect.exceptions.EOF'> logfile: None logfile_read: None logfile_send: None maxread: 2000 ignorecase: False searchwindowsize: None delaybeforesend: 0.05 delayafterclose: 0.1 delayafterterminate: 0.1 searcher: searcher_re: 0: re.compile(b'assword required, but none se') 1: re.compile(b'sername:|serName:') 2: re.compile(b'[Pp]assword:|PASSCODE:|PASSWORD:|Clave:') 3: re.compile(b'[#*+]$') 4: re.compile(b'>\\s*$') 5: re.compile(b'(^|\\n|\\r)[^>^(\\n|\\r)]+>\\s*$') 6: re.compile(b'(^|\\n|\\r)!*[^#^\\n^\\r]+#\\s*$|[^#^\\n^\\r]+#\\s*[^\\s#]+#\\s*$') 7: re.compile(b'any key') 8: re.compile(b'User Interface Menu') 9: re.compile(b'(?:yes\\/no|y\\/n)') 10: re.compile(b'RSA modulus too small') 11: re.compile(b'Incompatible remote version|Protocol major versions differ') 12: re.compile(b'Unable to negotiate a key exchange method') 13: re.compile(b'exchange method found\\. Their offer:') 14: re.compile(b'Host key verification failed|ssh-rsa host key mismatch for')
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16188
+Type: Scheduled Retrieval
+Date/Time: August 21, 2026, 6:02:33 AM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+n01pvtrtr002 (ID: 138)			10.16.1.6	Cisco	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 6:02:25 AM. Timeout exceeded. <pexpect.pty_spawn.spawn object at 0x7fd4b8a10290> command: /usr/bin/ssh args: ['/usr/bin/ssh', '-p', '22', 'Z_firemon@10.16.1.6'] buffer (last 100 chars): b'' after: <class 'pexpect.exceptions.TIMEOUT'> match: None match_index: None exitstatus: None flag_eof: False pid: 1631354 child_fd: 9 closed: False timeout: 30 delimiter: <class 'pexpect.exceptions.EOF'> logfile: None logfile_read: None logfile_send: None maxread: 2000 ignorecase: False searchwindowsize: None delaybeforesend: 0.05 delayafterclose: 0.1 delayafterterminate: 0.1 searcher: searcher_re: 0: re.compile(b'assword required, but none se') 1: re.compile(b'sername:|serName:') 2: re.compile(b'[Pp]assword:|PASSCODE:|PASSWORD:|Clave:') 3: re.compile(b'[#*+]$') 4: re.compile(b'>\\s*$') 5: re.compile(b'(^|\\n|\\r)[^>^(\\n|\\r)]+>\\s*$') 6: re.compile(b'(^|\\n|\\r)!*[^#^\\n^\\r]+#\\s*$|[^#^\\n^\\r]+#\\s*[^\\s#]+#\\s*$') 7: re.compile(b'any key') 8: re.compile(b'User Interface Menu') 9: re.compile(b'(?:yes\\/no|y\\/n)') 10: re.compile(b'RSA modulus too small') 11: re.compile(b'Incompatible remote version|Protocol major versions differ') 12: re.compile(b'Unable to negotiate a key exchange method') 13: re.compile(b'exchange method found\\. Their offer:') 14: re.compile(b'Host key verification failed|ssh-rsa host key mismatch for')
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16187
+Type: Scheduled Retrieval
+Date/Time: August 21, 2026, 6:02:33 AM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+n01vpnapl001 (ID: 139)			10.16.1.21	Cisco	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 7:02:21 AM. Timeout exceeded. <pexpect.pty_spawn.spawn object at 0x7f0d58852de0> command: /usr/bin/ssh args: ['/usr/bin/ssh', '-p', '22', 'z_firemon@10.16.1.21'] buffer (last 100 chars): b'' after: <class 'pexpect.exceptions.TIMEOUT'> match: None match_index: None exitstatus: None flag_eof: False pid: 1634242 child_fd: 9 closed: False timeout: 30 delimiter: <class 'pexpect.exceptions.EOF'> logfile: None logfile_read: None logfile_send: None maxread: 2000 ignorecase: False searchwindowsize: None delaybeforesend: 0.05 delayafterclose: 0.1 delayafterterminate: 0.1 searcher: searcher_re: 0: re.compile(b'sername:|ogin:') 1: re.compile(b'[Pp]assword:') 2: re.compile(b'\\r?(?:[a-zA-Z0-9][a-zA-Z0-9\\-\\/\\.]+[a-zA-Z0-9])>') 3: re.compile(b'\\r?(?:[a-zA-Z0-9][a-zA-Z0-9\\-\\/\\.]+[a-zA-Z0-9])#') 4: re.compile(b'yes/no') 5: re.compile(b'exchange method found\\. Their offer:') 6: re.compile(b'Host key verification failed|ssh-rsa host key mismatch for')
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16196
+Type: Scheduled Retrieval
+Date/Time: August 21, 2026, 7:02:29 AM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+n01vpnapl002 (ID: 140)			10.16.1.57	Cisco	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 6:02:25 AM. Timeout exceeded. <pexpect.pty_spawn.spawn object at 0x7f00bc6ef170> command: /usr/bin/ssh args: ['/usr/bin/ssh', '-p', '22', 'z_firemon@10.16.1.57'] buffer (last 100 chars): b'' after: <class 'pexpect.exceptions.TIMEOUT'> match: None match_index: None exitstatus: None flag_eof: False pid: 1631355 child_fd: 9 closed: False timeout: 30 delimiter: <class 'pexpect.exceptions.EOF'> logfile: None logfile_read: None logfile_send: None maxread: 2000 ignorecase: False searchwindowsize: None delaybeforesend: 0.05 delayafterclose: 0.1 delayafterterminate: 0.1 searcher: searcher_re: 0: re.compile(b'sername:|ogin:') 1: re.compile(b'[Pp]assword:') 2: re.compile(b'\\r?(?:[a-zA-Z0-9][a-zA-Z0-9\\-\\/\\.]+[a-zA-Z0-9])>') 3: re.compile(b'\\r?(?:[a-zA-Z0-9][a-zA-Z0-9\\-\\/\\.]+[a-zA-Z0-9])#') 4: re.compile(b'yes/no') 5: re.compile(b'exchange method found\\. Their offer:') 6: re.compile(b'Host key verification failed|ssh-rsa host key mismatch for')
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16189
+Type: Scheduled Retrieval
+Date/Time: August 21, 2026, 6:02:35 AM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+n02aggrtr001 (ID: 130)			10.76.0.3	Cisco	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 6:00:23 AM. INVALID_CREDENTIALS
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16180
+Type: Scheduled Retrieval
+Date/Time: August 21, 2026, 6:00:30 AM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+n02disrtr001 (ID: 125)			10.76.2.1	Cisco	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 7:00:21 AM. SSH Key changed. SSH Key Reset not allowed on this device. Modify the device settings to enable SSH key reset
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16190
+Type: Scheduled Retrieval
+Date/Time: August 21, 2026, 7:00:30 AM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+n05aggrtr001 (ID: 134)			10.178.127.193	Cisco	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 6:00:21 AM. SSH Key changed. SSH Key Reset not allowed on this device. Modify the device settings to enable SSH key reset
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16179
+Type: Scheduled Retrieval
+Date/Time: August 21, 2026, 6:00:30 AM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+n05fwlapl001 (ID: 57)	Orphaned by CMA - 10.16.107.220	SRO_Cluster	10.178.127.250	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successfully retrieved configuration (Scheduled) File count: 10, Total size: 110MB. Last updated on 3/18/25 at 7:14:17 AM
+LAST REVISION
+The last revision normalized, but issues were detected in one or more of the following areas: network objects, service objects, user objects, application objects, virtual routers, interfaces or routes
+Revision ID: 1678
+Type: Policy Install
+Date/Time: March 14, 2025, 7:28:25 AM UTC
+User: oc96442@10.192.226.134
+Change Count: 11
+Result: Normalized
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected during policy installation
+USAGE
+LOG MONITORING
+Enabled
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+n05fwlapl002 (ID: 58)	Orphaned by CMA - 10.16.107.220	SRO_Cluster	10.178.127.251	Check Point	
+Inactive
+n09aggrtr001 (ID: 131)			10.76.0.4	Cisco	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 6:00:21 AM. INVALID_CREDENTIALS
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16181
+Type: Scheduled Retrieval
+Date/Time: August 21, 2026, 6:00:31 AM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were retrieved by a scheduled retrieval instead of an automatic retrieval
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+n11disrtr001 (ID: 126)			10.74.2.1	Cisco	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 6:00:21 AM. Invalid credentials.
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16182
+Type: Scheduled Retrieval
+Date/Time: August 21, 2026, 6:00:31 AM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+n14aggrtr001.countrylan.com (ID: 132)			10.184.127.1	Cisco	
+Healthy
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successfully retrieved configuration (Manual) File count: 10, Total size: 234KB. Last updated on 2/7/25 at 8:19:01 PM
+LAST REVISION
+The last revision for this device normalized successfully
+Revision ID: 365
+Type: Manual Retrieval
+Date/Time: February 7, 2025, 8:19:02 PM UTC
+User: aksa.mustafa@countryfinancial.com
+Change Count: 0
+Result: Normalized
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+N14FWLAPL001 (ID: 85)	Orphaned by CMA - 10.16.107.220	co-fw	10.184.127.250	Check Point	
+Inactive
+N14FWLAPL002 (ID: 83)	Orphaned by CMA - 10.16.107.220	co-fw	10.184.127.251	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successfully retrieved configuration (Scheduled) File count: 10, Total size: 110MB. Last updated on 3/18/25 at 7:14:17 AM
+LAST REVISION
+The last revision normalized, but issues were detected in one or more of the following areas: network objects, service objects, user objects, application objects, virtual routers, interfaces or routes
+Revision ID: 1689
+Type: Policy Install
+Date/Time: March 14, 2025, 7:28:31 AM UTC
+User: oc96442@10.192.226.134
+Change Count: 11
+Result: Normalized
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected during policy installation
+USAGE
+LOG MONITORING
+Enabled
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+NorCenPRODB2BVPN1 (ID: 92)	Discovered by Check Point SCS or CMA - 10.16.107.220	NorCenPRODB2BVPN	10.199.0.196	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 12:17:08 PM
+LAST REVISION
+The last revision normalized, but issues were detected in one or more of the following areas: network objects, service objects, user objects, application objects, virtual routers, interfaces or routes
+Revision ID: 14114
+Type: Policy Install
+Date/Time: April 2, 2026, 9:50:56 AM UTC
+User: oc97118@10.192.225.47
+Change Count: 0
+Result: Normalized
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected during policy installation
+USAGE
+LOG MONITORING
+Not receiving usage information. Check status of device [BLM-DMS-logserver]. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+NorCenPRODB2BVPN2 (ID: 94)	Discovered by Check Point SCS or CMA - 10.16.107.220	NorCenPRODB2BVPN	10.199.0.197	Check Point	
+Inactive
+NorCenQAB2BVPN1 (ID: 37)	Discovered by Check Point SCS or CMA - 10.16.107.221	NorCenQAB2BVPN	10.199.64.197	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 8:55:34 AM
+LAST REVISION
+The last revision normalized, but issues were detected in one or more of the following areas: network objects, service objects, user objects, application objects, virtual routers, interfaces or routes
+Revision ID: 13527
+Type: Policy Install
+Date/Time: March 7, 2026, 9:52:28 AM UTC
+User: id93588@10.199.40.196
+Change Count: 0
+Result: Normalized
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected during policy installation
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+NorCenQAB2BVPN2 (ID: 38)	Discovered by Check Point SCS or CMA - 10.16.107.221	NorCenQAB2BVPN	10.199.64.198	Check Point	
+Inactive
+QA-DMS-logserver (ID: 27)	Log Server created for CMA - 10.16.107.221		10.16.107.221	Check Point	
+Healthy
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Not applicable
+LAST REVISION
+Not applicable
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+QA-DMS-QA-DLS-COLOB-logserver (ID: 28)	Log Server created for CMA - 10.16.107.221		10.16.107.226	Check Point	
+Healthy
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Not applicable
+LAST REVISION
+Not applicable
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+QA-DMS-QA-DLS-DR-logserver (ID: 26)	Log Server created for CMA - 10.16.107.221		10.200.24.64	Check Point	
+Healthy
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Not applicable
+LAST REVISION
+Not applicable
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+QA-DMS-QA-DMS-DR-logserver (ID: 25)	Log Server created for CMA - 10.16.107.221		10.200.24.59	Check Point	
+Healthy
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Not applicable
+LAST REVISION
+Not applicable
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+SB-DMS-logserver (ID: 15)	Log Server created for CMA - 10.16.107.223		10.16.107.223	Check Point	
+Healthy
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Not applicable
+LAST REVISION
+Not applicable
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+SB-DMS-SB-DLS-COLOB-logserver (ID: 13)	Log Server created for CMA - 10.16.107.223		10.16.107.228	Check Point	
+Healthy
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Not applicable
+LAST REVISION
+Not applicable
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+SB-DMS-SB-DLS-DR-logserver (ID: 16)	Log Server created for CMA - 10.16.107.223		10.200.24.65	Check Point	
+Healthy
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Not applicable
+LAST REVISION
+Not applicable
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+SB-DMS-SB-DMS-DR-logserver (ID: 14)	Log Server created for CMA - 10.16.107.223		10.200.24.60	Check Point	
+Healthy
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Not applicable
+LAST REVISION
+Not applicable
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+V01FWLAPL041 (ID: 99)	Discovered by Check Point SCS or CMA - 10.16.107.220	aurora-vsec-fw	10.16.96.99	Check Point	
+Inactive
+V01FWLAPL042 (ID: 97)	Discovered by Check Point SCS or CMA - 10.16.107.220	aurora-vsec-fw	10.16.96.100	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 12:17:08 PM
+LAST REVISION
+The last revision normalized, but issues were detected in one or more of the following areas: network objects, service objects, user objects, application objects, virtual routers, interfaces or routes
+Revision ID: 13325
+Type: Policy Install
+Date/Time: February 26, 2026, 10:47:26 AM UTC
+User: oc96541@10.200.224.195
+Change Count: 0
+Result: Normalized
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected during policy installation
+USAGE
+LOG MONITORING
+Not receiving usage information. Check status of device [BLM-DMS-logserver]. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+V01FWLAPL051 (ID: 79)	Discovered by Check Point SCS or CMA - 10.16.107.220	aurora-pci-fw	10.16.96.131	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 12:17:08 PM
+LAST REVISION
+The last revision normalized, but issues were detected in one or more of the following areas: network objects, service objects, user objects, application objects, virtual routers, interfaces or routes
+Revision ID: 13324
+Type: Policy Install
+Date/Time: February 26, 2026, 10:47:25 AM UTC
+User: oc96541@10.200.224.195
+Change Count: 0
+Result: Normalized
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected during policy installation
+USAGE
+LOG MONITORING
+Not receiving usage information. Check status of device [BLM-DMS-logserver]. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+V01FWLAPL052 (ID: 81)	Discovered by Check Point SCS or CMA - 10.16.107.220	aurora-pci-fw	10.16.96.132	Check Point	
+Inactive
+V01FWLAPL441 (ID: 35)	Discovered by Check Point SCS or CMA - 10.16.107.221	aurora-tst-vsec-fw	10.17.96.67	Check Point	
+Inactive
+V01FWLAPL442 (ID: 34)	Discovered by Check Point SCS or CMA - 10.16.107.221	aurora-tst-vsec-fw	10.17.96.68	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 8:55:34 AM
+LAST REVISION
+The last revision normalized, but issues were detected in one or more of the following areas: network objects, service objects, user objects, application objects, virtual routers, interfaces or routes
+Revision ID: 13315
+Type: Policy Install
+Date/Time: February 26, 2026, 8:38:21 AM UTC
+User: id93588@10.199.40.196
+Change Count: 0
+Result: Normalized
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected during policy installation
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+V01FWLAPL451 (ID: 51)	Orphaned by CMA - 10.16.107.221	aurora-tst-pci-fw	10.17.96.99	Check Point	
+Inactive
+V01FWLAPL452 (ID: 47)	Orphaned by CMA - 10.16.107.221	aurora-tst-pci-fw	10.17.96.100	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successfully retrieved configuration (Manual) File count: 8, Total size: 74.9MB. Last updated on 2/14/25 at 7:11:51 PM
+LAST REVISION
+The last revision normalized, but issues were detected in one or more of the following areas: network objects, service objects, user objects, application objects, virtual routers, interfaces or routes
+Revision ID: 463
+Type: Policy Install
+Date/Time: February 12, 2025, 8:06:59 AM UTC
+User: oc96442@10.192.226.134
+Change Count: 96
+Result: Normalized
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected during policy installation
+USAGE
+LOG MONITORING
+Enabled
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+V50FWLAPL001 (ID: 88)	Discovered by Check Point SCS or CMA - 10.16.107.220	V50FWLAPL00	10.199.0.68	Check Point	
+Inactive
+V50FWLAPL002 (ID: 86)	Discovered by Check Point SCS or CMA - 10.16.107.220	V50FWLAPL00	10.199.0.69	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 12:17:08 PM
+LAST REVISION
+The last revision normalized, but issues were detected in one or more of the following areas: network objects, service objects, user objects, application objects, virtual routers, interfaces or routes
+Revision ID: 14242
+Type: Policy Install
+Date/Time: April 8, 2026, 12:15:28 PM UTC
+User: oc97118@10.192.225.47
+Change Count: 0
+Result: Normalized
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected during policy installation
+USAGE
+LOG MONITORING
+Not receiving usage information. Check status of device [BLM-DMS-logserver]. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+V50FWLAPL401 (ID: 19)	Discovered by Check Point SCS or CMA - 10.16.107.223	V50FWLAPL40	10.199.192.68	Check Point	
+Inactive
+V50FWLAPL402 (ID: 18)	Discovered by Check Point SCS or CMA - 10.16.107.223	V50FWLAPL40	10.199.192.69	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 7:24:32 AM
+LAST REVISION
+The last revision for this device had a normalization error
+Revision ID: 12314
+Type: Manual Retrieval
+Date/Time: January 27, 2026, 5:12:25 AM UTC
+User: firemon
+Change Count: 757
+Result: Normalization Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were retrieved by a manual retrieval instead of an automatic retrieval
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+V50FWLAPL701 (ID: 49)	Discovered by Check Point SCS or CMA - 10.16.107.221	V50FWLAPL70	10.199.64.68	Check Point	
+Inactive
+V50FWLAPL702 (ID: 48)	Discovered by Check Point SCS or CMA - 10.16.107.221	V50FWLAPL70	10.199.64.69	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 8:55:34 AM
+LAST REVISION
+The last revision normalized, but issues were detected in one or more of the following areas: network objects, service objects, user objects, application objects, virtual routers, interfaces or routes
+Revision ID: 13526
+Type: Policy Install
+Date/Time: March 7, 2026, 9:52:28 AM UTC
+User: id93588@10.199.40.196
+Change Count: 0
+Result: Normalized
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected during policy installation
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+v50vpnapl001 (ID: 141)			10.199.3.100	Cisco	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V50SECAPL008.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 6/29/26 at 7:02:24 AM. Timeout exceeded. <pexpect.pty_spawn.spawn object at 0x7fa8e4406f60> command: /usr/bin/ssh args: ['/usr/bin/ssh', '-p', '22', 'z_firemon@10.199.3.100'] buffer (last 100 chars): b'' after: <class 'pexpect.exceptions.TIMEOUT'> match: None match_index: None exitstatus: None flag_eof: False pid: 3495207 child_fd: 9 closed: False timeout: 30 delimiter: <class 'pexpect.exceptions.EOF'> logfile: None logfile_read: None logfile_send: None maxread: 2000 ignorecase: False searchwindowsize: None delaybeforesend: 0.05 delayafterclose: 0.1 delayafterterminate: 0.1 searcher: searcher_re: 0: re.compile(b'sername:|ogin:') 1: re.compile(b'[Pp]assword:') 2: re.compile(b'\\r?(?:[a-zA-Z0-9][a-zA-Z0-9\\-\\/\\.]+[a-zA-Z0-9])>') 3: re.compile(b'\\r?(?:[a-zA-Z0-9][a-zA-Z0-9\\-\\/\\.]+[a-zA-Z0-9])#') 4: re.compile(b'yes/no') 5: re.compile(b'exchange method found\\. Their offer:') 6: re.compile(b'Host key verification failed|ssh-rsa host key mismatch for')
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16195
+Type: Scheduled Retrieval
+Date/Time: August 21, 2026, 7:02:22 AM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+v50vpnapl002-1.countrylan.com (ID: 179)			10.199.41.212	Cisco	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V50SECAPL008.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+The data collector has never received a retrieval status for this device
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16200
+Type: Automatic Retrieval - On Change
+Date/Time: August 21, 2026, 3:49:56 PM UTC
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were detected by an automatic retrieval
+USAGE
+LOG MONITORING
+INVALID_CREDENTIALS. Last updated on 8/21/26 at 8:09:03 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+V51ADCAPL352.countrylan.com (ID: 124)			10.205.112.143	F5	
+Unlicensed
+V51FWLAPL001 (ID: 63)	Discovered by Check Point SCS or CMA - 10.16.107.220	V51FWLAPL00	10.207.0.68	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 12:17:08 PM
+LAST REVISION
+The last revision for this device had a normalization error
+Revision ID: 13081
+Type: Manual Retrieval
+Date/Time: February 18, 2026, 5:07:19 PM UTC
+User: oc96891
+Change Count: 8
+Result: Normalization Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were retrieved by a manual retrieval instead of an automatic retrieval
+USAGE
+LOG MONITORING
+Not receiving usage information. Check status of device [BLM-DMS-logserver]. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+V51FWLAPL002 (ID: 66)	Discovered by Check Point SCS or CMA - 10.16.107.220	V51FWLAPL00	10.207.0.69	Check Point	
+Inactive
+V51FWLAPL101 (ID: 102)	Discovered by Check Point SCS or CMA - 10.16.107.220	V51FWLAPL10	10.207.192.68	Check Point	
+Inactive
+V51FWLAPL102 (ID: 101)	Discovered by Check Point SCS or CMA - 10.16.107.220	V51FWLAPL10	10.207.192.69	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 12:17:08 PM
+LAST REVISION
+The last revision for this device had a normalization error
+Revision ID: 13104
+Type: Manual Retrieval
+Date/Time: February 18, 2026, 5:07:26 PM UTC
+User: oc96891
+Change Count: 8
+Result: Normalization Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were retrieved by a manual retrieval instead of an automatic retrieval
+USAGE
+LOG MONITORING
+Not receiving usage information. Check status of device [BLM-DMS-logserver]. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+V51FWLAPL301 (ID: 68)	Discovered by Check Point SCS or CMA - 10.16.107.220	V51FWLAPL30	10.205.15.53	Check Point	
+Inactive
+V51FWLAPL302 (ID: 67)	Discovered by Check Point SCS or CMA - 10.16.107.220	V51FWLAPL30	10.205.15.54	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 12:17:08 PM
+LAST REVISION
+The last revision for this device had a normalization error
+Revision ID: 13090
+Type: Manual Retrieval
+Date/Time: February 18, 2026, 5:07:21 PM UTC
+User: oc96891
+Change Count: 8
+Result: Normalization Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were retrieved by a manual retrieval instead of an automatic retrieval
+USAGE
+LOG MONITORING
+Not receiving usage information. Check status of device [BLM-DMS-logserver]. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+V51FWLAPL701 (ID: 43)	Discovered by Check Point SCS or CMA - 10.16.107.221	V51FWLAPL70	10.207.64.68	Check Point	
+Inactive
+V51FWLAPL702 (ID: 42)	Discovered by Check Point SCS or CMA - 10.16.107.221	V51FWLAPL70	10.207.64.69	Check Point	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successful policy status retrieval. Last updated on 6/29/26 at 8:55:34 AM
+LAST REVISION
+The last revision for this device had a normalization error
+Revision ID: 12302
+Type: Manual Retrieval
+Date/Time: January 27, 2026, 5:12:14 AM UTC
+User: firemon
+Change Count: 1909
+Result: Normalization Error
+CHANGE DETECTION
+CHANGE MONITORING
+Enabled
+CHANGE DATA
+Changes were retrieved by a manual retrieval instead of an automatic retrieval
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+VSX-DMS-logserver (ID: 115)	Log Server created for CMA - 10.16.107.219		10.16.107.219	Check Point	
+Healthy
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Not applicable
+LAST REVISION
+Not applicable
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+VSX-DMS-VSX-DMS-DR-logserver (ID: 114)	Log Server created for CMA - 10.16.107.219		10.200.24.61	Check Point	
+Healthy
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Not applicable
+LAST REVISION
+Not applicable
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+Not applicable
+USAGE DATA
+Not applicable
+Logged Connections (Last 24 hours): 0
+Zscaler ZIA-Aurora Non-Production (ID: 145)	Discovered by Zscaler ZIA		No Management IP	Zscaler	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 1/23/26 at 5:19:38 PM. HTTPSConnectionPool(host='zsapi.zscalertwo.net', port=443): Max retries exceeded with url: /api/v1/authenticatedSession (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7fe2f51934d0>, 'Connection to zsapi.zscalertwo.net timed out. (connect timeout=None)'))
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 12189
+Type: Manual Retrieval
+Date/Time: January 23, 2026, 5:19:39 PM UTC
+User: oc96891
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+Zscaler ZIA-Aurora Production (ID: 146)	Discovered by Zscaler ZIA		No Management IP	Zscaler	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successfully retrieved configuration (Manual) File count: 15, Total size: 5.98MB. Last updated on 3/28/25 at 6:43:12 PM
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 16178
+Type: Manual Retrieval
+Date/Time: August 20, 2026, 7:32:50 PM UTC
+User: id93590
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+Zscaler ZIA-Azure South Central DR (ID: 147)	Orphaned by Zscaler ZIA		No Management IP	Zscaler	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 1/23/26 at 5:13:04 PM. HTTPSConnectionPool(host='zsapi.zscalertwo.net', port=443): Max retries exceeded with url: /api/v1/authenticatedSession (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7fc50fe9b4d0>, 'Connection to zsapi.zscalertwo.net timed out. (connect timeout=None)'))
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 12186
+Type: Manual Retrieval
+Date/Time: January 23, 2026, 5:13:05 PM UTC
+User: oc96891
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+Zscaler ZIA-Chaska DR (ID: 148)	Orphaned by Zscaler ZIA		No Management IP	Zscaler	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 1/23/26 at 5:15:15 PM. HTTPSConnectionPool(host='zsapi.zscalertwo.net', port=443): Max retries exceeded with url: /api/v1/authenticatedSession (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7ff94b0034d0>, 'Connection to zsapi.zscalertwo.net timed out. (connect timeout=None)'))
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 12187
+Type: Manual Retrieval
+Date/Time: January 23, 2026, 5:15:16 PM UTC
+User: oc96891
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+Zscaler ZIA-CO Office Prod Aruba SDWAN (ID: 176)	Discovered by Zscaler ZIA		No Management IP	Zscaler	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successfully retrieved configuration (Manual) File count: 15. Last updated on 3/31/26 at 3:46:20 PM
+LAST REVISION
+The last revision for this device normalized, but issues were detected in one or more of the following areas: devices, zones, policies, security rules, NAT rules or policy routes
+Revision ID: 14064
+Type: Manual Retrieval
+Date/Time: March 31, 2026, 3:46:20 PM UTC
+User: nd_v50secapl007
+Change Count: 0
+Result: Normalized
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+Zscaler ZIA-Country Data Centers (ID: 177)	Discovered by Zscaler ZIA		No Management IP	Zscaler	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successfully retrieved configuration (Manual) File count: 15. Last updated on 3/31/26 at 3:47:15 PM
+LAST REVISION
+The last revision for this device normalized, but issues were detected in one or more of the following areas: devices, zones, policies, security rules, NAT rules or policy routes
+Revision ID: 14065
+Type: Manual Retrieval
+Date/Time: March 31, 2026, 3:47:16 PM UTC
+User: nd_v50secapl007
+Change Count: 0
+Result: Normalized
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+Zscaler ZIA-Home-office-(BLM) (ID: 150)	Discovered by Zscaler ZIA		No Management IP	Zscaler	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successfully retrieved configuration (Manual) File count: 15, Total size: 5.98MB. Last updated on 3/28/25 at 6:49:12 PM
+LAST REVISION
+The last revision normalized, but issues were detected in one or more of the following areas: network objects, service objects, user objects, application objects, virtual routers, interfaces or routes
+Revision ID: 2128
+Type: Manual Retrieval
+Date/Time: March 28, 2025, 6:49:13 PM UTC
+User: nd_v50secapl007
+Change Count: 0
+Result: Normalized
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+Zscaler ZIA-Home Office Labs (ID: 149)	Orphaned by Zscaler ZIA		No Management IP	Zscaler	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 1/23/26 at 5:17:26 PM. HTTPSConnectionPool(host='zsapi.zscalertwo.net', port=443): Max retries exceeded with url: /api/v1/authenticatedSession (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7fc0e39a34d0>, 'Connection to zsapi.zscalertwo.net timed out. (connect timeout=None)'))
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 12188
+Type: Manual Retrieval
+Date/Time: January 23, 2026, 5:17:27 PM UTC
+User: oc96891
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+Zscaler ZIA-Road Warrior (ID: 152)	Discovered by Zscaler ZIA		No Management IP	Zscaler	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Last updated on 1/23/26 at 5:08:42 PM. HTTPSConnectionPool(host='zsapi.zscalertwo.net', port=443): Max retries exceeded with url: /api/v1/authenticatedSession (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f39f4126c90>, 'Connection to zsapi.zscalertwo.net timed out. (connect timeout=None)'))
+LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID: 12184
+Type: Manual Retrieval
+Date/Time: January 23, 2026, 5:08:42 PM UTC
+User: oc96891
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+Zscaler ZIA-SO Office Prod Aruba SDWAN (ID: 178)	Discovered by Zscaler ZIA		No Management IP	Zscaler	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successfully retrieved configuration (Manual) File count: 15. Last updated on 3/31/26 at 3:48:09 PM
+LAST REVISION
+The last revision for this device normalized, but issues were detected in one or more of the following areas: devices, zones, policies, security rules, NAT rules or policy routes
+Revision ID: 14066
+Type: Manual Retrieval
+Date/Time: March 31, 2026, 3:48:10 PM UTC
+User: nd_v50secapl007
+Change Count: 0
+Result: Normalized
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
+Zscaler ZIA-Southern Office (ID: 151)	Orphaned by Zscaler ZIA		No Management IP	Zscaler	
+Critical
+Health Check Results
+GENERAL
+DEVICE LICENSED
+DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V01SECAPL067.countrylan.com-Group)
+RETRIEVAL
+LAST RETRIEVAL
+Successfully retrieved configuration (Manual) File count: 15, Total size: 5.98MB. Last updated on 3/28/25 at 6:50:25 PM
+LAST REVISION
+The last revision normalized, but issues were detected in one or more of the following areas: network objects, service objects, user objects, application objects, virtual routers, interfaces or routes
+Revision ID: 2129
+Type: Manual Retrieval
+Date/Time: March 28, 2025, 6:50:26 PM UTC
+User: nd_v50secapl007
+Change Count: 0
+Result: Normalized
+CHANGE DETECTION
+CHANGE MONITORING
+Not applicable
+CHANGE DATA
+Not applicable
+USAGE
+LOG MONITORING
+No usage data received. Last updated on 8/21/26 at 8:11:58 PM
+USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
