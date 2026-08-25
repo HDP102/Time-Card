@@ -1,9 +1,7 @@
-PS C:\Users\<redacted>\OneDrive - COUNTRY Financial\Documents\Zscalar Policy clean up> Get-Content "2026-08-09T12-44-19_UTC_WEB_log.csv" -First 15
+Hey Sid, Jonathan mentioned you might be able to help on the networking side. I'm working through getting FireMon collecting again after the server got rebuilt and moved back in June. The collector is at 10.16.108.147 now and since the move it can't pull configs from a set of routers.
 
-...Department,None,None,None,None,None,None,NA,N/A,NA,NA,NA,Unknown,None,None,None,None,None,None,
+Two different symptoms. On n01pubrtr001 and n01pubrtr002 at 10.16.1.7 and .8 it connects fine and just fails auth, so those look like the z_firemon service account password went stale, same for n02aggrtr001, n09aggrtr001 and n11disrtr001.
 
-10,"June 30, 2026 9:00:00 PM PDT",Country Data Centers,westus-0.in.applicationinsights.azure.com,Allowed,Hosting Providers,Microsoft Azure,Business Use,Business and Economy,Professional Services,Country Data Centers,Default Department,None,None,None,None,None,None,NA,N/A,NA,NA,NA,Unknown,None,None,None,None,None,None,
+The other set doesn't answer ssh at all, just times out after 30 seconds. That's n01pvtrtr001, n01pvtrtr002, n01aggrtr001 and n01ipsrtr001 on 10.16.1.5, .6, .9, .10, plus the ASAs n01vpnapl001 and n01vpnapl002 on .21 and .57. Since two boxes on the same subnet still connect, I'm guessing there's a vty access-class on the routers and an ssh permit on the ASAs that still lists the old collector IP.
 
-11,"June 30, 2026 9:00:00 PM PDT",user_7f3a91c4@countryfinancial.com,okta-featureflag-edge.azureedge.net,Allowed,Hosting Providers,Microsoft Azure,Bandwidth Loss,User-Defined,SSL_Inspection_Bypass_for_Servers,None,None,Road Warrior,Market 4,None,None,None,None,None,dev_2b8e05da,Zscaler Client Connector,,id_9c41f7b2,dev_5e10a3cf,Unknown,None,None,None,None,None,None,
-
-12,"June 30, 2026 9:00:00 PM PDT",user_c05d8e17@countryfinancial.com,pubads.g.doubleclick.net,Allowed,Sales & Marketing,DoubleClick,Business Use,Information Technology,Advertising,None,None,Road Warrior,Default Department,None,Pass,Yes,No,None,None,dev_a47b62e9,Zscaler Client Connector,HP EliteBook 660 16 inch G11 Notebook PC,id_3d8f04ba,dev_881ce6f7,N/A,None,None,None,None,None,None,
+Any chance you could check whether 10.16.108.147 would get through on one of those, and do you know what the old collector address was?
