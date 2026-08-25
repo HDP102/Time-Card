@@ -1,13 +1,18 @@
-Here's this week.
+Subject: FireMon license conversion and FMOS upgrade
 
-Most of it went to Firemon. Ran a full diagnostic to get a picture of what's broken. Device retrieval has been failing since around June 29 across the board. Azure is down on an expired client secret on Elijah's app registration, seven Cisco routers are on invalid credentials, two more have changed SSH keys which the SSH key reset should handle, and Zscaler is timing out to zsapi from the collector. That one looks like a network path issue rather than credentials since the collector goes through ZPA to reach it. ZIA API key is confirmed and updated.
+Hi Dri,
 
-The one worth flagging, the Unplanned Change Report came back all clear across all 122 devices despite changes we know were made. So that control isn't catching anything right now, which is a bigger problem than the retrieval failures.
+I'm picking up the FireMon work at Country Financial and Aksa pointed me your way. We're on Security Manager Enterprise 2026.1.6 and need to move to the feature release, which I understand requires the cloud license conversion to happen in parallel. Drake mentioned on our last call that he could get the ticket submitted once we confirmed we had the bandwidth on our side.
 
-Licensing conversion needs to land before the version upgrade and the upgrade before the Illumio POC, Drake has the conversion ticket in.
+We're ready to schedule. Could we set up some time this week to walk through the sequencing? A couple of things I'd want to cover:
 
-Also worked the Cloudflare 521 incident Tuesday, pulled the IDPS logs and traced it to Cloudflare source IPs getting dropped on the Spamhaus signature. Flagged that the bypass as scoped only covers one destination when the drops were hitting more.
+Whether the conversion and the FMOS update happen in the same window or separately
+Ordering, since the docs note the application server has to be updated before the data collectors and we have two collectors plus the app server
+Expected outage duration, since all SIP components stop during the update
 
-Final tenant restrictions change went in last night, AD group is off Rule 5 so inspection applies to all ZIA users now.
+Separately, we're working through a set of retrieval failures across Azure, Cisco and Zscaler following a server rebuild in June. I know that's a support case rather than something you'd handle directly, but flagging it in case it affects the timing of the upgrade.
 
-Rest was peer reviews.
+Let me know what works.
+
+Hardik Patel
+Network Security - Security Control Management
