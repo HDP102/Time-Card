@@ -1,18 +1,11 @@
-Subject: FireMon license conversion and FMOS upgrade
+Where it stands. FireMon has retrieved nothing since June 29. 67 of 82 licensed devices are critical. The cause is a server rebuild after a migration — the collector came back on a new IP, 10.16.108.147, and everything that filters on source address stopped answering. Not twenty separate failures, one event.
 
-Hi Dri,
+The breakdown, if asked for specifics. Seven Azure subscriptions on an expired client secret, one rotation fixes all of them. Five Cisco routers rejecting the z_firemon credentials. Seven devices where SSH times out entirely, four IOS routers and three ASAs — likely vty access-class still permitting the old collector IP. Two on an SSH host key change. Eleven Zscaler, which is separate and older, broken since January.
 
-I'm picking up the FireMon work at Country Financial and Aksa pointed me your way. We're on Security Manager Enterprise 2026.1.6 and need to move to the feature release, which I understand requires the cloud license conversion to happen in parallel. Drake mentioned on our last call that he could get the ticket submitted once we confirmed we had the bandwidth on our side.
+Check Point is the big number and it's not a problem. 108 of 143 devices are decommissioned Check Point. Real estate is 35 devices. Worth raising that 48 of them are still consuming licenses going into a conversion.
 
-We're ready to schedule. Could we set up some time this week to walk through the sequencing? A couple of things I'd want to cover:
+What's blocking. Most of the fixes are outside FireMon. Waiting on Seth for router ACLs and credentials, Aksa for the collector's PAC file, Dri to schedule the license conversion and FMOS upgrade.
 
-Whether the conversion and the FMOS update happen in the same window or separately
-Ordering, since the docs note the application server has to be updated before the data collectors and we have two collectors plus the app server
-Expected outage duration, since all SIP components stop during the update
+The finding worth saying out loud. The Unplanned Change Report returns a clean all-clear across all 122 devices right now. It ran, found nothing, and reported success — while retrieval is dead. If anyone stood that up as a compliance control today it would be actively misleading rather than just idle.
 
-Separately, we're working through a set of retrieval failures across Azure, Cisco and Zscaler following a server rebuild in June. I know that's a support case rather than something you'd handle directly, but flagging it in case it affects the timing of the upgrade.
-
-Let me know what works.
-
-Hardik Patel
-Network Security - Security Control Management
+If someone pushes on the Illumio POC: the environment isn't ready, and the upgrade needed for it can't happen until the license conversion does. Nithin's position, and the data supports it.
