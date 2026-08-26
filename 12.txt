@@ -1,11 +1,5 @@
-Where it stands. FireMon has retrieved nothing since June 29. 67 of 82 licensed devices are critical. The cause is a server rebuild after a migration — the collector came back on a new IP, 10.16.108.147, and everything that filters on source address stopped answering. Not twenty separate failures, one event.
+index=dcl EventCode=4740 Account_Name="z_firemon"
+| table _time, Account_Name, Caller_Computer_Name, Computer
 
-The breakdown, if asked for specifics. Seven Azure subscriptions on an expired client secret, one rotation fixes all of them. Five Cisco routers rejecting the z_firemon credentials. Seven devices where SSH times out entirely, four IOS routers and three ASAs — likely vty access-class still permitting the old collector IP. Two on an SSH host key change. Eleven Zscaler, which is separate and older, broken since January.
-
-Check Point is the big number and it's not a problem. 108 of 143 devices are decommissioned Check Point. Real estate is 35 devices. Worth raising that 48 of them are still consuming licenses going into a conversion.
-
-What's blocking. Most of the fixes are outside FireMon. Waiting on Seth for router ACLs and credentials, Aksa for the collector's PAC file, Dri to schedule the license conversion and FMOS upgrade.
-
-The finding worth saying out loud. The Unplanned Change Report returns a clean all-clear across all 122 devices right now. It ran, found nothing, and reported success — while retrieval is dead. If anyone stood that up as a compliance control today it would be actively misleading rather than just idle.
-
-If someone pushes on the Illumio POC: the environment isn't ready, and the upgrade needed for it can't happen until the license conversion does. Nithin's position, and the data supports it.
+index=dcl (EventCode=4740 OR EventCode=4771 OR EventCode=4776) Account_Name="z_firemon"
+| table _time, EventCode, Account_Name, Caller_Computer_Name, Client_Address, Computer
