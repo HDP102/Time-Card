@@ -1,5 +1,9 @@
-index=dcl EventCode=4740 Account_Name="z_firemon"
-| table _time, Account_Name, Caller_Computer_Name, Computer
+Hey Victor — working on the decom side of the recert automation. Megan showed me there's an existing "Open Rule Decommission Ticket" workflow in SecureChange with an Action toggle for Disable vs Remove, which fits what we need. To wire it up via the API (createTicketDraft), I need a couple of specifics:
 
-index=dcl (EventCode=4740 OR EventCode=4771 OR EventCode=4776) Account_Name="z_firemon"
-| table _time, EventCode, Account_Name, Caller_Computer_Name, Client_Address, Computer
+1. What's the exact workflowType (the enum) and workflowName for that decommission workflow? For recertify it was RECERTIFY_RULES / "RLM Rule Recertification Workflow" — I need the decom equivalents.
+
+2. How is the Disable vs Remove action passed in the createTicketDraft input? Is it a field in the input, a separate workflowType, or set some other way?
+
+The plan is to create two tickets on that workflow — first to disable (with a traffic-hit check first), then one ~2 weeks later to remove once it's confirmed still disabled. Just need those API details so I can confirm it with a dry run like I did for recertify.
+
+Thanks!
