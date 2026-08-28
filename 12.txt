@@ -1,9 +1,2 @@
-Hey Victor — working on the decom side of the recert automation. Megan showed me there's an existing "Open Rule Decommission Ticket" workflow in SecureChange with an Action toggle for Disable vs Remove, which fits what we need. To wire it up via the API (createTicketDraft), I need a couple of specifics:
-
-1. What's the exact workflowType (the enum) and workflowName for that decommission workflow? For recertify it was RECERTIFY_RULES / "RLM Rule Recertification Workflow" — I need the decom equivalents.
-
-2. How is the Disable vs Remove action passed in the createTicketDraft input? Is it a field in the input, a separate workflowType, or set some other way?
-
-The plan is to create two tickets on that workflow — first to disable (with a traffic-hit check first), then one ~2 weeks later to remove once it's confirmed still disabled. Just need those API details so I can confirm it with a dry run like I did for recertify.
-
-Thanks!
+Here's this week. Most of it went to FireMon. Ran a full diagnostic and device retrieval has been down since June 29, which traced back to the server migration and rebuild, every stored credential went stale at once. Azure is on an expired client secret, the Cisco failures came down to the z_firemon AD account being locked, and Zscaler turned out to be a separate and older problem where the collector lost its egress path. Working through those with Seth, Sid and Aksa. Also confirmed a chunk of the devices I was chasing are decommissioned, so the real estate is smaller than it looked, before we add in all new real estate that needs to be added.
+On the vendor side, Dri has the Azure license swap submitted and ticket 180658 open for the FMOS upgrade to the feature release. Support has come back asking for output from the FMOS servers, which I need SSH access for. Sequencing is licensing first, then the upgrade, then Illumio. Rest of the week was peer reviews.
