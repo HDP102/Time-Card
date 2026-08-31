@@ -1,7 +1,3 @@
-Hey Sid, Jonathan mentioned you might be able to help on the networking side. I'm working through getting FireMon collecting again after the server got rebuilt and moved back in June. The collector is at 10.16.108.147 now and since the move it can't pull configs from a set of routers.
+draft me a message
 
-Two different symptoms. On n01pubrtr001 and n01pubrtr002 at 10.16.1.7 and .8 it connects fine and just fails auth, so those look like the z_firemon service account password went stale, same for n02aggrtr001, n09aggrtr001 and n11disrtr001.
-
-The other set doesn't answer ssh at all, just times out after 30 seconds. That's n01pvtrtr001, n01pvtrtr002, n01aggrtr001 and n01ipsrtr001 on 10.16.1.5, .6, .9, .10, plus the ASAs n01vpnapl001 and n01vpnapl002 on .21 and .57. Since two boxes on the same subnet still connect, I'm guessing there's a vty access-class on the routers and an ssh permit on the ASAs that still lists the old collector IP.
-
-Any chance you could check whether 10.16.108.147 would get through on one of those, and do you know what the old collector address was?
+Hey Seth, looking at those rejects the timing stands out, they're every 10 minutes on the dot all day, 13:27, 13:17, 13:07, 12:57 and so on. FireMon's cisco retrievals run hourly and daily so that's not us, something else is hitting it 6 times an hour continuously. That would also explain why it relocked 27 min after Sid unlocked it last week. Service is CF_ASA_RADIUS_ADMIN_AUTH so it looks ASA related, is that one of the boxes you were setting up, or can you click into one of those rows and see the NAS IP? That should tell us exactly what's hammering it. Once we find it I'd say stop that device retrying first, then unlock and reset, then update everywhere including firemon before anything gets turned back on.
