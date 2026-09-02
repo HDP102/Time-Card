@@ -1,17 +1,5 @@
-Swapnil — two things.
+Swapnil — following up on what you said about HRV automation being the priority for the next two to four weeks, ahead of decom.
 
-1. The quarterly AMPS to APP-ID action item from Nitin.
+Before I start on it I want to make sure I'm building the right thing. Can you spell out what's in scope?
 
-The disable machinery is already built so most of it transfers. What changes is where the rule list comes from — app retirement status instead of an owner's decision.
-
-What I need to scope it:
-- Which networks? All of them quarterly, or just the ones already app-ID tagged?
-- Where does "retired" live? Can I pull app lifecycle status from AMPS directly, or is it only in the master spreadsheet?
-- Should the last-hit check apply here too? My view is yes — if a retired app's rules are still passing traffic, either the retirement record is wrong or something undocumented depends on it.
-
-Worth flagging: this needs rules tagged with their app ID first, otherwise there's no way to find the rules belonging to a retired app. That's the tagging script, still held pending the rule description format coordination. This action item turns that into a dependency.
-
-2. Two settings on the disable script I still need confirmed before a live run.
-
-- Last-hit threshold. You mentioned 90 days, and later 90 for delete / 65 for disable. I've defaulted to 90 since it's the more conservative reading, but I'd rather have it confirmed — it's the number that decides whether a live rule gets turned off.
-- Rules with no hit history at all. Not "not hit recently" — no data either way. In the lab these were almost entirely OT and SCADA paths, which is the traffic that's real but intermittent. Right now I'm holding those back for manual review rather than disabling them. Let me know if you'd rather they were treated as unused.
+Specifically, is this the piece you raised on the call — getting owner decisions back into Tufin, and whether that goes through SharePoint metadata or the Tufin recertification workflow? Or is it something broader I haven't touched yet?
