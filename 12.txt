@@ -1,5 +1,13 @@
-Swapnil — following up on what you said about HRV automation being the priority for the next two to four weeks, ahead of decom.
+Hi Megan, Swapnil asked me to run the recertification automation approach past you before I start building. Sending ahead so you've got a chance to think rather than answering cold.
 
-Before I start on it I want to make sure I'm building the right thing. Can you spell out what's in scope?
+The main question is where the owner decision actually gets recorded. Tufin has three options and they lead to fairly different builds:
 
-Specifically, is this the piece you raised on the call — getting owner decisions back into Tufin, and whether that goes through SharePoint metadata or the Tufin recertification workflow? Or is it something broader I haven't touched yet?
+- The rule recertification workflow (Swapnil mentioned it's still being tested)
+- Updating metadata directly on the rule
+- For cleanup decisions, routing the owner into the decommission workflow and tracking whether they submitted it
+
+Related: does the owner click through into Tufin, go to a separate page, or does SharePoint stay as the front end with Tufin updated behind it? That one decision drives most of the design.
+
+And if this goes Tufin-native, what happens to the 11 SharePoint lists — do they stay, or are they interim?
+
+Happy to talk it through whenever suits.
