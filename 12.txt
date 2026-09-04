@@ -1,13 +1,3 @@
-Hi Megan, Swapnil asked me to run the recertification automation approach past you before I start building. Sending ahead so you've got a chance to think rather than answering cold.
+Here's this week. Most of it was FireMon. Got shell access to the FMOS servers finally and ran the diagnostics support needed for the upgrade ticket, then worked through their license conversion script — it shipped with a placeholder host that had to be pointed at our own app server before it would run, so that took some back and forth, but the output is with Giuseff now and 180658 is moving. Also nailed down the z_firemon lockout that's been blocking the Cisco devices. It traced back to one ASA that never onboarded properly and has been retrying its log monitoring every ten minutes since June, which is why the account kept re-locking within half an hour of every unlock. Seth confirmed on his side that the devices authenticate to AD and the account is out of sync, and Sid and Seth between them identified five devices in my failure list that are already decommissioned, so the real footprint is smaller than the numbers suggested.
 
-The main question is where the owner decision actually gets recorded. Tufin has three options and they lead to fairly different builds:
-
-- The rule recertification workflow (Swapnil mentioned it's still being tested)
-- Updating metadata directly on the rule
-- For cleanup decisions, routing the owner into the decommission workflow and tracking whether they submitted it
-
-Related: does the owner click through into Tufin, go to a separate page, or does SharePoint stay as the front end with Tufin updated behind it? That one decision drives most of the design.
-
-And if this goes Tufin-native, what happens to the 11 SharePoint lists — do they stay, or are they interim?
-
-Happy to talk it through whenever suits.
+Zscaler I've now taken as far as I can. Ruled out credentials entirely — the ZIA account is enabled, I updated the current API key, DNS resolves, and there's no proxy misconfigured on the collector. It still times out at the TCP layer, and the same request returns cleanly from a normal workstation, so it's an egress path problem on the collector rather than anything on the Zscaler or FireMon side. Aksa is checking whether she has the updated PAC file. Where that leaves things is that most of what's outstanding now sits with other teams — the Azure client secret, the AD reset, the collector egress, and the upgrade itself with support. I also helped out with peer reviews through the week.
