@@ -1,3 +1,7 @@
-curl.exe -k -X POST "https://keeppgelabsecure.utility.pge.com/v2/api/sync/graphql" `
-  -H "Authorization: Bearer YOUR_TOKEN" -H "Content-Type: application/json" `
-  -d "{\"query\":\"{ rules(filter: \\\"vendor='PALO_ALTO'\\\") { count } }\"}"
+Victor — I've hit a permissions wall on the SecureTrack API in the lab and I think it's a role I'm missing.
+
+My account authenticates fine against tufin-realm and gets a valid token back. But when the script posts to /v2/api/sync/graphql it comes back 403 Forbidden. The same queries run fine for me in browser GraphiQL, so it looks like UI access and programmatic API access are separate permissions and I only have the first.
+
+What role or service account do I need for API access? Happy to use a service account if that's the normal route for automation.
+
+This is the last thing blocking the app-ID tagging script — everything else is working and it's set to dry run, so nothing gets written until we've reviewed the output.
