@@ -1,9 +1,1 @@
-Azure/Cloud = Azure Firewall policy administration and peer review of policy change tickets; network segmentation and security architecture for Azure workloads; Illumio CloudSecure (ICS) workload labeling and micro-segmentation across Azure resources; Azure Log Analytics for traffic and policy analysis; Entra ID cross-tenant access configuration supporting Zscaler tenant restrictions; Azure device onboarding and app-registration credential management in FireMon.
-
-Network/Cloud Security Platforms = Zscaler ZIA/ZPA (SSL inspection rollout, URL filtering and cloud app policy, tenant restrictions, DR runbook and Safe Mode); Illumio CORE-to-CloudSecure migration and workload mapping; FireMon device onboarding, credential remediation, and compliance reporting; Cisco ASA B2B and Aruba/Silverpeak SD-WAN policy review.
-
-Scripting/Automation = Python for JSON and Excel policy-data processing, bulk transforms, and policy export analysis; PowerShell and bash; VS Code as primary environment.
-
-DevSecOps = Security change governance through the PAM/ServiceNow peer review and Cyber Security Review workflow; configuration compliance reporting. Containerization is not part of my scope.
-
-Test Automation/Robot Framework = No production Robot Framework experience. Adjacent: validation and QA/sandbox testing of policy changes before production rollout.
+curl.exe -k "https://keeppgelabsecure.utility.pge.com/auth/realms/tufin-realm/.well-known/openid-configuration"
