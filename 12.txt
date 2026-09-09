@@ -1,1 +1,3 @@
-curl.exe -k "https://keeppgelabsecure.utility.pge.com/auth/realms/tufin-realm/.well-known/openid-configuration"
+curl.exe -k -X POST "https://keeppgelabsecure.utility.pge.com/v2/api/sync/graphql" `
+  -H "Authorization: Bearer YOUR_TOKEN" -H "Content-Type: application/json" `
+  -d "{\"query\":\"{ rules(filter: \\\"vendor='PALO_ALTO'\\\") { count } }\"}"
