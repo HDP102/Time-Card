@@ -1,7 +1,25 @@
-Victor — I've hit a permissions wall on the SecureTrack API in the lab and I think it's a role I'm missing.
+Policy Change Type: Proxy (already set)
 
-My account authenticates fine against tufin-realm and gets a valid token back. But when the script posts to /v2/api/sync/graphql it comes back 403 Forbidden. The same queries run fine for me in browser GraphiQL, so it looks like UI access and programmatic API access are separate permissions and I only have the first.
+What needs to be changed in proxy policy?
 
-What role or service account do I need for API access? Happy to use a service account if that's the normal route for automation.
+Please add the following URL to an allow list in ZIA URL filtering:
 
-This is the last thing blocking the app-ID tagging script — everything else is working and it's set to dry run, so nothing gets written until we've reviewed the output.
+www.screencast.com/users/firemonsupport/*
+
+This path is currently blocked under the FileHost category by rule D23. The entry should be placed in a custom allow category referenced by a URL filtering rule ordered above the FileHost block rule, and scoped to the Network Security Engineering team rather than all users. Scoping to the firemonsupport path rather than the screencast.com domain limits the exception to FireMon published content and does not grant access to the upload or file sharing functions of the platform.
+
+Associated Application: Zscaler Internet Access PROD
+
+Coordinated Change: No
+
+Related to a Service Desk Incident: No
+
+Related to a Service Desk Change Order: No
+
+Business Justification
+
+FireMon hosts its product documentation videos on Screencast under the firemonsupport account, and those videos are embedded directly within the FireMon Support Center articles. The Network Security Engineering team uses this documentation for device onboarding, health checks, licensing, and the FMOS upgrade currently in progress, and the embedded videos fail to load without this access. Access is view only, as the team is consuming vendor published content rather than uploading or sharing files, and the firemonsupport path is read only to anyone outside that account. Permanent access is requested rather than a 24 hour exception because FireMon support documentation is referenced continuously as part of ongoing platform administration and the FireMon estate remediation work, and a temporary window would require repeated requests for routine vendor documentation.
+
+Additional Information
+
+Blocked entry confirmed in ZIA Web Insights on 10 September 2026 at 10:55 AM Eastern, categorised as FileHost, Cloud Application Screencast, policy action Not allowed. Source article: supportcenter.firemon.com/hc/en-us/articles/43453945598739-Onboarding-Security-Devices-into-FireMon. Raised at the request of Anupama Singh following review of the incident.
