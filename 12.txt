@@ -1,25 +1,12 @@
-Policy Change Type: Proxy (already set)
+Here's this week.
 
-What needs to be changed in proxy policy?
+Main thing is the web category review, which has changed shape since I met with Zachary from CSIRT last month.  We'd scoped it as custom category cleanup, but working through it the actual gap is that there's no governance model for URL categories at all, standard or custom, and no named owner for what gets blocked or why.
 
-Please add the following URL to an allow list in ZIA URL filtering:
+What I've been putting together is a framework across three dimensions. Business ownership per category, so HR owns adult, drugs and gambling, Compliance owns financial, and so on, and the decision sits with them rather than with us. Handling policy per category, hard block, browser isolation, coaching page or allow, instead of the binary we have today. And access tiers by user group, Open, Standard and High Access, rather than one policy across the board. Zachary has a legacy Blue Coat spreadsheet with the old category owner assignments, which gives us a starting baseline.
 
-www.screencast.com/users/firemonsupport/*
+For sequencing I'd do a first pass with security, CSIRT and us, before bringing in HR, Compliance, OGC and End User Collaboration, so we're not taking a half formed model to them.
 
-This path is currently blocked under the FileHost category by rule D23. The entry should be placed in a custom allow category referenced by a URL filtering rule ordered above the FileHost block rule, and scoped to the Network Security Engineering team rather than all users. Scoping to the firemonsupport path rather than the screencast.com domain limits the exception to FireMon published content and does not grant access to the upload or file sharing functions of the platform.
+Firemon was mostly waiting this week, still gated on the vendor upgrade ticket, and I am currently working with support engineers to unblock the tutorial videos. 
 
-Associated Application: Zscaler Internet Access PROD
 
-Coordinated Change: No
-
-Related to a Service Desk Incident: No
-
-Related to a Service Desk Change Order: No
-
-Business Justification
-
-FireMon hosts its product documentation videos on Screencast under the firemonsupport account, and those videos are embedded directly within the FireMon Support Center articles. The Network Security Engineering team uses this documentation for device onboarding, health checks, licensing, and the FMOS upgrade currently in progress, and the embedded videos fail to load without this access. Access is view only, as the team is consuming vendor published content rather than uploading or sharing files, and the firemonsupport path is read only to anyone outside that account. Permanent access is requested rather than a 24 hour exception because FireMon support documentation is referenced continuously as part of ongoing platform administration and the FireMon estate remediation work, and a temporary window would require repeated requests for routine vendor documentation.
-
-Additional Information
-
-Blocked entry confirmed in ZIA Web Insights on 10 September 2026 at 10:55 AM Eastern, categorised as FileHost, Cloud Application Screencast, policy action Not allowed. Source article: supportcenter.firemon.com/hc/en-us/articles/43453945598739-Onboarding-Security-Devices-into-FireMon. Raised at the request of Anupama Singh following review of the incident.
+Also assisted with peer reviews.
