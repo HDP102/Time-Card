@@ -1,12 +1,169 @@
-Here's this week.
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:33,959 INFO Fetched 100 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:34,361 INFO Fetched 200 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:34,767 INFO Fetched 300 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:35,165 INFO Fetched 400 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:35,563 INFO Fetched 500 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:35,972 INFO Fetched 600 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:36,361 INFO Fetched 700 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:36,750 INFO Fetched 800 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:37,144 INFO Fetched 900 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:37,557 INFO Fetched 1000 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:37,994 INFO Fetched 1100 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:38,419 INFO Fetched 1200 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:38,834 INFO Fetched 1300 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:39,229 INFO Fetched 1400 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:39,631 INFO Fetched 1500 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:40,041 INFO Fetched 1600 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:40,438 INFO Fetched 1700 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:40,847 INFO Fetched 1800 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:41,259 INFO Fetched 1900 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:41,635 INFO Fetched 2000 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:42,043 INFO Fetched 2100 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:42,437 INFO Fetched 2200 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:42,831 INFO Fetched 2300 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:43,232 INFO Fetched 2400 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:43,619 INFO Fetched 2500 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:44,019 INFO Fetched 2600 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:44,390 INFO Fetched 2700 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:44,791 INFO Fetched 2800 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:45,216 INFO Fetched 2900 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:45,609 INFO Fetched 3000 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:46,010 INFO Fetched 3100 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:46,397 INFO Fetched 3200 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:46,782 INFO Fetched 3300 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:47,178 INFO Fetched 3400 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:47,557 INFO Fetched 3500 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:47,965 INFO Fetched 3600 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:48,414 INFO Fetched 3700 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:48,823 INFO Fetched 3800 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:49,217 INFO Fetched 3900 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:49,635 INFO Fetched 4000 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:50,057 INFO Fetched 4100 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:50,455 INFO Fetched 4200 of 4202 rules
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:35:50,840 INFO Fetched 4202 of 4202 rules
+2026-09-15 07:35:50,841 INFO Fetched 4202 rule(s) from Tufin
+2026-09-15 07:35:50,842 INFO Matched 150 Tufin rule(s) to spreadsheet App-IDs on Rule Name
+2026-09-15 07:35:50,843 INFO 1318 spreadsheet rule name(s) had no matching Tufin rule in this filter (e.g. ['GDN CITRIX SERVERS ISPS', 'GTED CIMPLICITY TO KETTLEMAN.SVC', 'CITRIX GDN VDA TO OASYS SCADA'])
+2026-09-15 07:35:50,846 INFO Planned: 150 write(s), 4052 skip(s)
+2026-09-15 07:35:50,847 INFO 150 rule(s) to write, 4052 skipped
+2026-09-15 07:35:50,847 INFO   [DRY RUN] would set 100 rule(s) -> 'app_id: APP-2723' (e.g. PAPM UVM to ADMS DCC)
+2026-09-15 07:35:50,847 INFO   [DRY RUN] would set 40 rule(s) -> 'app_id: APP-2723' (e.g. PAPM UVM to ADMS DCC 8)
+2026-09-15 07:35:50,847 INFO   [DRY RUN] would set 4 rule(s) -> '##RLM##
+FER119358: APP-1596
+Owner:AMPS APP-1596
+FER122841: A' (e.g. Change Auditor - ADMS-GC AR1)
+2026-09-15 07:35:50,847 INFO   [DRY RUN] would set 6 rule(s) -> '##RLM##
+FER119358: APP-1596
+Owner:AMPS APP-1596
+FER120428: A' (e.g. Change Auditor - ADMS-GC AR1)
+2026-09-15 07:35:50,859 INFO Wrote plan: tag_output\tag_plan.csv
+2026-09-15 07:35:50,860 INFO Done (dry run)
 
-Main thing is the web category review, which has changed shape since I met with Zachary from CSIRT last month.  We'd scoped it as custom category cleanup, but working through it the actual gap is that there's no governance model for URL categories at all, standard or custom, and no named owner for what gets blocked or why.
-
-What I've been putting together is a framework across three dimensions. Business ownership per category, so HR owns adult, drugs and gambling, Compliance owns financial, and so on, and the decision sits with them rather than with us. Handling policy per category, hard block, browser isolation, coaching page or allow, instead of the binary we have today. And access tiers by user group, Open, Standard and High Access, rather than one policy across the board. Zachary has a legacy Blue Coat spreadsheet with the old category owner assignments, which gives us a starting baseline.
-
-For sequencing I'd do a first pass with security, CSIRT and us, before bringing in HR, Compliance, OGC and End User Collaboration, so we're not taking a half formed model to them.
-
-Firemon was mostly waiting this week, still gated on the vendor upgrade ticket, and I am currently working with support engineers to unblock the tutorial videos. 
-
-
-Also assisted with peer reviews.
+PS C:\Users\H2PR\OneDrive - PGE\Documents\NPS-Automation-3\NPS-Automation-3\RecertProcessor> py recert_processor.py
+2026-09-15 07:40:54,890 INFO recert_processor — recertify + decom disable
+2026-09-15 07:40:54,890 INFO DRY_RUN=True | run tag: 'cleanup ODN 2026-08'
+2026-09-15 07:40:54,891 INFO DRY RUN — tickets validated via createTicketDraft dryRun, nothing created
+2026-09-15 07:40:54,893 INFO Reporting view report_GDN Rule Recertification.xlsx is 0 day(s) old — OK
+2026-09-15 07:40:55,255 INFO Loaded 1334 rule decision(s) from report_GDN Rule Recertification.xlsx: {'recertify': 1249, 'remove': 85}
+SecureTrack username (CorpID): H2PRAdmin
+SecureTrack password: 
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'keeppgelabsecure.utility.pge.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+2026-09-15 07:41:32,499 INFO Fetched 6 of 6 rule(s)
+2026-09-15 07:41:32,499 INFO Fetched 6 candidate rule(s) from Tufin
+2026-09-15 07:41:32,499 INFO Recertify: 0 | Cleanup/Remove: 0 | Need Assistance: 0 | no decision: 6
+2026-09-15 07:41:32,499 INFO Recertify tickets: nothing to do
+2026-09-15 07:41:32,499 INFO Disable tickets: nothing to do
+2026-09-15 07:41:32,517 INFO Wrote CSVs to recert_output/
+2026-09-15 07:41:32,517 INFO Done (dry run)
+PS C:\Users\H2PR\OneDrive - PGE\Documents\NPS-Automation-3\NPS-Automation-3\RecertProcessor> 
