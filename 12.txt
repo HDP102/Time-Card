@@ -1,5 +1,9 @@
-cd "C:\Users\H2PR\OneDrive - PGE\Documents\Github Automation"
-Rename-Item NPS-Automation NPS-Automation-old
-git clone https://github.com/pgetech/NPS-Automation.git
-cd NPS-Automation
-git log --oneline -5
+cd "C:\Users\H2PR\OneDrive - PGE\Documents\Github Automation\NPS-Automation"
+git init
+git remote add origin https://github.com/pgetech/NPS-Automation.git
+git fetch origin
+git checkout -b hardik-patel origin/hardik-patel
+
+
+
+git status --short
