@@ -1,39 +1,5 @@
-Victor — both scripts now run clean end to end in the lab. Tagging and recertification ticket creation both work, still in dry run. Before I point anything at production I need a few things from you.
+Hey Giuseff, we're good to go whenever works on your end — checked with our lead and since FireMon isn't inline with anything, there's no network impact to schedule around. Retrieval has been down since June anyway so there's nothing running we'd be interrupting.
 
-1. What's the production GraphQL endpoint, and does my admin account have the same API role there? Lab needed a permissions change before it would work at all.
+One thing worth confirming before we start: v50secapl019 holds all the roles (DC, AS, DB, ES and CA on the one box), and we have two separate data collectors, V01SECAPL067 at 10.16.108.147 and V50SECAPL008 at 10.192.24.52. Just want to make sure the upgrade sequence accounts for that. Also, these servers don't have outbound internet, so if the process needs to pull anything down I'll have to transfer it in manually like we did with the script.
 
-2. Is the recertification workflow named identically in production? You mentioned lab and prod don't match on workflow inventory, and the script passes the workflow name as a literal string, so a difference breaks it.
-
-3. Is there a staging instance I should run against first, or does it go straight to prod?
-
-4. Any rate limits or change windows I should respect on bulk API writes? A full tagging run updates descriptions on a few thousand rules.
-
-5. On the rule description format — about a third of rules already carry a ##RLM## block with FER numbers and Owner:AMPS lines. My script writes a separate app_id line, which would leave two formats in the same field. Right now I skip those rules rather than guess at the RLM layout. Who owns that format, and what should I be writing? I'd rather match it than invent a second convention.
-
-
-
-Megan — both scripts run clean end to end now. Tagging and recertification tickets, still dry run. A few things I'd want settled before a production run.
-
-1. Rule description format. About a third of rules already have a ##RLM## block with FER numbers and Owner:AMPS lines. My script writes a separate app_id line. If both run we end up with two formats in the same field. Right now I skip those rules rather than guess. Do you know who owns that format, or should I match it? I've asked Victor the same thing.
-
-2. The App-ID distribution looks concentrated — a lot of rules land on APP-1678 and APP-2723. Is that genuine, or a fill-down in the source sheet? Worth a spot check before it goes onto thousands of rules.
-
-3. The mapping workbook has 140 device+rule pairs that appear twice with different UIDs. Those rules can't be addressed unambiguously so the script skips them. Can they be cleaned up, or do you just want the list?
-
-4. Is Recertified-DR handled the same as Recertify, or does DR need different treatment? Currently they're treated the same.
-
-5. Should Status = In-flight Project rules be excluded? Status is ignored right now.
-
-6. For a first production tagging run, do you want it scoped to one device group so we can eyeball the result before widening, or the full GDN set?
-
-
-
-Swapnil — recertification script is running clean in the lab now, still dry run. Two process questions before anything goes to production.
-
-1. Last-hit threshold. You mentioned 90 days, and later 90 for delete / 65 for disable. I've defaulted to 90 as the more conservative reading but I'd like it confirmed — it's the number that decides whether a live rule gets turned off.
-
-2. On the GDN batch, 96 rules came back marked Cleanup/Remove. Of those, only 7 have hit data old enough to be safely disabled. The other 89 have no hit data at all, which is the multi-VSYS gap you flagged — Tufin simply can't see them.
-
-So for this batch the check isn't protecting live rules, it's telling us we have no evidence either way on 93% of them. Do we proceed with the 7 and route the 89 through your Panorama check, or hold the whole set until we have hit data from Panorama?
-
-My preference is the second, but it's your call on sequencing.
+What times do you have available?
