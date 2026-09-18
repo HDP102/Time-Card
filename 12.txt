@@ -1,9 +1,5 @@
-Here's this week, mostly Firemon.
-
-Upgrade prep is done. I've got the installation file down and the backup is downloading now, so once that's clear we're ready to run it. The only thing outstanding is agreeing a day to schedule it. Let me know what works and I'll get the change written up.
-
-Also been working the credential remediation across the live estate now that it's down to around thirty devices. Keeping the Zscaler collector issue separate from that, the egress failure there isn't related to the June migration and has been sitting since January, so credential fixes won't touch it and it needs someone looking at the network path on the collector itself.
-
-On the category work, your point about using the ZIA-Category group makes the ownership model a lot easier to manage, we can map group membership to the access tiers instead of maintaining it rule by rule. Next week I want to get the stakeholder outreach started, checking browser isolation status with Aksa and asking Vitale how CVS handled category ownership so we're not building from scratch.
-
-Rest was peer reviews.
+cd "C:\Users\H2PR\OneDrive - PGE\Documents\Github Automation"
+Rename-Item NPS-Automation NPS-Automation-old
+git clone https://github.com/pgetech/NPS-Automation.git
+cd NPS-Automation
+git log --oneline -5
