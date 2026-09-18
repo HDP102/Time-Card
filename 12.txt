@@ -1,5 +1,6 @@
-Hey Giuseff, we're good to go whenever works on your end — checked with our lead and since FireMon isn't inline with anything, there's no network impact to schedule around. Retrieval has been down since June anyway so there's nothing running we'd be interrupting.
+Hi Jason — Victor Mier pointed me your way. I'm working on the Tufin automation for Network Protection Services and we're trying to get our scripts pulling credentials from Safeguard rather than having passwords sitting in config files and crontab entries.
 
-One thing worth confirming before we start: v50secapl019 holds all the roles (DC, AS, DB, ES and CA on the one box), and we have two separate data collectors, V01SECAPL067 at 10.16.108.147 and V50SECAPL008 at 10.192.24.52. Just want to make sure the upgrade sequence accounts for that. Also, these servers don't have outbound internet, so if the process needs to pull anything down I'll have to transfer it in manually like we did with the script.
+I think we want an A2A registration — the scripts run unattended and need to retrieve a password for a known account.
 
-What times do you have available?
+Before I go further, could you tell me whether an A2A registration already exists for Tufin scripting, and what the A2A service URL is? The swagger I have is /service/core and I don't see a credential retrieval endpoint there, so I assume retrieval lives elsewhere.
+
