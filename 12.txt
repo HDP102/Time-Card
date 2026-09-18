@@ -1,6 +1,9 @@
-Hi Jason — Victor Mier pointed me your way. I'm working on the Tufin automation for Network Protection Services and we're trying to get our scripts pulling credentials from Safeguard rather than having passwords sitting in config files and crontab entries.
+Here's this week, mostly Firemon.
 
-I think we want an A2A registration — the scripts run unattended and need to retrieve a password for a known account.
+Upgrade prep is done. I've got the installation file down and the backup is downloading now, so once that's clear we're ready to run it. The only thing outstanding is agreeing a day to schedule it. Let me know what works and I'll get the change written up.
 
-Before I go further, could you tell me whether an A2A registration already exists for Tufin scripting, and what the A2A service URL is? The swagger I have is /service/core and I don't see a credential retrieval endpoint there, so I assume retrieval lives elsewhere.
+Also been working the credential remediation across the live estate now that it's down to around thirty devices. Keeping the Zscaler collector issue separate from that, the egress failure there isn't related to the June migration and has been sitting since January, so credential fixes won't touch it and it needs someone looking at the network path on the collector itself.
 
+On the category work, your point about using the ZIA-Category group makes the ownership model a lot easier to manage, we can map group membership to the access tiers instead of maintaining it rule by rule. Next week I want to get the stakeholder outreach started, checking browser isolation status with Aksa and asking Vitale how CVS handled category ownership so we're not building from scratch.
+
+Rest was peer reviews.
