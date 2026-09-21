@@ -1,9 +1,7 @@
-cd "C:\Users\H2PR\OneDrive - PGE\Documents\Github Automation\NPS-Automation"
-git init
-git remote add origin https://github.com/pgetech/NPS-Automation.git
-git fetch origin
-git checkout -b hardik-patel origin/hardik-patel
+Aksa
 
+Hey Aksa, working on the ZIA web category review with Zachary, it's grown into a full governance framework where each category gets a business owner and a handling policy — hard block, browser isolation, coaching page or allow. Before I put those options in front of HR and Compliance I want to make sure browser isolation is actually available to us. Do we have Cloud Browser Isolation licensed and configured on the tenant, and is anything using it today? If it's not an option I'll pull it from the framework before it goes out.
 
+Vitale
 
-git status --short
+Hey Vitale, working on the ZIA web category review, it's turned into a full governance framework where each URL category gets a business owner, HR for adult and gambling, Compliance for financial, that sort of thing, who decides the handling and access tiers. I think you went through something similar at CVS? Would be great to hear how you handled category ownership there, how owners got assigned, how you got the business to actually engage, anything you'd do differently. Trying not to build it from scratch if you've already been through it. Happy to grab 15 min whenever works.
