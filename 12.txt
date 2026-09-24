@@ -1,13 +1,1 @@
-import recert_processor as r, openpyxl
-
-ws = openpyxl.load_workbook(r.OUTPUT_DIR + r"\disable_plan.xlsx").active
-uid = next(ws.iter_rows(min_row=2, values_only=True))[0]
-print("Testing UID:", uid)
-
-for name in ["MP RLM Rule Decommission/Disable"]:   # paste the name from the workflow settings page here too
-    try:
-        res = r.submit_ticket([uid], "DECOMMISSION_RULES", name, "test - decom",
-                              decom_action="DISABLE_RULES", dry_run=True)
-        print(repr(name), "->", res)
-    except Exception as e:
-        print(repr(name), "-> ERROR", e)
+   py -c "import recert_processor as r; print(repr(r.DECOM_WORKFLOW_NAME))"
