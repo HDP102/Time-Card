@@ -1,10 +1,13 @@
-Hi Megan, quick update on the recertification run in production.
+import recert_processor as r, openpyxl
 
-The recertify pass finished today. 36,838 rules went into 123 requests at 300 or fewer each. They are sitting in SecureChange under Requests as Drafts, created by ticketAPI, subject "Recertify Firewall Rules - NPS". One duplicate draft was created when Tufin returned an error partway through. I'm confirming which one and will cancel it.
+ws = openpyxl.load_workbook(r.OUTPUT_DIR + r"\disable_plan.xlsx").active
+uid = next(ws.iter_rows(min_row=2, values_only=True))[0]
+print("Testing UID:", uid)
 
-Question: should the script submit these drafts, or would you prefer to review and submit them from your side? I held off on submitting until I heard from you.
-
-The disable pass (1,496 rules) did not run. The decommission workflow name I used in lab doesn't exist in prod. I'm getting the correct name from Swapnil. Before I run it, can you confirm the rule we're using: disable only if the rule has not been hit in 90 days, and skip anything with no hit data? In prod, 210 rules marked for cleanup are still passing traffic and will be held back, and 3,507 have no hit data.
-
-Thanks,
-Hardik
+for name in ["MP RLM Rule Decommission/Disable"]:   # paste the name from the workflow settings page here too
+    try:
+        res = r.submit_ticket([uid], "DECOMMISSION_RULES", name, "test - decom",
+                              decom_action="DISABLE_RULES", dry_run=True)
+        print(repr(name), "->", res)
+    except Exception as e:
+        print(repr(name), "-> ERROR", e)
