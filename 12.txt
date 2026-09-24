@@ -1,16 +1,10 @@
-Aksa
+Hi Megan, quick update on the recertification run in production.
 
-Hey Aksa, working on the ZIA web category review with Zachary, it's grown into a full governance framework where each category gets a business owner and a handling policy — hard block, browser isolation, coaching page or allow. Before I put those options in front of HR and Compliance I want to make sure browser isolation is actually available to us. Do we have Cloud Browser Isolation licensed and configured on the tenant, and is anything using it today? If it's not an option I'll pull it from the framework before it goes out.
+The recertify pass finished today. 36,838 rules went into 123 requests at 300 or fewer each. They are sitting in SecureChange under Requests as Drafts, created by ticketAPI, subject "Recertify Firewall Rules - NPS". One duplicate draft was created when Tufin returned an error partway through. I'm confirming which one and will cancel it.
 
-Vitale
+Question: should the script submit these drafts, or would you prefer to review and submit them from your side? I held off on submitting until I heard from you.
 
-Hey Vitale, working on the ZIA web category review, it's turned into a full governance framework where each URL category gets a business owner, HR for adult and gambling, Compliance for financial, that sort of thing, who decides the handling and access tiers. I think you went through something similar at CVS? Would be great to hear how you handled category ownership there, how owners got assigned, how you got the business to actually engage, anything you'd do differently. Trying not to build it from scratch if you've already been through it. Happy to grab 15 min whenever works.
+The disable pass (1,496 rules) did not run. The decommission workflow name I used in lab doesn't exist in prod. I'm getting the correct name from Swapnil. Before I run it, can you confirm the rule we're using: disable only if the rule has not been hit in 90 days, and skip anything with no hit data? In prod, 210 rules marked for cleanup are still passing traffic and will be held back, and 3,507 have no hit data.
 
-
-Morning Megan — not yet, nothing created in production.
-
-The script already uses those same queries — createTicketDraft, RECERTIFY_RULES, "RLM Rule Recertification Workflow". Useful to have your sample confirm that workflow name works in production.
-
-Before I run it live I need to know how you want the tickets grouped. The dry run came out at 36,504 rules for recertification and your sample ticket had 22 in it, so one ticket per rule clearly isn't the intent. Per app id? Per device group?
-
-Once I have that and a clean production dry run, I can go.
+Thanks,
+Hardik
