@@ -1,5 +1,15 @@
-Hey Sid, quick update on z_firemon. I tested SSH with it myself and it authenticates fine to the routers, so the account and password are good. FireMon still isn't pulling configs though, and I'm not sure yet whether that's a device side thing or something on our end.
+Subject: Cisco IOS devices authenticate but no configuration is retrieved
 
-Couple of things you might be able to check. First is whether the FireMon collector at 10.16.108.147 is actually getting through to them — anything in the auth logs from that source recently, success or failure, would tell us a lot. Second, do you know what privilege level z_firemon lands at when it auths through AD? FireMon needs level 15 to pull a running config, anything lower logs in fine but comes back with nothing useful. And if there's an access-class on the vty lines, worth confirming 10.16.108.147 is permitted.
+Description:
 
-Could easily be a FireMon side problem too, I'm digging into that in parallel. Just want to rule out the device side so I'm not chasing the wrong thing.
+Post-upgrade, retrievals against our Cisco IOS routers are not producing revisions. Example device is n01pubrtr001 at 10.16.1.7, managed by data collector V01SECAPL067 at 10.16.108.147.
+
+The service account z_firemon authenticates successfully. I verified this manually over SSH from a workstation and can log in without issue. The credentials in FireMon were updated with the same password.
+
+Two things I'm seeing. First, when I manually trigger a retrieval from FireMon, nothing appears in the router's authentication log from the collector's source address — no success and no failure. The only entries from 10.16.108.147 are older failed logins from before the password was updated. That suggests the retrieval attempt isn't reaching the device.
+
+Second, when I log in interactively with that account it lands at privilege level 3, and show running-config returns only 167 bytes. I understand level 15 is required for a full config retrieval, so that may be a second issue behind the first.
+
+Can you help determine whether the retrieval is being attempted at all, and what logs on the collector would show the attempt and any failure.
+
+Worth attaching the Device Health Report output for that device if the form allows it.
