@@ -1,9 +1,1 @@
-Post-upgrade, nothing is collecting at all. No device in the estate is producing revisions, and retrievals against our Cisco IOS devices aren't returning anything. Example is n01pubrtr001 at 10.16.1.7, on data collector V01SECAPL067 at 10.16.108.147.
-
-Context: nothing has retrieved successfully since June 29, which traces back to a server migration and rebuild that left credentials stale. Separately, during the FMOS upgrade this week we had to rebuild 067 after the first attempt didn't go cleanly, so that collector is freshly built.
-
-The service account authenticates fine — I verified it manually over SSH from a workstation and updated the same password in FireMon. When I trigger a manual retrieval, nothing appears in the device's auth log from the collector's source address at all, no success and no failure, which suggests the attempt isn't leaving the collector.
-
-Where on the collector should I be looking to see the retrieval attempt and any error? Also worth flagging the account lands at privilege level 3 rather than 15, which may be a second issue once the first is resolved.
-
-If the whole estate has gone quiet since the rebuild, "Data Collector is Unavailable" from that checkbox list may actually fit — worth ticking if the collector shows as down or unreachable in the console.
+py -c "import json;d=json.load(open(r'recert_output\sample_139744.json'))['ticket'];L=lambda x:x if isinstance(x,list) else [x];[print('==',s['name'],'\n',json.dumps(L(L(s['tasks']['task'])[0]['fields']['field'])[0],indent=1)[:1500]) for s in L(d['steps']['step'])[:2]]"
