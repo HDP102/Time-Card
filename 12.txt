@@ -1,15 +1,9 @@
-Subject: Cisco IOS devices authenticate but no configuration is retrieved
+Post-upgrade, nothing is collecting at all. No device in the estate is producing revisions, and retrievals against our Cisco IOS devices aren't returning anything. Example is n01pubrtr001 at 10.16.1.7, on data collector V01SECAPL067 at 10.16.108.147.
 
-Description:
+Context: nothing has retrieved successfully since June 29, which traces back to a server migration and rebuild that left credentials stale. Separately, during the FMOS upgrade this week we had to rebuild 067 after the first attempt didn't go cleanly, so that collector is freshly built.
 
-Post-upgrade, retrievals against our Cisco IOS routers are not producing revisions. Example device is n01pubrtr001 at 10.16.1.7, managed by data collector V01SECAPL067 at 10.16.108.147.
+The service account authenticates fine — I verified it manually over SSH from a workstation and updated the same password in FireMon. When I trigger a manual retrieval, nothing appears in the device's auth log from the collector's source address at all, no success and no failure, which suggests the attempt isn't leaving the collector.
 
-The service account z_firemon authenticates successfully. I verified this manually over SSH from a workstation and can log in without issue. The credentials in FireMon were updated with the same password.
+Where on the collector should I be looking to see the retrieval attempt and any error? Also worth flagging the account lands at privilege level 3 rather than 15, which may be a second issue once the first is resolved.
 
-Two things I'm seeing. First, when I manually trigger a retrieval from FireMon, nothing appears in the router's authentication log from the collector's source address — no success and no failure. The only entries from 10.16.108.147 are older failed logins from before the password was updated. That suggests the retrieval attempt isn't reaching the device.
-
-Second, when I log in interactively with that account it lands at privilege level 3, and show running-config returns only 167 bytes. I understand level 15 is required for a full config retrieval, so that may be a second issue behind the first.
-
-Can you help determine whether the retrieval is being attempted at all, and what logs on the collector would show the attempt and any failure.
-
-Worth attaching the Device Health Report output for that device if the form allows it.
+If the whole estate has gone quiet since the rebuild, "Data Collector is Unavailable" from that checkbox list may actually fit — worth ticking if the collector shows as down or unreachable in the console.
