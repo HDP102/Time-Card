@@ -1,1 +1,2 @@
-py -c "import json;d=json.load(open(r'recert_output\sample_139744.json'))['ticket'];L=lambda x:x if isinstance(x,list) else [x];[print('==',s['name'],'\n',json.dumps(L(L(s['tasks']['task'])[0]['fields']['field'])[0],indent=1)[:1500]) for s in L(d['steps']['step'])[:2]]"
+hIf_-Gmx8NfTa_d83IUrEQ==
+-P-HhLFp1_DTa_d83IUrEQ==
