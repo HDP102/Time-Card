@@ -1,25 +1,5 @@
-Hi Swapnil, update on draft submission.
+Hey Sid, quick update on z_firemon. I tested SSH with it myself and it authenticates fine to the routers, so the account and password are good. FireMon still isn't pulling configs though, and I'm not sure yet whether that's a device side thing or something on our end.
 
-The Tufin GraphQL API we've been using (SecureTrack) can only create drafts. It has no submit, advance, or close operation. It also doesn't return a draft ID, so we can't point at a draft after it's created.
+Couple of things you might be able to check. First is whether the FireMon collector at 10.16.108.147 is actually getting through to them — anything in the auth logs from that source recently, success or failure, would tell us a lot. Second, do you know what privilege level z_firemon lands at when it auths through AD? FireMon needs level 15 to pull a running config, anything lower logs in fine but comes back with nothing useful. And if there's an access-class on the vty lines, worth confirming 10.16.108.147 is permitted.
 
-Submitting and closing tickets happens in SecureChange, which has its own REST API. That's the route for both of your asks: moving drafts to the next step, and auto-processing/closing. I'm checking two things now:
-1. Whether SecureChange REST can see or submit the existing 123 drafts. If it can't, the cleaner path is to create the recert tickets directly through REST, already submitted, and cancel the drafts.
-2. Whether ticketAPI can authenticate to SecureChange REST.
-
-I'm also asking Leonard, since his workflow modules already use that API. I'll get you the 5 test tickets as soon as that's confirmed.
-
-One thing to decide before we auto-close: Tufin would show ticketAPI completing each recertification, not the rule owner, and the owners' decisions only live in the spreadsheets. Since some of these are NERC rules, can you confirm that's acceptable evidence for audit?
-
-
-
-Hi Leonard, quick SecureChange question.
-
-My recert script uses the SecureTrack GraphQL createTicketDraft mutation. It created 123 drafts in prod under ticketAPI, on the "RLM Rule Recertification Workflow". Swapnil wants them submitted and ideally processed and closed by automation. GraphQL has no submit or close operation, so I'm moving to the SecureChange REST API, which I believe your workflow modules use.
-
-A few questions:
-1. Can SecureChange REST list or submit drafts? They don't show a ticket ID in the UI.
-2. If not, what does the ticket payload look like for the RLM Rule Recertification workflow? In particular, how are the rules referenced? I'd create the tickets directly and cancel the drafts.
-3. For advancing steps and closing: do you complete tasks through the steps/tasks endpoints, and are there workflow-specific fields I need to fill?
-4. Does ticketAPI work with basic auth against /securechangeworkflow/api/securechange/, or do your scripts authenticate differently?
-
-If you have a snippet from your modules you can share, that would save a lot of time. Thanks!
+Could easily be a FireMon side problem too, I'm digging into that in parallel. Just want to rule out the device side so I'm not chasing the wrong thing.
