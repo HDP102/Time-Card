@@ -1,14 +1,16 @@
 Hi Giuseff,
 
-Thanks, that did it. The DC was showing a current last status update, and after running fmos ecosystem refresh and fmos restart dc on V01SECAPL067, retrievals are working again. Our live Cisco devices are now producing revisions, and the remaining critical ones are decommissioned devices we'll be removing.
+Thanks, that did it. The DC was showing a current last status update, and after running fmos ecosystem refresh and fmos restart dc on V01SECAPL067, retrievals are working again. Our live Cisco devices are producing revisions, and most of the remaining critical ones are decommissioned devices we'll be removing.
 
-We still need help bringing a few other integrations back:
+We still need help with a few items:
 
-1. Zscaler ZIA: retrievals fail with "The data collector has never received a retrieval status for this device." From V01SECAPL067, curl to https://zsapi.zscalertwo.net/api/v1/authenticatedSession times out on 443. The same request from a workstation returns 200. No proxy is configured on the collector. ZIA last retrieved successfully in March from our previous server. Does FireMon support routing ZIA API retrievals through a proxy on the data collector, and if so, where is that configured?
+1. Cisco follow-ups: [device] shows "The last revision for this device normalized, but issues were detected in one or more of the following areas." Where can we see the specific issues? Also, our service account lands at privilege level 3 on login, and some revisions look thin, with a rule count of 1. Does FireMon use the Enable Password field to elevate to 15 for the retrieval, and is that what we should be setting?
 
-2. Azure: our subscriptions fail with AADSTS7000215 (invalid client secret). We'll rotate the secret on our side. Can you confirm it only needs updating on the Azure management station for the child subscriptions to pick it up, and that Reader is still the required role?
+2. Zscaler ZIA: retrievals fail with "The data collector has never received a retrieval status for this device." From V01SECAPL067, curl to https://zsapi.zscalertwo.net/api/v1/authenticatedSession times out on 443. The same request from a workstation returns 200. No proxy is configured on the collector. ZIA last retrieved successfully in March from our previous server. Does FireMon support routing ZIA API retrievals through a proxy on the data collector, and if so, where is that configured?
 
-3. Syslog and change detection: on the Data Collectors page, only V50SECAPL008 shows a syslog port (514). V01SECAPL067 and v50secapl019 show none. Some devices also warn that "changes are retrieved by a manual retrieval instead of an automatic retrieval." Is 067 missing syslog configuration after the rebuild, and how would we enable it?
+3. Azure: our subscriptions fail with AADSTS7000215 (invalid client secret). We'll rotate the secret on our side. Can you confirm it only needs updating on the Azure management station for the child subscriptions to pick it up, and that Reader is still the required role?
+
+4. Syslog and change detection: on the Data Collectors page, only V50SECAPL008 shows a syslog port (514). V01SECAPL067 and v50secapl019 show none. Some devices also warn that "changes are retrieved by a manual retrieval instead of an automatic retrieval." Is 067 missing syslog configuration after the rebuild, and how would we enable it?
 
 I'm available [days/times] if it's easier to go through these together.
 
