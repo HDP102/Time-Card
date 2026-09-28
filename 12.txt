@@ -1,2 +1,1 @@
-hIf_-Gmx8NfTa_d83IUrEQ==
--P-HhLFp1_DTa_d83IUrEQ==
+   curl -v -m 15 https://zsapi.zscalertwo.net/api/v1/authenticatedSession
