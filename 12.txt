@@ -1,1 +1,1 @@
-   curl -v -m 15 https://zsapi.zscalertwo.net/api/v1/authenticatedSession
+Hey Aksa, following up on the PAC file. I retested from the FireMon collector (V01SECAPL067, 10.16.108.147) after the upgrade and it still can't reach zsapi.zscalertwo.net on 443, the connection just times out. The last time ZIA retrieved successfully was back in March from v50secapl007, so I think 067 needs the same proxy or egress path that box had. Did you have a chance to find the updated PAC file, or know who'd own the egress for that server?
