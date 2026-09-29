@@ -1,8 +1,5 @@
-py -c "import json,glob,re,collections as c;R=P=N=0;why=c.Counter();bad=[]
-for f in sorted(glob.glob('recert_output/sc_preview_batch*.json'),key=lambda x:int(re.findall(r'\d+',x)[-1])):
- d=json.load(open(f));r,p=d['rules'],d['problems'];R+=len(r);P+=len(p);N+=sum(1 for x in r if not x['owner'])
- [why.update([re.sub(r\"'[^']*'|\{[^}]*\}|\d+\",'#',w.split(': ',1)[-1])[:70]]) for _,w in p]
- if p: bad.append((f.split('batch')[-1][:-5],len(p)))
-print(f'batches {len(glob.glob(\"recert_output/sc_preview_batch*.json\"))}  resolved {R:,}  skipped {P:,}  no owner {N:,}')
-print('skip reasons:');[print(f'  {n:>6,}  {w}') for w,n in why.most_common()]
-print('batches with skips:',bad)"
+Hey Sid, good news: FireMon is pulling configs from the Cisco devices again. The main issue turned out to be on the FireMon side, and support helped us get it sorted after the upgrade. Thanks again for all your help getting the credentials and the device list straightened out.
+
+There's one more thing we need from the Cisco side. The z_firemon account is landing at privilege level 3 when it logs in, and FireMon needs level 15 to pull the full config (see the attached clip from FireMon's docs). At level 3 the retrieval succeeds but only brings back a partial config, which is why some devices are showing normalization warnings.
+
+When you get a chance, could you check the privilege level on z_firemon and bump it to 15 if possible? Thanks!
