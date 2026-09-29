@@ -1,5 +1,12 @@
-Hey Sid, good news: FireMon is pulling configs from the Cisco devices again. The main issue turned out to be on the FireMon side, and support helped us get it sorted after the upgrade. Thanks again for all your help getting the credentials and the device list straightened out.
+Hi Elijah, my team mentioned you're the right person to reach out to about this. I'm working on getting FireMon collecting from our environment again, and the Azure subscriptions are failing to authenticate with AADSTS7000215 (invalid client secret). It looks like the client secret on the app registration FireMon uses has expired.
 
-There's one more thing we need from the Cisco side. The z_firemon account is landing at privilege level 3 when it logs in, and FireMon needs level 15 to pull the full config (see the attached clip from FireMon's docs). At level 3 the retrieval succeeds but only brings back a partial config, which is why some devices are showing normalization warnings.
+The app registration's client ID is [client ID from the Azure management station in FireMon].
 
-When you get a chance, could you check the privilege level on z_firemon and bump it to 15 if possible? Thanks!
+Could you help with the following?
+
+1. Generate a new client secret for that app registration, or let me know who owns it if that's not you.
+2. Confirm the app still has Reader on the subscriptions FireMon monitors (Non-Prod, Production, Production Shared Services, QA, Disaster Recovery and the NextGen Sandbox).
+
+Once I have the new secret, I'll update it in FireMon on my side. 
+
+Thanks so much, I appreciate the help!
