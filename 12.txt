@@ -1,12 +1,1 @@
-Hi Elijah, my team mentioned you're the right person to reach out to about this. I'm working on getting FireMon collecting from our environment again, and the Azure subscriptions are failing to authenticate with AADSTS7000215 (invalid client secret). It looks like the client secret on the app registration FireMon uses has expired.
-
-The app registration's client ID is [client ID from the Azure management station in FireMon].
-
-Could you help with the following?
-
-1. Generate a new client secret for that app registration, or let me know who owns it if that's not you.
-2. Confirm the app still has Reader on the subscriptions FireMon monitors (Non-Prod, Production, Production Shared Services, QA, Disaster Recovery and the NextGen Sandbox).
-
-Once I have the new secret, I'll update it in FireMon on my side. 
-
-Thanks so much, I appreciate the help!
+  curl -v -m 15 https://login.microsoftonline.com
