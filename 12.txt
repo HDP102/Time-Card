@@ -1,1 +1,13 @@
-curl -v -m 5 telnet://10.207.41.212:22
+Hi Giuseff,
+
+Following up on the Zscaler ZIA item. I've attached the health report for our ZIA devices. The "last updated" dates of Sept 28 and 30 are just my manual retrieval attempts, which failed. The last successful revisions are from March 2026, and some of the child devices haven't updated since March 2025. So ZIA stopped retrieving well before we rebuilt V01SECAPL067, and the rebuild didn't cause it. Also, to clarify from your earlier note, the ZIA devices are assigned to V01SECAPL067's collector group, not the other DC.
+
+Here's what I've tested from V01SECAPL067 (10.16.108.147):
+
+- curl to https://zsapi.zscalertwo.net (167.103.95.63) on 443 silently times out, before and after the rebuild
+- curl to https://login.microsoftonline.com connects and returns normally
+- curl to https://www.google.com returns a Zscaler block page, so the collector's internet traffic goes through ZIA
+
+So the collector does have internet access through Zscaler, but traffic to the Zscaler API itself gets dropped rather than blocked by policy.
+
+Our Zscaler admin, Aksa, told me we had this same issue before, and FireMon fixed it on your side under ticket #175690. She said it broke again when the server was moved. I don't have access to view that ticket. Could you pull it up and see what was done? If the fix involved a proxy or a collector-level setting, that would explain why it stopped working. Also, should the proxy fields on the ZIA device be filled in for this setup?
