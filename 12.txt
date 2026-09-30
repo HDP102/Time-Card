@@ -1,1 +1,1461 @@
-  curl -v -m 15 https://login.microsoftonline.com
+===== PAGE 1 =====
+                                                                                                             
+      Device    Health    Report                                                                             
+                                                                                                             
+                                                                                                             
+      September 30, 2026, 2:21:47 PM UTC                                                                     
+                                                                                                            
+      Provides an overview of the state of devices or management stations, and can include health check results.
+      Filter: None                                                                                           
+   Devices:136                                                                                               
+                Device                    Description           Cluster     Management IP Address Vendor Health
+   BLM-DMS-BLM-DLS-COLOB-logserver (ID: 54) Log Server created for CMA - 10.16.107.220 10.16.107.225 Check Point
+                                                                                                    Healthy  
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Not applicable           Not applicable            Not applicable             
+    DC GROUP ASSIGNED                                                                                       
+     A data collector group has been assigned to this LAST REVISION CHANGE DATA USAGE DATA                
+     device (V01SECAPL067.countrylan.com-Group) Not applicable Not applicable     Not applicable             
+                                                                                  Logged Connections (Last 24 hours): 0
+   BLM-DMS-BLM-DLS-DR-logserver (ID: 53) Log Server created for CMA - 10.16.107.220 10.200.24.63 Check Point Healthy
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Not applicable           Not applicable            Not applicable             
+    DC GROUP ASSIGNED                                                                                       
+     A data collector group has been assigned to this LAST REVISION CHANGE DATA USAGE DATA                
+     device (V01SECAPL067.countrylan.com-Group) Not applicable Not applicable     Not applicable             
+                                                                                  Logged Connections (Last 24 hours): 0
+   BLM-DMS-BLM-DMS-DR-logserver (ID: 56) Log Server created for CMA - 10.16.107.220 10.200.24.58 Check Point Healthy
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Not applicable           Not applicable            Not applicable             
+    DC GROUP ASSIGNED                                                                                       
+     A data collector group has been assigned to this LAST REVISION CHANGE DATA USAGE DATA                
+     device (V01SECAPL067.countrylan.com-Group) Not applicable Not applicable     Not applicable             
+                                                                                  Logged Connections (Last 24 hours): 0
+   BLM-DMS-logserver (ID: 55)   Log Server created for CMA - 10.16.107.220 10.16.107.220 Check Point        
+                                                                                                    Healthy  
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Not applicable           Not applicable            Not applicable             
+    DC GROUP ASSIGNED                                                                                       
+     A data collector group has been assigned to this LAST REVISION CHANGE DATA USAGE DATA                
+     device (V01SECAPL067.countrylan.com-Group) Not applicable Not applicable     Not applicable             
+                                                                                  Logged Connections (Last 24 hours): 0
+   coloa-vsx-fw1 (ID: 117)      Orphaned by CMA - 10.16.107.219 coloa-vsx-fw 10.8.100.14 Check Point       
+                                                                                                   Unlicensed
+
+===== PAGE 2 =====
+                                                                                                             
+   coloa-vsx-fw1_chaska-dr-border-fw (ID: 62) Orphaned by CMA - 10.16.107.220 chaska-dr-border-fw 0.0.0.0 Check Point Unlicensed
+                                                                                                             
+   coloa-vsx-fw1_chaska-dr-dmz-fw (ID: 65) Orphaned by CMA - 10.16.107.220 chaska-dr-dmz-fw 0.0.0.0 Check Point Unlicensed
+   coloa-vsx-fw1_chaska-dr-dmz-sw (ID: 110) Orphaned by CMA - 10.16.107.220 chaska-dr-dmz-sw 0.0.0.0 Check Point Unlicensed
+                                                                                                             
+   coloa-vsx-fw1_chaska-dr-ext-fw (ID: 96) Orphaned by CMA - 10.16.107.220 chaska-dr-ext-fw 0.0.0.0 Check Point
+                                                                                                   Unlicensed
+   coloa-vsx-fw1_chaska-dr-ext-sw (ID: 87) Orphaned by CMA - 10.16.107.220 chaska-dr-ext-sw 0.0.0.0 Check Point
+                                                                                                   Unlicensed
+   coloa-vsx-fw1_chaska-dr-iso-fw (ID: 77) Orphaned by CMA - 10.16.107.220 chaska-dr-iso-fw 0.0.0.0 Check Point
+                                                                                                   Unlicensed
+   coloa-vsx-fw1_coloa-border-fw (ID: 76) Orphaned by CMA - 10.16.107.220 coloa-border-fw 0.0.0.0 Check Point Unlicensed
+   coloa-vsx-fw1_coloa-dmz-fw (ID: 105) Orphaned by CMA - 10.16.107.220 coloa-dmz-fw 0.0.0.0 Check Point Unlicensed
+   coloa-vsx-fw1_coloa-dmz-sw (ID: 95) Orphaned by CMA - 10.16.107.220 coloa-dmz-sw 0.0.0.0 Check Point    
+                                                                                                   Unlicensed
+   coloa-vsx-fw1_coloa-ext-fw (ID: 78) Orphaned by CMA - 10.16.107.220 coloa-ext-fw 0.0.0.0 Check Point    
+                                                                                                   Unlicensed
+   coloa-vsx-fw1_coloa-ext-sw (ID: 70) Orphaned by CMA - 10.16.107.220 coloa-ext-sw 0.0.0.0 Check Point    
+                                                                                                   Unlicensed
+   coloa-vsx-fw1_coloa-wan-fw (ID: 91) Orphaned by CMA - 10.16.107.220 coloa-wan-fw 0.0.0.0 Check Point Unlicensed
+   coloa-vsx-fw2 (ID: 116)      Orphaned by CMA - 10.16.107.219 coloa-vsx-fw 10.8.100.15 Check Point Unlicensed
+   coloa-vsx-fw2_chaska-dr-border-fw (ID: 69) Orphaned by CMA - 10.16.107.220 chaska-dr-border-fw 0.0.0.0 Check Point
+                                                                                                   Unlicensed
+   coloa-vsx-fw2_chaska-dr-dmz-fw (ID: 103) Orphaned by CMA - 10.16.107.220 chaska-dr-dmz-fw 0.0.0.0 Check Point
+                                                                                                   Unlicensed
+   coloa-vsx-fw2_chaska-dr-dmz-sw (ID: 98) Orphaned by CMA - 10.16.107.220 chaska-dr-dmz-sw 0.0.0.0 Check Point
+                                                                                                   Unlicensed
+   coloa-vsx-fw2_chaska-dr-ext-fw (ID: 84) Orphaned by CMA - 10.16.107.220 chaska-dr-ext-fw 0.0.0.0 Check Point Unlicensed
+   coloa-vsx-fw2_chaska-dr-ext-sw (ID: 100) Orphaned by CMA - 10.16.107.220 chaska-dr-ext-sw 0.0.0.0 Check Point Unlicensed
+   coloa-vsx-fw2_chaska-dr-iso-fw (ID: 108) Orphaned by CMA - 10.16.107.220 chaska-dr-iso-fw 0.0.0.0 Check Point Unlicensed
+   coloa-vsx-fw2_coloa-border-fw (ID: 107) Orphaned by CMA - 10.16.107.220 coloa-border-fw 0.0.0.0 Check Point
+                                                                                                   Unlicensed
+   coloa-vsx-fw2_coloa-dmz-fw (ID: 112) Orphaned by CMA - 10.16.107.220 coloa-dmz-fw 0.0.0.0 Check Point   
+                                                                                                   Unlicensed
+   coloa-vsx-fw2_coloa-dmz-sw (ID: 60) Orphaned by CMA - 10.16.107.220 coloa-dmz-sw 0.0.0.0 Check Point    
+                                                                                                   Unlicensed
+   coloa-vsx-fw2_coloa-ext-fw (ID: 82) Orphaned by CMA - 10.16.107.220 coloa-ext-fw 0.0.0.0 Check Point Unlicensed
+   coloa-vsx-fw2_coloa-ext-sw (ID: 71) Orphaned by CMA - 10.16.107.220 coloa-ext-sw 0.0.0.0 Check Point Unlicensed
+   coloa-vsx-fw2_coloa-wan-fw (ID: 61) Orphaned by CMA - 10.16.107.220 coloa-wan-fw 0.0.0.0 Check Point    
+                                                                                                   Unlicensed
+   labfw1 (ID: 29)              Orphaned by CMA - 10.16.107.221 labfw    10.73.1.18    Check Point         
+                                                                                                    Critical 
+                                                                                                             
+                                                                                                             
+                                                                                                             
+
+===== PAGE 3 =====
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                                                        Not applicable                                       
+    DC GROUP ASSIGNED        LAST REVISION                                     USAGE DATA                 
+     A data collector group has been assigned to this The last revision normalized, but issues were detected CHANGE DATA Usage data has not been received for 2 days which
+     device (V01SECAPL067.countrylan.com-Group) in one or more of the following areas: network objects, Changes were detected during policy installation exceeds the configured threshold in settings
+                               service objects, user objects, application objects,                           
+                                                                                  Logged Connections (Last 24 hours): 0
+                               virtual routers, interfaces or routes                                         
+                               Revision ID: 448                                                             
+                               Type: Policy Install                                                          
+                               Date/Time: February 12, 2025, 8:06:54 AM UTC                                  
+                               User: oc96442@10.192.226.134                                                  
+                               Change Count: 96                                                              
+                               Result: Normalized                                                            
+   labfw2 (ID: 30)              Orphaned by CMA - 10.16.107.221 labfw    10.73.1.19    Check Point         
+                                                                                                    Inactive 
+   lab-vsx-fw1 (ID: 120)        Orphaned by CMA - 10.16.107.219 lab-vsx-fw 10.73.1.66  Check Point Critical
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                                                        Not applicable                                       
+    DC GROUP ASSIGNED        LAST REVISION                                     USAGE DATA                 
+     A data collector group has been assigned to this The last revision normalized, but issues were detected CHANGE DATA Usage data has not been received for 2 days which
+     device (V01SECAPL067.countrylan.com-Group) in one or more of the following areas: network objects, Changes were detected during policy installation exceeds the configured threshold in settings
+                               service objects, user objects, application objects,                           
+                                                                                  Logged Connections (Last 24 hours): 0
+                               virtual routers, interfaces or routes                                         
+                               Revision ID: 195                                                             
+                               Type: Policy Install                                                          
+                               Date/Time: February 5, 2025, 11:54:04 PM UTC                                  
+                               User: id93588@10.19.2.32                                                      
+                               Change Count: 0                                                               
+                               Result: Normalized                                                            
+   lab-vsx-fw1_lab-border-fw (ID: 20) Orphaned by CMA - 10.16.107.223 lab-border-fw 0.0.0.0 Check Point Inactive
+   lab-vsx-fw1_lab-ext-sw (ID: 21) Orphaned by CMA - 10.16.107.223 lab-ext-sw 0.0.0.0  Check Point         
+                                                                                                    Critical 
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                                                        Not applicable                                       
+    DC GROUP ASSIGNED        LAST REVISION                                     USAGE DATA                 
+     A data collector group has been assigned to this No revisions exist for this device CHANGE DATA Usage data has not been received for 2 days which
+     device (V01SECAPL067.countrylan.com-Group)         No revisions exist for this device exceeds the configured threshold in settings
+                                                                                  Logged Connections (Last 24 hours): 0
+   lab-vsx-fw2 (ID: 121)        Orphaned by CMA - 10.16.107.219 lab-vsx-fw 10.73.1.67  Check Point         
+                                                                                                    Inactive 
+   lab-vsx-fw2_lab-border-fw (ID: 17) Orphaned by CMA - 10.16.107.223 lab-border-fw 0.0.0.0 Check Point    
+                                                                                                    Critical 
+
+===== PAGE 4 =====
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                                                        Not applicable                                       
+    DC GROUP ASSIGNED        LAST REVISION                                     USAGE DATA                 
+     A data collector group has been assigned to this The last revision normalized, but issues were detected CHANGE DATA Usage data has not been received for 2 days which
+     device (V01SECAPL067.countrylan.com-Group) in one or more of the following areas: network objects, Changes were detected during policy installation exceeds the configured threshold in settings
+                               service objects, user objects, application objects,                           
+                                                                                  Logged Connections (Last 24 hours): 0
+                               virtual routers, interfaces or routes                                         
+                               Revision ID: 443                                                             
+                               Type: Policy Install                                                          
+                               Date/Time: February 12, 2025, 8:06:23 AM UTC                                  
+                               User: id93588@10.19.2.32                                                      
+                               Change Count: 95                                                              
+                               Result: Normalized                                                            
+   lab-vsx-fw2_lab-ext-sw (ID: 22) Orphaned by CMA - 10.16.107.223 lab-ext-sw 0.0.0.0  Check Point         
+                                                                                                    Inactive 
+   n00fwlapl001 (ID: 74)        Orphaned by CMA - 10.16.107.220 blm-fw   10.72.64.18   Check Point Inactive
+   n00fwlapl002 (ID: 72)        Orphaned by CMA - 10.16.107.220 blm-fw   10.72.64.19   Check Point Critical
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                                                        Not applicable                                       
+    DC GROUP ASSIGNED        LAST REVISION                                     USAGE DATA                 
+     A data collector group has been assigned to this The last revision normalized, but issues were detected CHANGE DATA Usage data has not been received for 2 days which
+     device (V01SECAPL067.countrylan.com-Group) in one or more of the following areas: network objects, Changes were detected during policy installation exceeds the configured threshold in settings
+                               service objects, user objects, application objects,                           
+                                                                                  Logged Connections (Last 24 hours): 0
+                               virtual routers, interfaces or routes                                         
+                               Revision ID: 1066                                                            
+                               Type: Policy Install                                                          
+                               Date/Time: March 1, 2025, 8:11:03 AM UTC                                      
+                               User: oc97170@10.192.225.148                                                  
+                               Change Count: 16                                                              
+                               Result: Normalized                                                            
+   n01aggrtr001 (ID: 129)                                                 10.16.1.101   Cisco               
+                                                                                                    Healthy  
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Successfully retrieved configuration (Automatic) File Not applicable Not applicable
+    DC GROUP ASSIGNED         count: 15. Last updated on 9/30/26 at 6:00:44 AM                              
+     A data collector group has been assigned to this  CHANGE DATA              USAGE DATA                 
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Not applicable     Not applicable             
+                               The last revision for this device normalized                                  
+                                                                                  Logged Connections (Last 24 hours): 0
+                               successfully                                                                  
+                               Revision ID: 17424                                                           
+                               Type: Scheduled Retrieval                                                     
+                               Date/Time: September 30, 2026, 6:00:44 AM UTC                                 
+                               User: DC_automated                                                            
+                               Change Count: 0                                                               
+                               Result: Normalized                                                            
+   N01FWLAPL001 (ID: 122)       Discovered by Check Point SCS or CMA - aurora-vsx-fw 10.16.100.14 Check Point
+                                                                                                    Critical 
+                                 10.16.107.219                                                               
+
+===== PAGE 5 =====
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [VSX-DMS-logserver]. Last updated on 9/30/26
+     A data collector group has been assigned to this  CHANGE DATA               at 2:20:38 PM              
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were retrieved by a manual retrieval instead
+                               The last revision for this device had a normalization of an automatic retrieval USAGE DATA
+                               error                                              Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 12316                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: January 27, 2026, 5:22:12 AM UTC                                   
+                               User: firemon                                                                 
+                               Change Count: 104                                                             
+                               Result: Normalization Error                                                   
+   N01FWLAPL001_aurora-border-fw (ID: 75) Discovered by Check Point SCS or CMA - aurora-border-fw 0.0.0.0 Check Point
+                                                                                                    Critical 
+                                 10.16.107.220                                                               
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [BLM-DMS-logserver]. Last updated on 9/30/26
+     A data collector group has been assigned to this  CHANGE DATA               at 2:20:38 PM              
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were retrieved by a manual retrieval instead
+                               The last revision for this device had a normalization of an automatic retrieval USAGE DATA
+                               error                                              Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 13089                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: February 18, 2026, 5:07:21 PM UTC                                  
+                               User: oc96891                                                                 
+                               Change Count: 8                                                               
+                               Result: Normalization Error                                                   
+   N01FWLAPL001_aurora-dmz-fw (ID: 93) Discovered by Check Point SCS or CMA - aurora-dmz-fw 0.0.0.0 Check Point
+                                                                                                    Critical 
+                                 10.16.107.220                                                               
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [BLM-DMS-logserver]. Last updated on 9/30/26
+     A data collector group has been assigned to this  CHANGE DATA               at 2:20:38 PM              
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were retrieved by a manual retrieval instead
+                               The last revision for this device had a normalization of an automatic retrieval USAGE DATA
+                               error                                              Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 13098                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: February 18, 2026, 5:07:23 PM UTC                                  
+                               User: oc96891                                                                 
+                               Change Count: 8                                                               
+                               Result: Normalization Error                                                   
+   N01FWLAPL001_aurora-dmz-sw (ID: 106) Discovered by Check Point SCS or CMA - aurora-dmz-sw 0.0.0.0 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.220                                                               
+   N01FWLAPL001_aurora-ext-fw (ID: 64) Discovered by Check Point SCS or CMA - aurora-ext-fw 0.0.0.0 Check Point
+                                                                                                    Critical 
+                                 10.16.107.220                                                               
+
+===== PAGE 6 =====
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [BLM-DMS-logserver]. Last updated on 9/30/26
+     A data collector group has been assigned to this  CHANGE DATA               at 2:20:38 PM              
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were retrieved by a manual retrieval instead
+                               The last revision for this device had a normalization of an automatic retrieval USAGE DATA
+                               error                                              Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 13085                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: February 18, 2026, 5:07:20 PM UTC                                  
+                               User: oc96891                                                                 
+                               Change Count: 8                                                               
+                               Result: Normalization Error                                                   
+   N01FWLAPL001_aurora-ext-sw (ID: 59) Discovered by Check Point SCS or CMA - aurora-ext-sw 0.0.0.0 Check Point
+                                                                                                    Critical 
+                                 10.16.107.220                                                               
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [BLM-DMS-logserver]. Last updated on 9/30/26
+     A data collector group has been assigned to this  CHANGE DATA               at 2:20:38 PM              
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were retrieved by a manual retrieval instead
+                               The last revision for this device had a normalization of an automatic retrieval USAGE DATA
+                               error                                              Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 13086                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: February 18, 2026, 5:07:20 PM UTC                                  
+                               User: oc96891                                                                 
+                               Change Count: 8                                                               
+                               Result: Normalization Error                                                   
+   N01FWLAPL001_aurora-wan-fw (ID: 109) Discovered by Check Point SCS or CMA - aurora-wan-fw 0.0.0.0 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.220                                                               
+   N01FWLAPL002 (ID: 123)       Discovered by Check Point SCS or CMA - aurora-vsx-fw 10.16.100.15 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.219                                                               
+   N01FWLAPL002_aurora-border-fw (ID: 104) Discovered by Check Point SCS or CMA - aurora-border-fw 0.0.0.0 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.220                                                               
+   N01FWLAPL002_aurora-dmz-fw (ID: 111) Discovered by Check Point SCS or CMA - aurora-dmz-fw 0.0.0.0 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.220                                                               
+   N01FWLAPL002_aurora-dmz-sw (ID: 89) Discovered by Check Point SCS or CMA - aurora-dmz-sw 0.0.0.0 Check Point
+                                                                                                    Critical 
+                                 10.16.107.220                                                               
+
+===== PAGE 7 =====
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [BLM-DMS-logserver]. Last updated on 9/30/26
+     A data collector group has been assigned to this  CHANGE DATA               at 2:20:38 PM              
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were retrieved by a manual retrieval instead
+                               The last revision for this device had a normalization of an automatic retrieval USAGE DATA
+                               error                                              Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 13100                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: February 18, 2026, 5:07:24 PM UTC                                  
+                               User: oc96891                                                                 
+                               Change Count: 8                                                               
+                               Result: Normalization Error                                                   
+   N01FWLAPL002_aurora-ext-fw (ID: 80) Discovered by Check Point SCS or CMA - aurora-ext-fw 0.0.0.0 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.220                                                               
+   N01FWLAPL002_aurora-ext-sw (ID: 73) Discovered by Check Point SCS or CMA - aurora-ext-sw 0.0.0.0 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.220                                                               
+   N01FWLAPL002_aurora-wan-fw (ID: 90) Discovered by Check Point SCS or CMA - aurora-wan-fw 0.0.0.0 Check Point
+                                                                                                    Critical 
+                                 10.16.107.220                                                               
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [BLM-DMS-logserver]. Last updated on 9/30/26
+     A data collector group has been assigned to this  CHANGE DATA               at 2:20:38 PM              
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were retrieved by a manual retrieval instead
+                               The last revision for this device had a normalization of an automatic retrieval USAGE DATA
+                               error                                              Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 13093                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: February 18, 2026, 5:07:22 PM UTC                                  
+                               User: oc96891                                                                 
+                               Change Count: 8                                                               
+                               Result: Normalization Error                                                   
+   N01FWLAPL401 (ID: 118)       Discovered by Check Point SCS or CMA - aurora-tst-vsx-fw 10.16.100.11 Check Point
+                                                                                                    Critical 
+                                 10.16.107.219                                                               
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [VSX-DMS-logserver]. Last updated on 9/30/26
+     A data collector group has been assigned to this  CHANGE DATA               at 2:20:38 PM              
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were retrieved by a manual retrieval instead
+                               The last revision for this device had a normalization of an automatic retrieval USAGE DATA
+                               error                                              Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 12317                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: January 27, 2026, 5:22:13 AM UTC                                   
+                               User: firemon                                                                 
+                               Change Count: 103                                                             
+                               Result: Normalization Error                                                   
+   N01FWLAPL401_aurora-tst-border-fw (ID: 44) Discovered by Check Point SCS or CMA - aurora-tst-border-fw 0.0.0.0 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.221                                                               
+
+===== PAGE 8 =====
+                                                                                                             
+   N01FWLAPL401_aurora-tst-dmz-fw (ID: 31) Discovered by Check Point SCS or CMA - aurora-tst-dmz-fw 0.0.0.0 Check Point Critical
+                                 10.16.107.221                                                               
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [QA-DMS-logserver]. Last updated on 9/30/26 at
+     A data collector group has been assigned to this  CHANGE DATA               2:20:38 PM                 
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were retrieved by a manual retrieval instead
+                               The last revision for this device had a normalization of an automatic retrieval USAGE DATA
+                               error                                              Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 12293                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: January 27, 2026, 5:12:06 AM UTC                                   
+                               User: firemon                                                                 
+                               Change Count: 894                                                             
+                               Result: Normalization Error                                                   
+   N01FWLAPL401_aurora-tst-dmz-sw (ID: 50) Discovered by Check Point SCS or CMA - aurora-tst-dmz-sw 0.0.0.0 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.221                                                               
+   N01FWLAPL401_aurora-tst-ext-fw (ID: 45) Discovered by Check Point SCS or CMA - aurora-tst-ext-fw 0.0.0.0 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.221                                                               
+   N01FWLAPL401_aurora-tst-ext-sw (ID: 46) Discovered by Check Point SCS or CMA - aurora-tst-ext-sw 0.0.0.0 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.221                                                               
+   N01FWLAPL401_aurora-tst-wan-fw (ID: 52) Discovered by Check Point SCS or CMA - aurora-tst-wan-fw 0.0.0.0 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.221                                                               
+   N01FWLAPL402 (ID: 119)       Discovered by Check Point SCS or CMA - aurora-tst-vsx-fw 10.16.100.12 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.219                                                               
+   N01FWLAPL402_aurora-tst-border-fw (ID: 36) Discovered by Check Point SCS or CMA - aurora-tst-border-fw 0.0.0.0 Check Point
+                                                                                                    Critical 
+                                 10.16.107.221                                                               
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [QA-DMS-logserver]. Last updated on 9/30/26 at
+     A data collector group has been assigned to this  CHANGE DATA               2:20:38 PM                 
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were retrieved by a manual retrieval instead
+                               The last revision for this device had a normalization of an automatic retrieval USAGE DATA
+                               error                                              Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 12296                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: January 27, 2026, 5:12:09 AM UTC                                   
+                               User: firemon                                                                 
+                               Change Count: 329                                                             
+                               Result: Normalization Error                                                   
+   N01FWLAPL402_aurora-tst-dmz-fw (ID: 33) Discovered by Check Point SCS or CMA - aurora-tst-dmz-fw 0.0.0.0 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.221                                                               
+   N01FWLAPL402_aurora-tst-dmz-sw (ID: 40) Discovered by Check Point SCS or CMA - aurora-tst-dmz-sw 0.0.0.0 Check Point
+                                                                                                    Critical 
+                                 10.16.107.221                                                               
+
+===== PAGE 9 =====
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [QA-DMS-logserver]. Last updated on 9/30/26 at
+     A data collector group has been assigned to this  CHANGE DATA               2:20:38 PM                 
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were retrieved by a manual retrieval instead
+                               The last revision for this device had a normalization of an automatic retrieval USAGE DATA
+                               error                                              Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 12301                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: January 27, 2026, 5:12:13 AM UTC                                   
+                               User: firemon                                                                 
+                               Change Count: 0                                                               
+                               Result: Normalization Error                                                   
+   N01FWLAPL402_aurora-tst-ext-fw (ID: 39) Discovered by Check Point SCS or CMA - aurora-tst-ext-fw 0.0.0.0 Check Point
+                                                                                                    Critical 
+                                 10.16.107.221                                                               
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [QA-DMS-logserver]. Last updated on 9/30/26 at
+     A data collector group has been assigned to this  CHANGE DATA               2:20:38 PM                 
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were retrieved by a manual retrieval instead
+                               The last revision for this device had a normalization of an automatic retrieval USAGE DATA
+                               error                                              Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 12300                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: January 27, 2026, 5:12:13 AM UTC                                   
+                               User: firemon                                                                 
+                               Change Count: 334                                                             
+                               Result: Normalization Error                                                   
+   N01FWLAPL402_aurora-tst-ext-sw (ID: 32) Discovered by Check Point SCS or CMA - aurora-tst-ext-sw 0.0.0.0 Check Point
+                                                                                                    Critical 
+                                 10.16.107.221                                                               
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [QA-DMS-logserver]. Last updated on 9/30/26 at
+     A data collector group has been assigned to this  CHANGE DATA               2:20:38 PM                 
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were retrieved by a manual retrieval instead
+                               The last revision for this device had a normalization of an automatic retrieval USAGE DATA
+                               error                                              Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 12292                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: January 27, 2026, 5:12:05 AM UTC                                   
+                               User: firemon                                                                 
+                               Change Count: 0                                                               
+                               Result: Normalization Error                                                   
+   N01FWLAPL402_aurora-tst-wan-fw (ID: 41) Discovered by Check Point SCS or CMA - aurora-tst-wan-fw 0.0.0.0 Check Point
+                                                                                                    Critical 
+                                 10.16.107.221                                                               
+
+===== PAGE 10 =====
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [QA-DMS-logserver]. Last updated on 9/30/26 at
+     A data collector group has been assigned to this  CHANGE DATA               2:20:38 PM                 
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were retrieved by a manual retrieval instead
+                               The last revision for this device had a normalization of an automatic retrieval USAGE DATA
+                               error                                              Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 12303                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: January 27, 2026, 5:12:14 AM UTC                                   
+                               User: firemon                                                                 
+                               Change Count: 296                                                             
+                               Result: Normalization Error                                                   
+   n01ipsrtr001 (ID: 136)                                                 10.16.1.10    Cisco               
+                                                                                                    Critical 
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                                                        Not applicable                                       
+    DC GROUP ASSIGNED        LAST REVISION                                     USAGE DATA                 
+     A data collector group has been assigned to this The last revision for this device had a retrieval error CHANGE DATA Not applicable
+     device (V01SECAPL067.countrylan.com-Group)         Not applicable                                       
+                               Revision ID: 17427                                Logged Connections (Last 24 hours): 0
+                               Type: Scheduled Retrieval                                                     
+                               Date/Time: September 30, 2026, 6:02:23 AM UTC                                 
+                               User: DC_automated                                                            
+                               Change Count: 0                                                               
+                               Result: Retrieval Error                                                       
+   n01pubrtr001 (ID: 133)                                                 10.16.1.7     Cisco      Healthy  
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Successfully retrieved configuration (Automatic) File Not applicable Not applicable
+    DC GROUP ASSIGNED         count: 15. Last updated on 9/30/26 at 8:00:30 AM                              
+     A data collector group has been assigned to this  CHANGE DATA              USAGE DATA                 
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Not applicable     Not applicable             
+                               The last revision for this device normalized                                  
+                                                                                  Logged Connections (Last 24 hours): 0
+                               successfully                                                                  
+                               Revision ID: 17438                                                           
+                               Type: Scheduled Retrieval                                                     
+                               Date/Time: September 30, 2026, 8:00:31 AM UTC                                 
+                               User: DC_automated                                                            
+                               Change Count: 0                                                               
+                               Result: Normalized                                                            
+   n01pubrtr002 (ID: 135)                                                 10.16.1.8     Cisco      Critical 
+
+===== PAGE 11 =====
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Successfully retrieved configuration (Manual) File Not applicable Not applicable
+    DC GROUP ASSIGNED         count: 15. Last updated on 9/29/26 at 2:56:24 PM                              
+     A data collector group has been assigned to this  CHANGE DATA              USAGE DATA                 
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Not applicable     Not applicable             
+                               The last revision for this device had a retrieval error                       
+                                                                                  Logged Connections (Last 24 hours): 0
+                               Revision ID: 17422                                                           
+                               Type: Scheduled Retrieval                                                     
+                               Date/Time: September 30, 2026, 6:00:25 AM UTC                                 
+                               User: DC_automated                                                            
+                               Change Count: 0                                                               
+                               Result: Retrieval Error                                                       
+   n01pvtrtr001 (ID: 137)                                                 10.16.1.5     Cisco               
+                                                                                                    Critical 
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                                                        Not applicable                                       
+    DC GROUP ASSIGNED        LAST REVISION                                     USAGE DATA                 
+     A data collector group has been assigned to this The last revision for this device had a retrieval error CHANGE DATA Not applicable
+     device (V01SECAPL067.countrylan.com-Group)         Not applicable                                       
+                               Revision ID: 17428                                Logged Connections (Last 24 hours): 0
+                               Type: Scheduled Retrieval                                                     
+                               Date/Time: September 30, 2026, 6:02:27 AM UTC                                 
+                               User: DC_automated                                                            
+                               Change Count: 0                                                               
+                               Result: Retrieval Error                                                       
+   n01pvtrtr002 (ID: 138)                                                 10.16.1.6     Cisco      Critical 
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                                                        Not applicable                                       
+    DC GROUP ASSIGNED        LAST REVISION                                     USAGE DATA                 
+     A data collector group has been assigned to this The last revision for this device had a retrieval error CHANGE DATA Not applicable
+     device (V01SECAPL067.countrylan.com-Group)         Not applicable                                       
+                               Revision ID: 17429                                Logged Connections (Last 24 hours): 0
+                               Type: Scheduled Retrieval                                                     
+                               Date/Time: September 30, 2026, 6:02:38 AM UTC                                 
+                               User: DC_automated                                                            
+                               Change Count: 0                                                               
+                               Result: Retrieval Error                                                       
+   n01vpnapl001 (ID: 139)                                                 10.16.1.21    Cisco      Critical 
+
+===== PAGE 12 =====
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                                                        Not applicable                                       
+    DC GROUP ASSIGNED        LAST REVISION                                     USAGE DATA                 
+     A data collector group has been assigned to this The last revision for this device had a retrieval error CHANGE DATA Not applicable
+     device (V01SECAPL067.countrylan.com-Group)         Not applicable                                       
+                               Revision ID: 17437                                Logged Connections (Last 24 hours): 0
+                               Type: Scheduled Retrieval                                                     
+                               Date/Time: September 30, 2026, 7:02:15 AM UTC                                 
+                               User: DC_automated                                                            
+                               Change Count: 0                                                               
+                               Result: Retrieval Error                                                       
+   n01vpnapl002 (ID: 140)                                                 10.16.1.57    Cisco               
+                                                                                                    Critical 
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                                                        Not applicable                                       
+    DC GROUP ASSIGNED        LAST REVISION                                     USAGE DATA                 
+     A data collector group has been assigned to this The last revision for this device had a retrieval error CHANGE DATA Not applicable
+     device (V01SECAPL067.countrylan.com-Group)         Not applicable                                       
+                               Revision ID: 17430                                Logged Connections (Last 24 hours): 0
+                               Type: Scheduled Retrieval                                                     
+                               Date/Time: September 30, 2026, 6:02:46 AM UTC                                 
+                               User: DC_automated                                                            
+                               Change Count: 0                                                               
+                               Result: Retrieval Error                                                       
+   n02aggrtr001 (ID: 130)                                                 10.76.0.3     Cisco      Healthy  
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Successfully retrieved configuration (Automatic) File Not applicable Not applicable
+    DC GROUP ASSIGNED         count: 13. Last updated on 9/30/26 at 6:00:20 AM                              
+     A data collector group has been assigned to this  CHANGE DATA              USAGE DATA                 
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Not applicable     Not applicable             
+                               The last revision normalized, but issues were detected                        
+                                                                                  Logged Connections (Last 24 hours): 0
+                               in one or more of the following areas: network objects,                       
+                               service objects, user objects, application objects,                           
+                               virtual routers, interfaces or routes                                         
+                               Revision ID: 17421                                                           
+                               Type: Scheduled Retrieval                                                     
+                               Date/Time: September 30, 2026, 6:00:21 AM UTC                                 
+                               User: DC_automated                                                            
+                               Change Count: 0                                                               
+                               Result: Normalized                                                            
+   n02disrtr001 (ID: 125)                                                 10.76.2.1     Cisco      Healthy  
+
+===== PAGE 13 =====
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Successfully retrieved configuration (Automatic) File Not applicable Not applicable
+    DC GROUP ASSIGNED         count: 15. Last updated on 9/30/26 at 7:00:40 AM                              
+     A data collector group has been assigned to this  CHANGE DATA              USAGE DATA                 
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Not applicable     Not applicable             
+                               The last revision for this device normalized                                  
+                                                                                  Logged Connections (Last 24 hours): 0
+                               successfully                                                                  
+                               Revision ID: 17431                                                           
+                               Type: Scheduled Retrieval                                                     
+                               Date/Time: September 30, 2026, 7:00:41 AM UTC                                 
+                               User: DC_automated                                                            
+                               Change Count: 0                                                               
+                               Result: Normalized                                                            
+   n05aggrtr001 (ID: 134)                                                 10.178.127.193 Cisco              
+                                                                                                    Warning  
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Successfully retrieved configuration (Automatic) File Not applicable Not applicable
+    DC GROUP ASSIGNED         count: 15. Last updated on 9/30/26 at 6:00:36 AM                              
+     A data collector group has been assigned to this  CHANGE DATA              USAGE DATA                 
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Not applicable     Not applicable             
+                               The last revision for this device normalized, but issues                      
+                                                                                  Logged Connections (Last 24 hours): 0
+                               were detected in one or more of the following areas:                          
+                               devices, zones, policies, security rules, NAT rules or                        
+                               policy routes                                                                 
+                               Revision ID: 17423                                                           
+                               Type: Scheduled Retrieval                                                     
+                               Date/Time: September 30, 2026, 6:00:37 AM UTC                                 
+                               User: DC_automated                                                            
+                               Change Count: 0                                                               
+                               Result: Normalized                                                            
+   n05fwlapl001 (ID: 57)        Orphaned by CMA - 10.16.107.220 SRO_Cluster 10.178.127.250 Check Point Critical
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                                                        Not applicable                                       
+    DC GROUP ASSIGNED        LAST REVISION                                     USAGE DATA                 
+     A data collector group has been assigned to this The last revision normalized, but issues were detected CHANGE DATA Usage data has not been received for 2 days which
+     device (V01SECAPL067.countrylan.com-Group) in one or more of the following areas: network objects, Changes were detected during policy installation exceeds the configured threshold in settings
+                               service objects, user objects, application objects,                           
+                                                                                  Logged Connections (Last 24 hours): 0
+                               virtual routers, interfaces or routes                                         
+                               Revision ID: 1678                                                            
+                               Type: Policy Install                                                          
+                               Date/Time: March 14, 2025, 7:28:25 AM UTC                                     
+                               User: oc96442@10.192.226.134                                                  
+                               Change Count: 11                                                              
+                               Result: Normalized                                                            
+   n05fwlapl002 (ID: 58)        Orphaned by CMA - 10.16.107.220 SRO_Cluster 10.178.127.251 Check Point Inactive
+   n09aggrtr001 (ID: 131)                                                 10.76.0.4     Cisco               
+                                                                                                    Warning  
+
+===== PAGE 14 =====
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Successfully retrieved configuration (Automatic) File Enabled Not applicable  
+    DC GROUP ASSIGNED         count: 13. Last updated on 9/30/26 at 6:00:20 AM                              
+     A data collector group has been assigned to this  CHANGE DATA              USAGE DATA                 
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were retrieved by a scheduled retrieval Not applicable
+                               The last revision normalized, but issues were detected instead of an automatic retrieval
+                                                                                  Logged Connections (Last 24 hours): 0
+                               in one or more of the following areas: network objects,                       
+                               service objects, user objects, application objects,                           
+                               virtual routers, interfaces or routes                                         
+                               Revision ID: 17420                                                           
+                               Type: Scheduled Retrieval                                                     
+                               Date/Time: September 30, 2026, 6:00:21 AM UTC                                 
+                               User: DC_automated                                                            
+                               Change Count: 0                                                               
+                               Result: Normalized                                                            
+   n11disrtr001 (ID: 126)                                                 10.74.2.1     Cisco               
+                                                                                                    Healthy  
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Successfully retrieved configuration (Automatic) File Not applicable Not applicable
+    DC GROUP ASSIGNED         count: 15. Last updated on 9/30/26 at 6:00:44 AM                              
+     A data collector group has been assigned to this  CHANGE DATA              USAGE DATA                 
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Not applicable     Not applicable             
+                               The last revision for this device normalized                                  
+                                                                                  Logged Connections (Last 24 hours): 0
+                               successfully                                                                  
+                               Revision ID: 17425                                                           
+                               Type: Scheduled Retrieval                                                     
+                               Date/Time: September 30, 2026, 6:00:45 AM UTC                                 
+                               User: DC_automated                                                            
+                               Change Count: 0                                                               
+                               Result: Normalized                                                            
+   n14aggrtr001.countrylan.com (ID: 132)                                  10.184.127.1  Cisco      Healthy  
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Successfully retrieved configuration (Manual) File Not applicable Not applicable
+    DC GROUP ASSIGNED         count: 15. Last updated on 9/29/26 at 3:23:04 PM                              
+     A data collector group has been assigned to this  CHANGE DATA              USAGE DATA                 
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Not applicable     Not applicable             
+                               The last revision for this device normalized                                  
+                                                                                  Logged Connections (Last 24 hours): 0
+                               successfully                                                                  
+                               Revision ID: 17398                                                           
+                               Type: Manual Retrieval                                                        
+                               Date/Time: September 29, 2026, 3:23:04 PM UTC                                 
+                               User: id93590                                                                 
+                               Change Count: 0                                                               
+                               Result: Normalized                                                            
+   N14FWLAPL001 (ID: 85)        Orphaned by CMA - 10.16.107.220 co-fw    10.184.127.250 Check Point Inactive
+   N14FWLAPL002 (ID: 83)        Orphaned by CMA - 10.16.107.220 co-fw    10.184.127.251 Check Point        
+                                                                                                    Critical 
+
+===== PAGE 15 =====
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                                                        Not applicable                                       
+    DC GROUP ASSIGNED        LAST REVISION                                     USAGE DATA                 
+     A data collector group has been assigned to this The last revision normalized, but issues were detected CHANGE DATA Usage data has not been received for 2 days which
+     device (V01SECAPL067.countrylan.com-Group) in one or more of the following areas: network objects, Changes were detected during policy installation exceeds the configured threshold in settings
+                               service objects, user objects, application objects,                           
+                                                                                  Logged Connections (Last 24 hours): 0
+                               virtual routers, interfaces or routes                                         
+                               Revision ID: 1689                                                            
+                               Type: Policy Install                                                          
+                               Date/Time: March 14, 2025, 7:28:31 AM UTC                                     
+                               User: oc96442@10.192.226.134                                                  
+                               Change Count: 11                                                              
+                               Result: Normalized                                                            
+   NorCenPRODB2BVPN1 (ID: 92)   Discovered by Check Point SCS or CMA - NorCenPRODB2BVPN 10.199.0.196 Check Point
+                                                                                                    Critical 
+                                 10.16.107.220                                                               
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [BLM-DMS-logserver]. Last updated on 9/30/26
+     A data collector group has been assigned to this  CHANGE DATA               at 2:20:38 PM              
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were detected during policy installation
+                               The last revision normalized, but issues were detected USAGE DATA            
+                               in one or more of the following areas: network objects, Usage data has not been received for 2 days which
+                               service objects, user objects, application objects, exceeds the configured threshold in settings
+                               virtual routers, interfaces or routes                                         
+                                                                                  Logged Connections (Last 24 hours): 0
+                               Revision ID: 14114                                                           
+                               Type: Policy Install                                                          
+                               Date/Time: April 2, 2026, 9:50:56 AM UTC                                      
+                               User: oc97118@10.192.225.47                                                   
+                               Change Count: 0                                                               
+                               Result: Normalized                                                            
+   NorCenPRODB2BVPN2 (ID: 94)   Discovered by Check Point SCS or CMA - NorCenPRODB2BVPN 10.199.0.197 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.220                                                               
+   NorCenQAB2BVPN1 (ID: 37)     Discovered by Check Point SCS or CMA - NorCenQAB2BVPN 10.199.64.197 Check Point
+                                                                                                    Critical 
+                                 10.16.107.221                                                               
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [QA-DMS-logserver]. Last updated on 9/30/26 at
+     A data collector group has been assigned to this  CHANGE DATA               2:20:38 PM                 
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were detected during policy installation
+                               The last revision normalized, but issues were detected USAGE DATA            
+                               in one or more of the following areas: network objects, Usage data has not been received for 2 days which
+                               service objects, user objects, application objects, exceeds the configured threshold in settings
+                               virtual routers, interfaces or routes                                         
+                                                                                  Logged Connections (Last 24 hours): 0
+                               Revision ID: 13527                                                           
+                               Type: Policy Install                                                          
+                               Date/Time: March 7, 2026, 9:52:28 AM UTC                                      
+                               User: id93588@10.199.40.196                                                   
+                               Change Count: 0                                                               
+                               Result: Normalized                                                            
+
+===== PAGE 16 =====
+                                                                                                             
+   NorCenQAB2BVPN2 (ID: 38)     Discovered by Check Point SCS or CMA - NorCenQAB2BVPN 10.199.64.198 Check Point Inactive
+                                 10.16.107.221                                                               
+   QA-DMS-logserver (ID: 27)    Log Server created for CMA - 10.16.107.221 10.16.107.221 Check Point Healthy
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Not applicable           Not applicable            Not applicable             
+    DC GROUP ASSIGNED                                                                                       
+     A data collector group has been assigned to this LAST REVISION CHANGE DATA USAGE DATA                
+     device (V01SECAPL067.countrylan.com-Group) Not applicable Not applicable     Not applicable             
+                                                                                  Logged Connections (Last 24 hours): 0
+   QA-DMS-QA-DLS-COLOB-logserver (ID: 28) Log Server created for CMA - 10.16.107.221 10.16.107.226 Check Point Healthy
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Not applicable           Not applicable            Not applicable             
+    DC GROUP ASSIGNED                                                                                       
+     A data collector group has been assigned to this LAST REVISION CHANGE DATA USAGE DATA                
+     device (V01SECAPL067.countrylan.com-Group) Not applicable Not applicable     Not applicable             
+                                                                                  Logged Connections (Last 24 hours): 0
+   QA-DMS-QA-DLS-DR-logserver (ID: 26) Log Server created for CMA - 10.16.107.221 10.200.24.64 Check Point Healthy
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Not applicable           Not applicable            Not applicable             
+    DC GROUP ASSIGNED                                                                                       
+     A data collector group has been assigned to this LAST REVISION CHANGE DATA USAGE DATA                
+     device (V01SECAPL067.countrylan.com-Group) Not applicable Not applicable     Not applicable             
+                                                                                  Logged Connections (Last 24 hours): 0
+   QA-DMS-QA-DMS-DR-logserver (ID: 25) Log Server created for CMA - 10.16.107.221 10.200.24.59 Check Point  
+                                                                                                    Healthy  
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Not applicable           Not applicable            Not applicable             
+    DC GROUP ASSIGNED                                                                                       
+     A data collector group has been assigned to this LAST REVISION CHANGE DATA USAGE DATA                
+     device (V01SECAPL067.countrylan.com-Group) Not applicable Not applicable     Not applicable             
+                                                                                  Logged Connections (Last 24 hours): 0
+   SB-DMS-logserver (ID: 15)    Log Server created for CMA - 10.16.107.223 10.16.107.223 Check Point        
+                                                                                                    Healthy  
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Not applicable           Not applicable            Not applicable             
+    DC GROUP ASSIGNED                                                                                       
+     A data collector group has been assigned to this LAST REVISION CHANGE DATA USAGE DATA                
+     device (V01SECAPL067.countrylan.com-Group) Not applicable Not applicable     Not applicable             
+                                                                                  Logged Connections (Last 24 hours): 0
+
+===== PAGE 17 =====
+                                                                                                             
+   SB-DMS-SB-DLS-COLOB-logserver (ID: 13) Log Server created for CMA - 10.16.107.223 10.16.107.228 Check Point Healthy
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Not applicable           Not applicable            Not applicable             
+    DC GROUP ASSIGNED                                                                                       
+     A data collector group has been assigned to this LAST REVISION CHANGE DATA USAGE DATA                
+     device (V01SECAPL067.countrylan.com-Group) Not applicable Not applicable     Not applicable             
+                                                                                  Logged Connections (Last 24 hours): 0
+   SB-DMS-SB-DLS-DR-logserver (ID: 16) Log Server created for CMA - 10.16.107.223 10.200.24.65 Check Point Healthy
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Not applicable           Not applicable            Not applicable             
+    DC GROUP ASSIGNED                                                                                       
+     A data collector group has been assigned to this LAST REVISION CHANGE DATA USAGE DATA                
+     device (V01SECAPL067.countrylan.com-Group) Not applicable Not applicable     Not applicable             
+                                                                                  Logged Connections (Last 24 hours): 0
+   SB-DMS-SB-DMS-DR-logserver (ID: 14) Log Server created for CMA - 10.16.107.223 10.200.24.60 Check Point Healthy
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Not applicable           Not applicable            Not applicable             
+    DC GROUP ASSIGNED                                                                                       
+     A data collector group has been assigned to this LAST REVISION CHANGE DATA USAGE DATA                
+     device (V01SECAPL067.countrylan.com-Group) Not applicable Not applicable     Not applicable             
+                                                                                  Logged Connections (Last 24 hours): 0
+   V01FWLAPL041 (ID: 99)        Discovered by Check Point SCS or CMA - aurora-vsec-fw 10.16.96.99 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.220                                                               
+   V01FWLAPL042 (ID: 97)        Discovered by Check Point SCS or CMA - aurora-vsec-fw 10.16.96.100 Check Point
+                                                                                                    Critical 
+                                 10.16.107.220                                                               
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [BLM-DMS-logserver]. Last updated on 9/30/26
+     A data collector group has been assigned to this  CHANGE DATA               at 2:20:38 PM              
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were detected during policy installation
+                               The last revision normalized, but issues were detected USAGE DATA            
+                               in one or more of the following areas: network objects, Usage data has not been received for 2 days which
+                               service objects, user objects, application objects, exceeds the configured threshold in settings
+                               virtual routers, interfaces or routes                                         
+                                                                                  Logged Connections (Last 24 hours): 0
+                               Revision ID: 13325                                                           
+                               Type: Policy Install                                                          
+                               Date/Time: February 26, 2026, 10:47:26 AM UTC                                 
+                               User: oc96541@10.200.224.195                                                  
+                               Change Count: 0                                                               
+                               Result: Normalized                                                            
+   V01FWLAPL051 (ID: 79)        Discovered by Check Point SCS or CMA - aurora-pci-fw 10.16.96.131 Check Point
+                                                                                                    Critical 
+                                 10.16.107.220                                                               
+
+===== PAGE 18 =====
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [BLM-DMS-logserver]. Last updated on 9/30/26
+     A data collector group has been assigned to this  CHANGE DATA               at 2:20:38 PM              
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were detected during policy installation
+                               The last revision normalized, but issues were detected USAGE DATA            
+                               in one or more of the following areas: network objects, Usage data has not been received for 2 days which
+                               service objects, user objects, application objects, exceeds the configured threshold in settings
+                               virtual routers, interfaces or routes                                         
+                                                                                  Logged Connections (Last 24 hours): 0
+                               Revision ID: 13324                                                           
+                               Type: Policy Install                                                          
+                               Date/Time: February 26, 2026, 10:47:25 AM UTC                                 
+                               User: oc96541@10.200.224.195                                                  
+                               Change Count: 0                                                               
+                               Result: Normalized                                                            
+   V01FWLAPL052 (ID: 81)        Discovered by Check Point SCS or CMA - aurora-pci-fw 10.16.96.132 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.220                                                               
+   V01FWLAPL441 (ID: 35)        Discovered by Check Point SCS or CMA - aurora-tst-vsec-fw 10.17.96.67 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.221                                                               
+   V01FWLAPL442 (ID: 34)        Discovered by Check Point SCS or CMA - aurora-tst-vsec-fw 10.17.96.68 Check Point
+                                                                                                    Critical 
+                                 10.16.107.221                                                               
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [QA-DMS-logserver]. Last updated on 9/30/26 at
+     A data collector group has been assigned to this  CHANGE DATA               2:20:38 PM                 
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were detected during policy installation
+                               The last revision normalized, but issues were detected USAGE DATA            
+                               in one or more of the following areas: network objects, Usage data has not been received for 2 days which
+                               service objects, user objects, application objects, exceeds the configured threshold in settings
+                               virtual routers, interfaces or routes                                         
+                                                                                  Logged Connections (Last 24 hours): 0
+                               Revision ID: 13315                                                           
+                               Type: Policy Install                                                          
+                               Date/Time: February 26, 2026, 8:38:21 AM UTC                                  
+                               User: id93588@10.199.40.196                                                   
+                               Change Count: 0                                                               
+                               Result: Normalized                                                            
+   V01FWLAPL451 (ID: 51)        Orphaned by CMA - 10.16.107.221 aurora-tst-pci-fw 10.17.96.99 Check Point  
+                                                                                                    Inactive 
+   V01FWLAPL452 (ID: 47)        Orphaned by CMA - 10.16.107.221 aurora-tst-pci-fw 10.17.96.100 Check Point Critical
+
+===== PAGE 19 =====
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                                                        Not applicable                                       
+    DC GROUP ASSIGNED        LAST REVISION                                     USAGE DATA                 
+     A data collector group has been assigned to this The last revision normalized, but issues were detected CHANGE DATA Usage data has not been received for 2 days which
+     device (V01SECAPL067.countrylan.com-Group) in one or more of the following areas: network objects, Changes were detected during policy installation exceeds the configured threshold in settings
+                               service objects, user objects, application objects,                           
+                                                                                  Logged Connections (Last 24 hours): 0
+                               virtual routers, interfaces or routes                                         
+                               Revision ID: 463                                                             
+                               Type: Policy Install                                                          
+                               Date/Time: February 12, 2025, 8:06:59 AM UTC                                  
+                               User: oc96442@10.192.226.134                                                  
+                               Change Count: 96                                                              
+                               Result: Normalized                                                            
+   V50FWLAPL001 (ID: 88)        Discovered by Check Point SCS or CMA - V50FWLAPL00 10.199.0.68 Check Point 
+                                                                                                    Inactive 
+                                 10.16.107.220                                                               
+   V50FWLAPL002 (ID: 86)        Discovered by Check Point SCS or CMA - V50FWLAPL00 10.199.0.69 Check Point 
+                                                                                                    Critical 
+                                 10.16.107.220                                                               
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [BLM-DMS-logserver]. Last updated on 9/30/26
+     A data collector group has been assigned to this  CHANGE DATA               at 2:20:38 PM              
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were detected during policy installation
+                               The last revision normalized, but issues were detected USAGE DATA            
+                               in one or more of the following areas: network objects, Usage data has not been received for 2 days which
+                               service objects, user objects, application objects, exceeds the configured threshold in settings
+                               virtual routers, interfaces or routes                                         
+                                                                                  Logged Connections (Last 24 hours): 0
+                               Revision ID: 14242                                                           
+                               Type: Policy Install                                                          
+                               Date/Time: April 8, 2026, 12:15:28 PM UTC                                     
+                               User: oc97118@10.192.225.47                                                   
+                               Change Count: 0                                                               
+                               Result: Normalized                                                            
+   V50FWLAPL401 (ID: 19)        Discovered by Check Point SCS or CMA - V50FWLAPL40 10.199.192.68 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.223                                                               
+   V50FWLAPL402 (ID: 18)        Discovered by Check Point SCS or CMA - V50FWLAPL40 10.199.192.69 Check Point
+                                                                                                    Critical 
+                                 10.16.107.223                                                               
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [SB-DMS-logserver]. Last updated on 9/30/26 at
+     A data collector group has been assigned to this  CHANGE DATA               2:20:38 PM                 
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were retrieved by a manual retrieval instead
+                               The last revision for this device had a normalization of an automatic retrieval USAGE DATA
+                               error                                              Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 12314                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: January 27, 2026, 5:12:25 AM UTC                                   
+                               User: firemon                                                                 
+                               Change Count: 757                                                             
+                               Result: Normalization Error                                                   
+
+===== PAGE 20 =====
+                                                                                                             
+   V50FWLAPL701 (ID: 49)        Discovered by Check Point SCS or CMA - V50FWLAPL70 10.199.64.68 Check Point Inactive
+                                 10.16.107.221                                                               
+   V50FWLAPL702 (ID: 48)        Discovered by Check Point SCS or CMA - V50FWLAPL70 10.199.64.69 Check Point Critical
+                                 10.16.107.221                                                               
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [QA-DMS-logserver]. Last updated on 9/30/26 at
+     A data collector group has been assigned to this  CHANGE DATA               2:20:38 PM                 
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were detected during policy installation
+                               The last revision normalized, but issues were detected USAGE DATA            
+                               in one or more of the following areas: network objects, Usage data has not been received for 2 days which
+                               service objects, user objects, application objects, exceeds the configured threshold in settings
+                               virtual routers, interfaces or routes                                         
+                                                                                  Logged Connections (Last 24 hours): 0
+                               Revision ID: 13526                                                           
+                               Type: Policy Install                                                          
+                               Date/Time: March 7, 2026, 9:52:28 AM UTC                                      
+                               User: id93588@10.199.40.196                                                   
+                               Change Count: 0                                                               
+                               Result: Normalized                                                            
+   v50vpnapl001 (ID: 141)                                                 10.199.3.100  Cisco               
+                                                                                                    Critical 
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Last updated on 6/29/26 at 7:02:24 AM. Timeout Not applicable Not applicable  
+    DC GROUP ASSIGNED         exceeded. <pexpect.pty_spawn.spawn object at                                  
+     A data collector group has been assigned to this 0x7fa8e4406f60> command: /usr/bin/ssh args: CHANGE DATA USAGE DATA
+     device (V50SECAPL008.countrylan.com-Group) ['/usr/bin/ssh', '-p', '22', 'z_firemon@10.199.3.100'] Not applicable Not applicable
+                               buffer (last 100 chars): b'' after: <class                                    
+                                                                                  Logged Connections (Last 24 hours): 0
+                               'pexpect.exceptions.TIMEOUT'> match: None                                     
+                               match_index: None exitstatus: None flag_eof: False                            
+                               pid: 3495207 child_fd: 9 closed: False timeout: 30                            
+                               delimiter: <class 'pexpect.exceptions.EOF'> logfile:                          
+                               None logfile_read: None logfile_send: None maxread:                           
+                               2000 ignorecase: False searchwindowsize: None                                 
+                               delaybeforesend: 0.05 delayafterclose: 0.1                                    
+                               delayafterterminate: 0.1 searcher: searcher_re: 0:                            
+                               re.compile(b'sername:|ogin:') 1:                                              
+                               re.compile(b'[Pp]assword:') 2: re.compile(b'\\r?(?:[a-zA-                     
+                               Z0-9][a-zA-Z0-9\\-\\/\\.]+[a-zA-Z0-9])>') 3:                                  
+                               re.compile(b'\\r?(?:[a-zA-Z0-9][a-zA-Z0-9\\-\\/\\.]+[a-zA-                    
+                               Z0-9])#') 4: re.compile(b'yes/no') 5:                                         
+                               re.compile(b'exchange method found\\. Their offer:') 6:                       
+                               re.compile(b'Host key verification failed|ssh-rsa host                        
+                               key mismatch for')                                                            
+                              LAST REVISION                                                                 
+                               The last revision for this device had a retrieval error                       
+                               Revision ID: 17436                                                           
+                               Type: Scheduled Retrieval                                                     
+                               Date/Time: September 30, 2026, 7:02:13 AM UTC                                 
+                               User: DC_automated                                                            
+                               Change Count: 0                                                               
+                               Result: Retrieval Error                                                       
+   v50vpnapl002-1.countrylan.com (ID: 179)                                10.199.41.212 Cisco      Warning  
+
+===== PAGE 21 =====
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Successful check-for-change retrieval (No changes Enabled Not applicable      
+    DC GROUP ASSIGNED         detected). Last updated on 9/29/26 at 7:55:18 PM                              
+     A data collector group has been assigned to this  CHANGE DATA              USAGE DATA                 
+     device (V50SECAPL008.countrylan.com-Group) LAST REVISION Changes were retrieved by a manual retrieval instead Not applicable
+                               The last revision normalized, but issues were detected of an automatic retrieval
+                                                                                  Logged Connections (Last 24 hours): 0
+                               in one or more of the following areas: network objects,                       
+                               service objects, user objects, application objects,                           
+                               virtual routers, interfaces or routes                                         
+                               Revision ID: 17290                                                           
+                               Type: Manual Retrieval                                                        
+                               Date/Time: September 28, 2026, 4:38:02 PM UTC                                 
+                               User: id93590                                                                 
+                               Change Count: 0                                                               
+                               Result: Normalized                                                            
+   V51ADCAPL352.countrylan.com (ID: 124)                                  10.205.112.143 F5                 
+                                                                                                   Unlicensed
+   V51FWLAPL001 (ID: 63)        Discovered by Check Point SCS or CMA - V51FWLAPL00 10.207.0.68 Check Point Critical
+                                 10.16.107.220                                                               
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [BLM-DMS-logserver]. Last updated on 9/30/26
+     A data collector group has been assigned to this  CHANGE DATA               at 2:20:38 PM              
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were retrieved by a manual retrieval instead
+                               The last revision for this device had a normalization of an automatic retrieval USAGE DATA
+                               error                                              Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 13081                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: February 18, 2026, 5:07:19 PM UTC                                  
+                               User: oc96891                                                                 
+                               Change Count: 8                                                               
+                               Result: Normalization Error                                                   
+   V51FWLAPL002 (ID: 66)        Discovered by Check Point SCS or CMA - V51FWLAPL00 10.207.0.69 Check Point Inactive
+                                 10.16.107.220                                                               
+   V51FWLAPL101 (ID: 102)       Discovered by Check Point SCS or CMA - V51FWLAPL10 10.207.192.68 Check Point Inactive
+                                 10.16.107.220                                                               
+   V51FWLAPL102 (ID: 101)       Discovered by Check Point SCS or CMA - V51FWLAPL10 10.207.192.69 Check Point Critical
+                                 10.16.107.220                                                               
+                                                                                                             
+
+===== PAGE 22 =====
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [BLM-DMS-logserver]. Last updated on 9/30/26
+     A data collector group has been assigned to this  CHANGE DATA               at 2:20:38 PM              
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were retrieved by a manual retrieval instead
+                               The last revision for this device had a normalization of an automatic retrieval USAGE DATA
+                               error                                              Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 13104                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: February 18, 2026, 5:07:26 PM UTC                                  
+                               User: oc96891                                                                 
+                               Change Count: 8                                                               
+                               Result: Normalization Error                                                   
+   V51FWLAPL301 (ID: 68)        Discovered by Check Point SCS or CMA - V51FWLAPL30 10.205.15.53 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.220                                                               
+   V51FWLAPL302 (ID: 67)        Discovered by Check Point SCS or CMA - V51FWLAPL30 10.205.15.54 Check Point
+                                                                                                    Critical 
+                                 10.16.107.220                                                               
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [BLM-DMS-logserver]. Last updated on 9/30/26
+     A data collector group has been assigned to this  CHANGE DATA               at 2:20:38 PM              
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were retrieved by a manual retrieval instead
+                               The last revision for this device had a normalization of an automatic retrieval USAGE DATA
+                               error                                              Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 13090                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: February 18, 2026, 5:07:21 PM UTC                                  
+                               User: oc96891                                                                 
+                               Change Count: 8                                                               
+                               Result: Normalization Error                                                   
+   V51FWLAPL701 (ID: 43)        Discovered by Check Point SCS or CMA - V51FWLAPL70 10.207.64.68 Check Point
+                                                                                                    Inactive 
+                                 10.16.107.221                                                               
+   V51FWLAPL702 (ID: 42)        Discovered by Check Point SCS or CMA - V51FWLAPL70 10.207.64.69 Check Point
+                                                                                                    Critical 
+                                 10.16.107.221                                                               
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable Not receiving usage information. Check status of
+    DC GROUP ASSIGNED         for this device                                    device [QA-DMS-logserver]. Last updated on 9/30/26 at
+     A data collector group has been assigned to this  CHANGE DATA               2:20:38 PM                 
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Changes were retrieved by a manual retrieval instead
+                               The last revision for this device had a normalization of an automatic retrieval USAGE DATA
+                               error                                              Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 12302                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: January 27, 2026, 5:12:14 AM UTC                                   
+                               User: firemon                                                                 
+                               Change Count: 1909                                                            
+                               Result: Normalization Error                                                   
+   VSX-DMS-logserver (ID: 115)  Log Server created for CMA - 10.16.107.219 10.16.107.219 Check Point        
+                                                                                                    Healthy  
+
+===== PAGE 23 =====
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Not applicable           Not applicable            Not applicable             
+    DC GROUP ASSIGNED                                                                                       
+     A data collector group has been assigned to this LAST REVISION CHANGE DATA USAGE DATA                
+     device (V01SECAPL067.countrylan.com-Group) Not applicable Not applicable     Not applicable             
+                                                                                  Logged Connections (Last 24 hours): 0
+   VSX-DMS-VSX-DMS-DR-logserver (ID: 114) Log Server created for CMA - 10.16.107.219 10.200.24.61 Check Point
+                                                                                                    Healthy  
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               Not applicable           Not applicable            Not applicable             
+    DC GROUP ASSIGNED                                                                                       
+     A data collector group has been assigned to this LAST REVISION CHANGE DATA USAGE DATA                
+     device (V01SECAPL067.countrylan.com-Group) Not applicable Not applicable     Not applicable             
+                                                                                  Logged Connections (Last 24 hours): 0
+   Zscaler ZIA-Aurora Non-Production (ID: 145) Discovered by Zscaler ZIA  No Management IP Zscaler Critical 
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable No usage data received. Last updated on 9/30/26 at
+    DC GROUP ASSIGNED         for this device                                    2:20:38 PM                 
+     A data collector group has been assigned to this  CHANGE DATA                                          
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Not applicable    USAGE DATA                 
+                               The last revision for this device had a retrieval error Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 17368                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: September 28, 2026, 5:01:53 PM UTC                                 
+                               User: id93590                                                                 
+                               Change Count: 0                                                               
+                               Result: Retrieval Error                                                       
+   Zscaler ZIA-Aurora Production (ID: 146) Discovered by Zscaler ZIA      No Management IP Zscaler Critical 
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable No usage data received. Last updated on 9/30/26 at
+    DC GROUP ASSIGNED         for this device                                    2:20:38 PM                 
+     A data collector group has been assigned to this  CHANGE DATA                                          
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Not applicable    USAGE DATA                 
+                               The last revision for this device had a retrieval error Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 17366                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: September 28, 2026, 4:59:43 PM UTC                                 
+                               User: id93590                                                                 
+                               Change Count: 0                                                               
+                               Result: Retrieval Error                                                       
+   Zscaler ZIA-Azure South Central DR (ID: 147) Orphaned by Zscaler ZIA   No Management IP Zscaler          
+                                                                                                    Critical 
+
+===== PAGE 24 =====
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable No usage data received. Last updated on 9/30/26 at
+    DC GROUP ASSIGNED         for this device                                    2:20:38 PM                 
+     A data collector group has been assigned to this  CHANGE DATA                                          
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Not applicable    USAGE DATA                 
+                               The last revision for this device had a retrieval error Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 17300                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: September 28, 2026, 4:40:02 PM UTC                                 
+                               User: id93590                                                                 
+                               Change Count: 0                                                               
+                               Result: Retrieval Error                                                       
+   Zscaler ZIA-Chaska DR (ID: 148) Orphaned by Zscaler ZIA                No Management IP Zscaler          
+                                                                                                    Critical 
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable No usage data received. Last updated on 9/30/26 at
+    DC GROUP ASSIGNED         for this device                                    2:20:38 PM                 
+     A data collector group has been assigned to this  CHANGE DATA                                          
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Not applicable    USAGE DATA                 
+                               The last revision for this device had a retrieval error Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 17338                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: September 28, 2026, 4:48:47 PM UTC                                 
+                               User: id93590                                                                 
+                               Change Count: 0                                                               
+                               Result: Retrieval Error                                                       
+   Zscaler ZIA-CO Office Prod Aruba SDWAN (ID: 176) Discovered by Zscaler ZIA No Management IP Zscaler Critical
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable No usage data received. Last updated on 9/30/26 at
+    DC GROUP ASSIGNED         for this device                                    2:20:38 PM                 
+     A data collector group has been assigned to this  CHANGE DATA                                          
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Not applicable    USAGE DATA                 
+                               The last revision for this device had a retrieval error Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 17352                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: September 28, 2026, 4:53:09 PM UTC                                 
+                               User: id93590                                                                 
+                               Change Count: 0                                                               
+                               Result: Retrieval Error                                                       
+   Zscaler ZIA-Country Data Centers (ID: 177) Discovered by Zscaler ZIA   No Management IP Zscaler Critical 
+
+===== PAGE 25 =====
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable No usage data received. Last updated on 9/30/26 at
+    DC GROUP ASSIGNED         for this device                                    2:20:38 PM                 
+     A data collector group has been assigned to this  CHANGE DATA                                          
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Not applicable    USAGE DATA                 
+                               The last revision for this device had a retrieval error Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 17363                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: September 28, 2026, 4:57:31 PM UTC                                 
+                               User: id93590                                                                 
+                               Change Count: 0                                                               
+                               Result: Retrieval Error                                                       
+   Zscaler ZIA-Home-office-(BLM) (ID: 150) Discovered by Zscaler ZIA      No Management IP Zscaler          
+                                                                                                    Critical 
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable No usage data received. Last updated on 9/30/26 at
+    DC GROUP ASSIGNED         for this device                                    2:20:38 PM                 
+     A data collector group has been assigned to this  CHANGE DATA                                          
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Not applicable    USAGE DATA                 
+                               The last revision for this device had a retrieval error Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 17331                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: September 28, 2026, 4:46:36 PM UTC                                 
+                               User: id93590                                                                 
+                               Change Count: 0                                                               
+                               Result: Retrieval Error                                                       
+   Zscaler ZIA-Home Office Labs (ID: 149) Orphaned by Zscaler ZIA         No Management IP Zscaler Critical 
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable No usage data received. Last updated on 9/30/26 at
+    DC GROUP ASSIGNED         for this device                                    2:20:38 PM                 
+     A data collector group has been assigned to this  CHANGE DATA                                          
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Not applicable    USAGE DATA                 
+                               The last revision for this device had a retrieval error Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 17359                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: September 28, 2026, 4:55:20 PM UTC                                 
+                               User: id93590                                                                 
+                               Change Count: 0                                                               
+                               Result: Retrieval Error                                                       
+   Zscaler ZIA-Road Warrior (ID: 152) Discovered by Zscaler ZIA           No Management IP Zscaler Critical 
+
+===== PAGE 26 =====
+                                                                                                             
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable No usage data received. Last updated on 9/30/26 at
+    DC GROUP ASSIGNED         for this device                                    2:20:38 PM                 
+     A data collector group has been assigned to this  CHANGE DATA                                          
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Not applicable    USAGE DATA                 
+                               The last revision for this device had a retrieval error Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 17323                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: September 28, 2026, 4:44:24 PM UTC                                 
+                               User: id93590                                                                 
+                               Change Count: 0                                                               
+                               Result: Retrieval Error                                                       
+   Zscaler ZIA-SO Office Prod Aruba SDWAN (ID: 178) Discovered by Zscaler ZIA No Management IP Zscaler      
+                                                                                                    Critical 
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable No usage data received. Last updated on 9/30/26 at
+    DC GROUP ASSIGNED         for this device                                    2:20:38 PM                 
+     A data collector group has been assigned to this  CHANGE DATA                                          
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Not applicable    USAGE DATA                 
+                               The last revision for this device had a retrieval error Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 17345                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: September 28, 2026, 4:50:59 PM UTC                                 
+                               User: id93590                                                                 
+                               Change Count: 0                                                               
+                               Result: Retrieval Error                                                       
+   Zscaler ZIA-Southern Office (ID: 151) Orphaned by Zscaler ZIA          No Management IP Zscaler Critical 
+    Health Check Results                                                                                     
+    GENERAL                   RETRIEVAL                CHANGE DETECTION          USAGE                       
+    DEVICE LICENSED          LAST RETRIEVAL          CHANGE MONITORING        LOG MONITORING             
+                               The data collector has never received a retrieval status Not applicable No usage data received. Last updated on 9/30/26 at
+    DC GROUP ASSIGNED         for this device                                    2:20:38 PM                 
+     A data collector group has been assigned to this  CHANGE DATA                                          
+     device (V01SECAPL067.countrylan.com-Group) LAST REVISION Not applicable    USAGE DATA                 
+                               The last revision for this device had a retrieval error Usage data has not been received for 2 days which
+                                                                                  exceeds the configured threshold in settings
+                               Revision ID: 17313                                                           
+                               Type: Manual Retrieval                             Logged Connections (Last 24 hours): 0
+                               Date/Time: September 28, 2026, 4:42:14 PM UTC                                 
+                               User: id93590                                                                 
+                               Change Count: 0                                                               
+                               Result: Retrieval Error                                                       
+                                                                                             Version: 2602.6.5 | Username: id93590
+                                                                                         Copyright 2015-2026 FireMon, LLC. All rights reserved.
