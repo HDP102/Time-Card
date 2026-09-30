@@ -1,1 +1,1 @@
-Thanks Sid, super helpful! Quick check on the list: v50vpnapl002-2 is in there twice, should the fourth one be v51vpnapl002-2? Could you also send me the management IPs for those plus n01aggrtr002, and confirm z_firemon has SSH access on them? I'll get them added to FireMon.
+curl -v -m 5 telnet://10.207.41.212:22
