@@ -1,8 +1,9 @@
 Hi Giuseff,
 
-Thanks for the device packs and for opening a separate ticket for Zscaler. Could you share the steps for installing them? I want to make sure I put them in the right place. Should they be uploaded through the console, and if so under which menu, or installed on the servers directly? If it's on the servers, which ones (app server v50secapl019 and/or collector V01SECAPL067), what folder do they go in, and do any services need restarting afterward?
+I uploaded both device packs (zscaler_zia-2602.6.9 and zscaler_cloud-2602.6.7) through Device Packs and ran a retrieval on the ZIA management station afterward. No change: the ZIA devices still show "The data collector has never received a retrieval status for this device," and the latest revision (17497, Oct 1) ended in a retrieval error. I've attached the updated health report.
 
-Once they're in, I'll run a retrieval on the ZIA management station and send you the results.
+A few questions:
 
-Thanks,
-Hardik
+1. Do we need to re-enter or update anything on the ZIA management station after the device pack upgrade, such as the API key, admin username/password, or cloud name (zscalertwo)? Our Zscaler admin re-pasted the API key previously, so I'd like to confirm what's required and where it goes.
+2. Is there a retrieval log on the collector (V01SECAPL067) that shows the specific error for the ZIA retrieval? That would tell us whether it's failing at the network level or at authentication.
+3. Since curl from V01SECAPL067 to zsapi.zscalertwo.net still times out on 443, should the ZIA management station's proxy fields be filled in? And when you pull up ticket #175690, could you check whether the previous fix included a proxy or other setting that was lost when the server was rebuilt?
