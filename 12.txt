@@ -1,1 +1,1 @@
-   curl -v -m 15 https://zsapi.zscalertwo.net/api/v1/authenticatedSession
+Update: the ZIA management station is on V50SECAPL008, not 067. From 008, the legacy endpoint zsapi.zscalertwo.net times out on 443, but the OneAPI endpoint api.zsapi.net connects and returns a 401 as expected. Our tenant has been migrated to ZIdentity. Does the 2602.6.9 ZIA device pack support OneAPI authentication? If so, what credentials does it need (client ID, secret, vanity domain?) and what API URL should we set?
