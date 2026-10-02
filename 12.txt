@@ -1,16 +1,11 @@
-Business Justification:
+Here's this week, mostly FireMon, and it was a good one.
 
-FireMon's data collector needs outbound access to the Zscaler ZIA API so FireMon can retrieve Zscaler policy for compliance and policy analysis. This integration has been broken since the June server migration. FireMon support confirmed their integration only supports the legacy ZIA API endpoint.
+Retrievals are working again. After the upgrade, FireMon support had me refresh the ecosystem and restart the collector, and the Cisco devices started pulling configs again. I also worked with Sid to clean up the Cisco list: fixed a wrong management IP on n01aggrtr001, re-added it as Nexus, added n01aggrtr002 and the new VPN appliances, and confirmed which old devices are decommissioned.
 
-Additional Information:
+Azure is back up using the current secret from CyberArk, and both Cisco APICs are retrieving too.
 
-Platform: Aruba EdgeConnect SD-WAN (Orchestrator), appliances v50pubrtr001 and v50pubrtr002 (HA pair)
-Zone: CorporateLAN → Default
-Source: 10.192.24.52/32 (V50SECAPL008, FireMon data collector)
-Destination: 167.103.95.63/32 (zsapi.zscalertwo.net)
-Port: TCP 443
-Action: Allow, logging Alert
-Placement: above priority 9900 (Match Everything → Deny), alongside the existing exceptions such as 8540
-Evidence: the Orchestrator flow detail shows Security Action Deny, Reason Policy, CorporateLAN → Default, priority 9900, for 10.192.24.52 → 167.103.95.63:443
-If these rules are template-managed, please add it in the template, scoped to the v50 pair.
-Testing: I'll curl from the collector and run a FireMon retrieval once it's in.
+For Zscaler, I found the root cause. The collector's traffic to the Zscaler API is being dropped by the SD-WAN firewall, a deny on CorporateLAN to Default on v50pubrtr001, which lines up with when it broke in June. FireMon confirmed their integration only works with Zscaler's legacy API, and they've linked us to a feature request for the newer one. I've submitted a policy change request for the allow rule, so that should be the last piece.
+
+Check Point is on hold until Nithin finishes pulling his data. The main thing left after that is syslog/usage data.
+
+Rest of today was a support ticket and peer reviews.
