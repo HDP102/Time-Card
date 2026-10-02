@@ -6,7 +6,7 @@ Please add the following URL to an allow list in ZIA URL filtering:
 
 1701cafe.toast.site
 
-Confirmed in Web Insights on 2 October 2026: the host is categorised as Blocked TLD Domains and dropped by the URL Filtering policy, as the .site TLD is on the blocked list. The host should be added to a custom allow category referenced by a URL filtering rule ordered above the TLD blocking rule, scoped to all COUNTRY users. Allow this specific host only; do not exempt the .site TLD.
+Confirmed in Web Insights on 2 October 2026: the host is categorised as Blocked TLD Domains and dropped by the URL Filtering policy, as the .site TLD is on the blocked list. This affects the host and all paths under it. The host should be added to a custom allow category referenced by a URL filtering rule ordered above the TLD blocking rule, scoped to all COUNTRY users. Allow this specific host only; do not exempt the .site TLD or other subdomains of toast.site.
 
 Associated Application: Zscaler Internet Access PROD
 
@@ -18,8 +18,8 @@ Related to a Service Desk Change Order: No
 
 Business Justification
 
-This is the online ordering site for the IAA cafeteria, hosted on the Toast restaurant platform. All COUNTRY employees need access in order to place cafeteria orders. IFB employees can already reach the site as they are not subject to the same TLD policy. Access is view and order only, with no file upload required. The site goes live Tuesday 6 October with a test run scheduled beforehand, so this is time sensitive. Raised on behalf of Bob Taylor under RITM0018248 and SCTASK0021824.
+This is the online ordering site for the IAA cafeteria, hosted on the Toast restaurant platform. All COUNTRY employees need access in order to place cafeteria orders, so the exception is requested for all users rather than a named group. IFB employees can already reach the site as they are not subject to the same TLD policy. Access is view and order only, with no file upload required. The site goes live Tuesday 6 October with a test run scheduled beforehand, so this is time sensitive. Raised on behalf of Bob Taylor under RITM0018248 and SCTASK0021824.
 
 Additional Information
 
-Blocked entry confirmed in Web Insights on 2 October 2026 for user bob.taylor, URL 1701cafe.toast.site/order, categorised as Blocked TLD Domains, policy action Not allowed to browse this category, blocked by URL Filtering. Initial request also logged as dropped due to failed client SSL handshake under the same category. Implementation will be performed by Network Security Engineering. Reference request SCTASK0021824.
+Blocked entry confirmed in Web Insights on 2 October 2026 for user bob.taylor, URL 1701cafe.toast.site/order, categorised as Blocked TLD Domains, policy action Not allowed to browse this category, blocked by URL Filtering. The root host also logged as dropped due to failed client SSL handshake under the same category. Allowing the host covers all paths beneath it. Implementation will be performed by Network Security Engineering. Reference request SCTASK0021824.
