@@ -1,11 +1,8 @@
-Hey Aksa, I've narrowed down the FireMon ZIA issue and wanted your take on it. The ZIA management station in FireMon actually runs from V50SECAPL008 (10.192.24.52), not 067.
+Hey Sid, could you take a look at something on v50pubrtr001 for me? It's the last piece of the FireMon Zscaler integration.
 
-What I'm seeing:
-- When I force a retrieval, 008 sends the connection to zsapi.zscalertwo.net (167.103.95.63) on 443 but never gets a reply. It sits in SYN-SENT and times out.
-- In Web Insights, 10.192.24.52 shows up under Country Data Centers for other traffic (Google and api.zsapi.net, both allowed), but I don't see any entries for zsapi.zscalertwo.net.
-- FireMon confirmed their integration only supports the legacy endpoint, not OneAPI, so zsapi.zscalertwo.net is the one we need.
+FireMon's collector V50SECAPL008 (10.192.24.52) needs to reach zsapi.zscalertwo.net (167.103.95.63) on TCP 443. The connection leaves the server but never gets a reply. A trace shows the first hop is 10.199.40.4, which CMDB lists as v50pubrtr001-lan0. Normal internet traffic from 008 works fine (Google, other Zscaler endpoints), and none of the zsapi attempts show up in Zscaler's web or firewall logs. So it looks like that traffic isn't making it out past the router.
 
-A few questions:
-- Is traffic to Zscaler's own IPs bypassed out of the tunnel for the Country Data Centers location? If so, do you know where that traffic exits?
-- Would that explain why it's not showing up in Web Insights?
-- Can we get 10.192.24.52 to zsapi.zscalertwo.net on TCP 443 working, ideally with an FQDN rule since the IP can change?
+Could you check a few things on v50pubrtr001?
+- How is traffic to Zscaler's own IP ranges (167.103.x.x) routed: into the Zscaler tunnel, or out the internet interface?
+- If it goes out the internet interface, is there NAT and an ACL that would allow 10.192.24.52 to 167.103.95.63:443?
+- Do you see any drops or ACL hits for that flow?
