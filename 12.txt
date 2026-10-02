@@ -1,9 +1,11 @@
-# Production data and run output - never commit
-SharedData/
-recert_output/
-tag_output/
-responses/
-*.xlsm
-*.csv
-*.jsonl
-__pycache__/
+Hey Aksa, I've narrowed down the FireMon ZIA issue and wanted your take on it. The ZIA management station in FireMon actually runs from V50SECAPL008 (10.192.24.52), not 067.
+
+What I'm seeing:
+- When I force a retrieval, 008 sends the connection to zsapi.zscalertwo.net (167.103.95.63) on 443 but never gets a reply. It sits in SYN-SENT and times out.
+- In Web Insights, 10.192.24.52 shows up under Country Data Centers for other traffic (Google and api.zsapi.net, both allowed), but I don't see any entries for zsapi.zscalertwo.net.
+- FireMon confirmed their integration only supports the legacy endpoint, not OneAPI, so zsapi.zscalertwo.net is the one we need.
+
+A few questions:
+- Is traffic to Zscaler's own IPs bypassed out of the tunnel for the Country Data Centers location? If so, do you know where that traffic exits?
+- Would that explain why it's not showing up in Web Insights?
+- Can we get 10.192.24.52 to zsapi.zscalertwo.net on TCP 443 working, ideally with an FQDN rule since the IP can change?
