@@ -1,8 +1,16 @@
-Hey Sid, could you take a look at something on v50pubrtr001 for me? It's the last piece of the FireMon Zscaler integration.
+Business Justification:
 
-FireMon's collector V50SECAPL008 (10.192.24.52) needs to reach zsapi.zscalertwo.net (167.103.95.63) on TCP 443. The connection leaves the server but never gets a reply. A trace shows the first hop is 10.199.40.4, which CMDB lists as v50pubrtr001-lan0. Normal internet traffic from 008 works fine (Google, other Zscaler endpoints), and none of the zsapi attempts show up in Zscaler's web or firewall logs. So it looks like that traffic isn't making it out past the router.
+FireMon's data collector needs outbound access to the Zscaler ZIA API so FireMon can retrieve Zscaler policy for compliance and policy analysis. This integration has been broken since the June server migration. FireMon support confirmed their integration only supports the legacy ZIA API endpoint.
 
-Could you check a few things on v50pubrtr001?
-- How is traffic to Zscaler's own IP ranges (167.103.x.x) routed: into the Zscaler tunnel, or out the internet interface?
-- If it goes out the internet interface, is there NAT and an ACL that would allow 10.192.24.52 to 167.103.95.63:443?
-- Do you see any drops or ACL hits for that flow?
+Additional Information:
+
+Platform: Aruba EdgeConnect SD-WAN (Orchestrator), appliances v50pubrtr001 and v50pubrtr002 (HA pair)
+Zone: CorporateLAN → Default
+Source: 10.192.24.52/32 (V50SECAPL008, FireMon data collector)
+Destination: 167.103.95.63/32 (zsapi.zscalertwo.net)
+Port: TCP 443
+Action: Allow, logging Alert
+Placement: above priority 9900 (Match Everything → Deny), alongside the existing exceptions such as 8540
+Evidence: the Orchestrator flow detail shows Security Action Deny, Reason Policy, CorporateLAN → Default, priority 9900, for 10.192.24.52 → 167.103.95.63:443
+If these rules are template-managed, please add it in the template, scoped to the v50 pair.
+Testing: I'll curl from the collector and run a FireMon retrieval once it's in.
