@@ -1,1 +1,25 @@
-Update: the ZIA management station is on V50SECAPL008, not 067. From 008, the legacy endpoint zsapi.zscalertwo.net times out on 443, but the OneAPI endpoint api.zsapi.net connects and returns a 401 as expected. Our tenant has been migrated to ZIdentity. Does the 2602.6.9 ZIA device pack support OneAPI authentication? If so, what credentials does it need (client ID, secret, vanity domain?) and what API URL should we set?
+Policy Change Type: Proxy
+
+What needs to be changed in proxy policy?
+
+Please add the following URL to an allow list in ZIA URL filtering:
+
+1701cafe.toast.site
+
+Confirmed in Web Insights on 2 October 2026: the host is categorised as Blocked TLD Domains and dropped by the URL Filtering policy, as the .site TLD is on the blocked list. The host should be added to a custom allow category referenced by a URL filtering rule ordered above the TLD blocking rule, scoped to all COUNTRY users. Allow this specific host only; do not exempt the .site TLD.
+
+Associated Application: Zscaler Internet Access PROD
+
+Coordinated Change: No
+
+Related to a Service Desk Incident: No
+
+Related to a Service Desk Change Order: No
+
+Business Justification
+
+This is the online ordering site for the IAA cafeteria, hosted on the Toast restaurant platform. All COUNTRY employees need access in order to place cafeteria orders. IFB employees can already reach the site as they are not subject to the same TLD policy. Access is view and order only, with no file upload required. The site goes live Tuesday 6 October with a test run scheduled beforehand, so this is time sensitive. Raised on behalf of Bob Taylor under RITM0018248 and SCTASK0021824.
+
+Additional Information
+
+Blocked entry confirmed in Web Insights on 2 October 2026 for user bob.taylor, URL 1701cafe.toast.site/order, categorised as Blocked TLD Domains, policy action Not allowed to browse this category, blocked by URL Filtering. Initial request also logged as dropped due to failed client SSL handshake under the same category. Implementation will be performed by Network Security Engineering. Reference request SCTASK0021824.
