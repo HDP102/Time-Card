@@ -1,7 +1,9 @@
-Description
-
-ZIA URL filtering allow list addition for 1701cafe.toast.site, the IAA cafeteria online ordering site hosted on the Toast platform. Host is currently caught by the Blocked TLD Domains rule as .site is on the blocked TLD list. Scoped to all COUNTRY users, specific host only.
-
-Work notes
-
-ZIA — added 1701cafe.toast.site to the Global_Allow_Sites URL category, referenced by URL filtering rule 3 Global Allowed Sites (Allow, Zscaler-ZIA-Users), which precedes the TLD blocking rule. Saved and activated. No rule changes required. Host entry only, no .site TLD exemption and no other toast.site subdomains. Verified in Web Insights 2 Oct for bob.taylor: 1701cafe.toast.site/order blocked by URL Filtering under Blocked TLD Domains, root host logged as dropped due to failed client SSL handshake under the same category. Allowing the host covers all paths. Site goes live 6 Oct. Raised on behalf of Bob Taylor under RITM0018248 / SCTASK0021822.
+# Production data and run output - never commit
+SharedData/
+recert_output/
+tag_output/
+responses/
+*.xlsm
+*.csv
+*.jsonl
+__pycache__/
