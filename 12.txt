@@ -1,11 +1,25 @@
-Here's this week, mostly FireMon, and it was a good one.
+Hi, thanks for picking this up. Here's the background so you don't have to dig.
 
-Retrievals are working again. After the upgrade, FireMon support had me refresh the ecosystem and restart the collector, and the Cisco devices started pulling configs again. I also worked with Sid to clean up the Cisco list: fixed a wrong management IP on n01aggrtr001, re-added it as Nexus, added n01aggrtr002 and the new VPN appliances, and confirmed which old devices are decommissioned.
+Our FireMon data collector, V50SECAPL008 (10.192.24.52), has to reach Zscaler's legacy ZIA API at zsapi.zscalertwo.net to pull our Zscaler policy, and that integration has been broken since around the June server migration. I traced the connection end to end. It leaves the server and goes through v50pubrtr001, where the SD-WAN firewall drops it. That traffic is classified as Zscaler and kept out of the Zscaler tunnel, so it goes out direct internet breakout and hits the CorporateLAN to Default deny at priority 9900. FireMon has confirmed their integration only supports the legacy endpoint, so we need a narrow exception for just this collector.
 
-Azure is back up using the current secret from CyberArk, and both Cisco APICs are retrieving too.
+What I've confirmed:
+- From 008, connections to 167.103.95.63:443 sit in SYN-SENT and time out. Other internet traffic from 008 works.
+- The traffic never reaches Zscaler. There's nothing for it in ZIA web or firewall logs for 10.192.24.52.
+- The Orchestrator flow detail on v50pubrtr001 shows Security Action Deny, Reason Policy, Source Zone CorporateLAN, Dest Zone Default, priority 9900, application Zscaler (address-map), egress Passthrough_AZ_INET1_DefaultOverlay.
 
-For Zscaler, I found the root cause. The collector's traffic to the Zscaler API is being dropped by the SD-WAN firewall, a deny on CorporateLAN to Default on v50pubrtr001, which lines up with when it broke in June. FireMon confirmed their integration only works with Zscaler's legacy API, and they've linked us to a feature request for the newer one. I've submitted a policy change request for the allow rule, so that should be the last piece.
+Requested change:
+- Appliances: v50pubrtr001 and v50pubrtr002 (HA pair)
+- Zone: CorporateLAN to Default, placed above priority 9900
+- Source: 10.192.24.52/32
+- Destination: zsapi.zscalertwo.net / 167.103.95.63
+- Service: TCP 443
+- Action: Allow, logging on
 
-Check Point is on hold until Nithin finishes pulling his data. The main thing left after that is syslog/usage data.
+A few things worth checking while you're in there:
+- If these rules are template-managed, please add it in the template, scoped to the v50 pair, so it doesn't get overwritten.
+- An FQDN or address-group destination would be safer than the /32 if zsapi's IP changes.
+- The flow showed SNAT as None on the breakout path, so if it still fails after the allow, NAT on that path is the next thing to look at.
 
-Rest of today was a support ticket and peer reviews.
+Once it's in, let me know and I'll test with curl from the collector and run a FireMon retrieval. Happy to jump on a call if that's easier.
+
+Thanks!
