@@ -1,25 +1,9 @@
-Hi, thanks for picking this up. Here's the background so you don't have to dig.
+Hi Giuseff,
 
-Our FireMon data collector, V50SECAPL008 (10.192.24.52), has to reach Zscaler's legacy ZIA API at zsapi.zscalertwo.net to pull our Zscaler policy, and that integration has been broken since around the June server migration. I traced the connection end to end. It leaves the server and goes through v50pubrtr001, where the SD-WAN firewall drops it. That traffic is classified as Zscaler and kept out of the Zscaler tunnel, so it goes out direct internet breakout and hits the CorporateLAN to Default deny at priority 9900. FireMon has confirmed their integration only supports the legacy endpoint, so we need a narrow exception for just this collector.
+Thanks for following up. We found the cause, and it's on our side.
 
-What I've confirmed:
-- From 008, connections to 167.103.95.63:443 sit in SYN-SENT and time out. Other internet traffic from 008 works.
-- The traffic never reaches Zscaler. There's nothing for it in ZIA web or firewall logs for 10.192.24.52.
-- The Orchestrator flow detail on v50pubrtr001 shows Security Action Deny, Reason Policy, Source Zone CorporateLAN, Dest Zone Default, priority 9900, application Zscaler (address-map), egress Passthrough_AZ_INET1_DefaultOverlay.
+We'll stay on the legacy endpoint as you suggested. When I traced the traffic from V50SECAPL008, requests to zsapi.zscalertwo.net (167.103.95.63) on 443 were being dropped by our SD-WAN firewall before they ever reached Zscaler. That explains the timeouts and the "never received a retrieval status" errors. The router path changed around our June migration, which lines up with when the ZIA retrievals stopped.
 
-Requested change:
-- Appliances: v50pubrtr001 and v50pubrtr002 (HA pair)
-- Zone: CorporateLAN to Default, placed above priority 9900
-- Source: 10.192.24.52/32
-- Destination: zsapi.zscalertwo.net / 167.103.95.63
-- Service: TCP 443
-- Action: Allow, logging on
+I've submitted an internal firewall change request to allow the collector to reach that endpoint. Once it's applied, I'll run a retrieval on the ZIA management station and update this ticket with the results.
 
-A few things worth checking while you're in there:
-- If these rules are template-managed, please add it in the template, scoped to the v50 pair, so it doesn't get overwritten.
-- An FQDN or address-group destination would be safer than the /32 if zsapi's IP changes.
-- The flow showed SNAT as None on the breakout path, so if it still fails after the allow, NAT on that path is the next thing to look at.
-
-Once it's in, let me know and I'll test with curl from the collector and run a FireMon retrieval. Happy to jump on a call if that's easier.
-
-Thanks!
+Thanks again for the help and for linking us to the OneAPI RFE.
