@@ -1,3 +1,5 @@
-The FireMon data collector (V50SECAPL008, 10.192.24.52) is being blocked from reaching Zscaler's API endpoint, zsapi.zscalertwo.net (167.103.95.63), on TCP 443.
+Hey Nithin, I'm looking at adding Illumio PCE to FireMon. The device pack is already installed, so we'd get rule visibility, compliance checks, and rule usage through hit counters.
 
-The SD-WAN classifies that destination as Zscaler and keeps it out of the Zscaler tunnel, so it goes out the direct internet path on v50pubrtr001. There it hits the CorporateLAN → Default "Match Everything → Deny" rule at priority 9900 and is dropped. The fix is a narrow allow for that source, destination and port above rule 9900.
+There's already a Viewer service account in Illumio called API_Read_Only, with key api_1fcf15e1949758e6a. It was created 2/11 by oc96445 and has never been used. I checked CyberArk and the secret isn't saved there. Do you know if anyone has it? If not, are you okay with me adding a new API key to that service account for FireMon? It's read-only either way.
+
+I'm planning to pull in VEN servers only, not workstations, to keep the license count down. Let me know if you'd want it set up differently.
