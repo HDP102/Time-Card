@@ -1,9 +1,3 @@
-Hi Giuseff,
+The FireMon data collector (V50SECAPL008, 10.192.24.52) is being blocked from reaching Zscaler's API endpoint, zsapi.zscalertwo.net (167.103.95.63), on TCP 443.
 
-Thanks for following up. We found the cause, and it's on our side.
-
-We'll stay on the legacy endpoint as you suggested. When I traced the traffic from V50SECAPL008, requests to zsapi.zscalertwo.net (167.103.95.63) on 443 were being dropped by our SD-WAN firewall before they ever reached Zscaler. That explains the timeouts and the "never received a retrieval status" errors. The router path changed around our June migration, which lines up with when the ZIA retrievals stopped.
-
-I've submitted an internal firewall change request to allow the collector to reach that endpoint. Once it's applied, I'll run a retrieval on the ZIA management station and update this ticket with the results.
-
-Thanks again for the help and for linking us to the OneAPI RFE.
+The SD-WAN classifies that destination as Zscaler and keeps it out of the Zscaler tunnel, so it goes out the direct internet path on v50pubrtr001. There it hits the CorporateLAN → Default "Match Everything → Deny" rule at priority 9900 and is dropped. The fix is a narrow allow for that source, destination and port above rule 9900.
