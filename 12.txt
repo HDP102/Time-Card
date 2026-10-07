@@ -1,5 +1,19 @@
-Hey Nithin, I'm looking at adding Illumio PCE to FireMon. The device pack is already installed, so we'd get rule visibility, compliance checks, and rule usage through hit counters.
+Subject: RE: COUNTRY Financial x FireMon: Use Case Review Recap and Next Steps
 
-There's already a Viewer service account in Illumio called API_Read_Only, with key api_1fcf15e1949758e6a. It was created 2/11 by oc96445 and has never been used. I checked CyberArk and the secret isn't saved there. Do you know if anyone has it? If not, are you okay with me adding a new API key to that service account for FireMon? It's read-only either way.
+Hi Dri,
 
-I'm planning to pull in VEN servers only, not workstations, to keep the license count down. Let me know if you'd want it set up differently.
+Thanks for the recap. A couple of quick updates since Monday:
+
+Zscaler: We found the root cause. It wasn't the OAuth2 endpoint. Our SD-WAN firewall was blocking the collector's traffic to the legacy ZIA API (zsapi.zscalertwo.net). A change is in to allow it, so we expect to stay on the legacy endpoint until the OAuth2 enhancement is available.
+
+Environment: The data collectors are retrieving again. Cisco, Azure, and the Cisco APICs are all pulling successfully. Check Point is being removed once Nithin finishes extracting his data.
+
+Illumio: The PCE device pack is already installed on our side, and Nithin and I are working on the API credentials, so we should be ready for the POC soon.
+
+Aruba Silver Peak: Could you confirm which FireMon version includes the fix? We're currently on 2026.2.6.
+
+Looking forward to the working session.
+
+Thanks,
+Hardik Patel
+Network Security - Security Control Management
