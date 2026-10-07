@@ -1,19 +1,15 @@
-Subject: RE: COUNTRY Financial x FireMon: Use Case Review Recap and Next Steps
+Hey all, thanks for the call this morning. Here's how I'm planning to approach the escalation work, plus a few things I need settled before I build.
 
-Hi Dri,
+Plan
+1. Escalation notifications: one script that sends the reminder stages and escalates when there's no response. For the test, each stage runs one day apart (60-day notice = day 1, 45 = day 2, and so on), so the full loop finishes in about 4 days with evidence captured at every step.
+2. AD validation: before every notification, the script checks that the IT SME and IT SME backup accounts are active in AD, using a read-only lookup with the ticketAPI service account. If an account is disabled, it escalates to the backup/lead right away instead of waiting out the full cycle.
+3. Disablement: only the IT SME and IT SME backup accounts, never the IT Lead or other leaders. The script won't disable accounts itself. At the final stage it hands the list to Gargi's MEA process, which disables the account and notifies the manager, and the direct leader re-enables it. I'll update the email wording to match.
+4. Job failure alerts: a separate script that emails/Teams the team if the recertification jobs fail, so we know within the hour after a Tufin upgrade.
 
-Thanks for the recap. A couple of quick updates since Monday:
+Questions
+- What counts as a response? My suggestion is the rule's certification status in Tufin, since the tickets are already in SecureChange.
+- Which escalation ladder do we test? Swapnil's (SME, then IT Lead, then Owner, day by day) or the 60/45/30/15/7-day version, with Director and Client Owner at 30 and Senior Leader at 15/7? The script can support both, but we should test one.
+- Which rule list for the test: the FER rules under Nitin or the ones under Satish?
+- For Gargi: what we send to trigger the disable, and the AD description text we want (e.g. "Disabled: firewall rule recertification not completed").
 
-Zscaler: We found the root cause. It wasn't the OAuth2 endpoint. Our SD-WAN firewall was blocking the collector's traffic to the legacy ZIA API (zsapi.zscalertwo.net). A change is in to allow it, so we expect to stay on the legacy endpoint until the OAuth2 enhancement is available.
-
-Environment: The data collectors are retrieving again. Cisco, Azure, and the Cisco APICs are all pulling successfully. Check Point is being removed once Nithin finishes extracting his data.
-
-Illumio: The PCE device pack is already installed on our side, and Nithin and I are working on the API credentials, so we should be ready for the POC soon.
-
-Aruba Silver Peak: Could you confirm which FireMon version includes the fix? We're currently on 2026.2.6.
-
-Looking forward to the working session.
-
-Thanks,
-Hardik Patel
-Network Security - Security Control Management
+Once these are settled I'll get started, and I'll check the code into GitHub for review as it comes together.
