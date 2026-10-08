@@ -1,15 +1,17 @@
-Hey all, thanks for the call this morning. Here's how I'm planning to approach the escalation work, plus a few things I need settled before I build.
+Hi Swapnil, thanks for checking. The escalation framework is in progress. Here's what it covers so far:
+- Reminders go out stage by stage and never repeat.
+- Before every email it checks that the IT SME and IT SME Backup accounts are active in AD.
+- Every send is saved as evidence.
+- After the deadline it produces a disable list (IT SME and IT SME Backup only) for MEA. The script does not disable any accounts itself.
+- A separate watchdog checks every hour that Tufin is up and the job ran, and emails an alert if not.
 
-Plan
-1. Escalation notifications: one script that sends the reminder stages and escalates when there's no response. For the test, each stage runs one day apart (60-day notice = day 1, 45 = day 2, and so on), so the full loop finishes in about 4 days with evidence captured at every step.
-2. AD validation: before every notification, the script checks that the IT SME and IT SME backup accounts are active in AD, using a read-only lookup with the ticketAPI service account. If an account is disabled, it escalates to the backup/lead right away instead of waiting out the full cycle.
-3. Disablement: only the IT SME and IT SME backup accounts, never the IT Lead or other leaders. The script won't disable accounts itself. At the final stage it hands the list to Gargi's MEA process, which disables the account and notifies the manager, and the direct leader re-enables it. I'll update the email wording to match.
-4. Job failure alerts: a separate script that emails/Teams the team if the recertification jobs fail, so we know within the hour after a Tufin upgrade.
+To finish it and start the compressed test, I need:
 
-Questions
-- What counts as a response? My suggestion is the rule's certification status in Tufin, since the tickets are already in SecureChange.
-- Which escalation ladder do we test? Swapnil's (SME, then IT Lead, then Owner, day by day) or the 60/45/30/15/7-day version, with Director and Client Owner at 30 and Senior Leader at 15/7? The script can support both, but we should test one.
-- Which rule list for the test: the FER rules under Nitin or the ones under Satish?
-- For Gargi: what we send to trigger the disable, and the AD description text we want (e.g. "Disabled: firewall rule recertification not completed").
+1. FER rule list (you): both the Nitin and Satish sets. Each rule needs the Rule UID (or Device + Rule Name), the owner columns (IT SME, IT SME Backup, IT Lead, Client Owner, IT Director, IT Senior Leader) and the certification date.
+2. Escalation ladder (Nitin): Megan's 60/45/30/15/7 or the day-by-day SME → IT Lead → Owner → disable. Both are already in the script, so this is just a switch.
+3. Disable handoff (Gargi): what format MEA wants the list in, how it gets to them (email, ticket or file drop), and the AD description text to use.
+4. "No longer needed": how it will show up in Tufin after this week's RE check, so those rules count as answered.
+5. Where owners recertify: the link or instructions to put in the email, plus the sender mailbox and signature.
 
-Once these are settled I'll get started, and I'll check the code into GitHub for review as it comes together.
+
+Once I have #1 and #2, I can start the compressed test with all mail coming only to me. The rest can be added as we get it.
