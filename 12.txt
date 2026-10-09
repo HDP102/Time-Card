@@ -1,9 +1,13 @@
-Hey Shahul, thanks for putting the rule in on SCTASK0022073. I tested from the FireMon collector (10.192.24.52) and it's still timing out to 167.103.95.63 on 443, both with curl and with a FireMon retrieval. DNS still resolves to that same IP, so the destination matches.
+Hi Giuseff,
 
-Could you double check a few things when you get a chance?
-- Is the rule on both v50pubrtr001 and v50pubrtr002? Most of the traffic goes through 001.
-- Is its priority number lower than 9900, so it's evaluated before the Match Everything deny?
-- Is it in the CorporateLAN to Default zone pair?
-- If these come from a template, did the change get pushed to the appliances?
+Good news, Zscaler ZIA is retrieving again. There were two issues:
 
-I can run the curl again while you watch the flows in Orchestrator if that's easier. Thanks!
+1. Our SD-WAN firewall was blocking the data collector (V50SECAPL008) from reaching zsapi.zscalertwo.net on 443. Our network team added an allow rule, and the management station now retrieves and normalizes successfully.
+
+2. The ZIA child devices were assigned to V01SECAPL067's collector group, while the management station is on V50SECAPL008. They all showed "The data collector has never received a retrieval status for this device." I moved one child to V50SECAPL008's group as a test, and it retrieved right away, so I moved the rest. All of them now show successful retrievals.
+
+Can you confirm it's fine to keep the child devices on the same collector group as the management station (V50SECAPL008)? If so, I think we're good to close this ticket.
+
+Thanks again for all your help on this.
+
+Hardik
