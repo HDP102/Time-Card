@@ -1,17 +1,9 @@
-Hi Swapnil, thanks for checking. The escalation framework is in progress. Here's what it covers so far:
-- Reminders go out stage by stage and never repeat.
-- Before every email it checks that the IT SME and IT SME Backup accounts are active in AD.
-- Every send is saved as evidence.
-- After the deadline it produces a disable list (IT SME and IT SME Backup only) for MEA. The script does not disable any accounts itself.
-- A separate watchdog checks every hour that Tufin is up and the job ran, and emails an alert if not.
+Hey Shahul, thanks for putting the rule in on SCTASK0022073. I tested from the FireMon collector (10.192.24.52) and it's still timing out to 167.103.95.63 on 443, both with curl and with a FireMon retrieval. DNS still resolves to that same IP, so the destination matches.
 
-To finish it and start the compressed test, I need:
+Could you double check a few things when you get a chance?
+- Is the rule on both v50pubrtr001 and v50pubrtr002? Most of the traffic goes through 001.
+- Is its priority number lower than 9900, so it's evaluated before the Match Everything deny?
+- Is it in the CorporateLAN to Default zone pair?
+- If these come from a template, did the change get pushed to the appliances?
 
-1. FER rule list (you): both the Nitin and Satish sets. Each rule needs the Rule UID (or Device + Rule Name), the owner columns (IT SME, IT SME Backup, IT Lead, Client Owner, IT Director, IT Senior Leader) and the certification date.
-2. Escalation ladder (Nitin): Megan's 60/45/30/15/7 or the day-by-day SME → IT Lead → Owner → disable. Both are already in the script, so this is just a switch.
-3. Disable handoff (Gargi): what format MEA wants the list in, how it gets to them (email, ticket or file drop), and the AD description text to use.
-4. "No longer needed": how it will show up in Tufin after this week's RE check, so those rules count as answered.
-5. Where owners recertify: the link or instructions to put in the email, plus the sender mailbox and signature.
-
-
-Once I have #1 and #2, I can start the compressed test with all mail coming only to me. The rest can be added as we get it.
+I can run the curl again while you watch the flows in Orchestrator if that's easier. Thanks!
