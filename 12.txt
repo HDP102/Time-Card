@@ -1,13 +1,3 @@
-Hi Giuseff,
+Here's this week. Zscaler is finally back up in FireMon, which was the last integration still down from the June rebuild. Shahul added the SD-WAN firewall rule, and we got it working on a call together. I also found that the Zscaler child devices were assigned to a different data collector than the management station, so they never showed as retrieved. Once I moved them over, all of them started retrieving. I'm closing out the ticket with FireMon support now.
 
-Good news, Zscaler ZIA is retrieving again. There were two issues:
-
-1. Our SD-WAN firewall was blocking the data collector (V50SECAPL008) from reaching zsapi.zscalertwo.net on 443. Our network team added an allow rule, and the management station now retrieves and normalizes successfully.
-
-2. The ZIA child devices were assigned to V01SECAPL067's collector group, while the management station is on V50SECAPL008. They all showed "The data collector has never received a retrieval status for this device." I moved one child to V50SECAPL008's group as a test, and it retrieved right away, so I moved the rest. All of them now show successful retrievals.
-
-Can you confirm it's fine to keep the child devices on the same collector group as the management station (V50SECAPL008)? If so, I think we're good to close this ticket.
-
-Thanks again for all your help on this.
-
-Hardik
+I also started on next steps. The Illumio device pack is already installed in FireMon, so I have the management station set up and I'm waiting on an API key from Nithin to connect it. I checked on Aruba SD-WAN as well, and FireMon support confirmed they stopped supporting Silver Peak after 2026, so that one's off the table. I've been looking through the FireMon API docs for automation ideas, starting with health monitoring so we'd catch a broken integration in days rather than months. After the use case review with FireMon, we're setting up a working session with Rick and Dri on the six-month rule review process. Rest of the week was peer reviews.
