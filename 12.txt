@@ -1,6 +1,8 @@
-resources
-| where name contains "firemon"
-   or name contains "v50secapl"
-   or tostring(tags) contains "firemon"
-| project name, type, resourceGroup, location, tags
-| order by name asc
+Thanks Leonard, this has what I need: rule details, the AMPS owners on both source and destination, Last Hit, and the Certification Date I'll use to track who has recertified.
+
+On your question about "text contains S1KO": I think it's catching more than Sathish's rules. Row 2 (Ping Firewall Interfaces) has owners like Kingsbury and Richmond, so it looks like S1KO matched on some other field (certification owner or a comment, maybe) rather than on ownership. A couple of thoughts:
+
+1. Could we keep only the rules where S1KO appears in the AMPS owners lists (source or destination, any role)? That would give us the rules his apps actually own.
+2. In the meeting we talked about ~7,000 rules, and this search found 3,544. Do you know which number is right?
+
+Also, can you re-run the export daily with the same columns while the test is running? The script reads the Certification Date each day to drop rules that have been recertified.
