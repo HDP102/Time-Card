@@ -1,1 +1,3 @@
-Hey Nithin, quick process question on FireMon. Nick confirmed it's hybrid, so next step is approving the ICS_Firemon/Production pair and building an empty ruleset with the combined scope (A Firemon/E Production + ICS_Firemon/Production). Do I put that through the usual policy change submission, then leave the ruleset in draft until the Phase 3 rules are built? And if so, do I close the ticket once the draft is in place, or keep it open until everything gets provisioned?
+Thanks Gargi, and welcome Hareesh!
+
+Yes, the plan is to run it from a server as a daily scheduled job. We haven't picked one yet, so right now I'm testing from my laptop. Does your API need anything specific from the calling side, like a fixed IP or hostname to allowlist, or a particular service account? That would help us pick the right box.
