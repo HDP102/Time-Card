@@ -1,11 +1,1 @@
-Sure, I'll handle our side. The script is already built to hand the disable list to MEA, so adding the API call is quick once I know a few things. Can you check with Gargi, or point me to the API gateway team?
-
-1. Which gateway is it, and how do we register to call it?
-2. The endpoint URL, test and prod if there are both
-3. How we authenticate: client ID and secret, API key, or the ticketAPI account? It has to work unattended.
-4. The request format: what fields she expects (CorpID, reason, campaign, requester?), one account per call or a batch, and a sample request if she has one
-5. The response: does it return a status for each account?
-6. Is there a test mode or non-prod endpoint, so we can try it without disabling a real account?
-7. Any rate limits
-
-One more for us: this needs to run from a server or job host rather than my laptop. Do we have a box for it? It will need firewall access to the gateway.
+Hey Nick, I’ve been going through your procedure doc and working my first app through the tracker to learn the process. I picked FireMon to start since it’s low impact (in prod but not actively relied on yet) and I know the hosts well from the FireMon integration work I’ve been doing lately. Got through Phase 1 and it classifies as Hybrid since the Core unmanaged objects carry A Firemon labels. In Phase 2 though, I noticed there’s no FireMon specific ruleset in Core. It only picks up the baseline Default Internal Apps and External Web Access policies through label groups, so there’s nothing app specific to update. My thought was to create a new ruleset scoped to both A Firemon/E Production and ICS_Firemon/Production. Is that how you’d want a case like this handled, or am I missing something?
