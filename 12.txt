@@ -1,1 +1,9 @@
-Hey, couple FireMon questions when you get a chance. For the Azure tag fix, I’m putting in a Cloud Support Request to PaaS Cloud Support to change V50SECAPL008 from Zscaler Private Access/App Connector to Firemon, and add a Role tag to it and V50SECAPL019. What Role value should I ask for, just Server to match the Core label, or is there a naming standard we’re using? Also for the ICS_Firemon/Production pair and ruleset, do I put that through the usual policy change submission and leave it in draft until the Phase 3 rules are in, and do I close that ticket after the draft or keep it open until it’s provisioned?
+Thanks Hareesh, this is really helpful. A few follow-ups so I can get our side ready:
+
+1. Who's the contact on the MuleSoft team for onboarding/registration?
+2. Requester field: Gargi mentioned a specific service account. Which account should we use, and is it also the one we register with MuleSoft?
+3. 5-user threshold: our disable list could be more than 5 accounts. Should we send the full list in one request and let the approvals run, or do you prefer batches? We don't want to work around the approval step.
+4. Response: will it return a request ID, and is there a way to check the final status for each account once approvals finish? We log every action as evidence.
+5. Any rough ETA on the non-prod URL and the payload spec?
+
+Once I have the spec and non-prod access, wiring it into our script is quick.
