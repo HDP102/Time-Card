@@ -1,9 +1,20 @@
-Thanks Hareesh, this is really helpful. A few follow-ups so I can get our side ready:
+Summary
 
-1. Who's the contact on the MuleSoft team for onboarding/registration?
-2. Requester field: Gargi mentioned a specific service account. Which account should we use, and is it also the one we register with MuleSoft?
-3. 5-user threshold: our disable list could be more than 5 accounts. Should we send the full list in one request and let the approvals run, or do you prefer batches? We don't want to work around the approval step.
-4. Response: will it return a request ID, and is there a way to check the final status for each account once approvals finish? We log every action as evidence.
-5. Any rough ETA on the non-prod URL and the payload spec?
+Azure tag corrections for FireMon VMs (Illumio CloudSecure segmentation)
 
-Once I have the spec and non-prod access, wiring it into our script is quick.
+Description
+
+Requesting tag updates on two existing FireMon VMs in subscription aa93adc2-6201-48c7-817b-710f9e7f0643, resource group prod-rg-appliances-01. These tags drive Illumio CloudSecure labeling for the Illumio Core to ICS migration, and the current values are causing the VMs to be labeled incorrectly.
+
+V50SECAPL008 (FireMon data collector, 10.192.24.52)
+Application: change from “Zscaler Private Access” to “Firemon”
+Role: change from “App Connector” to “Server”
+
+V50SECAPL019 (FireMon application server, 10.192.24.123)
+Role: add “Server” (currently missing)
+
+All other existing tags should stay as they are.
+
+Additional Information
+
+Owner is Network Security Engineering (CI18170). The Workload Mapping review earlier this year confirmed V50SECAPL008 as Firemon/Server, but the Azure tags still show the old Zscaler values, so they were either never applied or overwritten after the VMs moved from prod-rg-platform-01. Please contact Hardik Patel with any questions.
