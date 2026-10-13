@@ -1,20 +1,6 @@
-Summary
+Thanks Hareesh, that works. Two small things on our side:
 
-Azure tag corrections for FireMon VMs (Illumio CloudSecure segmentation)
+1. Could the completion/summary notifications go to cybersecuritynps@pge.com, so the whole team has the record?
+2. For the >5 approvals, who should be set as approvers on our side? @Swapnil, I'm thinking you and Nitin. Can you confirm?
 
-Description
-
-Requesting tag updates on two existing FireMon VMs in subscription aa93adc2-6201-48c7-817b-710f9e7f0643, resource group prod-rg-appliances-01. These tags drive Illumio CloudSecure labeling for the Illumio Core to ICS migration, and the current values are causing the VMs to be labeled incorrectly.
-
-V50SECAPL008 (FireMon data collector, 10.192.24.52)
-Application: change from “Zscaler Private Access” to “Firemon”
-Role: change from “App Connector” to “Server”
-
-V50SECAPL019 (FireMon application server, 10.192.24.123)
-Role: add “Server” (currently missing)
-
-All other existing tags should stay as they are.
-
-Additional Information
-
-Owner is Network Security Engineering (CI18170). The Workload Mapping review earlier this year confirmed V50SECAPL008 as Firemon/Server, but the Azure tags still show the old Zscaler values, so they were either never applied or overwritten after the VMs moved from prod-rg-platform-01. Please contact Hardik Patel with any questions.
+I'll watch for the non-prod URL and spec on Friday and start with Postman.
