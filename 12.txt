@@ -1,8 +1,11 @@
-Thanks Leonard, this has what I need: rule details, the AMPS owners on both source and destination, Last Hit, and the Certification Date I'll use to track who has recertified.
+Sure, I'll handle our side. The script is already built to hand the disable list to MEA, so adding the API call is quick once I know a few things. Can you check with Gargi, or point me to the API gateway team?
 
-On your question about "text contains S1KO": I think it's catching more than Sathish's rules. Row 2 (Ping Firewall Interfaces) has owners like Kingsbury and Richmond, so it looks like S1KO matched on some other field (certification owner or a comment, maybe) rather than on ownership. A couple of thoughts:
+1. Which gateway is it, and how do we register to call it?
+2. The endpoint URL, test and prod if there are both
+3. How we authenticate: client ID and secret, API key, or the ticketAPI account? It has to work unattended.
+4. The request format: what fields she expects (CorpID, reason, campaign, requester?), one account per call or a batch, and a sample request if she has one
+5. The response: does it return a status for each account?
+6. Is there a test mode or non-prod endpoint, so we can try it without disabling a real account?
+7. Any rate limits
 
-1. Could we keep only the rules where S1KO appears in the AMPS owners lists (source or destination, any role)? That would give us the rules his apps actually own.
-2. In the meeting we talked about ~7,000 rules, and this search found 3,544. Do you know which number is right?
-
-Also, can you re-run the export daily with the same columns while the test is running? The script reads the Certification Date each day to drop rules that have been recertified.
+One more for us: this needs to run from a server or job host rather than my laptop. Do we have a box for it? It will need firewall access to the gateway.
