@@ -1,3 +1,1 @@
-Thanks Gargi, and welcome Hareesh!
-
-Yes, the plan is to run it from a server as a daily scheduled job. We haven't picked one yet, so right now I'm testing from my laptop. Does your API need anything specific from the calling side, like a fixed IP or hostname to allowlist, or a particular service account? That would help us pick the right box.
+Hey, couple FireMon questions when you get a chance. For the Azure tag fix, I’m putting in a Cloud Support Request to PaaS Cloud Support to change V50SECAPL008 from Zscaler Private Access/App Connector to Firemon, and add a Role tag to it and V50SECAPL019. What Role value should I ask for, just Server to match the Core label, or is there a naming standard we’re using? Also for the ICS_Firemon/Production pair and ruleset, do I put that through the usual policy change submission and leave it in draft until the Phase 3 rules are in, and do I close that ticket after the draft or keep it open until it’s provisioned?
