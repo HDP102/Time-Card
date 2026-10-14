@@ -1,1 +1,24 @@
-Hey Nick, quick one. The procedure calls for change management when updating rulesets (Phase 2 hybrid) and for rules in Phase 3, but doesn’t mention it for creating a new ruleset or approving the app/deployment pair. For FireMon that’s just the ICS_Firemon/Production pair approval and an empty ruleset with the combined scope, no rules. Do you want a policy change ticket for that, or just build it and save change management for the Phase 3 rules?
+Form fields
+
+Policy Change Type: Firewall
+Firewall Change Type: Firewall Access
+Internet Facing: No
+Associated Application: FireMon
+Coordinated Change: No
+Related to Incident: No
+Related to Change Order: No
+
+Change Details row
+
+Change Type: the closest option to Add or New
+Source: N/A, ruleset scope only
+Destination: A: Firemon / E: Production + ICS_Firemon / Production
+Service: N/A, no rules in this change
+
+Business Justification
+
+Illumio Core to CloudSecure (ICS) migration, Phase 2 for FireMon (Production). Approve the ICS_Firemon / Production application and deployment pair, and create a new FireMon ruleset with a shared scope covering both the Core labels (A: Firemon, E: Production) and the ICS labels (ICS_Firemon, Production). FireMon is a hybrid application: app server V50SECAPL019 and collector V50SECAPL008 are in Azure, and collector V01SECAPL067 is on-prem in Aurora. FireMon has no existing ruleset today. The ruleset is created with no rules and enforcement is not changed, so there is no traffic impact. Allow rules will follow under a separate change after Phase 3 traffic review.
+
+Additional Information
+
+Approach confirmed with Nick Bauman (hybrid, single ruleset with combined Core and ICS scope). Nick confirmed creating the ruleset and approving the pair have no policy impact; submitted for tracking. ICS_Firemon / Production is pending approval in Application Discovery (created by discovery rule 08/07/2026, auto approve off). Current resources: V50SECAPL019 and V50SECAPL008 VMs, V50SECAPL019-nsg, NIC v50secapl019757, and V50SECAPL020-nsg. V50SECAPL008’s NIC and NSG have been tagged by PaaS Cloud Support and will join the app once ICS syncs. V50SECAPL007-nsg and V50SECAPL020-nsg are confirmed unattached and will be removed in Cloud’s next decommission change. Azure VM tags corrected under RITM0019697. Tracked in ICS Migration Tracking workbook, FireMon / Prod.
