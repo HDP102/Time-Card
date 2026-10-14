@@ -1,1 +1,26 @@
-Hey Harish, Illumio still hasn’t picked up the tags on the 008 NIC and NSG. It’s showing the old values with a last sync from September. Could you double check in the portal that the Application and Environment tags are on v50secapl008529 and V50SECAPL008-nsg? If they look good on your end, it’s just Illumio’s sync and I’ll check again tomorrow morning.
+Here’s the Network Security Policy Change form, updated with everything from today.
+
+Form fields
+
+Policy Change Type: Firewall
+Firewall Change Type: Firewall Access
+Internet Facing: No
+Associated Application: FireMon
+Coordinated Change: No
+Related to Incident: No
+Related to Change Order: No
+
+Firewall Access Change Details, one row:
+
+Change Type: the closest option to Add or New
+Source: N/A, ruleset scope only
+Destination: A: Firemon / E: Production + ICS_Firemon / Production
+Service: N/A, no rules in this change
+
+Business Justification
+
+Illumio Core to CloudSecure (ICS) migration, Phase 2 for FireMon (Production). Approve the ICS_Firemon / Production application and deployment pair, and create a new FireMon ruleset with a shared scope covering both the Core labels (A: Firemon, E: Production) and the ICS labels (ICS_Firemon, Production). FireMon is a hybrid application: app server V50SECAPL019 and collector V50SECAPL008 are in Azure, and collector V01SECAPL067 is on-prem in Aurora. FireMon has no existing ruleset today. The ruleset is created with no rules and enforcement is not changed, so there is no traffic impact. Allow rules will follow under a separate change after Phase 3 traffic review.
+
+Additional Information
+
+Approach confirmed with Nick Bauman (hybrid, single ruleset with combined Core and ICS scope). ICS_Firemon / Production is pending approval in Application Discovery (created by discovery rule 08/07/2026, auto approve off). Current resources: V50SECAPL019 and V50SECAPL008 VMs, V50SECAPL019-nsg, NIC v50secapl019757, and V50SECAPL020-nsg. V50SECAPL008’s NIC (v50secapl008529) and NSG (V50SECAPL008-nsg) have been tagged by PaaS Cloud Support and will join the app once ICS syncs. V50SECAPL007-nsg and V50SECAPL020-nsg are confirmed unattached and will be removed in Cloud’s next decommission change. Azure VM tags corrected under RITM0019697. Tracked in ICS Migration Tracking workbook, FireMon / Prod.
