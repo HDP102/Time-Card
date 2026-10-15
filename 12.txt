@@ -1,19 +1,8 @@
-Type Consult.
+Yes, that’s doable. The recert tickets are already in SecureChange through the API, and SecureTrack keeps the certification status and dates on each rule, so I can pull both into one sheet per rule (ticket #, status, decision, certified date, expiration, owner) and refresh it on a schedule.
 
-Short description:
-Azure tag updates for GoAlert resources (Illumio ICS migration)
+For the SharePoint side, the quickest option is writing the file into a synced SharePoint library. A direct SharePoint/Graph API connection would need an Azure app registration through IT. A few questions:
 
-Description:
-
-Requesting Azure tag updates on the GoAlert resources below to support the Illumio CORE to ICS migration. Illumio Cloud Secure builds the application label from the Application tag, and these resources are either missing it or have a value that doesn’t match the rest of the app.
-
-Change the Application tag value from “GOALERT PROD” to “GOALERT” on:
-prod-database-psql-004 (prod-rg-database-01)
-np-database-psql-008 (nonprod-rg-database-01)
-Add the Application tag “GOALERT” to:
-prod-appservice-goalert-pl (prod-rg-appservice-01)
-prod-appservice-goalert-pl.nic.e1ba3316-5ffe-4885-8c0d-572d27d54b52 (prod-rg-appservice-01)
-np-appservice-goalert-pl (nonprod-rg-appservice-01)
-np-appservice-goalert-pl.nic.dd6fa69f-9a60-449a-9e88-16ff70d35408 (nonprod-rg-appservice-01)
-
-No other tag changes are needed. The Environment tags are already correct. Reference: prod-appservice-goalert and np-appservice-goalert already have Application = GOALERT.
+Which SharePoint site/library should it go in?
+Should it update the existing sheet, or create a separate Tufin export tab/file?
+Which columns does your team need?
+How often should it refresh (daily)?
