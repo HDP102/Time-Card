@@ -1,8 +1,14 @@
-Yes, that’s doable. The recert tickets are already in SecureChange through the API, and SecureTrack keeps the certification status and dates on each rule, so I can pull both into one sheet per rule (ticket #, status, decision, certified date, expiration, owner) and refresh it on a schedule.
+Hey Victor, here’s what I found going through Leonard’s scripts:
 
-For the SharePoint side, the quickest option is writing the file into a synced SharePoint library. A direct SharePoint/Graph API connection would need an Azure app registration through IT. A few questions:
+Neither V2 nor V3 calls ServiceNow. In Hybrid_automation2.py the MuleSoft and ServiceNowAPI steps are commented out. In Hybrid_automation3.py those slots are empty; it only runs SecureApp, DNS, AMPS and the results email.
+ServiceNowAPI.py is hardcoded to ticket 111666. The argument parsing is commented out, so it never picks up the ticket that fired the trigger.
+ServiceNowAPI.py sends an empty change request. It only sets the assignment group to “CAB Approval,” and the change number never gets written back to the Tufin ticket.
+mulesoftAPI.py only runs on prod. On keeppgelabsecure it logs “NO mulesoft in LAB only” and exits.
+The SendEmailResults_V2 launcher passes 1 argument; the script needs 5. It exits right away, and since it runs in the background, SecureChange still sees the step as successful.
 
-Which SharePoint site/library should it go in?
-Should it update the existing sheet, or create a separate Tufin export tab/file?
-Which columns does your team need?
-How often should it refresh (daily)?
+Can you check on the lab server:
+
+Settings → SecureChange API: which script is attached to which workflow/step/trigger
+Whether the server copy of ServiceNowAPI.py still has 111666 hardcoded
+Whether anything calls ServiceNowAPI.py, or if it’s only run by hand
+The log for the test ticket: /opt/tufin/data/securechange/scripts/opt/PGE/logs/output-<ticket>_pge_automation.log
