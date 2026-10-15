@@ -1,209 +1,453 @@
-Sharma, Maheshwar
-0 minutes 3 seconds0:03
-Sharma, Maheshwar 0 minutes 3 seconds
-The other day, you know, in the chat, so this is how it would look like if I understand fully based on the information that I received. So, firewall request, so users will create a firewall request to get into, it will create a, like, you know, trigger an event that event will call a Python or a bash script, which is like ServiceNow API.py, that is the Python script.
-Sharma, Maheshwar 0 minutes 26 seconds
-This will, in turn, connect to our, like, you know, Servicenow change request template, and it will it will through the HTTPS that is the rest API call to using the OAuth mechanism, and it will just reside here, you know, so I think this one would, like, know.
-Sharma, Maheshwar 0 minutes 45 seconds
-Depict on how the ticket is created. Yeah, you can you can validate it. I know, Victor, you know, if I am if I have missed anything, you know.
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+'''
+================================================================================================================================
+Created on June 15, 2026
 
-Mier III, Victor
-0 minutes 54 seconds0:54
-Mier III, Victor 0 minutes 54 seconds
-No, it seems right.
-SM
+Pacific Gas and Electric - Network Protection - CyberSecurity 
 
-Sharma, Maheshwar
-0 minutes 57 seconds0:57
-Sharma, Maheshwar 0 minutes 57 seconds
-And what is the prod to fill, like, you know, the URL or the server name? Because I'm trying to, like, yeah, I know that we are not in the prod, but I'm trying to capture the prod, like, you know, architecture for the production. Okay, okay.
+Purpose:  create ServiceNow for remedy works. 
 
-Mier III, Victor
-1 minute 8 seconds1:08
-Mier III, Victor 1 minute 8 seconds
-Let me put it in the chat. Hang on.
+@author: Leonard Mudrock - l6M4
 
-Pathuri, Ramesham
-1 minute 12 seconds1:12
-Pathuri, Ramesham 1 minute 12 seconds
-Yeah, so one thing, Mahesh, I just wanted to understand it. Can you go back and then share?
-SM
+Developed by using PyDev in Eclipse IDE
 
-Sharma, Maheshwar
-1 minute 12 seconds1:12
-Sharma, Maheshwar 1 minute 12 seconds
-Like it.
-Sharma, Maheshwar 1 minute 14 seconds
-Yeah.
-Sharma, Maheshwar 1 minute 16 seconds
-Yeah, one second, but yeah, I will, I will, I will do it one second.
+Instruction:
+you need to install packages first on a new machine:
+pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org requests
+pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org  <package name>
 
-Mier III, Victor
-38 minutes 3 seconds38:03
-Mier III, Victor 38 minutes 3 seconds
-No, this one's the only one that's pointing to Servicenow.
+=================================================================================================================================
+'''
 
-Pathuri, Ramesham
-38 minutes 7 seconds38:07
-Pathuri, Ramesham 38 minutes 7 seconds
-Okay, and then is there any password expiration?
+import sys
+sys.path.append('/opt/tufin/data/securechange/scripts/opt/PGE/scripts/Libraries')
+import time
+import logging
+import datetime
+import ipaddress
+import json
+import re
+import xml.etree.ElementTree as ET
+from datetime import date
+import requests
+import RESTapiUtilities
+import send_failed_email_notification as sendEmail
+import warnings
+warnings.filterwarnings('ignore')
 
-Mier III, Victor
-38 minutes 12 seconds38:12
-Mier III, Victor 38 minutes 12 seconds
-There could be. We can check that as well. Okay, so this is the actual workflow. You see which one it is. And this is in the lab.
 
-Pathuri, Ramesham
-38 minutes 15 seconds38:15
-Pathuri, Ramesham 38 minutes 15 seconds
-Yeah, can you type?
+def get_token():
+    
+    logging.info("Function: get_token")
+    logging.info("from ServiceNow")
+    
+    token=''
+    
+    url = 'https://'+serviceNowhostname+'/oauth_token.do'
+    
+    payload = {
+        "grant_type": "client_credentials",
+        "username": serviceNowUser,
+        "client_id": serviceNowClientID,
+        "client_secret": serviceNowClientSecret
+    }
+    
+    response=''
+    countResponse=0
+    while response == '':
+        try:
+            response = requests.post(url, data=payload, verify=False)
+            break
+        except requests.ConnectionError:
+            countResponse=countResponse+1
+            logging.info('sleep - ServiceNow server is unreachable  wait...')
+            time.sleep(60)
+            if countResponse <= 30:
+                continue
+            else:
+                errorMessage = "Function: get_token =  ServiceNow connection Error...\n\n"+\
+                       "  Unable to get a response's data from ServiceNow server.  Check a network connectivity issue.\n"
+                logging.error(errorMessage)
+                #sendEmail.Scripted_Test(ticketID, errorMessage)
+                sys.exit(1)
+    try:
+        #print('response token')
+        #print(response.json())
+        
+        token = str(response.json()['access_token'])
+        #print('token = '+token)
 
-Mier III, Victor
-38 minutes 25 seconds38:25
-Mier III, Victor 38 minutes 25 seconds
-OK, so.
-Mier III, Victor 38 minutes 29 seconds
-Assignments. Okay, there's no pre-assignment script there. Let's see if he had one here. No pre-assignment script. This is where you're assigning the tickets.
-Mier III, Victor 38 minutes 44 seconds
-Okay, so also no pre-assigned scripts.
+        response.close()
+    except:
+        errorMessage = "Function: get_token =  Unable to get a token cookies from ServiceNow server. either bad password or bad user ID or a token is not found in ServiceNow's JSON....\n\n"
+        logging.error(errorMessage)
+        #sendEmail.Scripted_Test(ticketID, errorMessage)
+        sys.exit(1)
+                
+    return token
 
-Manthena, Jyothi
-38 minutes 48 seconds38:48
-Manthena, Jyothi 38 minutes 48 seconds
-Big web.
 
-Mier III, Victor
-38 minutes 48 seconds38:48
-Mier III, Victor 38 minutes 48 seconds
-Okay, okay, here we go. This is where he's starting to run the script to send e-mail results.
-Mier III, Victor 38 minutes 58 seconds
-So I think he's probably used a trigger instead of a script inside the workflow. So there's an alternate way that these things happen. So let me go to that instead.
-Mier III, Victor 39 minutes 27 seconds
-I don't see where he did this, unless it's inside this script, and I'll put that in the chat.
+def get_sysID(token): 
+    
+    logging.info("Function: get_sysID")       
 
-Pathuri, Ramesham
-39 minutes 36 seconds39:36
-Pathuri, Ramesham 39 minutes 36 seconds
-Yeah, that workaround troubleshoot is okay. We don't want to take it as a workaround, Victor, the way, yeah.
+    sysID=''
 
-Mier III, Victor
-39 minutes 44 seconds39:44
-Mier III, Victor 39 minutes 44 seconds
-No, no, no, I just want to see where the script is that's triggering it. This is like an API trigger and we were inside the workflow calling the same script. So I...
+    header = {"Authorization" : "Bearer "+token, "Content-Type" : "application/json"}
 
-Pathuri, Ramesham
-39 minutes 47 seconds39:47
-Pathuri, Ramesham 39 minutes 47 seconds
-Okay. Okay.
-Pathuri, Ramesham 39 minutes 52 seconds
-Mhm.
-Pathuri, Ramesham 39 minutes 58 seconds
-Is there any scheduled Java or something?
+    url = 'https://'+serviceNowhostname+'/api/now/table/std_change_record_producer?sysparm_query=name=Tufin - Standard Change^active=true&sysparm_fields=sys_id,name,active'
 
-Mier III, Victor
-40 minutes 1 second40:01
-Mier III, Victor 40 minutes 1 second
-No, it wouldn't work. Well, I can check. Earthquake drill, earthquake drill, earthquake drill. When you hear this message, you hear this message. Practice, drop, cover, and hold on. Yes, I see. Practice, drop, cover, and hold on. Thank you.
-PH
+    response=''
+    countResponse=0
+    while response == '':
+        try:
+            response = requests.get(url, headers=header,verify=False)
+            break
+        except requests.ConnectionError:
+            countResponse=countResponse+1
+            logging.info('sleep - ServiceNow server is unreachable  wait...')
+            time.sleep(60)
+            if countResponse <= 30:
+                continue
+            else:
+                errorMessage = "Function: get_sysID =   Connection Error...\n\n"+\
+                       "  Unable to get a response's data from ServiceNow server.  Check a network connectivity issue.\n"
+                logging.error(errorMessage)
+                #sendEmail.Scripted_Test(ticketID, errorMessage)
+                sys.exit(1) 
+    
+    if response.status_code != 200:
+        errorMessage = "\n Function: get_sysID = error: bad response from getting URL (ServiceNow) ...\n"+\
+                       " response status code = %d"%response.status_code
+        logging.error(errorMessage)
+        #sendEmail.Scripted_Test(ticketID, errorMessage)
+        sys.exit(1)
+    else:
+        logging.info('Function: get_sysID: successful')
+        json_data = response.json()
+        
+        #print('jsonData')
+        #print(json_data)
+        for elemKey in json_data:
+            if elemKey == 'result':
+                #print(json_data[elemKey])
+                
+                for elemKey2 in json_data[elemKey]:
+                    #print('elemKey2')
+                    #print(elemKey2)
+                    if 'sys_id' in elemKey2:
+                        sysID = elemKey2['sys_id']
+                        print('sysID = '+sysID)
+                                        
+    return sysID
 
-Patel, Hardik
-40 minutes 16 seconds40:16
-Patel, Hardik 40 minutes 16 seconds
-Yeah.
+def newChange(newToken, newSysID):
+    
+    logging.info("Function: newChange")
+    logging.info("from ServiceNow")
+    
+    changeIDvalue='' 
+    changeSysIDvalue=''
+    
+    url = 'https://'+serviceNowhostname+'/api/sn_chg_rest/change/standard/'+newSysID
+    
+    header = {"Authorization" : "Bearer "+newToken, "Content-Type" : "application/json"}
+    
+    response=''
+    countResponse=0
+    while response == '':
+        try:
+            response = requests.post(url, headers=header, verify=False)
+            break
+        except requests.ConnectionError:
+            countResponse=countResponse+1
+            logging.info('sleep - ServiceNow server is unreachable  wait...')
+            time.sleep(60)
+            if countResponse <= 30:
+                continue
+            else:
+                errorMessage = "Function: newChange =  ServiceNow connection Error...\n\n"+\
+                       "  Unable to get a response's data from ServiceNow server.  Check a network connectivity issue.\n"
+                logging.error(errorMessage)
+                #sendEmail.Scripted_Test(ticketID, errorMessage)
+                sys.exit(1)
+    try:
+        json_data = response.json()
+        #print('json_data')
+        #print(json_data)
+        
+        for elemKey in json_data:
+            if elemKey == 'result':
+                #print(json_data[elemKey])
+                
+                for elemKey2 in json_data[elemKey]:
+                    #print('elemKey2')
+                    #print(elemKey2)
+                    if elemKey2 == 'task_effective_number':
+                        createChangeNumberDict = json_data[elemKey][elemKey2]
+                        #print('createChangeNumberDict')
+                        #print(createChangeNumberDict)
+                        changeIDvalue = createChangeNumberDict['value']
+                        #print('changeIDvalue = '+changeIDvalue)
+                    if elemKey2 == 'sys_id':
+                        createSysIDDict = json_data[elemKey][elemKey2]
+                        #print('createSysIDDict')
+                        #print(createSysIDDict)
+                        changeSysIDvalue = createSysIDDict['value']
+                        #print('changeSysIDvalue = '+changeSysIDvalue)
+    except:
+        errorMessage = "Function: newChange =  Unable to get a new Change from ServiceNow server. either bad password or bad user ID or a token is not found in ServiceNow's JSON....\n\n"
+        logging.error(errorMessage)
+        #sendEmail.Scripted_Test(ticketID, errorMessage)
+        sys.exit(1)
+                
+    return changeIDvalue, changeSysIDvalue
 
-Mier III, Victor
-40 minutes 17 seconds40:17
-Mier III, Victor 40 minutes 17 seconds
-Yeah, both phones just had a shake out alert message. Sorry about that. Let me go over to the lab here real quick.
-PH
+def get_newChangeInfo(newToken, sysIDvalue):
+    
+    logging.info("Function: get_newChangeInfo")
+    logging.info("from ServiceNow")
+    
+    resultData='' 
+    
+    url = 'https://'+serviceNowhostname+'/api/sn_chg_rest/change/standard/'+sysIDvalue
+    
+    header = {"Authorization" : "Bearer "+newToken, "Content-Type" : "application/json"}
+    
+    response=''
+    countResponse=0
+    while response == '':
+        try:
+            response = requests.get(url, headers=header, verify=False)
+            break
+        except requests.ConnectionError:
+            countResponse=countResponse+1
+            logging.info('sleep - ServiceNow server is unreachable  wait...')
+            time.sleep(60)
+            if countResponse <= 30:
+                continue
+            else:
+                errorMessage = "Function: get_newChangeInfo =  ServiceNow connection Error...\n\n"+\
+                       "  Unable to get a response's data from ServiceNow server.  Check a network connectivity issue.\n"
+                logging.error(errorMessage)
+                #sendEmail.Scripted_Test(ticketID, errorMessage)
+                sys.exit(1)
+    try:
+        json_data = response.json()
+        #print('json_data')
+        #print(json_data)
+        
+        for elemKey in json_data:
+            if elemKey == 'result':
+                #print(json_data[elemKey])
+                resultData = json_data[elemKey]
+                break
+                
+    except:
+        errorMessage = "Function: get_newChangeInfo =  Unable to get a new Change from ServiceNow server. either bad password or bad user ID or a token is not found in ServiceNow's JSON....\n\n"
+        logging.error(errorMessage)
+        #sendEmail.Scripted_Test(ticketID, errorMessage)
+        sys.exit(1)
+                
+    return resultData
 
-Patel, Hardik
-40 minutes 42 seconds40:42
-Patel, Hardik 40 minutes 42 seconds
-Victor, that alert was actually relevant for me until Saturday. I'm in Southern California.
+def patch_ChangeData(newToken, sysIDvalue):
+    
+    logging.info("Function: patch_ChangeData")
+    logging.info("from ServiceNow")
+    
+    patchResultData='' 
+    
+    url = 'https://'+serviceNowhostname+'/api/sn_chg_rest/change/standard/'+sysIDvalue
+    
+    header = {"Authorization" : "Bearer "+newToken, "Content-Type" : "application/json"}
+    
+    payload = { "assignment_group": "CAB Approval" }
+    
+    response=''
+    countResponse=0
+    while response == '':
+        try:
+            response = requests.patch(url, headers=header, json=payload, verify=False)
+            break
+        except requests.ConnectionError:
+            countResponse=countResponse+1
+            logging.info('sleep - ServiceNow server is unreachable  wait...')
+            time.sleep(60)
+            if countResponse <= 30:
+                continue
+            else:
+                errorMessage = "Function: patch_ChangeData =  ServiceNow connection Error...\n\n"+\
+                       "  Unable to get a response's data from ServiceNow server.  Check a network connectivity issue.\n"
+                logging.error(errorMessage)
+                #sendEmail.Scripted_Test(ticketID, errorMessage)
+                sys.exit(1)
+    try:
+        json_data = response.json()
+        #print('json_data')
+        #print(json_data)
+        
+        for elemKey in json_data:
+            if elemKey == 'result':
+                #print(json_data[elemKey])
+                patchResultData = json_data[elemKey]
+                break
+                
+    except:
+        errorMessage = "Function: patch_ChangeData =  Unable to get a new Change from ServiceNow server. either bad password or bad user ID or a token is not found in ServiceNow's JSON....\n\n"
+        logging.error(errorMessage)
+        #sendEmail.Scripted_Test(ticketID, errorMessage)
+        sys.exit(1)
+                
+    return patchResultData
 
-Mier III, Victor
-40 minutes 49 seconds40:49
-Mier III, Victor 40 minutes 49 seconds
-Yeah, you got it too, the shake out alert, yeah.
-PH
 
-Patel, Hardik
-40 minutes 51 seconds40:51
-Patel, Hardik 40 minutes 51 seconds
-No, I didn't get it. I just heard it. I was like, oh, wait, I am in California. Georgia, we don't get hurt quick. So, but.
+def execute_ServiceNow():
+    
+    logging.info("Function: cexecute_ServiceNow()")
+    
+    newToken = get_token()
+    print('newToken = '+newToken)
+    
+    newSysID = get_sysID(newToken)
+    print('newSysID = '+newSysID)
+    
+    changeIDvalue, sysIDvalue = newChange(newToken, newSysID)
+    print('sysIDvalue = '+sysIDvalue)
+    print('changeIDvalue = '+changeIDvalue)
+    
+    result = get_newChangeInfo(newToken, sysIDvalue)
+    print('get_newChangeInfo -> result = '+str(result))
+    
+    patchResult = patch_ChangeData(newToken, sysIDvalue)
+    print('\n\npatchResult = '+str(patchResult))
+    
+    
+    
+#=========================== main program =======================================
 
-Mier III, Victor
-40 minutes 55 seconds40:55
-Mier III, Victor 40 minutes 55 seconds
-Yeah.
-Mier III, Victor 40 minutes 58 seconds
-Oh yeah, you're traveling, right? You're in San Diego. Yeah.
-PH
-Patel, Hardik
-40 minutes 59 seconds40:59
-Patel, Hardik 40 minutes 59 seconds
-Yeah.
+'''
+if len(sys.argv) < 10:
+    print(" ")
+    print(" ")
+    print("please specify ticketID, requester's LANID, Tufin SecureTrack IP, user for Tufin, password for Tufin. ServiceNow-hostname, user for ServiceNow, client ID for ServiceNow, client secret for ServiceNow,  for example,") 
+    print("python3.6 ServiceNowAPI.py <ticketID> <requesterLANID> keeppgelabsecure.utility.pge.com <userTufin> <passwordTufin> pgedev.servicenowservices.com <ServiceNow userName> <ServiceNow client ID> <ServiceNow client secret>")
+    print(" ")
+    print(" ")
+    errorMessage = 'missing passing arguments for ServiceNowAPI.py =>  Please check in ServiceNowAPI.py '
+    sendEmail.Scripted_Test('-1', errorMessage)
+    sys.exit(1) 
 
-Mier III, Victor
-41 minutes 5 seconds41:05
-Mier III, Victor 41 minutes 5 seconds
-I'm not seeing anything in here that he's actually triggering, but let me double check. These are all rimmed out. This one's active. This one's active. That's just transferring files to back up his trigger service. And then these are rimmed out.
-PH
-Patel, Hardik
-41 minutes 12 seconds41:12
-Patel, Hardik 41 minutes 12 seconds
-Yeah.
+ticketID = sys.argv[1]
+ticketID = ticketID.strip()
 
-Mier III, Victor
-41 minutes 26 seconds41:26
-Mier III, Victor 41 minutes 26 seconds
-Yeah, he he's not running anything.
-Mier III, Victor 41 minutes 32 seconds
-In in Chron tab, so I don't know how he's doing it other than here it would be inside this.
-Mier III, Victor 41 minutes 43 seconds
-I'll put that in the chat. I believe he's running it out of here, Hardache, clean text.
-PH
-Patel, Hardik
-41 minutes 48 seconds41:48
-Patel, Hardik 41 minutes 48 seconds
-Okay, let me get on Servicenow.
-Patel, Hardik 41 minutes 52 seconds
-Thank you.
+requesterLANID = sys.argv[2]
+requesterLANID = requesterLANID.strip()
 
-Mier III, Victor
-42 minutes 16 seconds42:16
-Mier III, Victor 42 minutes 16 seconds
-Could also be this one.
-Mier III, Victor 43 minutes 44 seconds
-Yeah, Hardik, if you, if you wanna, you can share your screen so we have entertainment while you're walking through the code.
+SecureTrackIPname = sys.argv[3]
+SecureTrackIPname = SecureTrackIPname.strip()
 
-Pathuri, Ramesham
-43 minutes 56 seconds43:56
-Pathuri, Ramesham 43 minutes 56 seconds
-Maybe something needs to be troubleshooted, and then, and then fixed, let us know if you wanna reconnect.
-Pathuri, Ramesham 44 minutes 10 seconds
-Thank you.
+tufinUser = sys.argv[4]
+tufinUser = tufinUser.strip()
 
-Mier III, Victor
-44 minutes 12 seconds44:12
-Mier III, Victor 44 minutes 12 seconds
-Is that okay with you, Hardik, if you troubleshoot his code? All right. I can stay on with you for a little while if you want.
-PH
-Patel, Hardik
-44 minutes 12 seconds44:12
-Patel, Hardik 44 minutes 12 seconds
-Mhm.
-Patel, Hardik 44 minutes 14 seconds
-Yeah.
-Patel, Hardik 44 minutes 16 seconds
-Yeah, I had to take a look at it.
-Patel, Hardik 44 minutes 20 seconds
-No, it's fine. I'll take a look at it.
+tufinPassword = sys.argv[5]
+tufinPassword = tufinPassword.strip()
 
-Pathuri, Ramesham
-44 minutes 32 seconds44:32
-Pathuri, Ramesham 44 minutes 32 seconds
-Let me stop right now.
-
-Pathuri, Ramesham stopped transcription
+serviceNowhostname = sys.argv[6]
+serviceNowhostname = serviceNowhostname.strip()
+
+serviceNowUser = sys.argv[7]
+serviceNowUser = serviceNowUser.strip()
+
+serviceNowClientID = sys.argv[8]
+serviceNowClientID = serviceNowClientID.strip()
+
+serviceNowClientSecret = sys.argv[9]
+serviceNowClientSecret = serviceNowClientSecret.strip()
+'''
+
+#temp
+ticketID = '111666'
+requesterLANID = 'L6M4'
+SecureTrackIPname = 'keeppgelabsecure.utility.pge.com'
+tufinUser = 'ticketAPI'
+tufinPassword = 'ticketAPI = password here'
+
+'''
+DEV: https://pgedev.servicenowservices.com/
+username:Apr-APP-3548-Dev-TufinAP
+client_id: ask ServiceNow person - get client id key
+client_secret:ask ServiceNow person - get client secret id key
+grant_type:client_credentials
+'''
+#serviceNowhostname = 'pgedev.servicenowservices.com'
+#serviceNowUser = 'Apr-APP-3548-Dev-TufinAP'
+#serviceNowClientID = 'ask ServiceNow person - get client id key'
+#serviceNowClientSecret = 'ask ServiceNow person - get client secret id key'
+
+'''
+TEST: https://pgetest.servicenowservices.com/
+username:Apr-APP-3548-Tst-TufinAPI
+client_id:ask ServiceNow person - get client id key
+client_secrete:ask ServiceNow person - get client secret id key
+'''
+serviceNowhostname = 'pgetest.servicenowservices.com'
+serviceNowUser = 'Apr-APP-3548-Tst-TufinAPI'
+serviceNowClientID = 'ask ServiceNow person - get client id key'
+serviceNowClientSecret = 'ask ServiceNow person - get client secret id key'
+
+
+
+if 'Admin' in requesterLANID:
+    requesterLANID = requesterLANID.replace('Admin', '')
+elif 'admin' in requesterLANID:
+    requesterLANID = requesterLANID.replace('admin', '')
+elif 'ADMIN' in requesterLANID:
+    requesterLANID = requesterLANID.replace('ADMIN', '')
+    
+
+readCSVdirectory = "/opt/tufin/data/securechange/scripts/opt/PGE/scripts/readCSVfiles/"
+directoryCSV = "/opt/tufin/data/securechange/scripts/opt/PGE/CSVfiles/"
+directoryLogsPath = '/opt/tufin/data/securechange/scripts/opt/PGE/logs/'
+#directoryLogsPath = 'C:\\Users\\l6m4\\OneDrive - PGE\\Desktop\\Desktop\\logs\\'
+#readCSVdirectory = "C:\\Users\\l6m4\\OneDrive - PGE\\Desktop\\Desktop\\AMPS_CSV\\"
+
+logfilename = directoryLogsPath+'output-'+ticketID+'_pge_automation.log'
+
+logging.basicConfig(filename=logfilename, filemode='a', format='%(levelname)s - %(message)s')
+logging.getLogger().setLevel(logging.INFO)
+
+logging.info(' ')
+logging.info(' ********** Enter ServiceNow API ************** ')
+logging.info("a list of passing arguments in ServiceNowAPI.py script except Tufin's userID and password plus ServiceNow's clientID and client secret:")
+logging.info('ticketID = '+str(ticketID))
+logging.info('requesterLANID = '+str(requesterLANID))
+logging.info('SecureTrackIPname = '+str(SecureTrackIPname))
+logging.info('serviceNowhostname = '+str(serviceNowhostname))
+
+#---------------- start timer ----------------------
+ts = time.time()
+start_time_each_zone = ts
+#------------- last of start timer --------------------
+
+crash_flag = False
+
+logging.info(" ")
+logging.info("========== main: execute_ServiceNow API ===============")
+
+execute_ServiceNow()
+
+        
+#---------------- end timer ----------------------    
+ts = time.time()
+end_time_each_zone = ts
+totalTime = end_time_each_zone - start_time_each_zone 
+#------------- last of end timer --------------------
+    
+#----------------- result timer --------------------
+logging.info("\n\ntime  = ")
+logging.info(totalTime)
+#------------- last of result timer --------------------
+
+sys.exit(0)
