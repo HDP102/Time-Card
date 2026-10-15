@@ -1,7 +1,411 @@
-Hey Nithin, quick update on FireMon. Phase 1 and 2 are done: ICS_Firemon / Production are approved, and the ruleset “A: Firemon | E: Production” is provisioned with both scopes and no rules yet. For Phase 3 I pulled 24 hours of cloud traffic for 019 and 008, from right after FireMon retrieval was fixed. Most of the month before that was broken, so it wouldn’t have been a good baseline.
+'''
+================================================================================================================================
 
-The flows I’m marking as required are 067 and 008 to 019 on 443, the ZPA connectors to 019 on 443, 008 to the B2B VPN appliances on 22, and 008 to the ZIA API on 443, along with DNS, NTP and SMTP from 019 and 008.
+Created on Dec 1, 2021; last updated on March 25, 2026
 
-I have a few questions before I build the rules. I’m seeing v50secapl002 scanning 019 and 008, and V50APPWIN024 and V50APPWIN019 hitting them in what looks like ServiceNow discovery. Is there a shared policy that covers scanners and discovery, or do we add those into each app’s ruleset? Same question for DNS, NTP and SMTP: is there a core services policy that already covers those, or should they go in the FireMon ruleset? And since 067 is unmanaged on prem, is it fine to reference it by its Core labels as the source in the 443 rule to 019?
+Pacific Gas and Electric - Network Protection - CyberSecurity 
 
-I’ll put in a change for the rules once I have the list finalized.
+Purpose:  collect input data from the Excel file; thus, executing for DNS checking; then AMPS checking, 
+          then Tenable's vulnerabilities checking; then SecureAPP checking 
+
+@author: Leonard Mudrock - l6M4
+
+=================================================================================================================================
+'''
+
+from subprocess import Popen, PIPE
+import sys
+sys.path.append('/opt/tufin/data/securechange/scripts/opt/PGE/scripts/Libraries')
+import logging
+import time
+import TufinUtilities
+import send_failed_email_notification as sendEmail
+
+
+#=========================== main program =======================================
+
+newTicketID = sys.argv[1]
+newTicketID = newTicketID.strip()
+
+requesterLANID = sys.argv[2]
+requesterLANID = requesterLANID.strip()
+
+requesterName = sys.argv[3]
+requesterName = requesterName.strip()
+
+pythonPath = sys.argv[4]
+pythonPath = pythonPath.strip()
+
+#==============================================
+
+#---------------- start timer ----------------------
+ts = time.time()
+start_time = ts
+#------------- last of start timer --------------------
+
+
+readCSVdirectory = "/opt/tufin/data/securechange/scripts/opt/PGE/scripts/readCSVfiles/"
+directoryLogsPath = '/opt/tufin/data/securechange/scripts/opt/PGE/logs/'
+
+logfilename = directoryLogsPath+'output-'+newTicketID+'_pge_automation.log'
+
+logging.basicConfig(filename=logfilename, filemode='a', format='%(levelname)s - %(message)s')
+logging.getLogger().setLevel(logging.INFO)
+
+logging.info(' ')
+logging.info(' ********** Enter pge automation script: Hybrid_automation2.py ************** ')
+
+getInputData = TufinUtilities.collectInputs(readCSVdirectory, newTicketID)
+
+newTicketID = str(newTicketID)
+requesterName = str(requesterName)
+requesterLANID = str(requesterLANID)
+pythonPath = str(pythonPath)
+SecureChangeIPname = str(getInputData['tufinServer'])
+tufinUser = str(getInputData['tufinUser'])
+tufinPassword = str(getInputData['tufinPassword'])
+tenableIPname = str(getInputData['tenableServer'])
+tenableUser = str(getInputData['tenableUser'])
+tenablePassword = str(getInputData['tenablePassword'])
+UDNreqName = '\"'+str(getInputData['UDNcontactPerson'])+'\"'
+UDNreqEmail = str(getInputData['UDNcontactPersonEmail'])
+ODNreqName = '\"'+str(getInputData['ODNcontactPerson'])+'\"'
+ODNreqEmail = str(getInputData['ODNcontactPersonEmail'])
+NPSEmail = str(getInputData['NPSEmail'])
+ODNvulnerabilityYear = str(getInputData['ODNvulnerabilityYear'])
+ODNvulnerabilityMonth = str(getInputData['ODNvulnerabilityMonth'])
+ODNvulnerabilityDate = ODNvulnerabilityMonth+'-'+ODNvulnerabilityYear
+tenableACCESS_KEY = str(getInputData['tenableACCESS_KEY'])
+tenableSECRET_KEY = str(getInputData['tenableSECRET_KEY'])
+
+logging.info("list of arguments in the script: pge_automation.py")
+logging.info("Ticket ID = "+newTicketID)
+logging.info("requester name = "+requesterName)
+logging.info("requester's LANID = "+requesterLANID)
+logging.info("")
+logging.info("a list of collecting data from Excel in Hybrid_automation2.py script:")
+logging.info("Tufin server = "+SecureChangeIPname)
+logging.info("Tufin user ID = "+tufinUser)
+logging.info("Tenable server = "+tenableIPname)
+logging.info("Tenable user ID = "+tenableUser)
+logging.info("UDN contact person = "+UDNreqName)
+logging.info("UDN contact person's email = "+UDNreqEmail)
+logging.info("ODN contact person = "+ODNreqName)
+logging.info("ODN contact person's email = "+ODNreqEmail)
+logging.info("NPS email = "+NPSEmail)
+logging.info("ODN vulnerability Date = "+ODNvulnerabilityDate)
+
+#---------- troubleshooting only below ------------------
+#logging.info('tufinPassword = '+tufinPassword)
+#logging.info('tenablePassword = '+tenablePassword)
+#logging.info('tenableACCESS_KEY = '+tenableACCESS_KEY)
+#logging.info('tenableSECRET_KEY = '+tenableSECRET_KEY)
+
+#==============================================
+
+result05=999
+result1=999
+result2=999
+result3=999
+result4=999
+result5=999
+result6=999
+result7=999
+result8=999
+
+#============== command 0.5 ===================================================
+#   This is for a business justification check if it's less than 20 char or not
+
+command05 = pythonPath+' /opt/tufin/data/securechange/scripts/opt/PGE/scripts/SecureAPP_DNS_AMPS_Tenable/OpenRequestVerification2.py '+newTicketID+' '+requesterName
+isDone = False
+try:
+    process05 = Popen(command05, stdout=PIPE, stderr=PIPE, shell=True)
+    process05.wait()
+    result05, resultError05 = process05.communicate()
+    logging.info("process05.returncode = "+str(process05.returncode))
+    if process05.returncode == 5:
+        # this is for "redo" or "ticket is closed automatically"
+        isDone = True
+        resultError05 = ''
+    if process05.returncode != 0:
+        errorMessage = str(resultError05)
+        logging.error(errorMessage)
+        errorMessage = 'result05 = ' + str(result05)
+        logging.error(errorMessage)
+except:
+    errorMessage = str(resultError05)+"\n\n There is a Popen error result after executing OpenRequestVerification2.py  under Hybrid_automation2.py.  Please check."
+    logging.error(errorMessage)
+    print(errorMessage)
+    #sendEmail.Scripted_Test(newTicketID, errorMessage)
+
+if isDone:
+    logging.info('***** enter return status = 5 as redo or closed ticket automatically *****')
+    sys.exit(0)
+
+#============== command 1 - HOLD ================================
+#  This is for MuleSoft API for creating CRQ. 
+'''
+command1 = pythonPath+' /opt/tufin/data/securechange/scripts/opt/PGE/scripts/SecureAPP_DNS_AMPS_Tenable/mulesoftAPI.py '+newTicketID+' createPR'
+
+try:
+    process1 = Popen(command1, stdout=PIPE, stderr=PIPE, shell=True)
+    process1.wait()
+    result1, resultError1 = process1.communicate()
+    logging.info("process1.returncode = "+str(process1.returncode))
+    if process1.returncode != 0:
+        errorMessage = str(resultError1)
+        logging.error(errorMessage)
+        errorMessage = 'result1 = ' + str(result1)
+        logging.error(errorMessage)
+except:
+    errorMessage = str(resultError1)+"\n\n There is a Popen error result after executing MulesoftAPI.py  under Hybrid_automation2.py.  Please check."
+    logging.error(errorMessage)
+    sendEmail.Scripted_Test(newTicketID, errorMessage)
+'''
+#============== command 1.5  HOLD ===================================================
+#  This is for ServiceNow API for creating a ticket and update in ServiceNow GUI. 
+'''
+command1 = pythonPath+' /opt/tufin/data/securechange/scripts/opt/PGE/scripts/SecureAPP_DNS_AMPS_Tenable/ServiceNowAPI.py '+newTicketID
+
+try:
+    process1 = Popen(command1, stdout=PIPE, stderr=PIPE, shell=True)
+    process1.wait()
+    result1, resultError1 = process1.communicate()
+    logging.info("process1.returncode = "+str(process1.returncode))
+    if process1.returncode != 0:
+        errorMessage = str(resultError1)
+        logging.error(errorMessage)
+        errorMessage = 'result1 = ' + str(result1)
+        logging.error(errorMessage)
+except:
+    errorMessage = str(resultError1)+"\n\n There is a Popen error result after executing MulesoftAPI.py  under Hybrid_automation2.py.  Please check."
+    logging.error(errorMessage)
+    sendEmail.Scripted_Test(newTicketID, errorMessage)
+
+'''    
+    
+#============== command 2 =========================================================
+# This is for checking APP-ID in SecureApp and comparing a requester's input APP-ID
+command2 = pythonPath+' /opt/tufin/data/securechange/scripts/opt/PGE/scripts/SecureAPP_DNS_AMPS_Tenable/SecureAppValidations_V2.py '+newTicketID+' '+SecureChangeIPname+' '+tufinUser+' '+tufinPassword+' '+requesterLANID
+
+isDone = False
+try:
+    process2 = Popen(command2, stdout=PIPE, stderr=PIPE, shell=True)
+    process2.wait()
+    result2, resultError2 = process2.communicate()
+    logging.info("process2.returncode = "+str(process2.returncode))
+    if process2.returncode == 5:
+        # this is for "redo" or "ticket is closed automatically"
+        isDone = True
+        resultError2 = ''
+    elif process2.returncode != 0:
+        logging.error('process2 returncode = '+str(process2.returncode))
+        errorMessage = 'result2 = ' + str(result2)
+        logging.error(errorMessage)
+        #sys.exit(1)
+    if resultError2:
+        errorMessage = str(resultError2)
+        logging.error(errorMessage)
+        sendEmail.Scripted_Test(newTicketID, errorMessage)
+        #sys.exit(1)
+except:
+    errorMessage = str(resultError2)+"\n\n There is a Popen error result after executing SecureAppValidation_V2.py  under Hybrid_automation2.py.  Please check."
+    logging.error(errorMessage)
+    sendEmail.Scripted_Test(newTicketID, errorMessage)
+    #sys.exit(1)
+
+if isDone:
+    sys.exit(0)
+    
+#============== command 3 ================================
+# This is for validating DNS
+
+command3 = pythonPath+' /opt/tufin/data/securechange/scripts/opt/PGE/scripts/SecureAPP_DNS_AMPS_Tenable/Tufin_Validate_DNS_V2.py '+SecureChangeIPname+' '+tufinUser+' '+tufinPassword+' '+newTicketID
+
+isDone = False
+try:
+    process3 = Popen(command3, stdout=PIPE, stderr=PIPE, shell=True)
+    process3.wait()
+    result3, resultError3 = process3.communicate()
+    logging.info("process3.returncode = "+str(process3.returncode))
+    if process3.returncode == 5:
+        # this is for "redo" or "ticket is closed automatically"
+        isDone = True
+        resultError3 = ''
+    elif process3.returncode != 0:
+        logging.error('process3 returncode = ' + str(process3.returncode))
+        errorMessage = 'result3 = ' + str(result3)
+        logging.error(errorMessage)
+        #sys.exit(1)
+    if resultError3:
+        errorMessage = str(resultError3)
+        logging.error(errorMessage)
+        sendEmail.Scripted_Test(newTicketID, errorMessage)
+        #sys.exit(1)
+except:
+    errorMessage = str(resultError3)+"\n\n There is a Popen error result after executing Tufin_Validate_DNS_V2.py under Hybrid_automation2.py.  Please check."
+    logging.error(errorMessage)
+    sendEmail.Scripted_Test(newTicketID, errorMessage)
+    #sys.exit(1)
+
+if isDone:
+    sys.exit(0)
+
+#============== command 4 =====================================
+# This is for checking AMPS software for ITAsset and CyberAsset
+
+command4 = pythonPath+' /opt/tufin/data/securechange/scripts/opt/PGE/scripts/SecureAPP_DNS_AMPS_Tenable/checkAMPS_V2.py '+SecureChangeIPname+' '+tufinUser+' '+tufinPassword+' '+newTicketID
+
+try:
+    process4 = Popen(command4, stdout=PIPE, stderr=PIPE, shell=True)
+    process4.wait()
+    result4, resultError4 = process4.communicate()
+    logging.info("process4.returncode = "+str(process4.returncode))
+    if process4.returncode != 0:
+        logging.error('process4 returncode = ' + str(process4.returncode))
+        errorMessage = 'result4 = ' + str(result4)
+        logging.error(errorMessage)
+        #sys.exit(1)
+    if resultError4:
+        errorMessage = str(resultError4)
+        logging.error(errorMessage)
+        sendEmail.Scripted_Test(newTicketID, errorMessage)
+        #sys.exit(1)
+except:
+    errorMessage = str(resultError4)+"\n\n There is a Popen error result after executing checkAMPS_V2.py  under Hybrid_automation2.py.  Please check."
+    logging.error(errorMessage)
+    sendEmail.Scripted_Test(newTicketID, errorMessage)
+    #sys.exit(1)
+
+#============== command 5 ================================
+#  This is for Tenable scan work.
+
+# Old Tenable software - using REST API for userID and password to get a token and cookie.
+#command5 = pythonPath+' /opt/tufin/data/securechange/scripts/opt/PGE/scripts/SecureAPP_DNS_AMPS_Tenable/Tenable_scan.py '+newTicketID+' '+requesterName+' '+requesterLANID+' '+SecureTrackIPname+' '+tufinUser+' '+tufinPassword+' '+tenableIPname+' '+tenableUser+' '+tenablePassword+' '+UDNreqName+' '+UDNreqEmail+' '+ODNreqName+' '+ODNreqEmail+' '+ODNvulnerabilityDate+' '+NPSEmail
+
+# New Tenable software - using pyTenable software to use ACCESS_KEY and SECRET_KEY.
+command5 = pythonPath+' /opt/tufin/data/securechange/scripts/opt/PGE/scripts/SecureAPP_DNS_AMPS_Tenable/TenableKeys_scan_V2.py '+newTicketID+' '+requesterName+' '+requesterLANID+' '+SecureChangeIPname+' '+tufinUser+' '+tufinPassword+' '+tenableIPname+' '+tenableACCESS_KEY+' '+tenableSECRET_KEY+' '+UDNreqName+' '+UDNreqEmail+' '+ODNreqName+' '+ODNreqEmail+' '+ODNvulnerabilityDate+' '+NPSEmail
+
+try:
+    process5 = Popen(command5, stdout=PIPE, stderr=PIPE, shell=True)
+    process5.wait()
+    result5, resultError5 = process5.communicate()
+    logging.info("process5.returncode = "+str(process5.returncode))
+    if process5.returncode == 5:
+        logging.info("ticket is rejected automatically - set isDone = True")
+        isDone = True
+        resultError5 = ''
+    if process5.returncode != 0:
+        logging.error('process5 returncode = ' + str(process5.returncode))
+        errorMessage = 'result5 = ' + str(result5)
+        logging.error(errorMessage)
+        #sys.exit(1)
+    if resultError5:
+        errorMessage = str(resultError5)
+        logging.error(errorMessage)
+        sendEmail.Scripted_Test(newTicketID, errorMessage)
+        #sys.exit(1)
+except:
+    if not isDone:
+        errorMessage = str(resultError5)+"\n\n There is a Popen error result after executing Tenable_scan_V2.py  under Hybrid_automation2.py.  Please check."
+        logging.error(errorMessage)
+        sendEmail.Scripted_Test(newTicketID, errorMessage)
+        #sys.exit(1)
+
+if isDone:
+    sys.exit(0)
+
+#============== command 6 ================================
+# This is for sending email results.
+
+command6 = pythonPath+' /opt/tufin/data/securechange/scripts/opt/PGE/scripts/SecureAPP_DNS_AMPS_Tenable/SendEmailResults.py '+newTicketID+' '+SecureChangeIPname+' '+tufinUser+' '+tufinPassword+' '+requesterLANID
+
+try:
+    process6 = Popen(command6, stdout=PIPE, stderr=PIPE, shell=True)
+    process6.wait()
+    result6, resultError6 = process6.communicate()
+    logging.info("process6.returncode = "+str(process6.returncode))
+    if process6.returncode != 0:
+        logging.error('process6 returncode = ' + str(process6.returncode))
+        errorMessage = 'result6 = ' + str(result6)
+        logging.error(errorMessage)
+        #sys.exit(1)
+    if resultError6:
+        errorMessage = str(resultError6)
+        logging.error(errorMessage)
+        sendEmail.Scripted_Test(newTicketID, errorMessage)
+        #sys.exit(1)
+except:
+    errorMessage = str(resultError6)+"\n\n There is a Popen error result after executing SendEmailResults.py  under Hybrid_automation2.py.  Please check."
+    logging.error(errorMessage)
+    sendEmail.Scripted_Test(newTicketID, errorMessage)
+    #sys.exit(1)
+
+#============== command 7 =======================================================
+# NEW.  This is for update Access Request with a ticket ID under a comment column
+
+command7 = pythonPath+' /opt/tufin/data/securechange/scripts/opt/PGE/scripts/SecureAPP_DNS_AMPS_Tenable/UpdateAccessRequest.py '+newTicketID+' '+SecureChangeIPname+' '+tufinUser+' '+tufinPassword
+
+try:
+    process7 = Popen(command7, stdout=PIPE, stderr=PIPE, shell=True)
+    process7.wait()
+    result7, resultError7 = process7.communicate()
+    logging.info("process7.returncode = "+str(process7.returncode))
+    if process7.returncode != 0:
+        logging.error('process7 returncode = ' + str(process7.returncode))
+        errorMessage = 'result7 = ' + str(result7)
+        logging.error(errorMessage)
+        #sys.exit(1)
+    if resultError7:
+        errorMessage = 'resultError7 = ' + str(resultError7)
+        logging.error(errorMessage)
+        sendEmail.Scripted_Test(newTicketID, errorMessage)
+        #sys.exit(1)
+except:
+    errorMessage = str(resultError7)+"\n\n There is a Popen error result after executing UpdateAccessRequest.py  under Hybrid_automation2.py.  Please check."
+    logging.error(errorMessage)
+    sendEmail.Scripted_Test(newTicketID, errorMessage)
+    #sys.exit(1)
+
+#============== command 8 ==============================================================================================
+# NEW. This is for clicking "Done" automatically via SecureChange API on Step 2 (do not run under pre-assignment script)
+
+command8 = pythonPath+' /opt/tufin/data/securechange/scripts/opt/PGE/scripts/SecureAPP_DNS_AMPS_Tenable/clickDoneAutomatedValidationResult.py '+newTicketID+' '+SecureChangeIPname+' '+tufinUser+' '+tufinPassword
+
+try:
+    process8 = Popen(command8, stdout=PIPE, stderr=PIPE, shell=True)
+    process8.wait()
+    result8, resultError8 = process8.communicate()
+    logging.info("process8.returncode = "+str(process8.returncode))
+    if process8.returncode != 0:
+        logging.error('process8 returncode = ' + str(process8.returncode))
+        errorMessage = 'result8 = ' + str(result8)
+        logging.error(errorMessage)
+        #sys.exit(1)
+    if resultError8:
+        errorMessage = 'resultError8 = ' + str(resultError8)
+        logging.error(errorMessage)
+        sendEmail.Scripted_Test(newTicketID, errorMessage)
+        #sys.exit(1)
+except:
+    errorMessage = str(resultError8)+"\n\n There is a Popen error result after executing clickDoneAutomatedValidationResult.py  under Hybrid_automation2.py.  Please check."
+    logging.error(errorMessage)
+    sendEmail.Scripted_Test(newTicketID, errorMessage)
+    #sys.exit(1)
+    
+#---------------- end timer ----------------------    
+ts = time.time()
+end_time = ts
+totalTime = end_time - start_time
+#------------- last of end timer --------------------
+
+
+#----------------- result timer --------------------
+logging.info("")
+logging.info(' ********** EXIT -  pge automation script: Hybrid_automation2.py ************** ')
+logging.info("Total time:")
+logging.info("result  =  "+str(totalTime))
+#------------- last of result timer --------------------
+    
+sys.exit(0)
+#=============== end of program ============================
