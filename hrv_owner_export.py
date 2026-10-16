@@ -54,7 +54,11 @@ CAMPAIGN_START  = "2026-09-24"   # certifications before this are an older campa
 
 SCRIPT_DIR      = Path(__file__).resolve().parent
 SHARED_ROOT     = SCRIPT_DIR.parent                      # .../NPS-Automation
-DATA_DIR        = SHARED_ROOT / "SharedData"
+# Owner sheets: the SharedData subfolder inside the synced HRV Power BI folder. If that
+# folder isn't there, falls back to the repo's SharedData. The run log prints which one.
+DATA_DIR_SHAREPOINT = Path(os.path.expandvars(
+    r"%USERPROFILE%\OneDrive - PGE\Cybersecurity Network Protection Services - HRV Power BI\SharedData"))
+DATA_DIR        = DATA_DIR_SHAREPOINT if DATA_DIR_SHAREPOINT.is_dir() else SHARED_ROOT / "SharedData"
 INPUT_GLOB      = ["*.xlsx", "*.xlsm", "*.csv"]
 INPUT_EXCLUDE   = ["~$*", "*TEST*", "*test*", "HRV_Owner_Recert_Status*", "Rule-ID-Mapping*",
                    "decision_conflicts*", "scope_dropped*"]
