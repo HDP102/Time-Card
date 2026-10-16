@@ -1,36 +1,14 @@
-Query A results
-
 {
-  "data": {
-    "__type": {
-      "enumValues": [
-        {
-          "name": "CERTIFIED"
-        },
-        {
-          "name": "DECERTIFIED"
-        }
-      ]
-    }
-  }
-}
-
-Query B Results
-
-{
-  "errors": [
-    {
-      "message": "Validation error (UnknownArgument@[rules]) : Unknown field argument 'first'",
-      "locations": [
-        {
-          "line": 35,
-          "column": 58
-        }
-      ],
-      "extensions": {
-        "classification": "ValidationError"
+  rules(filter: "securechangeTicketInProgressId exists", limit: 5) {
+    values {
+      idOnDevice
+      name
+      device { name }
+      ruleUserData {
+        technicalOwnerName
+        securechangeTicketInProgressId
+        certification { status timeCertified timeExpiration owner ownerEmail comment }
       }
     }
-  ],
-  "data": null
+  }
 }
