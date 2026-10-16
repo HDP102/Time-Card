@@ -1,1 +1,7 @@
-{ rules(filter: "vendor='PALO_ALTO' and description contains 'app_id'") { count } }
+{
+  "data": {
+    "rules": {
+      "count": 37469
+    }
+  }
+}
