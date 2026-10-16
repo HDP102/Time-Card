@@ -1,1 +1,3 @@
-Hey Nick, quick tracker question. Row 280 (goalert.countrypassport.net / Prod / Azure Only) looks like a duplicate of GoAlert. That FQDN is just the custom domain binding on np-appservice-goalert, so it has no tags or IP in Azure and no ICS app definition, and it’s actually NonProd, not Prod. Everything for GoAlert is covered under rows 278 and 279.
+Swapnil, just to confirm, you mean app IDs (not IPs)? Plan is one row per owner per App ID per role: owner name, LAN ID, email, total rules, certified / decertified / pending counts, % complete and overall status. No rule-level detail.
+
+Dave, it’ll be a single file with fixed column names in the HRV Power BI folder, overwritten in place on each refresh, so you can point Power BI at it once. Refresh daily unless you need it more often.
