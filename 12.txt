@@ -1,1 +1,464 @@
-{ __type(name: "Rule") { fields { name type { name kind ofType { name } } } } }
+{
+  "data": {
+    "__type": {
+      "fields": [
+        {
+          "name": "policy",
+          "type": {
+            "name": "SecurityPolicy",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "ruleOptimizerData",
+          "type": {
+            "name": "RuleOptimizerData",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "ruleUserData",
+          "type": {
+            "name": "RuleUserData",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "usersUsage",
+          "type": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null
+            }
+          }
+        },
+        {
+          "name": "applicationsUsage",
+          "type": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null
+            }
+          }
+        },
+        {
+          "name": "sourcesUsage",
+          "type": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null
+            }
+          }
+        },
+        {
+          "name": "destinationsUsage",
+          "type": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null
+            }
+          }
+        },
+        {
+          "name": "servicesUsage",
+          "type": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null
+            }
+          }
+        },
+        {
+          "name": "location",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "policyIndex",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "permissivenessLevel",
+          "type": {
+            "name": "PermissivenessScoreLevel",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        {
+          "name": "timeLastModified",
+          "type": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "ruleUsageStatus",
+          "type": {
+            "name": "RuleUsageStatus",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        {
+          "name": "shadowed",
+          "type": {
+            "name": "ShadowedStatus",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        {
+          "name": "isExemptedFromUsp",
+          "type": {
+            "name": "Boolean",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "violationHighestSeverity",
+          "type": {
+            "name": "ViolationSeverity",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        {
+          "name": "violations",
+          "type": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null
+            }
+          }
+        },
+        {
+          "name": "exceptions",
+          "type": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null
+            }
+          }
+        },
+        {
+          "name": "version",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Int"
+            }
+          }
+        },
+        {
+          "name": "comment",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "id",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID"
+            }
+          }
+        },
+        {
+          "name": "name",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "system",
+          "type": {
+            "name": "BasicSystem",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "device",
+          "type": {
+            "name": "BasicDevice",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "changed",
+          "type": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "disabled",
+          "type": {
+            "name": "Boolean",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "sectionTitle",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "sectionGroup",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "idOnDevice",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "tags",
+          "type": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null
+            }
+          }
+        },
+        {
+          "name": "zonesRelation",
+          "type": {
+            "name": "ZonesRelation",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        {
+          "name": "direction",
+          "type": {
+            "name": "Direction",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        {
+          "name": "appliedTo",
+          "type": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null
+            }
+          }
+        },
+        {
+          "name": "ruleTypeName",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "priority",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "ruleset",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "source",
+          "type": {
+            "name": "RuleNetworkTraffic",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "destination",
+          "type": {
+            "name": "RuleNetworkTraffic",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "service",
+          "type": {
+            "name": "RuleServiceTraffic",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "user",
+          "type": {
+            "name": "RuleUserTraffic",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "sourceZone",
+          "type": {
+            "name": "RuleZoneTraffic",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "destinationZone",
+          "type": {
+            "name": "RuleZoneTraffic",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "application",
+          "type": {
+            "name": "RuleApplicationTraffic",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "vpn",
+          "type": {
+            "name": "RuleVpnTraffic",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "installedOn",
+          "type": {
+            "name": "RuleInstallationTargetTraffic",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "urlCategory",
+          "type": {
+            "name": "RuleUrlCategory",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "time",
+          "type": {
+            "name": "RuleTimeTraffic",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "appliedToObjects",
+          "type": {
+            "name": "RuleAppliedToObjects",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "securityProfiles",
+          "type": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null
+            }
+          }
+        },
+        {
+          "name": "logging",
+          "type": {
+            "name": "RuleLogging",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "timeLastHit",
+          "type": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "action",
+          "type": {
+            "name": "RuleActionType",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        {
+          "name": "actionDisplayName",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "goToTarget",
+          "type": {
+            "name": "SecurityPolicy",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        }
+      ]
+    }
+  }
+}
