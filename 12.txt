@@ -1,6 +1,10 @@
+{ __type(name: "RuleUserData") { fields { name type { name kind ofType { name kind } } } } }
+
+
+{ __type(name: "Certification") { fields { name type { name kind ofType { name kind } } } } }
+
+
 {
-  userData: __type(name: "RuleUserData") { fields { name type { name kind ofType { name kind } } } }
-  cert: __type(name: "Certification") { fields { name type { name kind ofType { name kind } } } }
   certStatus: __type(name: "CertificationStatus") { enumValues { name } }
   ticketCert: __type(name: "TicketCertification") { fields { name type { name kind ofType { name kind } } } }
 }
