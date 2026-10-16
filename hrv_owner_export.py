@@ -61,14 +61,13 @@ INPUT_EXCLUDE   = ["~$*", "*TEST*", "*test*", "HRV_Owner_Recert_Status*", "Rule-
 
 # HRV Power BI folder (Cybersecurity Network Protection Services site, Shared Documents),
 # synced to this PC. SharePoint: https://pge.sharepoint.com/sites/msteams_8a1a57/Shared%20Documents/HRV%20Power%20BI
-# Either "Sync" or "Add shortcut to My files" works; the first path that exists is used.
-# If none exists the run stops (it never silently writes somewhere Power BI can't see).
-OUTPUT_DIR_CANDIDATES = [
-    r"%USERPROFILE%\PG&E\Cybersecurity Network Protection Services - Documents\HRV Power BI",  # Sync
-    r"%USERPROFILE%\OneDrive - PG&E\HRV Power BI",                                               # Add shortcut
-    r"%USERPROFILE%\OneDrive - PG&E\Cybersecurity Network Protection Services - Documents\HRV Power BI",
-]
-OUTPUT_DIR      = None   # set a path here to override the candidates above
+# Either "Sync" or "Add shortcut to My files" works. The script searches the OneDrive /
+# synced-site folders under your user profile for a folder named OUTPUT_FOLDER_NAME
+# (it must sit inside a "Cybersecurity Network Protection Services" path). If it isn't
+# found the run stops - it never silently writes somewhere Power BI can't see.
+OUTPUT_FOLDER_NAME = "HRV Power BI"
+SITE_HINT          = "Cybersecurity Network Protection Services"
+OUTPUT_DIR      = None   # set the full local path here to skip the search
 OUTPUT_NAME     = "HRV_Owner_Recert_Status.xlsx"         # keep fixed - Power BI points at it
 SHEET_NAME      = "Owner Status"
 
@@ -85,10 +84,22 @@ SA_ROLE      = "SecureApp Owner"
 def resolve_out_dir():
     if OUTPUT_DIR:
         return Path(os.path.expandvars(OUTPUT_DIR))
-    for c in OUTPUT_DIR_CANDIDATES:
-        p = Path(os.path.expandvars(c))
-        if p.is_dir():
-            return p
+    home = Path(os.environ.get("USERPROFILE") or Path.home())
+    roots = [d for d in home.iterdir() if d.is_dir() and
+             (d.name.startswith("OneDrive") or d.name.upper().replace("&", "") == "PGE")]
+    hits = []
+    for root in roots:                         # synced site: <root>\<Site> - Documents\HRV Power BI
+        for depth in ("*", "*/*", "*/*/*"):    # shortcut:    <root>\HRV Power BI (or a level down)
+            for p in root.glob(f"{depth}"):
+                if p.name == OUTPUT_FOLDER_NAME and p.is_dir():
+                    hits.append(p)
+    hits = list(dict.fromkeys(hits))
+    preferred = [p for p in hits if SITE_HINT.lower() in str(p).lower()]
+    if preferred or hits:
+        found = (preferred or hits)[0]
+        if len(hits) > 1:
+            log(f"  several '{OUTPUT_FOLDER_NAME}' folders found, using {found}: {hits}")
+        return found
     raise SystemExit("HRV Power BI folder is not synced to this PC. In SharePoint open "
                      "Shared Documents > HRV Power BI and click Sync (or Add shortcut to My files), "
                      "then run again. Or set OUTPUT_DIR to the local folder path.")
