@@ -1,13 +1,10 @@
 {
-  rules(filter: "securechangeTicketInProgressId exists") {
+  rules(filter: "certificationStatus exists") {
     count
     values(first: 5) {
       idOnDevice
-      name
       device { name }
       ruleUserData {
-        technicalOwnerName
-        securechangeTicketInProgressId
         certification { status timeCertified timeExpiration owner ownerEmail comment }
       }
     }
