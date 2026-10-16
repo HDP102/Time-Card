@@ -1,17 +1,36 @@
-{ __type(name: "CertificationStatus") { enumValues { name } } }
-
+Query A results
 
 {
-  rules(filter: "securechangeTicketInProgressId exists", first: 5) {
-    values {
-      idOnDevice
-      name
-      device { name }
-      ruleUserData {
-        technicalOwnerName
-        securechangeTicketInProgressId
-        certification { status timeCertified timeExpiration owner ownerEmail comment }
-      }
+  "data": {
+    "__type": {
+      "enumValues": [
+        {
+          "name": "CERTIFIED"
+        },
+        {
+          "name": "DECERTIFIED"
+        }
+      ]
     }
   }
+}
+
+Query B Results
+
+{
+  "errors": [
+    {
+      "message": "Validation error (UnknownArgument@[rules]) : Unknown field argument 'first'",
+      "locations": [
+        {
+          "line": 35,
+          "column": 58
+        }
+      ],
+      "extensions": {
+        "classification": "ValidationError"
+      }
+    }
+  ],
+  "data": null
 }
