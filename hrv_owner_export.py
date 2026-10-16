@@ -67,7 +67,8 @@ INPUT_EXCLUDE   = ["~$*", "*TEST*", "*test*", "HRV_Owner_Recert_Status*", "Rule-
 # found the run stops - it never silently writes somewhere Power BI can't see.
 OUTPUT_FOLDER_NAME = "HRV Power BI"
 SITE_HINT          = "Cybersecurity Network Protection Services"
-OUTPUT_DIR      = None   # set the full local path here to skip the search
+OUTPUT_DIR      = r"%USERPROFILE%\OneDrive - PGE\Cybersecurity Network Protection Services - HRV Power BI"
+                         # None = search instead
 OUTPUT_NAME     = "HRV_Owner_Recert_Status.xlsx"         # keep fixed - Power BI points at it
 SHEET_NAME      = "Owner Status"
 
@@ -83,7 +84,10 @@ SA_ROLE      = "SecureApp Owner"
 
 def resolve_out_dir():
     if OUTPUT_DIR:
-        return Path(os.path.expandvars(OUTPUT_DIR))
+        p = Path(os.path.expandvars(OUTPUT_DIR))
+        if p.is_dir():
+            return p
+        log(f"  OUTPUT_DIR not found ({p}) - searching instead")
     home = Path(os.environ.get("USERPROFILE") or Path.home())
     roots = [d for d in home.iterdir() if d.is_dir() and
              (d.name.startswith("OneDrive") or d.name.upper().replace("&", "") == "PGE")]
@@ -91,7 +95,7 @@ def resolve_out_dir():
     for root in roots:                         # synced site: <root>\<Site> - Documents\HRV Power BI
         for depth in ("*", "*/*", "*/*/*"):    # shortcut:    <root>\HRV Power BI (or a level down)
             for p in root.glob(f"{depth}"):
-                if p.name == OUTPUT_FOLDER_NAME and p.is_dir():
+                if p.name.endswith(OUTPUT_FOLDER_NAME) and p.is_dir():
                     hits.append(p)
     hits = list(dict.fromkeys(hits))
     preferred = [p for p in hits if SITE_HINT.lower() in str(p).lower()]
