@@ -1,14 +1,1 @@
-Hey Victor, here’s what I found going through Leonard’s scripts:
-
-Neither V2 nor V3 calls ServiceNow. In Hybrid_automation2.py the MuleSoft and ServiceNowAPI steps are commented out. In Hybrid_automation3.py those slots are empty; it only runs SecureApp, DNS, AMPS and the results email.
-ServiceNowAPI.py is hardcoded to ticket 111666. The argument parsing is commented out, so it never picks up the ticket that fired the trigger.
-ServiceNowAPI.py sends an empty change request. It only sets the assignment group to “CAB Approval,” and the change number never gets written back to the Tufin ticket.
-mulesoftAPI.py only runs on prod. On keeppgelabsecure it logs “NO mulesoft in LAB only” and exits.
-The SendEmailResults_V2 launcher passes 1 argument; the script needs 5. It exits right away, and since it runs in the background, SecureChange still sees the step as successful.
-
-Can you check on the lab server:
-
-Settings → SecureChange API: which script is attached to which workflow/step/trigger
-Whether the server copy of ServiceNowAPI.py still has 111666 hardcoded
-Whether anything calls ServiceNowAPI.py, or if it’s only run by hand
-The log for the test ticket: /opt/tufin/data/securechange/scripts/opt/PGE/logs/output-<ticket>_pge_automation.log
+Hey Nick, quick tracker question. Row 280 (goalert.countrypassport.net / Prod / Azure Only) looks like a duplicate of GoAlert. That FQDN is just the custom domain binding on np-appservice-goalert, so it has no tags or IP in Azure and no ICS app definition, and it’s actually NonProd, not Prod. Everything for GoAlert is covered under rows 278 and 279.
