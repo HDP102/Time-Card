@@ -1,3 +1,45 @@
+Docs
+{
+  rules(filter: "certificationStatus exists") {
+    values(first: 5) {
+      name
+      ruleUserData { ruleDescription saApplications { __typename } }
+    }
+  }
+}
+# GraphQL is a query language that makes it easy to retrieve information from and make
+# mutations to the SecureTrack database.
+​
+# GraphQL queries retrieve only the requested information which is returned in a
+# structured format.
+# If you are not familiar with GraphQL, we recommend the training and background information
+# available at https://graphql.org/
+​
+# For details of available fields see the Documentation Explorer on the right of this screen,
+# or position the cursor in a query and press CTRL+SPACE
+​
+# For more information about GraphQL in TOS, see:
+# https://forum.tufin.com/support/kc/aurora/Content/ST2/API/API_Introduction.htm
+​
+​
+# An example GraphQL query might look like:
+​
+# {
+#   rules(filter: "name exists and timeLastModified after 90 days ago") {
+#     values{
+#       name
+#     }
+#   }
+# }
+​
+# Keyboard shortcuts:
+​
+# Prettify Query:  Shift-Ctrl-P (or press the prettify button above)
+# Merge Query:  Shift-Ctrl-M (or press the merge button above)
+# Run Query:  Ctrl-Enter (or press the play button above)
+# Auto Complete:  Ctrl-Space (or just start typing)
+​
+#run me !
 {
   rules(filter: "vendor='PALO_ALTO' and certificationStatus exists") {
     count
@@ -8,3 +50,146 @@
     }
   }
 }
+query
+mutation
+subscription
+fragment
+{
+Self descriptive.
+
+​
+{
+  "data": {
+    "rules": {
+      "values": [
+        {
+          "name": null,
+          "ruleUserData": {
+            "ruleDescription": null,
+            "saApplications": null
+          }
+        },
+        {
+          "name": null,
+          "ruleUserData": {
+            "ruleDescription": null,
+            "saApplications": null
+          }
+        },
+        {
+          "name": null,
+          "ruleUserData": {
+            "ruleDescription": null,
+            "saApplications": null
+          }
+        },
+        {
+          "name": null,
+          "ruleUserData": {
+            "ruleDescription": null,
+            "saApplications": null
+          }
+        },
+        {
+          "name": null,
+          "ruleUserData": {
+            "ruleDescription": null,
+            "saApplications": null
+          }
+        }
+      ]
+    }
+  }
+}
+          }
+        },
+        {
+          "idOnDevice": "Citrix to GE Relays-svc",
+          "device": {
+            "name": "7th Standard Substation"
+          },
+          "ruleUserData": {
+            "ruleDescription": "app_id: APP-2568",
+            "saApplications": null
+          }
+        },
+        {
+          "idOnDevice": "Citrix to SEL Relays-svc",
+          "device": {
+            "name": "7th Standard Substation"
+          },
+          "ruleUserData": {
+            "ruleDescription": "app_id: APP-1967",
+            "saApplications": null
+          }
+        },
+        {
+          "idOnDevice": "Citrix to 7std Server",
+          "device": {
+            "name": "7th Standard Substation"
+          },
+          "ruleUserData": {
+            "ruleDescription": "app_id: APP-2539",
+            "saApplications": [
+              {
+                "__typename": "SaApplication"
+              }
+            ]
+          }
+        },
+        {
+          "idOnDevice": "Citrix to 7std Server DRAC",
+          "device": {
+            "name": "7th Standard Substation"
+          },
+          "ruleUserData": {
+            "ruleDescription": "app_id: APP-2539",
+            "saApplications": [
+              {
+                "__typename": "SaApplication"
+              }
+            ]
+          }
+        },
+        {
+          "idOnDevice": "Citrix to 7th standard Dracs",
+          "device": {
+            "name": "7th Standard Substation"
+          },
+          "ruleUserData": {
+            "ruleDescription": "app_id: APP-2539",
+            "saApplications": [
+              {
+                "__typename": "SaApplication"
+              }
+            ]
+          }
+        },
+        {
+          "idOnDevice": "RTSCADA100 to 7std server",
+          "device": {
+            "name": "7th Standard Substation"
+          },
+          "ruleUserData": {
+            "ruleDescription": "app_id: APP-1598",
+            "saApplications": [
+              {
+                "__typename": "SaApplication"
+              }
+            ]
+          }
+        },
+        {
+          "idOnDevice": "FEP to 7std server",
+          "device": {
+            "name": "7th Standard Substation"
+          },
+          "ruleUserData": {
+            "ruleDescription": "app_id: APP-1567",
+            "saApplications": null
+          }
+        },
+        {
+          "idOnDevice": "ICS Traffic Inbound",
+          "device": {
+            "name": "7th Standard Substation"
