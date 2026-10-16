@@ -1,3 +1,1262 @@
-Swapnil, just to confirm, you mean app IDs (not IPs)? Plan is one row per owner per App ID per role: owner name, LAN ID, email, total rules, certified / decertified / pending counts, % complete and overall status. No rule-level detail.
-
-Dave, it’ll be a single file with fixed column names in the HRV Power BI folder, overwritten in place on each refresh, so you can point Power BI at it once. Refresh daily unless you need it more often.
+{
+  "data": {
+    "__schema": {
+      "types": [
+        {
+          "name": "AccessRequestActionType"
+        },
+        {
+          "name": "AccessRequestApplicationInput"
+        },
+        {
+          "name": "AccessRequestApplicationPredefinedValue"
+        },
+        {
+          "name": "AccessRequestDomainInput"
+        },
+        {
+          "name": "AccessRequestError"
+        },
+        {
+          "name": "AccessRequestInput"
+        },
+        {
+          "name": "AccessRequestNetworkPredefinedValue"
+        },
+        {
+          "name": "AccessRequestServicePredefinedValue"
+        },
+        {
+          "name": "AccessRole"
+        },
+        {
+          "name": "AddRulesToRuleExceptionInput"
+        },
+        {
+          "name": "AddRulesToRuleExceptionResult"
+        },
+        {
+          "name": "AddSecurityZonesToUspInput"
+        },
+        {
+          "name": "AddSecurityZonesToUspResult"
+        },
+        {
+          "name": "AdjustmentName"
+        },
+        {
+          "name": "AlertConfigMutation"
+        },
+        {
+          "name": "Application"
+        },
+        {
+          "name": "ApplicationPredefinedValue"
+        },
+        {
+          "name": "ApplicationString"
+        },
+        {
+          "name": "ApplicationUsage"
+        },
+        {
+          "name": "AppliedToObjectsPredefinedValue"
+        },
+        {
+          "name": "Asset"
+        },
+        {
+          "name": "AssetType"
+        },
+        {
+          "name": "AuthQuery"
+        },
+        {
+          "name": "AutomationAttribute"
+        },
+        {
+          "name": "BasicDevice"
+        },
+        {
+          "name": "BasicRuleUspExceptionInfo"
+        },
+        {
+          "name": "BasicSystem"
+        },
+        {
+          "name": "BasicUspExceptionInfo"
+        },
+        {
+          "name": "BasicUspExceptionInfoForRiskAnalysis"
+        },
+        {
+          "name": "BasicUspInfo"
+        },
+        {
+          "name": "BasicUspInfoForRiskAnalysis"
+        },
+        {
+          "name": "Boolean"
+        },
+        {
+          "name": "Certification"
+        },
+        {
+          "name": "CertificationStatus"
+        },
+        {
+          "name": "ChangeDetails"
+        },
+        {
+          "name": "ChangeType"
+        },
+        {
+          "name": "ChangeUserTQLSearchesOwnerInput"
+        },
+        {
+          "name": "ChangeUserTQLSearchesOwnerResult"
+        },
+        {
+          "name": "ChangedEntity"
+        },
+        {
+          "name": "CommentDetails"
+        },
+        {
+          "name": "CountsResult"
+        },
+        {
+          "name": "CreateDraftInvalidRuleReason"
+        },
+        {
+          "name": "CreatePredefinedUspInput"
+        },
+        {
+          "name": "CreatePredefinedUspResult"
+        },
+        {
+          "name": "CreateRuleOptimizerTaskInput"
+        },
+        {
+          "name": "CreateRuleOptimizerTaskResult"
+        },
+        {
+          "name": "CreateSystemInput"
+        },
+        {
+          "name": "CreateSystemResult"
+        },
+        {
+          "name": "CreateTicketDraftInput"
+        },
+        {
+          "name": "CreateTicketDraftResult"
+        },
+        {
+          "name": "CreateTicketInput"
+        },
+        {
+          "name": "CreateTicketResult"
+        },
+        {
+          "name": "CreateUserTQLSearchInput"
+        },
+        {
+          "name": "CreateUserTQLSearchResult"
+        },
+        {
+          "name": "CreateUspAlertConfigInput"
+        },
+        {
+          "name": "CreateUspAlertConfigResult"
+        },
+        {
+          "name": "CreateUspInput"
+        },
+        {
+          "name": "CreateUspResult"
+        },
+        {
+          "name": "CreateUspRiskAnalysisTaskInput"
+        },
+        {
+          "name": "CreateUspRiskAnalysisTaskResult"
+        },
+        {
+          "name": "CreateUspRuleExceptionInput"
+        },
+        {
+          "name": "CreateUspRuleExceptionResult"
+        },
+        {
+          "name": "CreateUspTrafficExceptionInput"
+        },
+        {
+          "name": "CreateUspTrafficExceptionResult"
+        },
+        {
+          "name": "Date"
+        },
+        {
+          "name": "DateTime"
+        },
+        {
+          "name": "DecommissionRulesAction"
+        },
+        {
+          "name": "DeleteAlertConfigInput"
+        },
+        {
+          "name": "DeleteAlertConfigResult"
+        },
+        {
+          "name": "DeleteSystemInput"
+        },
+        {
+          "name": "DeleteSystemResult"
+        },
+        {
+          "name": "DeleteTicketsInput"
+        },
+        {
+          "name": "DeleteTicketsResult"
+        },
+        {
+          "name": "DeleteUserTQLSearchInput"
+        },
+        {
+          "name": "DeleteUserTQLSearchResult"
+        },
+        {
+          "name": "DeleteUspExceptionInput"
+        },
+        {
+          "name": "DeleteUspExceptionResult"
+        },
+        {
+          "name": "DeleteUspInput"
+        },
+        {
+          "name": "DeleteUspResult"
+        },
+        {
+          "name": "DestinationTranslationType"
+        },
+        {
+          "name": "Device"
+        },
+        {
+          "name": "DeviceAdjustmentBooleanValue"
+        },
+        {
+          "name": "DeviceAdjustmentIntValue"
+        },
+        {
+          "name": "DeviceAdjustmentNameValueInput"
+        },
+        {
+          "name": "DeviceAdjustmentPatternValue"
+        },
+        {
+          "name": "DeviceAdjustmentStringValue"
+        },
+        {
+          "name": "DeviceAdjustmentValue"
+        },
+        {
+          "name": "DeviceAdjustmentValueType"
+        },
+        {
+          "name": "DeviceAdjustments"
+        },
+        {
+          "name": "DeviceAdjustmentsFilterInput"
+        },
+        {
+          "name": "DeviceAdjustmentsInput"
+        },
+        {
+          "name": "DeviceAdjustmentsQuery"
+        },
+        {
+          "name": "DeviceConfigMutation"
+        },
+        {
+          "name": "DeviceConfigQuery"
+        },
+        {
+          "name": "DeviceFeaturesConfig"
+        },
+        {
+          "name": "DeviceQuery"
+        },
+        {
+          "name": "DeviceStatus"
+        },
+        {
+          "name": "DeviceStatusQuery"
+        },
+        {
+          "name": "DeviceType"
+        },
+        {
+          "name": "Direction"
+        },
+        {
+          "name": "Domain"
+        },
+        {
+          "name": "DomainAccessLevel"
+        },
+        {
+          "name": "DomainDeviceConf"
+        },
+        {
+          "name": "DomainQuery"
+        },
+        {
+          "name": "EmailAddress"
+        },
+        {
+          "name": "EntityAttribute"
+        },
+        {
+          "name": "EntityChange"
+        },
+        {
+          "name": "EntityChangesInput"
+        },
+        {
+          "name": "EntityChangesQuery"
+        },
+        {
+          "name": "EntityData"
+        },
+        {
+          "name": "EntityType"
+        },
+        {
+          "name": "EntityVersion"
+        },
+        {
+          "name": "EntityVersionsInput"
+        },
+        {
+          "name": "EntityVersionsQuery"
+        },
+        {
+          "name": "Error"
+        },
+        {
+          "name": "ErrorType"
+        },
+        {
+          "name": "ExportUspResult"
+        },
+        {
+          "name": "Features"
+        },
+        {
+          "name": "FlowRestrictionType"
+        },
+        {
+          "name": "FlowUspRestriction"
+        },
+        {
+          "name": "FlowUspRestrictionInput"
+        },
+        {
+          "name": "Fqdn"
+        },
+        {
+          "name": "FreeText"
+        },
+        {
+          "name": "Group"
+        },
+        {
+          "name": "GroupMember"
+        },
+        {
+          "name": "GroupType"
+        },
+        {
+          "name": "HasIP"
+        },
+        {
+          "name": "Host"
+        },
+        {
+          "name": "HostRecommendation"
+        },
+        {
+          "name": "ID"
+        },
+        {
+          "name": "IcmpService"
+        },
+        {
+          "name": "IcmpServiceRecommendation"
+        },
+        {
+          "name": "IdString"
+        },
+        {
+          "name": "ImportUspResult"
+        },
+        {
+          "name": "InstallationTargetPredefinedValue"
+        },
+        {
+          "name": "Int"
+        },
+        {
+          "name": "Interface"
+        },
+        {
+          "name": "InterfaceDirection"
+        },
+        {
+          "name": "InterfaceQuery"
+        },
+        {
+          "name": "InterfaceTag"
+        },
+        {
+          "name": "InterfaceTagDirection"
+        },
+        {
+          "name": "InternetService"
+        },
+        {
+          "name": "InvalidRule"
+        },
+        {
+          "name": "IpAddress"
+        },
+        {
+          "name": "IpAddressNonContinuousMaskString"
+        },
+        {
+          "name": "IpAddressString"
+        },
+        {
+          "name": "IpMaskString"
+        },
+        {
+          "name": "IpRange"
+        },
+        {
+          "name": "IpRecommendation"
+        },
+        {
+          "name": "IpService"
+        },
+        {
+          "name": "IpServiceRecommendation"
+        },
+        {
+          "name": "IpType"
+        },
+        {
+          "name": "LdapUser"
+        },
+        {
+          "name": "LocalUser"
+        },
+        {
+          "name": "Location"
+        },
+        {
+          "name": "LogProfile"
+        },
+        {
+          "name": "LogicalInterface"
+        },
+        {
+          "name": "Long"
+        },
+        {
+          "name": "MigrateDomainInput"
+        },
+        {
+          "name": "MigrateDomainResult"
+        },
+        {
+          "name": "ModelName"
+        },
+        {
+          "name": "ModifiedRule"
+        },
+        {
+          "name": "Mutation"
+        },
+        {
+          "name": "NIC"
+        },
+        {
+          "name": "Name"
+        },
+        {
+          "name": "Negatable"
+        },
+        {
+          "name": "NetworkObject"
+        },
+        {
+          "name": "NetworkObjectQuery"
+        },
+        {
+          "name": "NetworkObjectTraffic"
+        },
+        {
+          "name": "NetworkObjectTrafficInput"
+        },
+        {
+          "name": "NetworkObjectUsage"
+        },
+        {
+          "name": "NetworkPolicy"
+        },
+        {
+          "name": "NetworkPolicyType"
+        },
+        {
+          "name": "NetworkPredefinedValue"
+        },
+        {
+          "name": "NetworkRecommendation"
+        },
+        {
+          "name": "NetworkRule"
+        },
+        {
+          "name": "NetworkRuleQuery"
+        },
+        {
+          "name": "NetworkRuleType"
+        },
+        {
+          "name": "NetworkSubRecommendation"
+        },
+        {
+          "name": "NetworkTag"
+        },
+        {
+          "name": "NetworkTagSet"
+        },
+        {
+          "name": "Node"
+        },
+        {
+          "name": "OPMAgent"
+        },
+        {
+          "name": "OPMAgentQuery"
+        },
+        {
+          "name": "ObjectUsageStatus"
+        },
+        {
+          "name": "ObjectUsageViewerSupport"
+        },
+        {
+          "name": "OneOfDeviceAdjustmentValueInput"
+        },
+        {
+          "name": "OntologicalBaseEntity"
+        },
+        {
+          "name": "OrderDirection"
+        },
+        {
+          "name": "OtherObject"
+        },
+        {
+          "name": "OtherService"
+        },
+        {
+          "name": "Pattern"
+        },
+        {
+          "name": "Permission"
+        },
+        {
+          "name": "PermissivenessScoreLevel"
+        },
+        {
+          "name": "Precedence"
+        },
+        {
+          "name": "PredefinedUspType"
+        },
+        {
+          "name": "ProgressStatus"
+        },
+        {
+          "name": "PropertyUspRestriction"
+        },
+        {
+          "name": "PropertyUspRestrictionInput"
+        },
+        {
+          "name": "ProtectionMode"
+        },
+        {
+          "name": "Query"
+        },
+        {
+          "name": "RecommendationIpType"
+        },
+        {
+          "name": "RemoveSecurityZonesFromUspInput"
+        },
+        {
+          "name": "RemoveSecurityZonesFromUspResult"
+        },
+        {
+          "name": "RestrictionType"
+        },
+        {
+          "name": "Result"
+        },
+        {
+          "name": "ResultStatus"
+        },
+        {
+          "name": "RiskAnalysisFlowsViolationData"
+        },
+        {
+          "name": "RiskAnalysisMutation"
+        },
+        {
+          "name": "RiskAnalysisNetworkObject"
+        },
+        {
+          "name": "RiskAnalysisTrafficViolationData"
+        },
+        {
+          "name": "RiskAnalysisUrlCategory"
+        },
+        {
+          "name": "RiskAnalysisViolation"
+        },
+        {
+          "name": "Rule"
+        },
+        {
+          "name": "RuleActionType"
+        },
+        {
+          "name": "RuleApplicationTraffic"
+        },
+        {
+          "name": "RuleApplicationValue"
+        },
+        {
+          "name": "RuleAppliedToObjects"
+        },
+        {
+          "name": "RuleExceptionConditionInput"
+        },
+        {
+          "name": "RuleFlowsViolationData"
+        },
+        {
+          "name": "RuleInstallationTargetTraffic"
+        },
+        {
+          "name": "RuleLogging"
+        },
+        {
+          "name": "RuleLoggingTiming"
+        },
+        {
+          "name": "RuleMatchCriterionType"
+        },
+        {
+          "name": "RuleNatInfo"
+        },
+        {
+          "name": "RuleNetworkTraffic"
+        },
+        {
+          "name": "RuleOperationsMutation"
+        },
+        {
+          "name": "RuleOptimizerData"
+        },
+        {
+          "name": "RuleOptimizerFeatureSupport"
+        },
+        {
+          "name": "RuleOptimizerMutation"
+        },
+        {
+          "name": "RuleOptimizerQuery"
+        },
+        {
+          "name": "RuleOptimizerSubNetworkInput"
+        },
+        {
+          "name": "RuleOptimizerSubNetworkResult"
+        },
+        {
+          "name": "RuleOptimizerSupport"
+        },
+        {
+          "name": "RuleOptimizerSupportStatus"
+        },
+        {
+          "name": "RuleOptimizerTask"
+        },
+        {
+          "name": "RuleOptimizerTaskResultsInput"
+        },
+        {
+          "name": "RuleOptimizerTaskResultsQuery"
+        },
+        {
+          "name": "RuleOptimizerTaskStatus"
+        },
+        {
+          "name": "RuleQuery"
+        },
+        {
+          "name": "RuleSchedule"
+        },
+        {
+          "name": "RuleServiceTraffic"
+        },
+        {
+          "name": "RuleTimeTraffic"
+        },
+        {
+          "name": "RuleTrackLevel"
+        },
+        {
+          "name": "RuleTrafficViolationData"
+        },
+        {
+          "name": "RuleUrlCategory"
+        },
+        {
+          "name": "RuleUsageStatus"
+        },
+        {
+          "name": "RuleUserData"
+        },
+        {
+          "name": "RuleUserDataMutation"
+        },
+        {
+          "name": "RuleUserTraffic"
+        },
+        {
+          "name": "RuleUserValue"
+        },
+        {
+          "name": "RuleViolatedProperty"
+        },
+        {
+          "name": "RuleViolation"
+        },
+        {
+          "name": "RuleVpnTraffic"
+        },
+        {
+          "name": "RuleZoneTraffic"
+        },
+        {
+          "name": "SaApplication"
+        },
+        {
+          "name": "SchedulePredefinedValue"
+        },
+        {
+          "name": "SecurityPolicy"
+        },
+        {
+          "name": "SecurityPolicyInstallationTargets"
+        },
+        {
+          "name": "SecurityPolicyType"
+        },
+        {
+          "name": "SecurityProfile"
+        },
+        {
+          "name": "SecurityProfileValue"
+        },
+        {
+          "name": "SecurityZone"
+        },
+        {
+          "name": "SecurityZoneQuery"
+        },
+        {
+          "name": "Service"
+        },
+        {
+          "name": "ServiceAndApplicationConditionInput"
+        },
+        {
+          "name": "ServiceExpressionString"
+        },
+        {
+          "name": "ServiceObject"
+        },
+        {
+          "name": "ServiceObjectUsage"
+        },
+        {
+          "name": "ServicePredefinedValue"
+        },
+        {
+          "name": "ServiceRecommendation"
+        },
+        {
+          "name": "ServicesAndApplicationsCondition"
+        },
+        {
+          "name": "SessionUser"
+        },
+        {
+          "name": "ShadowedStatus"
+        },
+        {
+          "name": "SourceTranslationType"
+        },
+        {
+          "name": "StepStatus"
+        },
+        {
+          "name": "String"
+        },
+        {
+          "name": "Subnet"
+        },
+        {
+          "name": "SupportingIP"
+        },
+        {
+          "name": "System"
+        },
+        {
+          "name": "SystemField"
+        },
+        {
+          "name": "SystemFieldInput"
+        },
+        {
+          "name": "SystemFieldType"
+        },
+        {
+          "name": "SystemFieldValue"
+        },
+        {
+          "name": "SystemFieldValueInput"
+        },
+        {
+          "name": "SystemMutation"
+        },
+        {
+          "name": "SystemProperties"
+        },
+        {
+          "name": "SystemQuery"
+        },
+        {
+          "name": "SystemUsageConfig"
+        },
+        {
+          "name": "TQLSearchType"
+        },
+        {
+          "name": "Ticket"
+        },
+        {
+          "name": "TicketCertification"
+        },
+        {
+          "name": "TimePeriodInDay"
+        },
+        {
+          "name": "TimedCount"
+        },
+        {
+          "name": "TrafficUspRestriction"
+        },
+        {
+          "name": "TrafficUspRestrictionInput"
+        },
+        {
+          "name": "TrafficUspRestrictionType"
+        },
+        {
+          "name": "TransportService"
+        },
+        {
+          "name": "TransportServiceProtocol"
+        },
+        {
+          "name": "TransportServiceRecommendation"
+        },
+        {
+          "name": "TrendQueryInput"
+        },
+        {
+          "name": "TrendResult"
+        },
+        {
+          "name": "URL"
+        },
+        {
+          "name": "UpdateDefaultDeviceAdjustmentInput"
+        },
+        {
+          "name": "UpdateDefaultDeviceAdjustmentResult"
+        },
+        {
+          "name": "UpdateDeviceAdjustmentsInput"
+        },
+        {
+          "name": "UpdateDeviceAdjustmentsResult"
+        },
+        {
+          "name": "UpdateDeviceInclusionInCalculationInput"
+        },
+        {
+          "name": "UpdateDeviceInclusionInCalculationResult"
+        },
+        {
+          "name": "UpdateProtectionModeInput"
+        },
+        {
+          "name": "UpdateProtectionModeResult"
+        },
+        {
+          "name": "UpdateRuleAutomationAttributeInput"
+        },
+        {
+          "name": "UpdateRuleAutomationAttributeResult"
+        },
+        {
+          "name": "UpdateRuleDescriptionInput"
+        },
+        {
+          "name": "UpdateRuleDescriptionResult"
+        },
+        {
+          "name": "UpdateRuleTechnicalOwnerInput"
+        },
+        {
+          "name": "UpdateRuleTechnicalOwnerResult"
+        },
+        {
+          "name": "UpdateSystemInput"
+        },
+        {
+          "name": "UpdateSystemResult"
+        },
+        {
+          "name": "UpdateTicketInput"
+        },
+        {
+          "name": "UpdateTicketResult"
+        },
+        {
+          "name": "UpdateUserTQLSearchInput"
+        },
+        {
+          "name": "UpdateUserTQLSearchResult"
+        },
+        {
+          "name": "UpdateUspAlertConfigInput"
+        },
+        {
+          "name": "UpdateUspAlertConfigResult"
+        },
+        {
+          "name": "UpdateUspInput"
+        },
+        {
+          "name": "UpdateUspRequirementInput"
+        },
+        {
+          "name": "UpdateUspRequirementResult"
+        },
+        {
+          "name": "UpdateUspResult"
+        },
+        {
+          "name": "UpdateUspRuleExceptionInput"
+        },
+        {
+          "name": "UpdateUspRuleExceptionResult"
+        },
+        {
+          "name": "UpdateUspTrafficExceptionInput"
+        },
+        {
+          "name": "UpdateUspTrafficExceptionResult"
+        },
+        {
+          "name": "UpdateVersionMetadataInput"
+        },
+        {
+          "name": "UpdateVersionMetadataResult"
+        },
+        {
+          "name": "UrlCategory"
+        },
+        {
+          "name": "UrlCategoryInput"
+        },
+        {
+          "name": "UrlCategoryPredefinedValue"
+        },
+        {
+          "name": "UsageConfig"
+        },
+        {
+          "name": "UsageReporting"
+        },
+        {
+          "name": "UsageReportingFeatureSupport"
+        },
+        {
+          "name": "User"
+        },
+        {
+          "name": "UserPredefinedValue"
+        },
+        {
+          "name": "UserQuery"
+        },
+        {
+          "name": "UserTQLSearch"
+        },
+        {
+          "name": "UserTQLSearchMutation"
+        },
+        {
+          "name": "UserTQLSearchQuery"
+        },
+        {
+          "name": "UserUsage"
+        },
+        {
+          "name": "UserUsageStatus"
+        },
+        {
+          "name": "UserValue"
+        },
+        {
+          "name": "UserWorkflow"
+        },
+        {
+          "name": "UserWorkflowsQuery"
+        },
+        {
+          "name": "Usp"
+        },
+        {
+          "name": "UspAlertConfig"
+        },
+        {
+          "name": "UspAlertConfigQuery"
+        },
+        {
+          "name": "UspCSVImportError"
+        },
+        {
+          "name": "UspCSVImportErrorType"
+        },
+        {
+          "name": "UspCSVImportErrorsByType"
+        },
+        {
+          "name": "UspCondition"
+        },
+        {
+          "name": "UspException"
+        },
+        {
+          "name": "UspExceptionConditionInput"
+        },
+        {
+          "name": "UspExceptionMutation"
+        },
+        {
+          "name": "UspExceptionQuery"
+        },
+        {
+          "name": "UspExceptionType"
+        },
+        {
+          "name": "UspMutation"
+        },
+        {
+          "name": "UspQuery"
+        },
+        {
+          "name": "UspRequirement"
+        },
+        {
+          "name": "UspRequirementQuery"
+        },
+        {
+          "name": "UspRestriction"
+        },
+        {
+          "name": "UspRestrictions"
+        },
+        {
+          "name": "UspRestrictionsInput"
+        },
+        {
+          "name": "UspRiskAnalysisTask"
+        },
+        {
+          "name": "UspRiskAnalysisTaskQuery"
+        },
+        {
+          "name": "UspRuleException"
+        },
+        {
+          "name": "UspTrafficException"
+        },
+        {
+          "name": "VM"
+        },
+        {
+          "name": "VMTufinState"
+        },
+        {
+          "name": "VendorName"
+        },
+        {
+          "name": "VersionChangesInput"
+        },
+        {
+          "name": "VersionChangesQuery"
+        },
+        {
+          "name": "VersionEntityType"
+        },
+        {
+          "name": "VersionInfo"
+        },
+        {
+          "name": "VersionInfoDetails"
+        },
+        {
+          "name": "VersionMutation"
+        },
+        {
+          "name": "VersionQuery"
+        },
+        {
+          "name": "VersionStatus"
+        },
+        {
+          "name": "VersionsInfoInput"
+        },
+        {
+          "name": "VersionsInfoQuery"
+        },
+        {
+          "name": "ViolationOrigin"
+        },
+        {
+          "name": "ViolationSeverity"
+        },
+        {
+          "name": "Visibility"
+        },
+        {
+          "name": "VpnCommunity"
+        },
+        {
+          "name": "VpnPredefinedValue"
+        },
+        {
+          "name": "WorkFlowType"
+        },
+        {
+          "name": "Zone"
+        },
+        {
+          "name": "ZoneManualMappingInput"
+        },
+        {
+          "name": "ZoneManualMappingResult"
+        },
+        {
+          "name": "ZoneMappingActionType"
+        },
+        {
+          "name": "ZoneMappingInput"
+        },
+        {
+          "name": "ZoneMappingMutation"
+        },
+        {
+          "name": "ZoneMappingMutationsInput"
+        },
+        {
+          "name": "ZoneMappingType"
+        },
+        {
+          "name": "ZonePair"
+        },
+        {
+          "name": "ZonePairInput"
+        },
+        {
+          "name": "ZonePredefinedValue"
+        },
+        {
+          "name": "ZoneToZoneUspRequirementMatcher"
+        },
+        {
+          "name": "ZoneType"
+        },
+        {
+          "name": "ZonesRelation"
+        },
+        {
+          "name": "__Directive"
+        },
+        {
+          "name": "__DirectiveLocation"
+        },
+        {
+          "name": "__EnumValue"
+        },
+        {
+          "name": "__Field"
+        },
+        {
+          "name": "__InputValue"
+        },
+        {
+          "name": "__Schema"
+        },
+        {
+          "name": "__Type"
+        },
+        {
+          "name": "__TypeKind"
+        },
+        {
+          "name": "countsOrderBy"
+        },
+        {
+          "name": "orderDirection"
+        }
+      ]
+    }
+  }
+}
