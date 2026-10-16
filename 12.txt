@@ -1,8 +1,123 @@
 {
-  rules(filter: "vendor='PALO_ALTO' and certificationStatus exists") {
-    values(first: 10) {
-      idOnDevice
-      ruleUserData { ruleDescription saApplications { name owner } }
+  "data": {
+    "rules": {
+      "values": [
+        {
+          "idOnDevice": "Ping Firewall Interfaces",
+          "ruleUserData": {
+            "ruleDescription": "app_id: APP-1980",
+            "saApplications": [
+              {
+                "name": "APP-792-SCADA Substation",
+                "owner": "RxDe"
+              },
+              {
+                "name": "APP-1967 Reggedcom Switches",
+                "owner": "SEK8"
+              },
+              {
+                "name": "APP-2589-Statseeker",
+                "owner": "NXCc"
+              },
+              {
+                "name": "APP-2461-SCOM 2019 - ODN",
+                "owner": "J9GT"
+              },
+              {
+                "name": "APP-3662-System Center Operations Manager 2025 - ODN",
+                "owner": "P1SF"
+              },
+              {
+                "name": "APP-3684-One Identity Safeguard ODN",
+                "owner": "S1KO"
+              }
+            ]
+          }
+        },
+        {
+          "idOnDevice": "Citrix to GE Relays",
+          "ruleUserData": {
+            "ruleDescription": "app_id: APP-2568",
+            "saApplications": null
+          }
+        },
+        {
+          "idOnDevice": "Citrix to GE Relays-svc",
+          "ruleUserData": {
+            "ruleDescription": "app_id: APP-2568",
+            "saApplications": null
+          }
+        },
+        {
+          "idOnDevice": "Citrix to SEL Relays-svc",
+          "ruleUserData": {
+            "ruleDescription": "app_id: APP-1967",
+            "saApplications": null
+          }
+        },
+        {
+          "idOnDevice": "Citrix to 7std Server",
+          "ruleUserData": {
+            "ruleDescription": "app_id: APP-2539",
+            "saApplications": [
+              {
+                "name": "APP-792-SCADA Substation",
+                "owner": "RxDe"
+              }
+            ]
+          }
+        },
+        {
+          "idOnDevice": "Citrix to 7std Server DRAC",
+          "ruleUserData": {
+            "ruleDescription": "app_id: APP-2539",
+            "saApplications": [
+              {
+                "name": "APP-792-SCADA Substation",
+                "owner": "RxDe"
+              }
+            ]
+          }
+        },
+        {
+          "idOnDevice": "Citrix to 7th standard Dracs",
+          "ruleUserData": {
+            "ruleDescription": "app_id: APP-2539",
+            "saApplications": [
+              {
+                "name": "APP-792-SCADA Substation",
+                "owner": "RxDe"
+              }
+            ]
+          }
+        },
+        {
+          "idOnDevice": "RTSCADA100 to 7std server",
+          "ruleUserData": {
+            "ruleDescription": "app_id: APP-1598",
+            "saApplications": [
+              {
+                "name": "APP-792-SCADA Substation",
+                "owner": "RxDe"
+              }
+            ]
+          }
+        },
+        {
+          "idOnDevice": "FEP to 7std server",
+          "ruleUserData": {
+            "ruleDescription": "app_id: APP-1567",
+            "saApplications": null
+          }
+        },
+        {
+          "idOnDevice": "ICS Traffic Inbound",
+          "ruleUserData": {
+            "ruleDescription": "app_id: APP-1598",
+            "saApplications": null
+          }
+        }
+      ]
     }
   }
 }
