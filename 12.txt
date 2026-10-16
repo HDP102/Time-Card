@@ -1,8 +1,43 @@
 {
-  rules(filter: "certificationStatus exists") {
-    values(first: 5) {
-      name
-      ruleUserData { ruleDescription saApplications { __typename } }
+  "data": {
+    "rules": {
+      "values": [
+        {
+          "name": null,
+          "ruleUserData": {
+            "ruleDescription": null,
+            "saApplications": null
+          }
+        },
+        {
+          "name": null,
+          "ruleUserData": {
+            "ruleDescription": null,
+            "saApplications": null
+          }
+        },
+        {
+          "name": null,
+          "ruleUserData": {
+            "ruleDescription": null,
+            "saApplications": null
+          }
+        },
+        {
+          "name": null,
+          "ruleUserData": {
+            "ruleDescription": null,
+            "saApplications": null
+          }
+        },
+        {
+          "name": null,
+          "ruleUserData": {
+            "ruleDescription": null,
+            "saApplications": null
+          }
+        }
+      ]
     }
   }
 }
