@@ -1,14 +1,1 @@
-{
-  rules(filter: "securechangeTicketInProgressId exists", limit: 5) {
-    values {
-      idOnDevice
-      name
-      device { name }
-      ruleUserData {
-        technicalOwnerName
-        securechangeTicketInProgressId
-        certification { status timeCertified timeExpiration owner ownerEmail comment }
-      }
-    }
-  }
-}
+{ __type(name: "Query") { fields { name args { name } } } }
