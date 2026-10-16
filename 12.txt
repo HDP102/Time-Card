@@ -1,7 +1,97 @@
-{
-  "data": {
-    "rules": {
-      "count": 37469
-    }
-  }
-}
+PS C:\Users\H2PR\OneDrive - PGE\Documents\Github Automation\NPS-Automation\NPS-Automation\NPS-Automation\HRVExport> py hrv_owner_export.py
+15:45:50 Output folder: C:\Users\H2PR\OneDrive - PGE\Cybersecurity Network Protection Services - HRV Power BI
+15:45:50 Owner phone book from C:\Users\H2PR\OneDrive - PGE\Documents\Github Automation\NPS-Automation\NPS-Automation\NPS-Automation\SharedData
+15:46:05   report_GDN Rule Recertification.xlsx: roles, +194
+15:46:05   report_MediumRule_report_with_APPID.xlsx: roles, +455
+15:46:08   report_ODN_MPLS_Rules_Part1.xlsx: roles, +891
+15:46:09   report_ODN_MPLS_Rules_Part2.xlsx: roles, +367
+15:46:11   report_ODN_NERC_Low_Medium_Part1.xlsx: roles, +61
+15:46:12   report_ODN_NERC_Low_Medium_Part2.xlsx: roles, +42
+15:46:13   report_Remaining_ODN_Firewalls_Part1.xlsx: roles, +29
+15:46:13   report_Remaining_ODN_Firewalls_Part2.xlsx: roles, +73
+15:46:14   report_UDN_FirewallRules_Part1.xlsx: roles, +1181
+15:46:15   report_UDN_FirewallRules_Part2.xlsx: roles, +1309
+15:46:16   report_UDN_FirewallRules_Part3.xlsx: roles, +1375
+15:46:19   Sathish_Rule_report_PROD_2026-10-09.xlsx: AMPS, +349
+15:46:19   880 App IDs with owners
+SecureTrack user: ticketAPI
+SecureTrack password: 
+15:46:52 Pulling rules from Tufin: vendor='PALO_ALTO' and description contains 'app_id'
+15:46:53   Tufin: 500 of 37,467 rules
+15:46:54   Tufin: 1,000 of 37,467 rules
+15:46:54   Tufin: 1,500 of 37,467 rules
+15:46:55   Tufin: 2,000 of 37,467 rules
+15:46:55   Tufin: 2,500 of 37,467 rules
+15:46:56   Tufin: 3,000 of 37,467 rules
+15:46:56   Tufin: 3,500 of 37,467 rules
+15:46:57   Tufin: 4,000 of 37,467 rules
+15:46:57   Tufin: 4,500 of 37,467 rules
+15:46:58   Tufin: 5,000 of 37,467 rules
+15:46:59   Tufin: 5,500 of 37,467 rules
+15:47:00   Tufin: 6,000 of 37,467 rules
+15:47:00   Tufin: 6,500 of 37,467 rules
+15:47:01   Tufin: 7,000 of 37,467 rules
+15:47:01   Tufin: 7,500 of 37,467 rules
+15:47:02   Tufin: 8,000 of 37,467 rules
+15:47:03   Tufin: 8,500 of 37,467 rules
+15:47:03   Tufin: 9,000 of 37,467 rules
+15:47:04   Tufin: 9,500 of 37,467 rules
+15:47:04   Tufin: 10,000 of 37,467 rules
+15:47:05   Tufin: 10,500 of 37,467 rules
+15:47:06   Tufin: 11,000 of 37,467 rules
+15:47:06   Tufin: 11,500 of 37,467 rules
+15:47:07   Tufin: 12,000 of 37,467 rules
+15:47:08   Tufin: 12,500 of 37,467 rules
+15:47:08   Tufin: 13,000 of 37,467 rules
+15:47:09   Tufin: 13,500 of 37,467 rules
+15:47:10   Tufin: 14,000 of 37,467 rules
+15:47:11   Tufin: 14,500 of 37,467 rules
+15:47:11   Tufin: 15,000 of 37,467 rules
+15:47:12   Tufin: 15,500 of 37,467 rules
+15:47:12   Tufin: 16,000 of 37,467 rules
+15:47:13   Tufin: 16,500 of 37,467 rules
+15:47:14   Tufin: 17,000 of 37,467 rules
+15:47:14   Tufin: 17,500 of 37,467 rules
+15:47:15   Tufin: 18,000 of 37,467 rules
+15:47:16   Tufin: 18,500 of 37,467 rules
+15:47:16   Tufin: 19,000 of 37,467 rules
+15:47:17   Tufin: 19,500 of 37,467 rules
+15:47:18   Tufin: 20,000 of 37,467 rules
+15:47:18   Tufin: 20,500 of 37,467 rules
+15:47:19   Tufin: 21,000 of 37,467 rules
+15:47:20   Tufin: 21,500 of 37,467 rules
+15:47:20   Tufin: 22,000 of 37,467 rules
+15:47:21   Tufin: 22,500 of 37,467 rules
+15:47:22   Tufin: 23,000 of 37,467 rules
+15:47:23   Tufin: 23,500 of 37,467 rules
+15:47:23   Tufin: 24,000 of 37,467 rules
+15:47:24   Tufin: 24,500 of 37,467 rules
+15:47:25   Tufin: 25,000 of 37,467 rules
+15:47:25   Tufin: 25,500 of 37,467 rules
+15:47:26   Tufin: 26,000 of 37,467 rules
+15:47:27   Tufin: 26,500 of 37,467 rules
+15:47:28   Tufin: 27,000 of 37,467 rules
+15:47:28   Tufin: 27,500 of 37,467 rules
+15:47:29   Tufin: 28,000 of 37,467 rules
+15:47:30   Tufin: 28,500 of 37,467 rules
+15:47:31   Tufin: 29,000 of 37,467 rules
+15:47:31   Tufin: 29,500 of 37,467 rules
+15:47:32   Tufin: 30,000 of 37,467 rules
+15:47:33   Tufin: 30,500 of 37,467 rules
+15:47:34   Tufin: 31,000 of 37,467 rules
+15:47:34   Tufin: 31,500 of 37,467 rules
+15:47:35   Tufin: 32,000 of 37,467 rules
+15:47:36   Tufin: 32,500 of 37,467 rules
+15:47:37   Tufin: 33,000 of 37,467 rules
+15:47:37   Tufin: 33,500 of 37,467 rules
+15:47:38   Tufin: 34,000 of 37,467 rules
+15:47:39   Tufin: 34,500 of 37,467 rules
+15:47:40   Tufin: 35,000 of 37,467 rules
+15:47:40   Tufin: 35,500 of 37,467 rules
+15:47:41   Tufin: 36,000 of 37,467 rules
+15:47:42   Tufin: 36,500 of 37,467 rules
+15:47:42   Tufin: 37,000 of 37,467 rules
+15:47:43   Tufin: 37,467 of 37,467 rules
+15:47:44 37,467 rules, 814 apps: Certified 37,375, Pending 92, Decertified 0 | 5 apps without owners | 21487 untagged PA rules
+15:47:44 5,979 rows -> C:\Users\H2PR\OneDrive - PGE\Cybersecurity Network Protection Services - HRV Power BI\HRV_Owner_Recert_Status.xlsx
+PS C:\Users\H2PR\OneDrive - PGE\Documents\Github Automation\NPS-Automation\NPS-Automation\NPS-Automation\HRVExport> 
