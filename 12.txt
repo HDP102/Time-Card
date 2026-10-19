@@ -1,44 +1,23 @@
-The quickest route on your laptop is OpenSSL. Git for Windows ships with it, so you probably already have it. This takes about two minutes, and a laptop-made certificate is fine for lab testing; for prod, the key moves to (or is regenerated on) whatever server runs the script.
+# 1. Find OpenSSL inside your Git install
+$o = Get-ChildItem "$env:LOCALAPPDATA\Programs\Git" -Recurse -Filter openssl.exe -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName
+Set-Alias openssl $o
+openssl version
 
-**1. Check OpenSSL is there** (PowerShell):
-```powershell
-& "C:\Program Files\Git\usr\bin\openssl.exe" version
-```
-If that prints a version, set a shortcut for the next commands:
-```powershell
-Set-Alias openssl "C:\Program Files\Git\usr\bin\openssl.exe"
-```
-
-**2. Make a folder outside the repo**, so the key can never be committed:
-```powershell
-mkdir C:\Users\H2PR\certs\mea-lab
+# 2. Folder outside the repo
+mkdir C:\Users\H2PR\certs\mea-lab -Force
 cd C:\Users\H2PR\certs\mea-lab
-```
 
-**3. Generate the key and a self-signed certificate.** The name identifies the automation, not you:
-```powershell
-openssl req -x509 -newkey rsa:2048 -sha256 -days 730 -nodes `
-  -keyout nps_fw_mea_lab.key -out nps_fw_mea_lab.crt `
-  -subj "/CN=NPS-Firewall-Automation-MEA-Lab/O=Pacific Gas and Electric Company"
-```
-You get two files:
-- `nps_fw_mea_lab.crt` is the **public certificate**, the only file you send to the SSO team.
-- `nps_fw_mea_lab.key` is the **private key**. Never email it or put it in git or SharePoint.
+# 3. Private key + self-signed certificate (2 years)
+openssl req -x509 -newkey rsa:2048 -sha256 -days 730 -nodes -keyout nps_fw_mea_lab.key -out nps_fw_mea_lab.crt -subj "/CN=NPS-Firewall-Automation-MEA-Lab/O=Pacific Gas and Electric Company"
 
-**4. Get the thumbprint.** The script needs it later, and SSO may ask for it:
-```powershell
+# 4. SHA-1 thumbprint (keep this)
 openssl x509 -in nps_fw_mea_lab.crt -noout -fingerprint -sha1
-```
 
-**5. Lock down the key file** so only your account can read it:
-```powershell
-icacls nps_fw_mea_lab.key /inheritance:r /grant:r "$env:USERNAME:R"
-```
+# 5. Check the certificate details
+openssl x509 -in nps_fw_mea_lab.crt -noout -subject -dates
 
-**Notes:**
-- **Use one certificate per environment.** Do lab now; prod gets its own certificate (`...-Prod`), generated on the prod server once that's decided.
-- **Validity:** 730 days is a guess. If SSO says they want shorter, regenerate with a different `-days`.
-- **Unencrypted key:** `-nodes` leaves the key without a password, because the script has to read it without anyone typing one. That's why the file permissions in step 5 matter. Long term, the key should be stored in Safeguard, like the other credentials.
-- **If OpenSSL isn't installed:** run `py -m pip install cryptography` and I'll give you a short Python script that writes the same two files.
+# 6. Lock the private key to your account only
+icacls nps_fw_mea_lab.key /inheritance:r /grant:r "${env:USERNAME}:(R)"
 
-Once you have the `.crt`, I'll draft the email to `azuresso@pge.com` (cc `itmulesoftplatformsupport@pge.com`) with it attached.
+# 7. Confirm both files exist
+dir
