@@ -1,7 +1,5 @@
-Hey Sampath, happy to help. Few things I need first.
+Yeah go ahead and open a ticket for it, that’ll give us a record since it’s going to an external party.
 
-Is CMT Portal hosted by the vendor with our users connecting out to it, or is it something on our side they need to reach? And is this user browser traffic or server to server?
+For the ticket I’ll need the server names or internal IPs that are making the calls, and the destination FQDN for the CMT Portal. Once I have those I can trace which path that traffic actually takes and get you the right source IPs.
 
-Asking because if it’s users going out through Zscaler, the source IPs the vendor sees are Zscaler’s, not ours, so our own ranges wouldn’t do anything for their allowlist. That list is large and changes periodically, so worth knowing whether they can handle that or if they need a small fixed set.
-
-Also can you send over the vendor’s request as they wrote it, and is there a ticket open for this?
+One thing worth telling the vendor up front, whatever we give them is tied to the current egress path. If that changes the allowlist breaks, so it’s better if they can allow a range rather than single addresses.
