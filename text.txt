@@ -1,5 +1,6 @@
-Yeah go ahead and open a ticket for it, that’ll give us a record since it’s going to an external party.
-
-For the ticket I’ll need the server names or internal IPs that are making the calls, and the destination FQDN for the CMT Portal. Once I have those I can trace which path that traffic actually takes and get you the right source IPs.
-
-One thing worth telling the vendor up front, whatever we give them is tied to the current egress path. If that changes the allowlist breaks, so it’s better if they can allow a range rather than single addresses.
+Excel row	Question	Response
+28	Supports auth protocols (SAML, OAuth/OIDC, WS-Fed)?	Yes – OAuth 2.0 client credentials with a certificate-based client assertion (JWT, RS256)
+29	Allow non-SSO login with local credentials?	N/A – no interactive login of any kind; the script authenticates only through the Entra ID certificate credential
+30	Dependency on another SSO-integrated app?	Yes – calls the MuleSoft MEA proxy API (being built by the MuleSoft platform team), which calls SailPoint IdentityIQ
+31	JIT or SCIM provisioning?	No – N/A
+32	Work Order # from front door	The WO number you get after submitting the front door form
