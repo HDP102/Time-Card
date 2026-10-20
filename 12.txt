@@ -1,38 +1,55 @@
-Subject: Request: Entra ID OAuth client registration (certificate) – NPS Firewall Automation to MuleSoft MEA API (Lab)
+Lee pointed you to the standard SSO intake: fill in that questionnaire, then attach it to a front door work order. Answers below, ready to paste into the Response column. **⚠ means you need to confirm or fill it in**; I don't have those facts.
 
-Hi Azure SSO team,
+### Intake questionnaire
 
-I'm requesting an OAuth client registration in Entra ID for certificate-based client credentials, so our NPS firewall automation script can call the MuleSoft MEA (SailPoint) API. This follows the MuleSoft API Security pattern "MuleSoft API Authentication Using Microsoft Entra Id Certificate Based OAuth Flow," as recommended by the MuleSoft platform team (Dinesh Ramalingam).
+**Common section**
 
-Details:
-- Consumer: NPS Firewall Automation (Cybersecurity Network Protection Services) – internal script, not a user-facing app
-- Target: MuleSoft proxy API for MEA / SailPoint (account disable for the firewall rule recertification campaign)
-- Environment: Lab / non-prod first; production will follow with a separate certificate
-- Auth method: Client credentials with certificate (JWT client assertion, RS256)
+| # | Question | Response |
+|---|---|---|
+| 1 | Application Name | NPS Firewall Automation – MEA Account Disable Integration |
+| 2 | AMPS ID | ⚠ Likely **APP-3548** (Tufin; the ServiceNow Tufin API accounts carry it). Confirm with Swapnil. |
+| 3 | Description | Internal Python automation run by Network Protection Services for the firewall rule recertification campaign (HRV audit finding). After the recertification deadline it calls the MuleSoft MEA proxy API to disable the accounts of IT SMEs who did not recertify their rules. No user interface; non-interactive, app-to-API only. |
+| 4 | BIA tier | ⚠ Use Tufin's tier, or ask Swapnil |
+| 5 | Data Classification | ⚠ Internal (sends LAN IDs to MEA; stores no credentials or personal data beyond that). Change to Confidential if Cyber says so. |
+| 6 | Application Owner | ⚠ Swapnil Chawande (S9CH)? |
+| 7 | Business Owner | ⚠ Same, or your manager |
+| 8 | Lines of Business | Cybersecurity – Network Protection Services; affects IT application owners company-wide |
+| 9 | COTS / In-house / SaaS | In-house (custom Python script) |
+| 10 | Vendor Name | N/A – developed in-house |
+| 11 | TSR approved | N/A – no third-party vendor |
+| 12 | Cyber Arch review | Not yet. The MuleSoft platform team (Dinesh Ramalingam) recommended the certificate-based Entra ID pattern from the "MuleSoft API Security Patterns" wiki and advised confirming it with Abhishek Chauhan. Review requested. |
+| 13 | Project Order Number | ⚠ Get from Swapnil (also required on the front door form) |
+| 14 | Project contact | Hardik Patel (H2PR) |
+| 15 | Vendor contact | N/A |
+| 16 | Planned prod date | ⚠ Before the recertification deadline (escalation config has 12/07/2026). Lab first. |
+| 17 | Number of users | 0 interactive users; 1 non-interactive service client |
+| 18 | Regulatory (SOX/NERC/HIPAA) | ⚠ Supports NERC CIP / audit compliance (firewall recertification for an internal audit finding). The integration itself stores no regulated data. |
+| 19 | Manage access through MEA? | No – this integration *calls* MEA to disable accounts; it has no users to manage |
+| 20 | Enable SSO? | No – no user sign-in. Requesting an Entra ID OAuth client registration (client credentials with certificate) only. |
 
-Certificate (public cert attached: nps_fw_mea_lab.crt):
-- Subject: CN=NPS-Firewall-Automation-MEA-Lab, O=Pacific Gas and Electric Company
-- SHA-1 thumbprint: D8:29:DF:01:54:01:DA:15:8C:E0:CC:EE:80:24:9A:0C:C9:04:2A:EB
-- Valid: Oct 19, 2026 – Oct 18, 2028
-- Self-signed
+**SSO section:** answer each row N/A with the same reason, apart from the ones below.
 
-Could you please provide:
-1. Client ID
-2. Scope / audience for the MuleSoft MEA API
-3. Tenant ID for the lab environment
+| # | Response |
+|---|---|
+| 21–26 | N/A – no interactive users or UI; non-interactive client credentials flow |
+| 27 | OAuth 2.0 client credentials, certificate-based client assertion (JWT, RS256) |
+| 28 | N/A – no local login |
+| 29 | Depends on the MuleSoft MEA proxy API (being built by the MuleSoft platform team) |
+| 30 | No / N/A |
+| (Work Order #) | ⚠ The number you get after submitting the front door form, so submit the form first, then fill this in and attach |
 
-Please let me know if anything else is needed or if there's an intake form I should submit.
+### Front door form
 
-Thank you,
-Hardik Patel
-Network Protection Services
+- **On behalf of another individual:** No
+- **Best call back number:** your number
+- **Service:** SSO Configuration
+- **Request Type:** Work Order Request
+- **Order Number:** ⚠ from Swapnil (same as #13)
+- **Attachments:** the completed questionnaire plus `nps_fw_mea_lab.crt`
+- **Details:**
 
+> Request Entra ID OAuth client registration (certificate-based client credentials) for NPS Firewall Automation to call the MuleSoft MEA (SailPoint) proxy API, lab first. Per Azure SSO (Lee Milum) on the email "Request: Entra ID OAuth client registration (certificate) – NPS Firewall Automation to MuleSoft MEA API (Lab)", following the SSO Intake Process. Public certificate attached: CN=NPS-Firewall-Automation-MEA-Lab, SHA-1 thumbprint D8:29:DF:01:54:01:DA:15:8C:E0:CC:EE:80:24:9A:0C:C9:04:2A:EB, valid 10/19/2026–10/18/2028. Need the client ID, the scope/audience for the MuleSoft MEA API, and the lab tenant ID. MuleSoft contact: Dinesh Ramalingam. MEA contact: Hareesh Vuskala.
 
+**The one thing blocking submission is the Order Number**, a required field on the front door form. Ask Swapnil for it, along with the AMPS ID, BIA tier and owners, in a single message:
 
-
-I’ve drafted the email to the Azure SSO team asking them to register your certificate.
-
-From: h2pr@pge.com (you)
-To: azuresso@pge.com
-CC: itmulesoftplatformsupport@pge.com. You could also add Dinesh (MuleSoft) and Hareesh (MEA) so they know it’s in motion.
-Attach: only C:\Users\H2PR\certs\mea-lab\nps_fw_mea_lab.crt. Never the .key.
+> Swapnil, for the Entra ID registration on the MEA disable API I need: project order number, AMPS ID (APP-3548 for Tufin?), BIA tier, and who to list as application/business owner. Front door form won't submit without the order number.
