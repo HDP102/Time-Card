@@ -1,3 +1,7 @@
-Hey Mark, Nithin pointed me your way on a FireMon SSO issue. SAML login to FireMon (v50secapl019.countrylan.com) looks to be broken, and Nick couldn't log in this morning. The server was rebuilt back in June and upgraded last month, so I'm wondering if something changed on the FireMon side that no longer matches the SAML app config, like the certificate or the ACS URL.
+Hey Sampath, happy to help. Few things I need first.
 
-Could you take a look at the FireMon app on your side and see if anything looks off, or if there are errors from the login attempts? I can pull whatever you need from the FireMon side, and I'm happy to jump on a quick call to test it live. Thanks!
+Is CMT Portal hosted by the vendor with our users connecting out to it, or is it something on our side they need to reach? And is this user browser traffic or server to server?
+
+Asking because if it’s users going out through Zscaler, the source IPs the vendor sees are Zscaler’s, not ours, so our own ranges wouldn’t do anything for their allowlist. That list is large and changes periodically, so worth knowing whether they can handle that or if they need a small fixed set.
+
+Also can you send over the vendor’s request as they wrote it, and is there a ticket open for this?
