@@ -1,4 +1,1 @@
-   10.199.40.196
-   10.199.40.197
-   10.207.41.4
-   10.207.41.5
+Production ZPA App Connectors v50secapl011/012, v51secapl011/012. Used in ICS_Firemon | Production rule 2.
