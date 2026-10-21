@@ -1,6 +1,4 @@
-Thanks Brindha. On my side, the firewall script will authenticate with Entra ID using a certificate (client credentials). I’ve submitted the SSO intake for the client registration and will share the client ID once SSO issues it, for your JWT validation policy.
-
-A couple of questions so I can build the client side in parallel:
-
-Which MuleSoft environment should we start in (Dev or Test?), and which SailPoint environment will it point to?
-Once you’ve seen Hareesh’s SailPoint docs, can you share the proxy’s request/response format: input fields (LAN ID?), single account or batch, and the response we’ll get back to confirm the disable?
+   10.199.40.196
+   10.199.40.197
+   10.207.41.4
+   10.207.41.5
