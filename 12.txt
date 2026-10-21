@@ -1,20 +1,6 @@
-Azure tag update: change Application tag from Firemon to Firewall Policy Manager (Illumio ICS migration)
+Thanks Hareesh. A few things so I build the client side to match:
 
-Requesting an Azure tag update on the FireMon resources below to align with the CMDB application name. FireMon is recorded in CMDB as "Firewall Policy Manager" (service instance Firewall Policy Manager PROD), and Illumio Cloud Secure builds its application label from the Azure Application tag, so the tag needs to match CMDB. Approved by Nick Bauman.
-
-Change the Application tag value from "Firemon" to "Firewall Policy Manager" on the following resources.
-
-Subscription: aa93adc2-6201-48c7-817b-710f9e7f0643
-Resource group: prod-rg-appliances-01
-
-1. V50SECAPL019 (virtual machine)
-2. v50secapl019757 (network interface)
-3. V50SECAPL019-nsg (network security group)
-4. V50SECAPL008 (virtual machine)
-5. v50secapl008529 (network interface)
-6. V50SECAPL008-nsg (network security group)
-7. V50SECAPL020-nsg (network security group, unattached, pending decommission; update for consistency)
-
-No other tag changes are needed. Environment and Role tags stay as they are.
-
-Please update this ticket once complete so we can approve the new application in Illumio.
+Just to confirm the cutoff: 4 or fewer is automatic and 5 or more creates work items, or is exactly 5 automatic too?
+For more than 5, who on our side should the work items go to? @Swapnil @Gargi, who should be the approvers?
+Can the notification email go to our DL (cybersecuritynetworkprotectionservices@pge.com)?
+Is that QA environment SailPoint QA behind MuleSoft QA? @Brindha, so we start in MuleSoft QA?
