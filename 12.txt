@@ -1,1 +1,153 @@
-Three items on the client leg. Port 8530 is the WSUS HTTP endpoint while 8531 is the TLS equivalent, and update metadata and approvals over plaintext present a tampering risk, so please confirm whether the server can be configured TLS only and document the reason if 8530 must remain for legacy clients. The request includes DMZ segments, which is an inbound flow across a trust boundary, so please record the specific DMZ VLANs rather than a general description. Please also confirm which enforcement points are in scope, as the request names both SD-WAN and Illumio for the DMZ segments.
+MEA UDN Account Disable API API Documentation
+
+Version	1.0
+Owner	MEA Team
+Authentication	OAuth 2.0 Client Credentials Grant
+Protocol	HTTPS
+Content Type	JSON
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. Purpose
+The MEA UDN Account Disable API enables Firewall team to submit UDN account disable requests through MEA
+This integration consists of:
+1.	OAuth Token API - Generates an access token.
+2.	UDN Account Disable Workflow API - Launches the account disable workflow.
+
+2. Environment Details
+Non-Production Environment
+Token API
+POST https://sailpointqaui.utility.pge.com/identityiq/oauth2/token
+Workflow API
+POST https://sailpointqaui.utility.pge.com/identityiq/rest/workflows/PGE-Workflowflow-NPS-UDNAccountDisable/launch
+
+3. Authentication API
+Purpose
+Generate an OAuth access token required to invoke MEA APIs.
+Endpoint
+Non-Prod
+HTTPS
+POST https://sailpointqaui.utility.pge.com/identityiq/oauth2/token
+Authentication Method
+Basic Authentication
+The Client ID and Client Secret are provided by the MEA Team.
+Request Headers
+Authorization: Basic <Base64(ClientID:ClientSecret)>
+Content-Type: application/x-www-form-urlencoded
+Sample Success Response
+{
+  "access_token": "eyJhbGciOi...",
+  "token_type": "Bearer",
+  "expires_in": 3600
+}
+Response Attributes
+Attribute	Description
+access_token	OAuth access token
+token_type	Bearer
+expires_in	Token validity in seconds
+
+4. UDN Account Disable Workflow API
+Purpose
+Launches the UDN Account Disable workflow in SailPoint IdentityIQ.
+Endpoint
+Non-Prod
+POST https://sailpointqaui.utility.pge.com/identityiq/rest/workflows/PGE-Workflowflow-NPS-UDNAccountDisable/launch
+Authentication
+HTTPS
+Authorization: Bearer <access_token>
+Request Headers
+
+Content-Type: application/json
+Authorization: Bearer <access_token>
+Request Payload
+{
+  "workflowArgs": {
+    "users": "P5PB",
+    "requestedBy": "h1vh",
+    "certificationID": "NCP-Firewall"
+  }
+}
+Request Parameters
+Parameter	Required	Description
+users	Yes	UDN account(s) to disable
+requestedBy	Yes	Source application or requestor
+certificationID	Yes	Reference identifier associated with the request
+
+Multiple User Example
+{
+  "workflowArgs": {
+    "users": "P5PB,P6AB,P7CD",
+    "requestedBy": "FirewallApplication",
+    "certificationID": "REQ-2026-000123"
+  }
+}
+Sample Response
+200 OK
+
+Response Body
+{
+  "status": null,
+  "requestID": "a9fec649a1591d0581a1605187b03b19",
+  "warnings": null,
+  "errors": null,
+  "retryWait": 0,
+  "metaData": null,
+  "attributes": null,
+  "complete": false,
+  "retry": false,
+  "failure": false,
+  "success": false
+}
+Response Attributes
+Attribute	Description
+requestID	Unique workflow request identifier
+status	Workflow status
+warnings	Warning information
+errors	Error information
+retryWait	Retry interval
+complete	Indicates request processing is complete
+retry	Indicates retry is required
+failure	Indicates workflow failure
+success	Indicates workflow success
+
+5. Processing Logic
+Requests with 5 or Fewer Users
+MEA automatically:
+1.	Validates accounts.
+2.	Identifies active users.
+3.	Disables the accounts.
+4.	Sends completion notification email.
+
+Requests with More Than 5 Users
+MEA automatically:
+1.	Creates an approval work item.
+2.	Routes approval to designated approvers.
+3.	Sends completion notification email.
+4.	Waits for approval decision.
+5.	Disables approved accounts.
+
+6. Support
+Application Owner: MEA (SailPoint IdentityIQ) Team
+For:
+•	API onboarding
+•	Client credential requests
+•	Access issues
+•	Production support
+Please contact the MEA Team through the appropriate support channel.
