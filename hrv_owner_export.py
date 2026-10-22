@@ -366,14 +366,21 @@ def write_xlsx(rows, run_info):
     info.column_dimensions["B"].width = 45
     final, tmp = OUT_DIR / OUTPUT_NAME, OUT_DIR / ("~tmp_" + OUTPUT_NAME)
     wb.save(tmp)
-    try:
-        os.replace(tmp, final)
-    except PermissionError:
-        alt = OUT_DIR / f"{final.stem}_{datetime.now():%H%M}.xlsx"
-        os.replace(tmp, alt)
-        log(f"WARNING {final.name} is open somewhere - wrote {alt.name} instead")
-        return alt
-    return final
+    # OneDrive briefly locks a file while it uploads, so retry before giving up.
+    import time
+    for attempt in range(6):
+        try:
+            os.replace(tmp, final)
+            return final
+        except PermissionError:
+            if attempt < 5:
+                log(f"  {final.name} is locked (open in Excel or OneDrive syncing) - retrying in 10s")
+                time.sleep(10)
+    alt = OUT_DIR / f"{final.stem}_{datetime.now():%H%M}.xlsx"
+    os.replace(tmp, alt)
+    log(f"WARNING {final.name} stayed locked - close it in Excel (and on SharePoint) and rerun. "
+        f"This run was written to {alt.name}")
+    return alt
 
 
 def heartbeat(status, message=""):
