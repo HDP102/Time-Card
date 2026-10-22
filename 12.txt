@@ -1,6 +1,1 @@
-Thanks Hareesh. A few things so I build the client side to match:
-
-Just to confirm the cutoff: 4 or fewer is automatic and 5 or more creates work items, or is exactly 5 automatic too?
-For more than 5, who on our side should the work items go to? @Swapnil @Gargi, who should be the approvers?
-Can the notification email go to our DL (cybersecuritynetworkprotectionservices@pge.com)?
-Is that QA environment SailPoint QA behind MuleSoft QA? @Brindha, so we start in MuleSoft QA?
+Four items to confirm. Ports 111 and 20048 are the rpcbind portmapper and mountd services, required only for NFSv3 and carrying no authentication, so please confirm whether NFSv4 can be used instead. Port 9060 is the WebSphere administrative console over HTTP while 9043 is the encrypted equivalent, and administrative traffic carries credentials, so please confirm whether 9043 alone is sufficient. The console source is a /20 covering over four thousand addresses, which is broad for an administrative interface and should be narrowed to the BPM administrator range. Lastly, please confirm the LDAP target, as the destination name indicates a test directory hosted in production while the Associated Application is BAW INT5.
