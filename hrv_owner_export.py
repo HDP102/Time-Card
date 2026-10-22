@@ -43,9 +43,9 @@ urllib3.disable_warnings()
 
 # ═══════════════════════════════ CONFIG ═══════════════════════════════
 TUFIN_HOST      = "keeppgesecure.utility.pge.com"        # prod
-# Campaign scope: Palo Alto rules tagged with an App ID (37,469 on 2026-10-16)
-SCOPE_FILTER    = "vendor='PALO_ALTO' and description contains 'app_id'"
-UNTAGGED_FILTER = "vendor='PALO_ALTO' and not description contains 'app_id'"  # counted only
+# Scope: every Palo Alto rule (~59k on 2026-10-22). Rules without "app_id:" in the
+# description are counted under "No App ID" so the totals match Tufin.
+SCOPE_FILTER    = "vendor='PALO_ALTO'"
 PAGE_SIZE       = 500
 VERIFY_TLS      = False
 TIMEOUT         = 120
@@ -394,11 +394,7 @@ def run():
     t = Tufin()
     log(f"Pulling rules from Tufin: {SCOPE_FILTER}")
     rules = fetch_rules(t)
-    try:                                    # informational only - never fails the run
-        untagged = t.query(COUNT_QUERY, {"filter": UNTAGGED_FILTER})["rules"]["count"]
-    except Exception as e:
-        log(f"  untagged count skipped ({str(e)[:120]})")
-        untagged = "n/a"
+    untagged = sum(1 for r in rules if not r["apps"])
     rows, unknown = build_rows(rules, book, start)
 
     counts = defaultdict(int)
@@ -412,12 +408,12 @@ def run():
                 *[[k, counts[k]] for k in ("Certified", "Decertified", "Pending")],
                 ["App IDs", len(apps)],
                 ["App IDs with no owner in any sheet", unknown],
-                ["Palo Alto rules with no app_id (not in scope)", untagged],
+                ["Rules with no app_id (counted under No App ID)", untagged],
                 [], ["Owner sheet", "Used as"], *report]
     path = write_xlsx(rows, run_info)
     log(f"{len(rules):,} rules, {len(apps):,} apps: "
         + ", ".join(f"{k} {v:,}" for k, v in counts.items())
-        + f" | {unknown} apps without owners | {untagged} untagged PA rules")
+        + f" | {unknown} apps without owners | {untagged:,} rules with no App ID")
     log(f"{len(rows):,} rows -> {path}")
     return f"{len(rules)} rules, {len(rows)} rows"
 
