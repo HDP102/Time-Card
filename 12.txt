@@ -1,1 +1,3 @@
-The file is one row per App ID / owner / role (about 6k rows), not one per rule, per what we agreed for the Power BI. It covers 37,467 rules. The other ~21,500 Palo Alto rules don’t have an App ID tagged in Tufin, so they can’t be matched to an owner and aren’t in it. I can add them as one “No App ID” line so the total matches the ~59k in Tufin. Want that?
+Done, the file now includes all ~59k Palo Alto rules; the untagged ones show as one “No App ID” line.
+
+Tufin only has the App IDs we tagged into the rule descriptions from the SharePoint lists. These ~21.5k rules came in without App IDs (Megan’s CORPSEC / AMI / ADMS / base / shadowed reports), and we’d planned their App IDs for a later pass. Once they’re tagged, they’ll show up under their apps automatically.
