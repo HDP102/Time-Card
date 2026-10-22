@@ -1,1 +1,8 @@
-Hey Nithin, GoAlert Core rulesets have live rules (EMS, App Proxy, Tableau) but all destinations are R: Server / R: PostgreSQL Database, and the Azure resources have no Role tag, so adding the ICS scope won’t carry them over. I’m thinking I rebuild the equivalent rules in the existing empty App: ICS_GOALERT Env: Production and Non Production rulesets with destination ICS_GOALERT, and leave the Core rulesets alone until cleanup. OK with that approach?
+this helps. A few questions:
+
+Is there an API to check the status of a workflow by requestID, so we can confirm the disables went through?
+If an SME recertifies after being disabled, is there an enable workflow, or is re-enabling manual?
+What should requestedBy be: a service name like “NPS-FirewallAutomation”, or a LAN ID?
+What happens to accounts that are already disabled or not found: skipped quietly, or reported back somewhere?
+
+@Brindha, will the proxy take the same workflowArgs body?
