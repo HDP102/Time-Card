@@ -1,1 +1,29 @@
-Thanks all. Swapnil’s wording works for the description. Two last things: (1) when a disabled SME completes the recertification, who re-enables the account, and is there a workflow for it? (2) Can the MEA notification emails go to our DL (cybersecuritynetworkprotectionservices@pge.com) so we keep them as evidence?
+Short description:
+
+Azure tag update for GoAlert resources (Illumio ICS migration)
+
+Description:
+
+Requesting Azure tag updates on the GoAlert resources below to support the Illumio CORE to ICS migration. Illumio Cloud Secure builds its labels from the Application and Role tags, so these need to be consistent across all GoAlert resources and match the CMDB application name (GoAlert; service instances GoAlert PROD and GoAlert QA). Reviewed with Nithin Kandimalla (Illumio SME).
+
+Set Application = "GoAlert" and Role as listed on each resource.
+
+Production (subscription aa93adc2-6201-48c7-817b-710f9e7f0643)
+1. prod-appservice-goalert (prod-rg-appservice-01): Role = Server
+2. prod-appservice-goalert-pl (prod-rg-appservice-01): Role = Server
+3. prod-appservice-goalert-pl.nic.e1ba3316-5ffe-4885-8c0d-572d27d54b52 (prod-rg-appservice-01): Role = Server
+4. prod-database-psql-004 (prod-rg-database-01): Role = PostgreSQL Database
+
+Non Production (subscription 080d0f37-043f-4bab-8963-2084e25adaaf)
+5. np-appservice-goalert (nonprod-rg-appservice-01): Role = Server
+6. np-appservice-goalert-pl (nonprod-rg-appservice-01): Role = Server
+7. np-appservice-goalert-pl.nic.dd6fa69f-9a60-449a-9e88-16ff70d35408 (nonprod-rg-appservice-01): Role = Server
+8. np-database-psql-008 (nonprod-rg-database-01): Role = PostgreSQL Database
+
+Notes:
+- Items 1 and 5 currently have Application = "GOALERT"; items 4 and 8 have "GOALERT PROD"; items 2, 3, 6, 7 have no Application tag. All should be "GoAlert".
+- Item 4 uses a lowercase "application" tag key; please standardize it to "Application".
+- Environment tags are already correct; no change needed.
+- Do not change prod-database-psql-008 (NICE Engage); it is a different application.
+
+Please update this ticket once complete so we can approve the application in Illumio.
