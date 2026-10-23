@@ -1,7 +1,14 @@
-Hey Harish, thanks for working both tickets. Before we close them out, I checked the resources in Illumio Cloud Inventory, which pulls tags straight from Azure, and it looks like the changes didn’t go through.
+Must ask:
 
-For the FireMon ticket (Application Firemon to Firewall Policy Manager), all of these still show Application = Firemon: V50SECAPL019, v50secapl019757 (NIC), V50SECAPL019-nsg, V50SECAPL008, v50secapl008529 (NIC), and V50SECAPL008-nsg. They’re all in prod-rg-appliances-01. The last updated dates in Illumio are 10/13, 10/14 and 10/21, so nothing has changed on them since the ticket went in.
+Which account actually gets disabled? The API is “UDN Account Disable”, but our list has corp LAN IDs (IT SMEs from AMPS). Do we send the corp LAN ID and MEA finds that person’s UDN account? What if they have no UDN account? Does their corp account stay untouched? If this is wrong, the whole step is wrong.
+Re-enabling. When a disabled SME completes the recertification, who re-enables them, and how? Is there an enable workflow, an MEA request, or is it manual?
+Approvers for more than 5. How do they set them up on their side? We’ll give them names once Swapnil and Gargi decide.
+Test accounts in QA. Which LAN IDs can we safely disable while testing, and who resets them afterwards?
 
-For the GoAlert ticket, I spot checked the private endpoints and they still have no Application or Role tag. That’s prod-appservice-goalert-pl in prod-rg-appservice-01, plus np-appservice-goalert-pl and np-appservice-goalert-pl.nic.dd6fa69f-9a60-449a-9e88-16ff70d35408 in nonprod-rg-appservice-01. Their last updated dates are from March. On that ticket, every resource should end up with Application = GoAlert, the app services and PEs/NICs with Role = Server, and prod-database-psql-004 and np-database-psql-008 with Role = PostgreSQL Database.
+Should ask:
 
-Could you take a look in the Azure portal and see if the changes saved? Two things to watch for: the NonProd resources are in a different subscription (080d0f37-043f-4bab-8963-2084e25adaaf), and psql-004 uses a lowercase “application” tag key that we asked to switch to “Application”. If it already shows correct on your side, let me know and I’ll check whether Illumio just hasn’t synced yet.
+Notification emails: can the DL (cybersecuritynetworkprotectionservices@pge.com) be added, so the confirmations become evidence?
+Status by requestID: is there any way to look it up besides the email and MEA link? It would let the script confirm the result itself.
+Edge cases: already-disabled, not-found, or inactive accounts. Are they skipped, failed, or listed in the email?
+certificationID: any required format? We plan to send something like NPS-FER-RECERT-2026. Does it show up in the email and the MEA record?
+Duplicates and limits: what happens if the same user is submitted twice? Is there a maximum number of users per request?
