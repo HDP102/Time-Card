@@ -1,14 +1,1 @@
-Must ask:
-
-Which account actually gets disabled? The API is “UDN Account Disable”, but our list has corp LAN IDs (IT SMEs from AMPS). Do we send the corp LAN ID and MEA finds that person’s UDN account? What if they have no UDN account? Does their corp account stay untouched? If this is wrong, the whole step is wrong.
-Re-enabling. When a disabled SME completes the recertification, who re-enables them, and how? Is there an enable workflow, an MEA request, or is it manual?
-Approvers for more than 5. How do they set them up on their side? We’ll give them names once Swapnil and Gargi decide.
-Test accounts in QA. Which LAN IDs can we safely disable while testing, and who resets them afterwards?
-
-Should ask:
-
-Notification emails: can the DL (cybersecuritynetworkprotectionservices@pge.com) be added, so the confirmations become evidence?
-Status by requestID: is there any way to look it up besides the email and MEA link? It would let the script confirm the result itself.
-Edge cases: already-disabled, not-found, or inactive accounts. Are they skipped, failed, or listed in the email?
-certificationID: any required format? We plan to send something like NPS-FER-RECERT-2026. Does it show up in the email and the MEA record?
-Duplicates and limits: what happens if the same user is submitted twice? Is there a maximum number of users per request?
+Verified on my side, all tags are showing in Illumio and both apps picked up correctly. Good to close both tickets. One small thing, prod-database-psql-004 still has the tag key as lowercase “application”, works fine for us but if you get a chance to switch it to “Application” for consistency that’d be great. Thanks for the help!
