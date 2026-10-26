@@ -1,1 +1,6 @@
-thanks for reaching out. This one is actually already taken care of, Harish completed the same changes under a newer request on Friday (Application = GoAlert plus Role tags on all 8 GoAlert resources), and the values in this ticket are outdated. Please don’t apply the GOALERT values from this one. Can you close SCTASK0024673 as no longer needed? I’ll look into the TagContributor access for future requests, thanks!
+Friday recap with MEA:
+
+My script sends all non-responding SMEs to MEA in one request via MuleSoft.
+5 or fewer: disabled automatically. More than 5: you, Megan and one more person approve each user in MEA.
+MEA will email each disabled user’s manager with the reason.
+Pending: MuleSoft prod service account and that email change. Prod goes live Nov 13.
