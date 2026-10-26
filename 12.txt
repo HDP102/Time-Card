@@ -1,6 +1,1 @@
-Friday recap with MEA:
-
-My script sends all non-responding SMEs to MEA in one request via MuleSoft.
-5 or fewer: disabled automatically. More than 5: you, Megan and one more person approve each user in MEA.
-MEA will email each disabled user’s manager with the reason.
-Pending: MuleSoft prod service account and that email change. Prod goes live Nov 13.
+Three items to confirm. The port list reads TCP 80 and 433, which appears to be a typo for 443, so please correct it before the rule is built. Port 80 carries rating service traffic in plaintext, and this is the same cleartext path present on the earlier Ratabase requests, so please confirm whether 443 alone is sufficient rather than extending it to another consumer. Please also confirm the intended environment, as the consumer label is PreProd while the ruleset and Associated Application are QA.
