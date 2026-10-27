@@ -1,1 +1,1 @@
-Source = LG: ICS_Discovered_Cloud_Apps
+Hey Nithin, Rule Search shows SMTP (Exchange/ProofPoint) and DNS (AD) are only open to LG: Internal_Applications, so ICS apps aren’t covered. Should we add LG: ICS_Discovered_Cloud_Apps to those rules like you did on Consumer Core? Exchange already has LG: SpringApps_Azure on it the same way.
