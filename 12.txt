@@ -1,1 +1,1 @@
-   Production ZPA App Connectors: Azure v50secapl011/012, v51secapl011/012; Aurora v01secapl022/023. Used in ICS_Firewall Policy Manager | Production rule 2.
+Source = LG: ICS_Discovered_Cloud_Apps
