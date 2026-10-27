@@ -1,1 +1,6 @@
-Hey Nithin, we kicked off the Illumio POC with FireMon today. So far it only discovered one device, and Rick’s investigating why. Could you take a look at that one in Security Manager when you get a chance and confirm what it is and whether the rules look right? He asked for your input since you know the environment best.
+ls -lh /var/lib/backup/firemon/
+
+
+df -h
+mount | grep -i -E "prodss|cifs|nfs"
+grep -i prodss /etc/fstab
