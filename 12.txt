@@ -1,6 +1,1 @@
-ls -lh /var/lib/backup/firemon/
-
-
-df -h
-mount | grep -i -E "prodss|cifs|nfs"
-grep -i prodss /etc/fstab
+   Production ZPA App Connectors: Azure v50secapl011/012, v51secapl011/012; Aurora v01secapl022/023. Used in ICS_Firewall Policy Manager | Production rule 2.
