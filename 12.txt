@@ -1,1 +1,1 @@
-py split_rulesets.py Rulesets_JSON_2026_10_28_15_42_20.json 900 --slim
+Hey Nick, quick question on ICS enforcement. Is anything in ICS enforced yet? Cloudera Non Production is the only ICS app ruleset with real rules besides FireMon, so I’m guessing that’s the closest one. Mainly I’m trying to find out whether ICS enforcement also controls outbound on the NSGs, or only inbound. If outbound gets enforced, FireMon will need rules for DNS, SMTP, NTP, etc. If not, the inbound rules should be enough. Thanks!
