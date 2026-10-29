@@ -1,1 +1,34 @@
-This adds 20.84.23.208/28 and 48.206.184.64/28 to the IPG_Allowed_SFTP_Sources_External object group so the vendor can retrieve files from sftp.countryfinancial.com via GoAnywhere. The destination is a named endpoint and the request follows the established external SFTP pattern. Three items to confirm. This is the second addition for the same vendor within a week, bringing them to three /28 ranges and forty eight addresses, so please ask the vendor to confirm their complete source range rather than adding incrementally as new addresses appear. Please also confirm these blocks are the vendor’s dedicated allocations rather than shared Azure address space. Lastly, please record the vendor name on the request, as the justification refers only to Vendor B, which makes later review of the group difficult.
+I found the VPN appliance IPs in your earlier Cloud Traffic export: V50SECAPL008 → 4 ICS_Vendor B2B appliances on port 22. So everything is in hand.
+
+Part 1: create 5 IP lists. Go to Segmentation > Policy Objects > IP Lists, then Add. Use the same attribute type you picked for IPL: ZPA App Connectors Prod.
+
+Name	IP addresses
+IPL: prodssstgsecurity02 PE	
+10.200.88.10
+IPL: Vendor B2B VPN Appliances	
+10.199.41.212
+10.199.41.213
+10.207.41.212
+10.207.41.213
+IPL: FireMon NTP Servers	
+10.16.250.30
+10.16.254.140
+IPL: Exchange SMTP Relay	
+10.16.42.132
+IPL: Azure Domain Controllers	
+10.192.24.4
+
+Part 2: add 5 rules. Segmentation > All Policies, open ICS_Firewall Policy Manager | Production, then add rules the same way as rules 1 to 3.
+
+Rule type: Intra-Scope for all five. The source is FireMon itself, which is inside the scope, and IP lists are allowed as destinations in any rule. (Earlier I said extra-scope. Intra-Scope is the correct one for this direction.)
+
+#	Source	Destination	Service
+4	ICS_Firewall Policy Manager	IPL: prodssstgsecurity02 PE	443 TCP
+5	ICS_Firewall Policy Manager	IPL: Vendor B2B VPN Appliances	22 TCP
+6	ICS_Firewall Policy Manager	IPL: FireMon NTP Servers	123 UDP
+7	ICS_Firewall Policy Manager	IPL: Exchange SMTP Relay	25 TCP
+8	ICS_Firewall Policy Manager	IPL: Azure Domain Controllers	53 TCP and 53 UDP (two entries in one rule)
+
+Do not provision. These stay in draft for the Phase 3 change request, like rules 1 to 3.
+
+If the console won’t accept Intra-Scope with an IP list destination, screenshot the error and send it to me. Don’t switch rule types on your own.
