@@ -74,7 +74,14 @@ SITE_HINT          = "Cybersecurity Network Protection Services"
 OUTPUT_DIR      = r"%USERPROFILE%\OneDrive - PGE\Cybersecurity Network Protection Services - HRV Power BI"
                          # None = search instead
 OUTPUT_NAME     = "HRV_Owner_Recert_Status.xlsx"         # keep fixed - Power BI points at it
-SHEET_NAME      = "Owner Status"
+SHEET_NAME      = "Owner Status"   # per App ID / role / owner summary (kept for existing reports)
+RULES_SHEET     = "Rules"          # one row per rule - use this for Power BI / dashboards
+OWNERS_SHEET    = "Owners"         # App ID -> role -> owner, links to Rules on App ID
+
+# RAG on the last certification date (any campaign): Green = within RAG_GREEN_MONTHS,
+# Amber = RAG_GREEN_MONTHS to RAG_RED_MONTHS, Red = older, or never certified.
+RAG_GREEN_MONTHS = 9
+RAG_RED_MONTHS   = 12
 
 # Sheet column aliases - first header found wins (headers differ across the eleven lists)
 COL_APP_ID   = ["App-ID", "Application ID", "AppID", "App ID", "APP ID", "Single APPID"]
@@ -266,10 +273,15 @@ query Scope($filter: String!, $first: Int!, $offset: Long!) {
     count
     values(first: $first, offset: $offset) {
       id
+      idOnDevice
+      name
+      disabled
+      timeLastModified
+      device { name }
       ruleUserData {
         ruleDescription
         saApplications { name owner }
-        certification { status timeCertified }
+        certification { status timeCertified timeExpiration }
       }
     }
   }
@@ -288,9 +300,14 @@ def fetch_rules(t):
             ud = v.get("ruleUserData") or {}
             cert = ud.get("certification") or {}
             rules.append({"id": str(v.get("id")),
+                          "device": (v.get("device") or {}).get("name") or "",
+                          "rule": v.get("idOnDevice") or v.get("name") or "",
+                          "disabled": bool(v.get("disabled")),
+                          "modified": v.get("timeLastModified"),
                           "apps": app_ids(ud.get("ruleDescription")),
                           "sa": ud.get("saApplications") or [],
-                          "status": cert.get("status"), "time": cert.get("timeCertified")})
+                          "status": cert.get("status"), "time": cert.get("timeCertified"),
+                          "expires": cert.get("timeExpiration")})
         offset += PAGE_SIZE
         log(f"  Tufin: {min(offset, total or 0):,} of {total:,} rules")
         if not vals or offset >= (total or 0):
@@ -339,10 +356,97 @@ def build_rows(rules, book, start):
                                              if o[0] in ROLE_COLUMNS else 99, o[1])):
             out.append([app, role, name, cid, email, c["total"], c["Certified"],
                         c["Decertified"], c["Pending"], round(done / c["total"], 4), status, today])
-    return out, unknown
+    return out, unknown, sa_owner
 
 
-def write_xlsx(rows, run_info):
+# ─────────────────────────── rule-level tabs ───────────────────────────
+
+def parse_dt(v):
+    """Tufin ISO timestamp -> naive datetime (Excel/Power BI friendly), or None."""
+    if not v:
+        return None
+    return datetime.fromisoformat(str(v).replace("Z", "+00:00")).replace(tzinfo=None)
+
+
+def months_back(d, n):
+    y, m = divmod(d.month - 1 - n, 12)
+    year, month = d.year + y, m + 1
+    import calendar
+    return d.replace(year=year, month=month, day=min(d.day, calendar.monthrange(year, month)[1]))
+
+
+def rag_of(last_cert, now):
+    if last_cert is None:
+        return "Red"
+    if last_cert >= months_back(now, RAG_GREEN_MONTHS):
+        return "Green"
+    if last_cert >= months_back(now, RAG_RED_MONTHS):
+        return "Amber"
+    return "Red"
+
+
+RULE_HEADERS = (["Rule ID", "Device", "Rule Name", "App ID", "All App IDs", "Disabled",
+                 "Campaign Status", "Last Certification", "Certification Result",
+                 "Certification Expires", "Days Since Certification", "RAG",
+                 "Last Modified"] + ROLE_COLUMNS + ["Last Updated"])
+OWNER_HEADERS = ["App ID", "Role", "Owner Name", "LAN ID", "Email"]
+
+
+def owners_for(app, book, sa_owner):
+    return book.get(app) or sa_owner.get(app) or set()
+
+
+def build_rule_rows(rules, book, sa_owner):
+    now = datetime.now()
+    out = []
+    for r in rules:
+        apps = r["apps"]
+        roles = defaultdict(list)
+        for app in apps:
+            for role, cid, name, _e in sorted(owners_for(app, book, sa_owner)):
+                label = f"{name} ({cid})" if name else cid
+                if role in ROLE_COLUMNS and label not in roles[role]:
+                    roles[role].append(label)
+        last = parse_dt(r["time"])
+        out.append([r["id"], r["device"], r["rule"], apps[0] if apps else NO_APP,
+                     ";".join(apps), "Yes" if r["disabled"] else "No", r["st"], last,
+                     {"CERTIFIED": "Certified", "DECERTIFIED": "Decertified"}.get(r["status"], ""),
+                     parse_dt(r["expires"]), (now - last).days if last else None,
+                     rag_of(last, now), parse_dt(r["modified"])]
+                    + ["; ".join(roles[c]) for c in ROLE_COLUMNS] + [now.date()])
+    return out
+
+
+def build_owner_rows(rules, book, sa_owner):
+    apps = sorted({a for r in rules for a in r["apps"]})
+    out = []
+    for app in apps:
+        for role, cid, name, email in sorted(owners_for(app, book, sa_owner),
+                                             key=lambda o: (ROLE_COLUMNS.index(o[0])
+                                                            if o[0] in ROLE_COLUMNS else 99, o[1])):
+            out.append([app, role, name, cid, email])
+    return out
+
+
+def add_table(wb, title, headers, rows, date_cols=(), pct_cols=()):
+    ws = wb.create_sheet(title)
+    ws.append(headers)
+    for r in rows:
+        ws.append(r)
+    for cell in ws[1]:
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="1F4E78")
+    for i, h in enumerate(headers, 1):
+        ws.column_dimensions[get_column_letter(i)].width = max(12, min(len(h) + 4, 40))
+        if h in date_cols:
+            for (c,) in ws.iter_rows(min_row=2, min_col=i, max_col=i):
+                c.number_format = "yyyy-mm-dd"
+    ws.freeze_panes = "A2"
+    ws.auto_filter.ref = ws.dimensions
+    return ws
+
+
+def write_xlsx(rows, run_info, rule_rows=(), owner_rows=()):
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     wb = Workbook()
     ws = wb.active
@@ -359,6 +463,10 @@ def write_xlsx(rows, run_info):
         ws.column_dimensions[get_column_letter(i)].width = max(12, len(h) + 4)
     ws.freeze_panes = "A2"
     ws.auto_filter.ref = ws.dimensions
+    add_table(wb, RULES_SHEET, RULE_HEADERS, rule_rows,
+              date_cols=("Last Certification", "Certification Expires", "Last Modified",
+                         "Last Updated"))
+    add_table(wb, OWNERS_SHEET, OWNER_HEADERS, owner_rows)
     info = wb.create_sheet("Run Info")
     for r in run_info:
         info.append(r)
@@ -366,21 +474,21 @@ def write_xlsx(rows, run_info):
     info.column_dimensions["B"].width = 45
     final, tmp = OUT_DIR / OUTPUT_NAME, OUT_DIR / ("~tmp_" + OUTPUT_NAME)
     wb.save(tmp)
-    # OneDrive briefly locks a file while it uploads, so retry before giving up.
+    # Always the same file - never a second copy. If it is locked (open in Excel, or OneDrive
+    # mid-upload) wait up to 10 minutes for it to free up, then stop with an error.
     import time
-    for attempt in range(6):
+    for attempt in range(60):
         try:
             os.replace(tmp, final)
             return final
         except PermissionError:
-            if attempt < 5:
-                log(f"  {final.name} is locked (open in Excel or OneDrive syncing) - retrying in 10s")
-                time.sleep(10)
-    alt = OUT_DIR / f"{final.stem}_{datetime.now():%H%M}.xlsx"
-    os.replace(tmp, alt)
-    log(f"WARNING {final.name} stayed locked - close it in Excel (and on SharePoint) and rerun. "
-        f"This run was written to {alt.name}")
-    return alt
+            if attempt == 0:
+                log(f"  {final.name} is locked (open in Excel or OneDrive syncing) - "
+                    f"waiting up to 10 minutes for it to close")
+            time.sleep(10)
+    tmp.unlink(missing_ok=True)
+    raise SystemExit(f"{final.name} stayed locked for 10 minutes - close it in Excel "
+                     f"(desktop and SharePoint/Teams) and rerun. Nothing was written.")
 
 
 def heartbeat(status, message=""):
@@ -402,7 +510,12 @@ def run():
     log(f"Pulling rules from Tufin: {SCOPE_FILTER}")
     rules = fetch_rules(t)
     untagged = sum(1 for r in rules if not r["apps"])
-    rows, unknown = build_rows(rules, book, start)
+    rows, unknown, sa_owner = build_rows(rules, book, start)
+    rule_rows = build_rule_rows(rules, book, sa_owner)
+    owner_rows = build_owner_rows(rules, book, sa_owner)
+    rag = defaultdict(int)
+    for r in rule_rows:
+        rag[r[RULE_HEADERS.index("RAG")]] += 1
 
     counts = defaultdict(int)
     for r in rules:
@@ -416,12 +529,16 @@ def run():
                 ["App IDs", len(apps)],
                 ["App IDs with no owner in any sheet", unknown],
                 ["Rules with no app_id (counted under No App ID)", untagged],
+                [f"RAG Green (certified within {RAG_GREEN_MONTHS} months)", rag["Green"]],
+                [f"RAG Amber ({RAG_GREEN_MONTHS}-{RAG_RED_MONTHS} months)", rag["Amber"]],
+                [f"RAG Red (over {RAG_RED_MONTHS} months or never)", rag["Red"]],
                 [], ["Owner sheet", "Used as"], *report]
-    path = write_xlsx(rows, run_info)
+    path = write_xlsx(rows, run_info, rule_rows, owner_rows)
     log(f"{len(rules):,} rules, {len(apps):,} apps: "
         + ", ".join(f"{k} {v:,}" for k, v in counts.items())
         + f" | {unknown} apps without owners | {untagged:,} rules with no App ID")
-    log(f"{len(rows):,} rows -> {path}")
+    log(f"Owner Status {len(rows):,} rows | Rules {len(rule_rows):,} | Owners {len(owner_rows):,} "
+        f"| RAG G/A/R {rag['Green']:,}/{rag['Amber']:,}/{rag['Red']:,} -> {path}")
     return f"{len(rules)} rules, {len(rows)} rows"
 
 
