@@ -1,34 +1,80 @@
-I found the VPN appliance IPs in your earlier Cloud Traffic export: V50SECAPL008 → 4 ICS_Vendor B2B appliances on port 22. So everything is in hand.
+You're right, that should have been one set. Here's the full thing.
 
-Part 1: create 5 IP lists. Go to Segmentation > Policy Objects > IP Lists, then Add. Use the same attribute type you picked for IPL: ZPA App Connectors Prod.
+## Part 1: Create 5 IP lists
 
-Name	IP addresses
-IPL: prodssstgsecurity02 PE	
+For each one:
+1. Go to **Segmentation > Policy Objects > IP Lists**.
+2. Click **Add**, the same way you created IPL: ZPA App Connectors Prod.
+3. Fill in **Name**, **Description** and **IP Addresses** exactly as below. Put one IP per line.
+4. Leave **Attribute Type** and **FQDN** blank.
+5. Save. It will show "Addition Pending". **Do not provision.**
+
+**IP List 1**
+- **Name:** `IPL: prodssstgsecurity02 PE`
+- **Description:** `Private endpoint for storage account prodssstgsecurity02 (untagged, no ICS label). FireMon nightly backup copy. Used in ICS_Firewall Policy Manager | Production rule 4.`
+- **IP Addresses:**
+```
 10.200.88.10
-IPL: Vendor B2B VPN Appliances	
+```
+
+**IP List 2**
+- **Name:** `IPL: Vendor B2B VPN Appliances`
+- **Description:** `V50VPNAPL002-1/-2, V51VPNAPL002-1/-2. FireMon SSH config pulls. Used in ICS_Firewall Policy Manager | Production rule 5.`
+- **IP Addresses:**
+```
 10.199.41.212
 10.199.41.213
 10.207.41.212
 10.207.41.213
-IPL: FireMon NTP Servers	
+```
+
+**IP List 3**
+- **Name:** `IPL: FireMon NTP Servers`
+- **Description:** `NTP servers configured on FireMon. Used in ICS_Firewall Policy Manager | Production rule 6.`
+- **IP Addresses:**
+```
 10.16.250.30
 10.16.254.140
-IPL: Exchange SMTP Relay	
+```
+
+**IP List 4**
+- **Name:** `IPL: Exchange SMTP Relay`
+- **Description:** `Exchange SMTP relay (A: Exchange - OnPrem, R: Mail). Used in ICS_Firewall Policy Manager | Production rule 7.`
+- **IP Addresses:**
+```
 10.16.42.132
-IPL: Azure Domain Controllers	
+```
+
+**IP List 5**
+- **Name:** `IPL: Azure Domain Controllers`
+- **Description:** `v50dclwin021 (A: Active Directory, R: Domain Controller). DNS for ICS apps. Used in ICS_Firewall Policy Manager | Production rule 8.`
+- **IP Addresses:**
+```
 10.192.24.4
+```
 
-Part 2: add 5 rules. Segmentation > All Policies, open ICS_Firewall Policy Manager | Production, then add rules the same way as rules 1 to 3.
+## Part 2: Add 5 rules to the FireMon ruleset
 
-Rule type: Intra-Scope for all five. The source is FireMon itself, which is inside the scope, and IP lists are allowed as destinations in any rule. (Earlier I said extra-scope. Intra-Scope is the correct one for this direction.)
+1. Go to **Segmentation > All Policies**.
+2. Open **ICS_Firewall Policy Manager | Production**.
+3. Add each rule below the same way you added rules 1 to 3.
+4. For every rule:
+   - **Rule type:** Intra-Scope
+   - **Source:** `ICS_Firewall Policy Manager` (the ICS label, not A: Firemon)
+   - **Destination:** pick the IP list from the dropdown. Don't type free text.
+   - **Service:** add it as port/protocol, the same way you did 443 TCP on rules 1 to 3.
+5. Save each rule. **Do not provision.**
 
-#	Source	Destination	Service
-4	ICS_Firewall Policy Manager	IPL: prodssstgsecurity02 PE	443 TCP
-5	ICS_Firewall Policy Manager	IPL: Vendor B2B VPN Appliances	22 TCP
-6	ICS_Firewall Policy Manager	IPL: FireMon NTP Servers	123 UDP
-7	ICS_Firewall Policy Manager	IPL: Exchange SMTP Relay	25 TCP
-8	ICS_Firewall Policy Manager	IPL: Azure Domain Controllers	53 TCP and 53 UDP (two entries in one rule)
+| Rule | Rule type | Source | Destination | Service |
+|---|---|---|---|---|
+| 4 | Intra-Scope | ICS_Firewall Policy Manager | IPL: prodssstgsecurity02 PE | 443 TCP |
+| 5 | Intra-Scope | ICS_Firewall Policy Manager | IPL: Vendor B2B VPN Appliances | 22 TCP |
+| 6 | Intra-Scope | ICS_Firewall Policy Manager | IPL: FireMon NTP Servers | 123 UDP |
+| 7 | Intra-Scope | ICS_Firewall Policy Manager | IPL: Exchange SMTP Relay | 25 TCP |
+| 8 | Intra-Scope | ICS_Firewall Policy Manager | IPL: Azure Domain Controllers | 53 TCP **and** 53 UDP (two service entries in the same rule) |
 
-Do not provision. These stay in draft for the Phase 3 change request, like rules 1 to 3.
+## When you're done
 
-If the console won’t accept Intra-Scope with an IP list destination, screenshot the error and send it to me. Don’t switch rule types on your own.
+- Screenshot the ruleset showing all 8 rules and send it to me. I'll check each one against this list.
+- **If the console won't accept Intra-Scope with an IP list destination,** screenshot the error and send it. Don't switch rule types on your own.
+- **Nothing gets provisioned** until the Phase 3 change request.
