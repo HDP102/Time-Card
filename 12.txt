@@ -1,8 +1,1 @@
-Hey Swapnil, I found why Power BI isn’t reading the file right. It’s one row per App ID / owner / role, so each app’s rule count repeats on every owner row, and Power BI ends up over- or under-counting.
-
-I’d like to change it to two tabs linked by App ID:
-
-Rules: one row per rule (~59k), with status, certified date, expiration date and expiration quarter
-Owners: App ID, role and owner
-
-That way the counts are accurate, Naresh can check them against Tufin, and the visualization team gets rules due per director, per quarter. I’d keep the current Owner Status tab too. Okay to go ahead?
+This grants Diane Torres access to littler.titanfile.com so documents can be provided to outside legal counsel. Three items to address. The implementation adds the user to the File Sharing Category Allow policy, which permits the category rather than this vendor instance, so please scope the entry to littler.titanfile.com specifically rather than opening file sharing generally for this user. File upload is enabled and the content is legal documentation leaving the organisation, so please confirm DLP inspection applies to this access. Lastly, access frequency is recorded as ongoing while the stated need relates to a specific legal matter, so please record the expected end and remove the access once the matter concludes.
