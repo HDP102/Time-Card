@@ -1,1 +1,8 @@
-This allows C2APP728, C2APP729, c1app589 and c1app590 to reach V50DBSWIN530 on TCP 1433 and the reverse, supporting migration of the XSV_INTEGCOMPLOG_INT database from SQL to Azure SQL. Please confirm whether the return direction is required, as a database server does not normally initiate back to the application servers on 1433. Please also confirm the intended application and environment, as the rule is scoped intra-scope within Informatica PowerCenter PreProd while the Associated Application is PolicyWriter/PolicyPro DEV. As this supports a migration, please record a removal date tied to cutover so the access does not persist once the source database is retired.
+Hey Swapnil, I found why Power BI isn’t reading the file right. It’s one row per App ID / owner / role, so each app’s rule count repeats on every owner row, and Power BI ends up over- or under-counting.
+
+I’d like to change it to two tabs linked by App ID:
+
+Rules: one row per rule (~59k), with status, certified date, expiration date and expiration quarter
+Owners: App ID, role and owner
+
+That way the counts are accurate, Naresh can check them against Tufin, and the visualization team gets rules due per director, per quarter. I’d keep the current Owner Status tab too. Okay to go ahead?
