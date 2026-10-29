@@ -74,6 +74,10 @@ SITE_HINT          = "Cybersecurity Network Protection Services"
 OUTPUT_DIR      = r"%USERPROFILE%\OneDrive - PGE\Cybersecurity Network Protection Services - HRV Power BI"
                          # None = search instead
 OUTPUT_NAME     = "HRV_Owner_Recert_Status.xlsx"         # keep fixed - Power BI points at it
+# Power BI time-series file: one row per App ID per run date, appended each run (a rerun on
+# the same date replaces that date's rows). Fixed name and column order - add new columns
+# only at the end.
+METRICS_NAME    = "HRV_Recert_Metrics.csv"
 SHEET_NAME      = "Owner Status"   # per App ID / role / owner summary (kept for existing reports)
 RULES_SHEET     = "Rules"          # one row per rule - use this for Power BI / dashboards
 OWNERS_SHEET    = "Owners"         # App ID -> role -> owner, links to Rules on App ID
@@ -325,19 +329,43 @@ def status_of(rule, start):
 
 # ─────────────────────────────── output ───────────────────────────────
 
-HEADERS = ["App ID", "Role", "Owner Name", "LAN ID", "Email", "Total Rules", "Certified",
-           "Decertified", "Pending", "% Complete", "Status", "Last Updated"]
+DUE_COLS = ["Needs Recertification", "Overdue", "Due 0-15 Days", "Due 16-30 Days",
+            "Due 31-60 Days"]
+HEADERS = (["App ID", "Role", "Owner Name", "LAN ID", "Email", "Total Rules", "Certified",
+            "Decertified", "Pending", "% Complete", "Status"] + DUE_COLS + ["Last Updated"])
+
+
+def due_bucket(rule, now):
+    """From the certification expiry date. Never certified counts as Overdue."""
+    exp = parse_dt(rule.get("expires"))
+    if exp is None:
+        return "Overdue", None
+    days = (exp - now).days
+    if days < 0:
+        return "Overdue", days
+    if days <= 15:
+        return "Due 0-15 Days", days
+    if days <= 30:
+        return "Due 16-30 Days", days
+    if days <= 60:
+        return "Due 31-60 Days", days
+    return "Not Due", days
 
 
 def build_rows(rules, book, start):
     per_app = defaultdict(lambda: defaultdict(int))     # app -> status counts
     sa_owner = defaultdict(set)                         # app -> SecureApp owners (same APP no.)
+    now = datetime.now()
     for r in rules:
         st = status_of(r, start)
         r["st"] = st
+        r["due"], r["days_left"] = due_bucket(r, now)
         for app in r["apps"] or [NO_APP]:
             per_app[app][st] += 1
             per_app[app]["total"] += 1
+            if r["due"] != "Not Due":
+                per_app[app][r["due"]] += 1
+                per_app[app]["Needs Recertification"] += 1
             for sa in r["sa"]:
                 if sa.get("owner") and app in app_ids(sa.get("name")):
                     cid = str(sa["owner"]).upper()
@@ -355,7 +383,8 @@ def build_rows(rules, book, start):
         for role, cid, name, email in sorted(owners, key=lambda o: (ROLE_COLUMNS.index(o[0])
                                              if o[0] in ROLE_COLUMNS else 99, o[1])):
             out.append([app, role, name, cid, email, c["total"], c["Certified"],
-                        c["Decertified"], c["Pending"], round(done / c["total"], 4), status, today])
+                        c["Decertified"], c["Pending"], round(done / c["total"], 4), status]
+                       + [c[d] for d in DUE_COLS] + [today])
     return out, unknown, sa_owner
 
 
@@ -387,7 +416,7 @@ def rag_of(last_cert, now):
 
 RULE_HEADERS = (["Rule ID", "Device", "Rule Name", "App ID", "All App IDs", "Disabled",
                  "Campaign Status", "Last Certification", "Certification Result",
-                 "Certification Expires", "Days Since Certification", "RAG",
+                 "Certification Expires", "Days Until Expiry", "Due", "Days Since Certification", "RAG",
                  "Last Modified"] + ROLE_COLUMNS + ["Last Updated"])
 OWNER_HEADERS = ["App ID", "Role", "Owner Name", "LAN ID", "Email"]
 
@@ -411,7 +440,8 @@ def build_rule_rows(rules, book, sa_owner):
         out.append([r["id"], r["device"], r["rule"], apps[0] if apps else NO_APP,
                      ";".join(apps), "Yes" if r["disabled"] else "No", r["st"], last,
                      {"CERTIFIED": "Certified", "DECERTIFIED": "Decertified"}.get(r["status"], ""),
-                     parse_dt(r["expires"]), (now - last).days if last else None,
+                     parse_dt(r["expires"]), r["days_left"], r["due"],
+                     (now - last).days if last else None,
                      rag_of(last, now), parse_dt(r["modified"])]
                     + ["; ".join(roles[c]) for c in ROLE_COLUMNS] + [now.date()])
     return out
@@ -474,8 +504,12 @@ def write_xlsx(rows, run_info, rule_rows=(), owner_rows=()):
     info.column_dimensions["B"].width = 45
     final, tmp = OUT_DIR / OUTPUT_NAME, OUT_DIR / ("~tmp_" + OUTPUT_NAME)
     wb.save(tmp)
-    # Always the same file - never a second copy. If it is locked (open in Excel, or OneDrive
-    # mid-upload) wait up to 10 minutes for it to free up, then stop with an error.
+    return replace_locked(tmp, final)
+
+
+def replace_locked(tmp, final):
+    """Always the same file - never a second copy. If it is locked (open in Excel, or OneDrive
+    mid-upload) wait up to 10 minutes for it to free up, then stop with an error."""
     import time
     for attempt in range(60):
         try:
@@ -489,6 +523,70 @@ def write_xlsx(rows, run_info, rule_rows=(), owner_rows=()):
     tmp.unlink(missing_ok=True)
     raise SystemExit(f"{final.name} stayed locked for 10 minutes - close it in Excel "
                      f"(desktop and SharePoint/Teams) and rerun. Nothing was written.")
+
+
+# ─────────────────────────── Power BI metrics CSV ───────────────────────────
+
+METRIC_ROLE_COLS = [r.replace(" ", "_") for r in ROLE_COLUMNS]
+METRIC_HEADERS = (["Date", "App_ID"] + METRIC_ROLE_COLS +
+                  ["Due_0_15_Days", "Due_16_30_Days", "Due_31_60_Days", "Recertified",
+                   "Overdue", "Total_Rules"])
+
+
+def clean(v):
+    """No leading/trailing/double spaces - Power BI matching is exact."""
+    return " ".join(str(v).split()) if v not in (None, "") else ""
+
+
+def build_metric_rows(rules, book, sa_owner, run_date):
+    """One row per App ID. Recertified = currently certified and not yet expired."""
+    now = datetime.now()
+    per_app = defaultdict(lambda: defaultdict(int))
+    for r in rules:
+        exp = parse_dt(r.get("expires"))
+        current = r.get("status") == "CERTIFIED" and exp is not None and exp >= now
+        for app in r["apps"] or [NO_APP]:
+            c = per_app[app]
+            c["Total_Rules"] += 1
+            c["Recertified"] += current
+            c[{"Overdue": "Overdue", "Due 0-15 Days": "Due_0_15_Days",
+               "Due 16-30 Days": "Due_16_30_Days", "Due 31-60 Days": "Due_31_60_Days"}
+              .get(r["due"], "Not_Due")] += 1
+    out = []
+    for app in sorted(per_app, key=lambda a: (a == NO_APP, a)):
+        roles = defaultdict(list)
+        if app != NO_APP:
+            for role, cid, name, _e in sorted(owners_for(app, book, sa_owner)):
+                label = clean(f"{name} ({cid})" if name else cid)
+                if role in ROLE_COLUMNS and label not in roles[role]:
+                    roles[role].append(label)
+        c = per_app[app]
+        out.append([run_date, clean(app)] + ["; ".join(roles[r]) for r in ROLE_COLUMNS]
+                   + [c["Due_0_15_Days"], c["Due_16_30_Days"], c["Due_31_60_Days"],
+                      c["Recertified"], c["Overdue"], c["Total_Rules"]])
+    return out
+
+
+def write_metrics_csv(metric_rows, run_date):
+    """Append this run's rows to the history file, replacing any rows for the same date."""
+    final, tmp = OUT_DIR / METRICS_NAME, OUT_DIR / ("~tmp_" + METRICS_NAME)
+    keep = []
+    if final.exists():
+        with open(final, newline="", encoding="utf-8-sig") as f:
+            rd = csv.reader(f)
+            header = next(rd, None)
+            if header and header[:len(METRIC_HEADERS)] == METRIC_HEADERS[:len(header)]:
+                keep = [row for row in rd if row and row[0] != run_date]
+            elif header:
+                log(f"  {METRICS_NAME} has different columns - starting a new history")
+    with open(tmp, "w", newline="", encoding="utf-8-sig") as f:
+        w = csv.writer(f)
+        w.writerow(METRIC_HEADERS)
+        for row in keep:
+            w.writerow(row + [""] * (len(METRIC_HEADERS) - len(row)))
+        w.writerows(metric_rows)
+    replace_locked(tmp, final)
+    return final, len(keep)
 
 
 def heartbeat(status, message=""):
@@ -513,6 +611,9 @@ def run():
     rows, unknown, sa_owner = build_rows(rules, book, start)
     rule_rows = build_rule_rows(rules, book, sa_owner)
     owner_rows = build_owner_rows(rules, book, sa_owner)
+    due = defaultdict(int)
+    for r in rules:
+        due[r["due"]] += 1
     rag = defaultdict(int)
     for r in rule_rows:
         rag[r[RULE_HEADERS.index("RAG")]] += 1
@@ -529,11 +630,17 @@ def run():
                 ["App IDs", len(apps)],
                 ["App IDs with no owner in any sheet", unknown],
                 ["Rules with no app_id (counted under No App ID)", untagged],
+                *[[f"{d} (rules)", due[d]] for d in DUE_COLS[1:] + ["Not Due"]],
                 [f"RAG Green (certified within {RAG_GREEN_MONTHS} months)", rag["Green"]],
                 [f"RAG Amber ({RAG_GREEN_MONTHS}-{RAG_RED_MONTHS} months)", rag["Amber"]],
                 [f"RAG Red (over {RAG_RED_MONTHS} months or never)", rag["Red"]],
                 [], ["Owner sheet", "Used as"], *report]
     path = write_xlsx(rows, run_info, rule_rows, owner_rows)
+    run_date = datetime.now().strftime("%Y-%m-%d")
+    metric_rows = build_metric_rows(rules, book, sa_owner, run_date)
+    mpath, prior = write_metrics_csv(metric_rows, run_date)
+    log(f"Metrics: {len(metric_rows):,} App ID rows for {run_date} (+{prior:,} earlier rows kept) "
+        f"-> {mpath}")
     log(f"{len(rules):,} rules, {len(apps):,} apps: "
         + ", ".join(f"{k} {v:,}" for k, v in counts.items())
         + f" | {unknown} apps without owners | {untagged:,} rules with no App ID")
