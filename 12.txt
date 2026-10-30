@@ -1,5 +1,7 @@
-Nitin, to wire the page to live data:
+Thanks Brindha! Opening it in a browser (GET) returns a 4041 “unable to deliver your request to the backend” from the gateway, which I think is expected since it needs a POST. Two questions before I test with a real POST:
 
-Scope: the cards show ~77.7k rules total, but the Tufin export covers ~59k Palo Alto rules. Should the page cover all vendors or Palo Alto only?
-Chart: I’ll add 7/15/30/45/60-day buckets to the data. For “Approved vs Pending”, should Approved mean recertified after that notice went out (from the escalation log), or recertified this quarter?
-Data connection: the easiest route is embedding or linking Dave’s Power BI report in the page. Or I can have the script refresh the page’s numbers on each run.
+@Hareesh, which test LAN ID can I use in QA that’s safe to disable?
+@Brindha, is the Entra token check on yet, or does it accept requests without a token for now?
+
+$body = @{ workflowArgs = @{ users = "TESTID"; requestedBy = "H2PR"; certificationID = "NPS-FER-RECERT-TEST" } } | ConvertTo-Json
+Invoke-RestMethod -Method Post -Uri "https://api-ch-d.nonprod.pge.com/mea-udn-proxy-api/v1/accountdisable" -ContentType "application/json" -Body $body
