@@ -1,10 +1,6 @@
-[firemon@v50secapl019 ~]$ ls -lh /var/lib/backup/firemon/ | tail -5
--rw-r-----. 1 root fmbackup  12G Oct 26 00:37 v50secapl019_v2026.2.6_2026-10-25-2348_full.backup
--rw-r-----. 1 root fmbackup  12G Oct 27 00:40 v50secapl019_v2026.2.6_2026-10-26-2348_full.backup
--rw-r-----. 1 root fmbackup  12G Oct 28 00:39 v50secapl019_v2026.2.6_2026-10-27-2348_full.backup
--rw-r-----. 1 root fmbackup  12G Oct 29 00:41 v50secapl019_v2026.2.6_2026-10-28-2348_full.backup
--rw-r-----. 1 root fmbackup  12G Oct 30 00:38 v50secapl019_v2026.2.6_2026-10-29-2348_full.backup
-[firemon@v50secapl019 ~]$ df -h /var/lib/backup
-Filesystem               Size  Used Avail Use% Mounted on
-/dev/mapper/fmos-backup  507G  496G   11G  98% /var/lib/backup
+[firemon@v50secapl019 ~]$ ls -lh /var/lib/backup/firemon/ | head -3
+total 493G
+-rw-r-----. 1 root fmbackup 9.9G Sep 12 23:51 v50secapl019_v2026.1.6_2026-09-12-2348.backup
+-rw-r-----. 1 root fmbackup 9.9G Sep 13 23:51 v50secapl019_v2026.1.6_2026-09-13-2348.backup
+
 
