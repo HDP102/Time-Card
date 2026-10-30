@@ -157,7 +157,8 @@ def people(cell, role):
         m = CORPID_RE.match(part.strip())
         if m:
             cid = m.group(2).upper()
-            name = " ".join(m.group(1).split()).strip(" ,")      # ", AAKASH" -> "AAKASH"
+            name = " ".join(m.group(1).split())
+            name = re.sub(r"^[\s.,;]+", "", name).rstrip(" ,;")  # ", AAKASH" / "., AAKASH" -> "AAKASH"
             name = re.sub(r"\s*,\s*", ", ", name)               # "Last ,First" -> "Last, First"
             out.append((role, cid, name, f"{cid}@pge.com"))
     return out
@@ -251,10 +252,13 @@ def load_phonebook():
             clean_book[app].add((role, cid, canon.get(cid, _n), email))
     PRIMARY_COUNTS.clear()
     PRIMARY_COUNTS.update(seen)
+    CANON.clear()
+    CANON.update(canon)
     return clean_book, report
 
 
 PRIMARY_COUNTS = Counter()
+CANON = {}                    # corpid -> the one spelling used everywhere
 
 
 def primary(owners, app):
@@ -609,6 +613,26 @@ def build_metric_rows(rules, book, sa_owner, run_date):
     return out
 
 
+def tidy_owner_cell(cell, app, role):
+    """Older runs wrote 'A (X); B (Y)' and unclean names. Re-apply today's rules:
+    one person per role (the primary), one spelling per LAN ID, no stray punctuation."""
+    found = people(cell, role)
+    if not found:
+        return clean(cell)
+    best = max(found, key=lambda o: (PRIMARY_COUNTS.get((app, role, o[1]), 0), -found.index(o)))
+    return clean(label(best[1], CANON.get(best[1], best[2])))
+
+
+def tidy_history_row(row):
+    """Clean the owner columns of a row kept from an earlier run (counts are untouched)."""
+    row = list(row)
+    app = row[1] if len(row) > 1 else ""
+    for i, role in enumerate(ROLE_COLUMNS, start=2):
+        if i < len(row):
+            row[i] = tidy_owner_cell(row[i], app, role)
+    return row
+
+
 def write_metrics_csv(metric_rows, run_date):
     """Append this run's rows to the history file, replacing any rows for the same date."""
     mdir = OUT_DIR / METRICS_SUBDIR
@@ -620,7 +644,7 @@ def write_metrics_csv(metric_rows, run_date):
             rd = csv.reader(f)
             header = next(rd, None)
             if header and header[:len(METRIC_HEADERS)] == METRIC_HEADERS[:len(header)]:
-                keep = [row for row in rd if row and row[0] != run_date]
+                keep = [tidy_history_row(row) for row in rd if row and row[0] != run_date]
             elif header:
                 log(f"  {METRICS_NAME} has different columns - starting a new history")
     with open(tmp, "w", newline="", encoding="utf-8-sig") as f:
