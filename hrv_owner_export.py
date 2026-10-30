@@ -28,7 +28,7 @@ import os
 import re
 import sys
 import traceback
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from fnmatch import fnmatch
 from pathlib import Path
@@ -78,6 +78,7 @@ OUTPUT_NAME     = "HRV_Owner_Recert_Status.xlsx"         # keep fixed - Power BI
 # the same date replaces that date's rows). Fixed name and column order - add new columns
 # only at the end.
 METRICS_NAME    = "HRV_Recert_Metrics.csv"
+METRICS_SUBDIR  = "RawData"      # Power BI reads the CSV from <HRV Power BI>/RawData
 SHEET_NAME      = "Owner Status"   # per App ID / role / owner summary (kept for existing reports)
 RULES_SHEET     = "Rules"          # one row per rule - use this for Power BI / dashboards
 OWNERS_SHEET    = "Owners"         # App ID -> role -> owner, links to Rules on App ID
@@ -156,7 +157,9 @@ def people(cell, role):
         m = CORPID_RE.match(part.strip())
         if m:
             cid = m.group(2).upper()
-            out.append((role, cid, m.group(1).strip(), f"{cid}@pge.com"))
+            name = " ".join(m.group(1).split()).strip(" ,")      # ", AAKASH" -> "AAKASH"
+            name = re.sub(r"\s*,\s*", ", ", name)               # "Last ,First" -> "Last, First"
+            out.append((role, cid, name, f"{cid}@pge.com"))
     return out
 
 
@@ -209,6 +212,8 @@ def load_phonebook():
     files = sorted({f for p in INPUT_GLOB for f in DATA_DIR.glob(p)
                     if f.is_file() and not any(fnmatch(f.name, x) for x in INPUT_EXCLUDE)})
     book, report = defaultdict(set), []
+    seen = Counter()          # (app, role, corpid) -> how many source rows list them
+    names = defaultdict(Counter)  # corpid -> name spellings
     for f in files:
         header, rows = read_rows(f)
         if header is None:
@@ -223,15 +228,47 @@ def load_phonebook():
             for i in amps:
                 for app, owners in parse_amps(g(i)).items():
                     book[app].update(owners)
+                    for o in owners:
+                        seen[(app, o[0], o[1])] += 1
+                        names[o[1]][o[2]] += 1
             if roles and c_app is not None:
                 for app in app_ids(g(c_app)):
                     for role, i in roles.items():
-                        book[app].update(people(g(i), role))
+                        found = people(g(i), role)
+                        book[app].update(found)
+                        for o in found:
+                            seen[(app, o[0], o[1])] += 1
+                            names[o[1]][o[2]] += 1
         added = sum(len(v) for v in book.values()) - before
         fmt = "AMPS" if amps else ("roles" if c_app is not None else "roles, no App-ID column - not used")
         report.append((f.name, f"{fmt}, {added} new app-owner entries"))
         log(f"  {f.name}: {fmt}, +{added}")
-    return book, report
+    # One spelling per LAN ID (most common), and remember how often each owner was listed
+    canon = {cid: c.most_common(1)[0][0] for cid, c in names.items()}
+    clean_book = defaultdict(set)
+    for app, owners in book.items():
+        for role, cid, _n, email in owners:
+            clean_book[app].add((role, cid, canon.get(cid, _n), email))
+    PRIMARY_COUNTS.clear()
+    PRIMARY_COUNTS.update(seen)
+    return clean_book, report
+
+
+PRIMARY_COUNTS = Counter()
+
+
+def primary(owners, app):
+    """{role: (corpid, name)} - one person per role: the one most source rows list."""
+    best = {}
+    for role, cid, name, _e in owners:
+        n = PRIMARY_COUNTS.get((app, role, cid), 0)
+        if role not in best or (n, cid) > (best[role][0], best[role][1]):
+            best[role] = (n, cid, name)
+    return {r: (cid, name) for r, (_n, cid, name) in best.items()}
+
+
+def label(cid, name):
+    return f"{name} ({cid})" if name else cid
 
 
 # ─────────────────────────────── Tufin ────────────────────────────────
@@ -417,8 +454,19 @@ def rag_of(last_cert, now):
 RULE_HEADERS = (["Rule ID", "Device", "Rule Name", "App ID", "All App IDs", "Disabled",
                  "Campaign Status", "Last Certification", "Certification Result",
                  "Certification Expires", "Days Until Expiry", "Due", "Days Since Certification", "RAG",
-                 "Last Modified"] + ROLE_COLUMNS + ["Last Updated"])
-OWNER_HEADERS = ["App ID", "Role", "Owner Name", "LAN ID", "Email"]
+                 "Last Modified"] + ROLE_COLUMNS + ["Last Updated", "Status Category"])
+
+
+def category(rule, now):
+    """Recertified = valid certification not yet expired; Overdue = expired or never
+    certified; Not Recertified = everything else (e.g. decertified)."""
+    exp = parse_dt(rule.get("expires"))
+    if rule.get("status") == "CERTIFIED" and exp is not None and exp >= now:
+        return "Recertified"
+    if exp is None or exp < now:
+        return "Overdue"
+    return "Not Recertified"
+OWNER_HEADERS = ["App ID", "Role", "Owner Name", "LAN ID", "Email", "Primary"]
 
 
 def owners_for(app, book, sa_owner):
@@ -430,12 +478,7 @@ def build_rule_rows(rules, book, sa_owner):
     out = []
     for r in rules:
         apps = r["apps"]
-        roles = defaultdict(list)
-        for app in apps:
-            for role, cid, name, _e in sorted(owners_for(app, book, sa_owner)):
-                label = f"{name} ({cid})" if name else cid
-                if role in ROLE_COLUMNS and label not in roles[role]:
-                    roles[role].append(label)
+        prim = primary(owners_for(apps[0], book, sa_owner), apps[0]) if apps else {}
         last = parse_dt(r["time"])
         out.append([r["id"], r["device"], r["rule"], apps[0] if apps else NO_APP,
                      ";".join(apps), "Yes" if r["disabled"] else "No", r["st"], last,
@@ -443,7 +486,8 @@ def build_rule_rows(rules, book, sa_owner):
                      parse_dt(r["expires"]), r["days_left"], r["due"],
                      (now - last).days if last else None,
                      rag_of(last, now), parse_dt(r["modified"])]
-                    + ["; ".join(roles[c]) for c in ROLE_COLUMNS] + [now.date()])
+                    + [label(*prim[c]) if c in prim else "" for c in ROLE_COLUMNS]
+                    + [now.date(), category(r, now)])
     return out
 
 
@@ -451,10 +495,12 @@ def build_owner_rows(rules, book, sa_owner):
     apps = sorted({a for r in rules for a in r["apps"]})
     out = []
     for app in apps:
-        for role, cid, name, email in sorted(owners_for(app, book, sa_owner),
-                                             key=lambda o: (ROLE_COLUMNS.index(o[0])
-                                                            if o[0] in ROLE_COLUMNS else 99, o[1])):
-            out.append([app, role, name, cid, email])
+        owners = owners_for(app, book, sa_owner)
+        prim = primary(owners, app)
+        for role, cid, name, email in sorted(owners, key=lambda o: (ROLE_COLUMNS.index(o[0])
+                                                                    if o[0] in ROLE_COLUMNS else 99, o[1])):
+            out.append([app, role, name, cid, email,
+                        "Yes" if prim.get(role, ("",))[0] == cid else "No"])
     return out
 
 
@@ -530,7 +576,7 @@ def replace_locked(tmp, final):
 METRIC_ROLE_COLS = [r.replace(" ", "_") for r in ROLE_COLUMNS]
 METRIC_HEADERS = (["Date", "App_ID"] + METRIC_ROLE_COLS +
                   ["Due_0_15_Days", "Due_16_30_Days", "Due_31_60_Days", "Recertified",
-                   "Overdue", "Total_Rules"])
+                   "Overdue", "Total_Rules", "Not_Recertified"])
 
 
 def clean(v):
@@ -539,37 +585,35 @@ def clean(v):
 
 
 def build_metric_rows(rules, book, sa_owner, run_date):
-    """One row per App ID. Recertified = currently certified and not yet expired."""
+    """One row per App ID. Recertified + Overdue + Not_Recertified = Total_Rules."""
     now = datetime.now()
     per_app = defaultdict(lambda: defaultdict(int))
     for r in rules:
-        exp = parse_dt(r.get("expires"))
-        current = r.get("status") == "CERTIFIED" and exp is not None and exp >= now
+        cat = category(r, now)
         for app in r["apps"] or [NO_APP]:
             c = per_app[app]
             c["Total_Rules"] += 1
-            c["Recertified"] += current
-            c[{"Overdue": "Overdue", "Due 0-15 Days": "Due_0_15_Days",
+            c[{"Recertified": "Recertified", "Overdue": "Overdue",
+               "Not Recertified": "Not_Recertified"}[cat]] += 1
+            c[{"Overdue": "Due_Overdue", "Due 0-15 Days": "Due_0_15_Days",
                "Due 16-30 Days": "Due_16_30_Days", "Due 31-60 Days": "Due_31_60_Days"}
               .get(r["due"], "Not_Due")] += 1
     out = []
     for app in sorted(per_app, key=lambda a: (a == NO_APP, a)):
-        roles = defaultdict(list)
-        if app != NO_APP:
-            for role, cid, name, _e in sorted(owners_for(app, book, sa_owner)):
-                label = clean(f"{name} ({cid})" if name else cid)
-                if role in ROLE_COLUMNS and label not in roles[role]:
-                    roles[role].append(label)
+        prim = primary(owners_for(app, book, sa_owner), app) if app != NO_APP else {}
         c = per_app[app]
-        out.append([run_date, clean(app)] + ["; ".join(roles[r]) for r in ROLE_COLUMNS]
+        out.append([run_date, clean(app)]
+                   + [clean(label(*prim[r])) if r in prim else "" for r in ROLE_COLUMNS]
                    + [c["Due_0_15_Days"], c["Due_16_30_Days"], c["Due_31_60_Days"],
-                      c["Recertified"], c["Overdue"], c["Total_Rules"]])
+                      c["Recertified"], c["Overdue"], c["Total_Rules"], c["Not_Recertified"]])
     return out
 
 
 def write_metrics_csv(metric_rows, run_date):
     """Append this run's rows to the history file, replacing any rows for the same date."""
-    final, tmp = OUT_DIR / METRICS_NAME, OUT_DIR / ("~tmp_" + METRICS_NAME)
+    mdir = OUT_DIR / METRICS_SUBDIR
+    mdir.mkdir(parents=True, exist_ok=True)
+    final, tmp = mdir / METRICS_NAME, mdir / ("~tmp_" + METRICS_NAME)
     keep = []
     if final.exists():
         with open(final, newline="", encoding="utf-8-sig") as f:
