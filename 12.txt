@@ -1,1 +1,2 @@
-use HRV_Recert_Metrics.csv in the HRV Power BI folder. It’s in the format you showed: one row per App ID per run date, with owner columns, Due_0_15_Days, Due_16_30_Days, Due_31_60_Days, Recertified, Overdue and Total_Rules. Each run adds that day’s rows. You can ignore the Excel file in that folder; it’s the rule-level detail for the SOS team.
+ls -lh /var/lib/backup/firemon/ | tail -5
+df -h /var/lib/backup
