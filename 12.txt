@@ -1,15 +1,176 @@
-Looked into both:
+\NPS-Automation\HRVExport> py hrv_owner_export.py
+14:11:14 Output folder: C:\Users\H2PR\OneDrive - PGE\Cybersecurity Network Protection Services - HRV Power BI
+14:11:14 Owner phone book from C:\Users\H2PR\OneDrive - PGE\Cybersecurity Network Protection Services - HRV Power BI\SharedData
+14:11:16   report_GDN Rule Recertification.xlsx: roles, +194
+14:11:16   report_MediumRule_report_with_APPID.xlsx: roles, +455
+14:11:17   report_ODN_MPLS_Rules_Part1.xlsx: roles, +891
+14:11:17   report_ODN_MPLS_Rules_Part2.xlsx: roles, +367
+14:11:17   report_ODN_NERC_Low_Medium_Part1.xlsx: roles, +61
+14:11:18   report_ODN_NERC_Low_Medium_Part2.xlsx: roles, +42
+14:11:18   report_Remaining_ODN_Firewalls_Part1.xlsx: roles, +29
+14:11:18   report_Remaining_ODN_Firewalls_Part2.xlsx: roles, +73
+14:11:19   report_UDN_FirewallRules_Part1.xlsx: roles, +1181
+14:11:19   report_UDN_FirewallRules_Part2.xlsx: roles, +1309
+14:11:19   report_UDN_FirewallRules_Part3.xlsx: roles, +1375
+14:11:20   Sathish_Rule_report_PROD_2026-10-09.xlsx: AMPS, +349
+14:11:20   868 App IDs with owners
+SecureTrack user: ticketAPI
+SecureTrack password: 
+14:11:27 Pulling rules from Tufin: vendor='PALO_ALTO'
+14:11:32   Tufin: 500 of 59,043 rules
+14:11:42   Tufin: 1,000 of 59,043 rules
+14:11:48   Tufin: 1,500 of 59,043 rules
+14:11:49   Tufin: 2,000 of 59,043 rules
+14:11:53   Tufin: 2,500 of 59,043 rules
+14:11:55   Tufin: 3,000 of 59,043 rules
+14:12:00   Tufin: 3,500 of 59,043 rules
+14:12:12   Tufin: 4,000 of 59,043 rules
+14:12:19   Tufin: 4,500 of 59,043 rules
+14:12:36   Tufin: 5,000 of 59,043 rules
+14:12:44   Tufin: 5,500 of 59,043 rules
+14:12:57   Tufin: 6,000 of 59,043 rules
+14:14:16   Tufin: 6,500 of 59,043 rules
+14:14:35   Tufin: 7,000 of 59,043 rules
+14:14:41   Tufin: 7,500 of 59,043 rules
+14:14:50   Tufin: 8,000 of 59,043 rules
+14:15:06   Tufin: 8,500 of 59,043 rules
+14:15:08   Tufin: 9,000 of 59,043 rules
+14:15:12   Tufin: 9,500 of 59,043 rules
+14:15:25   Tufin: 10,000 of 59,043 rules
+14:15:39   Tufin: 10,500 of 59,043 rules
+14:15:44   Tufin: 11,000 of 59,043 rules
+14:15:47   Tufin: 11,500 of 59,043 rules
+14:15:52   Tufin: 12,000 of 59,043 rules
+14:15:57   Tufin: 12,500 of 59,043 rules
+14:16:08   Tufin: 13,000 of 59,043 rules
+14:16:13   Tufin: 13,500 of 59,043 rules
+14:16:18   Tufin: 14,000 of 59,043 rules
+14:16:20   Tufin: 14,500 of 59,043 rules
+14:16:27   Tufin: 15,000 of 59,043 rules
+14:16:34   Tufin: 15,500 of 59,043 rules
+14:16:50   Tufin: 16,000 of 59,043 rules
+14:16:58   Tufin: 16,500 of 59,043 rules
+14:17:06   Tufin: 17,000 of 59,043 rules
+14:17:21   Tufin: 17,500 of 59,043 rules
+14:17:31   Tufin: 18,000 of 59,043 rules
+14:17:38   Tufin: 18,500 of 59,043 rules
+14:17:43   Tufin: 19,000 of 59,043 rules
+14:17:53   Tufin: 19,500 of 59,043 rules
+14:17:56   Tufin: 20,000 of 59,043 rules
+14:18:08   Tufin: 20,500 of 59,043 rules
+14:18:20   Tufin: 21,000 of 59,043 rules
+14:18:30   Tufin: 21,500 of 59,043 rules
+14:18:35   Tufin: 22,000 of 59,043 rules
+14:18:49   Tufin: 22,500 of 59,043 rules
+14:18:53   Tufin: 23,000 of 59,043 rules
+14:18:56   Tufin: 23,500 of 59,043 rules
+14:19:21   Tufin: 24,000 of 59,043 rules
+14:19:27   Tufin: 24,500 of 59,043 rules
+14:19:36   Tufin: 25,000 of 59,043 rules
+14:19:47   Tufin: 25,500 of 59,043 rules
+14:19:53   Tufin: 26,000 of 59,043 rules
+14:20:00   Tufin: 26,500 of 59,043 rules
+14:20:14   Tufin: 27,000 of 59,043 rules
+14:20:21   Tufin: 27,500 of 59,043 rules
+14:20:34   Tufin: 28,000 of 59,043 rules
+14:20:40   Tufin: 28,500 of 59,043 rules
+14:20:44   Tufin: 29,000 of 59,043 rules
+14:20:47   Tufin: 29,500 of 59,043 rules
+14:21:08   Tufin: 30,000 of 59,043 rules
+14:21:23   Tufin: 30,500 of 59,043 rules
+14:21:32   Tufin: 31,000 of 59,043 rules
+14:21:43   Tufin: 31,500 of 59,043 rules
+14:21:57   Tufin: 32,000 of 59,043 rules
+14:22:05   Tufin: 32,500 of 59,043 rules
+14:22:08   Tufin: 33,000 of 59,043 rules
+14:22:12   Tufin: 33,500 of 59,043 rules
+14:22:17   Tufin: 34,000 of 59,043 rules
+14:22:21   Tufin: 34,500 of 59,043 rules
+14:22:38   Tufin: 35,000 of 59,043 rules
+14:22:43   Tufin: 35,500 of 59,043 rules
+14:23:05   Tufin: 36,000 of 59,043 rules
+14:23:20   Tufin: 36,500 of 59,043 rules
+14:23:25   Tufin: 37,000 of 59,043 rules
+14:23:35   Tufin: 37,500 of 59,043 rules
+14:23:40   Tufin: 38,000 of 59,043 rules
+14:23:48   Tufin: 38,500 of 59,043 rules
+14:23:57   Tufin: 39,000 of 59,043 rules
+14:24:05   Tufin: 39,500 of 59,043 rules
+14:24:11   Tufin: 40,000 of 59,043 rules
+14:25:20   Tufin: 40,500 of 59,043 rules
+14:25:24   Tufin: 41,000 of 59,043 rules
+14:25:31   Tufin: 41,500 of 59,043 rules
+14:25:55   Tufin: 42,000 of 59,043 rules
+14:26:01   Tufin: 42,500 of 59,043 rules
+14:26:08   Tufin: 43,000 of 59,043 rules
+14:26:12   Tufin: 43,500 of 59,043 rules
+14:27:22   Tufin: 44,000 of 59,043 rules
+14:27:35   Tufin: 44,500 of 59,043 rules
+14:27:41   Tufin: 45,000 of 59,043 rules
+14:27:48   Tufin: 45,500 of 59,043 rules
+14:27:56   Tufin: 46,000 of 59,043 rules
+14:28:18   Tufin: 46,500 of 59,043 rules
+14:28:39   Tufin: 47,000 of 59,043 rules
+14:28:52   Tufin: 47,500 of 59,043 rules
+14:29:09   Tufin: 48,000 of 59,043 rules
+14:29:16   Tufin: 48,500 of 59,043 rules
+14:30:44 Traceback (most recent call last):
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\response.py", line 905, in _error_catcher
+    yield
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\response.py", line 1043, in _raw_read
+    raise IncompleteRead(self._fp_bytes_read, self.length_remaining)
+urllib3.exceptions.IncompleteRead: IncompleteRead(15675 bytes read, 7750 more expected)
 
-The “. ,” name is an AMPS record with a period as the last name. I’ll update the script to clean that up. The two-names-in-one-cell entries are from older runs still in the CSV; I’ll have the script clean those too so the history is consistent.
+The above exception was the direct cause of the following exception:
 
+Traceback (most recent call last):
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\requests\models.py", line 937, in generate
+    yield from self.raw.stream(chunk_size, decode_content=True)
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\response.py", line 1267, in stream
+    data = self.read(amt=amt, decode_content=decode_content)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\response.py", line 1110, in read
+    data = self._raw_read(amt)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\response.py", line 1021, in _raw_read
+    with self._error_catcher():
+  File "C:\Program Files\Python311\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\response.py", line 925, in _error_catcher
+    raise ProtocolError(arg, e) from e
+urllib3.exceptions.ProtocolError: ('Connection broken: IncompleteRead(15675 bytes read,7750 more expected)', IncompleteRead(15675 bytes read, 7750 more expected))
 
+During handling of the above exception, another exception occurred:
 
+Traceback (most recent call last):
+  File "C:\Users\H2PR\OneDrive - PGE\Documents\Github Automation\NPS-Automation\NPS-Automation\NPS-Automation\HRVExport\hrv_owner_export.py", line 722, in <module>
+    heartbeat("ok", run())
+                    ^^^^^
+  File "C:\Users\H2PR\OneDrive - PGE\Documents\Github Automation\NPS-Automation\NPS-Automation\NPS-Automation\HRVExport\hrv_owner_export.py", line 677, in run
+    rules = fetch_rules(t)
+            ^^^^^^^^^^^^^^
+  File "C:\Users\H2PR\OneDrive - PGE\Documents\Github Automation\NPS-Automation\NPS-Automation\NPS-Automation\HRVExport\hrv_owner_export.py", line 340, in fetch_rules
+    block = t.query(RULES_QUERY, {"filter": SCOPE_FILTER, "first": PAGE_SIZE,
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\H2PR\OneDrive - PGE\Documents\Github Automation\NPS-Automation\NPS-Automation\NPS-Automation\HRVExport\hrv_owner_export.py", line 301, in query
+    r = requests.post(f"https://{TUFIN_HOST}/v2/api/sync/graphql",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\requests\api.py", line 134, in post
+    return request("post", url, data=data, json=json, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\requests\sessions.py", line 827, in send
+    r.content
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\requests\models.py", line 1042, in content
+    self._content = b"".join(self.iter_content(CONTENT_CHUNK_SIZE)) or b""
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\requests\models.py", line 939, in generate
+    raise ChunkedEncodingError(e)
+requests.exceptions.ChunkedEncodingError: ('Connection broken: IncompleteRead(15675 bytes read, 7750 more expected)', IncompleteRead(15675 bytes read, 7750 more expected))
 
-
-On Power BI, the way to show it is a SharePoint page with the Power BI web part. A few things need to be in place:
-
-Dave publishes the report to a Power BI workspace (app.powerbi.com). Then File > Embed report > SharePoint Online gives the link to paste into the web part.
-People viewing the page need access to that report or workspace (and a Pro license unless it’s on Premium capacity). Sharing the page alone isn’t enough.
-Dave should connect to the CSV through the SharePoint folder connector, not his synced OneDrive path, so scheduled refresh works. Then he can schedule it to refresh after the weekly export.
-
-If the HTML page has to stay, a link to the report works. Please avoid “Publish to web”; it makes the report public.
+PS C:\Users\H2PR\OneDrive - PGE\Documents\Github Automation\NPS-Automation\NPS-Automation\NPS-Automation\HRVExport> 
