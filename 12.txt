@@ -1,6 +1,5 @@
-[firemon@v50secapl019 ~]$ ls -lh /var/lib/backup/firemon/ | head -3
-total 493G
--rw-r-----. 1 root fmbackup 9.9G Sep 12 23:51 v50secapl019_v2026.1.6_2026-09-12-2348.backup
--rw-r-----. 1 root fmbackup 9.9G Sep 13 23:51 v50secapl019_v2026.1.6_2026-09-13-2348.backup
+Nitin, to wire the page to live data:
 
-
+Scope: the cards show ~77.7k rules total, but the Tufin export covers ~59k Palo Alto rules. Should the page cover all vendors or Palo Alto only?
+Chart: I’ll add 7/15/30/45/60-day buckets to the data. For “Approved vs Pending”, should Approved mean recertified after that notice went out (from the escalation log), or recertified this quarter?
+Data connection: the easiest route is embedding or linking Dave’s Power BI report in the page. Or I can have the script refresh the page’s numbers on each run.
