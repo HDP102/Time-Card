@@ -27,6 +27,7 @@ import json
 import os
 import re
 import sys
+import time
 import traceback
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
@@ -49,6 +50,8 @@ SCOPE_FILTER    = "vendor='PALO_ALTO'"
 PAGE_SIZE       = 500
 VERIFY_TLS      = False
 TIMEOUT         = 120
+RETRIES         = 5              # per page, on dropped connection / timeout / 502-504
+RETRY_WAIT      = 15             # seconds; doubles each retry (15, 30, 60, 120, 240)
 
 CAMPAIGN_START  = "2026-09-24"   # certifications before this are an older campaign -> Pending
 
@@ -298,10 +301,26 @@ class Tufin:
     def query(self, q, variables=None, retry=True):
         if not self.token:
             self.login()
-        r = requests.post(f"https://{TUFIN_HOST}/v2/api/sync/graphql",
-                          json={"query": q, "variables": variables or {}},
-                          headers={"Authorization": f"Bearer {self.token}"},
-                          verify=VERIFY_TLS, timeout=TIMEOUT)
+        # Read-only query, so a dropped connection / timeout / 502-504 is safe to retry.
+        # Without this, one bad page late in a 20-minute pull loses the whole run.
+        for attempt in range(1, RETRIES + 2):
+            try:
+                r = requests.post(f"https://{TUFIN_HOST}/v2/api/sync/graphql",
+                                  json={"query": q, "variables": variables or {}},
+                                  headers={"Authorization": f"Bearer {self.token}"},
+                                  verify=VERIFY_TLS, timeout=TIMEOUT)
+                if r.status_code in (502, 503, 504):
+                    raise requests.exceptions.ConnectionError(f"HTTP {r.status_code}")
+                r.json() if r.status_code == 200 else None   # a cut-off body fails here, not later
+                break
+            except (requests.exceptions.ConnectionError, requests.exceptions.Timeout,
+                    requests.exceptions.ChunkedEncodingError, ValueError) as e:
+                if attempt > RETRIES:
+                    raise RuntimeError(f"Tufin query failed after {RETRIES} retries: {e}") from e
+                wait = RETRY_WAIT * 2 ** (attempt - 1)
+                log(f"  Tufin connection problem ({type(e).__name__}) - retry {attempt}/{RETRIES} "
+                    f"in {wait}s")
+                time.sleep(wait)
         if r.status_code == 401 and retry:
             self.token = None
             return self.query(q, variables, retry=False)
