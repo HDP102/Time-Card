@@ -1,4 +1,15 @@
 Looked into both:
 
 The “. ,” name is an AMPS record with a period as the last name. I’ll update the script to clean that up. The two-names-in-one-cell entries are from older runs still in the CSV; I’ll have the script clean those too so the history is consistent.
-For Power BI, SharePoint blocks embedding inside an uploaded HTML file, which is the permission error. The way that works is a SharePoint page with the Power BI web part (File > Embed report > SharePoint Online in Power BI, then paste the link). If the HTML page has to stay, a link to the report works. Please don’t use “Publish to web”; it makes the report public.
+
+
+
+
+
+On Power BI, the way to show it is a SharePoint page with the Power BI web part. A few things need to be in place:
+
+Dave publishes the report to a Power BI workspace (app.powerbi.com). Then File > Embed report > SharePoint Online gives the link to paste into the web part.
+People viewing the page need access to that report or workspace (and a Pro license unless it’s on Premium capacity). Sharing the page alone isn’t enough.
+Dave should connect to the CSV through the SharePoint folder connector, not his synced OneDrive path, so scheduled refresh works. Then he can schedule it to refresh after the weekly export.
+
+If the HTML page has to stay, a link to the report works. Please avoid “Publish to web”; it makes the report public.
