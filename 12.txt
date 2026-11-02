@@ -1,1 +1,1 @@
-V50MONRHL146
+Hey Anupama, thanks for checking with Vince. That’s fine, go ahead and add 10.194.24.93 to the existing ldaptest.countrylan.net workload. My note was just a suggestion, and since it’s Test and they want to keep the LB name, it’s a reasonable call. Two things to keep in mind. When the old LB is retired, make sure its IP gets removed from the workload so nothing that reuses that address later inherits access. And keep the location as Aurora until then, and switch it to Azure once the old IP is off.
