@@ -1,48 +1,19 @@
-Here’s everything for both rulesets.
+Hi team, I’m moving GoAlert’s network security policy to a new platform as part of the Illumio CloudSecure migration. Nothing is changing yet, but once this is turned on, anything not on the list below gets blocked. Could you confirm each line is correct and still needed?
 
-Ruleset 1: Production
+What connects TO GoAlert (Prod):
 
-Create it:
+EMS servers → GoAlert web (HTTPS). Sending events/alerts into GoAlert?
+Azure App Proxy → GoAlert web (HTTPS). Users reaching GoAlert remotely?
+Dynatrace → GoAlert web (HTTPS). Monitoring/health checks?
+Tableau → GoAlert database (Postgres). Reporting?
 
-Go to Segmentation > All Policies and click Add, then pick the ruleset option.
-Name: ICS_GoAlert | Production
-Scope: ICS_GoAlert + Production
-Pick both from the dropdown. If it only offers “New Label”, look under Labels like you did for FireMon.
-Don’t pick ICS_GOALERT or ICS_goalert.
-Save.
+What connects TO GoAlert (NonProd):
+5. EMS QA/Dev → GoAlert web (HTTPS)
+6. Azure App Proxy → GoAlert web (HTTPS)
+7. Dynatrace → GoAlert web (HTTPS)
 
-Add 3 allow rules:
+What GoAlert connects OUT to (I couldn’t see this in the logs):
+8. How does GoAlert send notifications: email, SMS, voice? Through what (SMTP relay, Twilio, something else)?
+9. Anything else GoAlert reaches out to, like integrations or APIs?
 
-#	Rule type	Source	Destination	Service
-1	Extra-Scope	A: Azure App Proxy Connector (PCE_Local) + R: Server + E: Production	Server	HTTPS
-2	Extra-Scope	R: Server + A: EMS - Event Management System + E: Production + E: QA + E: Development	Server	HTTPS
-3	Extra-Scope	R: Server + A: Tableau - v10.4.3 (PCE_Local) + E: Production	PostgreSQL Database	PostgreSQL Database
-Ruleset 2: Non Production
-
-Create it:
-
-Go to Segmentation > All Policies and click Add, then pick the ruleset option.
-Name: ICS_GoAlert | Non Production
-Scope: ICS_GoAlert + Non Production
-Save.
-
-Add 2 allow rules:
-
-#	Rule type	Source	Destination	Service
-1	Extra-Scope	R: Server + A: EMS - Event Management System + E: QA + E: Development	Server	HTTPS
-2	Extra-Scope	A: Azure App Proxy Connector (PCE_Local) + R: Server + E: Production	Server	HTTPS
-How to fill each field
-Source: add all the listed labels to the one Source field, exactly as the Core rule shows them. These are the Core labels with the A: / R: / E: prefixes. Multiple E: labels in one rule means “any of these environments”.
-Destination: the ICS role labels without a prefix: Server or PostgreSQL Database. Both are confirmed on the GoAlert resources.
-Service: pick HTTPS or PostgreSQL Database from the Policy Services list, the same named services the Core rules use.
-Rule action: Allow, the same as all the others.
-
-Do not provision either ruleset.
-
-Not carried over: Core rule 1 (R: Utility Server → R: Utility Server, DHCP-Client). GoAlert is PaaS and has no utility servers.
-
-When you’re done
-Screenshot both rulesets showing all their rules, and I’ll check each one against this list.
-Then run the two remaining checks. They may add one or two more rules:
-Dynatrace: go to Explore > Traffic (PCE). Source v50monrhl146, destination 10.192.88.74, then View Rules.
-App → database: go to Cloud > Explore > Traffic. Destination prod-database-psql-004, 24 hours.
+Anything missing? Any other system or team that uses GoAlert that’s not listed above?
