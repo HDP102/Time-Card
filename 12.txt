@@ -1,1 +1,1 @@
-This is were we need to make progress on many of the core apps before we go to enforcement, because these rules should exist already. The ICS_Dynatrace tag would be added to the existing policy scope to create a hybrid policy.
+V50MONRHL146
