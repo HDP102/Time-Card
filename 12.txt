@@ -1,6 +1,1 @@
-GoAlert shouldn't be sending email anywhere. Tried to set up that integration and never got it working  If you see anything hitting any SMTP ports etc. from GoAlert, can also be dropped.
- 
-Callback URLS:
-https://goalert.countrypassport.com/api/v2/twilio/message
-https://goalert.countrypassport.com/api/v2/twilio/call
- 
+This is were we need to make progress on many of the core apps before we go to enforcement, because these rules should exist already. The ICS_Dynatrace tag would be added to the existing policy scope to create a hybrid policy.
