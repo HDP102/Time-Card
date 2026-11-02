@@ -1,1 +1,6 @@
-Thanks Jordan, that helps a lot. I’ll drop the Tableau access. If you can send the two Twilio callback URLs when you get a chance, that’d be great so I can confirm they’re covered. Also, does email go through Twilio too, or does GoAlert send email some other way?
+GoAlert shouldn't be sending email anywhere. Tried to set up that integration and never got it working  If you see anything hitting any SMTP ports etc. from GoAlert, can also be dropped.
+ 
+Callback URLS:
+https://goalert.countrypassport.com/api/v2/twilio/message
+https://goalert.countrypassport.com/api/v2/twilio/call
+ 
