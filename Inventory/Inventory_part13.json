@@ -1,0 +1,2522 @@
+[
+ {
+  "name": "ProdSS-RG-DRNet-02",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "cloud_tags": [
+   {
+    "key": "Department",
+    "value": "NETWORK ENG"
+   }
+  ]
+ },
+ {
+  "name": "dr-pip-208.74.229.210_star.epayment.countryfinancial.com",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "V50ipsrtr001",
+  "cloud": "azure",
+  "type": "Microsoft.Network/virtualHubs/bgpConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0"
+ },
+ {
+  "name": "Prod-IP-SC-Agg_ARS",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "dr-pip-208.74.229.220_digitalai.countryfinancial.com",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "ProdSS-RG-SDWAN-01",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "cloud_tags": [
+   {
+    "key": "Application",
+    "value": "SDWAN"
+   },
+   {
+    "key": "Department",
+    "value": "NETWORK ENG"
+   }
+  ]
+ },
+ {
+  "name": "ProdSS-RG-HubSecurity-01",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "cloud_tags": [
+   {
+    "key": "Department",
+    "value": "SECTY CTRL MGMT"
+   },
+   {
+    "key": "Application",
+    "value": "Security Services"
+   },
+   {
+    "key": "Environment",
+    "value": "Production"
+   },
+   {
+    "key": "ContactGroup",
+    "value": "Network Security Engineering"
+   },
+   {
+    "key": "Organization",
+    "value": "CI18170"
+   }
+  ]
+ },
+ {
+  "name": "ProdSS-RG-SDWAN-02",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "cloud_tags": [
+   {
+    "key": "Department",
+    "value": "NETWORK ENG"
+   },
+   {
+    "key": "Application",
+    "value": "SDWAN"
+   }
+  ]
+ },
+ {
+  "name": "prod-pip-208.74.231.207_digitalteam_countryfinancial.com",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "SouthCentralSSAggVNet1_To_SouthCentralPSSDRVNet1",
+  "cloud": "azure",
+  "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "VirtualNetworksPeering"
+   }
+  ]
+ },
+ {
+  "name": "v50pubrtr002",
+  "cloud": "azure",
+  "type": "Microsoft.Network/virtualHubs/bgpConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0"
+ },
+ {
+  "name": "qa-pip-208.74.231.201_star.platform.countryfinancial.net",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "Prod-IP-NC_PROD_ARS",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "prod-pip-208.74.231.208_star.dss.countryfinancial.com",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "dr-pip-208.74.229.226_star.digitaldr.countryfinancial.com",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "ProdSS-RG-ProdSec-Zscaler-01",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "cloud_tags": [
+   {
+    "key": "department",
+    "value": "SECTY CTRL MGMT"
+   }
+  ]
+ },
+ {
+  "name": "v51pubrtr001",
+  "cloud": "azure",
+  "type": "Microsoft.Network/virtualHubs/bgpConnections",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0"
+ },
+ {
+  "name": "ProdSS-RG-ProdNet-02",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "cloud_tags": [
+   {
+    "key": "Department",
+    "value": "NETWORK ENG"
+   }
+  ]
+ },
+ {
+  "name": "prod-pip-208.74.231.210_star.epayment.countryfinancial.com",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "v51arsrtr002",
+  "cloud": "azure",
+  "type": "Microsoft.Network/virtualHubs/ipConfigurations",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0"
+ },
+ {
+  "name": "dr-pip-208.74.229.229_star.epaymentdr.countryfinancial.com",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "NetworkWatcherRG",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "cloud_tags": [
+   {
+    "key": "department",
+    "value": "SECTY CTRL MGMT"
+   }
+  ]
+ },
+ {
+  "name": "PIP-NorthCentralPSSAggVNet1-ERGW1",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "dr-pip-208.74.229.211_star.marketing.countrypassport.com",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "v51ipsrtr001",
+  "cloud": "azure",
+  "type": "Microsoft.Network/virtualHubs/bgpConnections",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0"
+ },
+ {
+  "name": "qa-pip-208.74.231.196_star.lhi.countryfinancial.net",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "qa-pip-208.74.231.197_digitalteam_countryfinancial.net",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "prod-pip-208.74.231.20_v50pubrtr001",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "Prod-IP-Agg_ARS",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "v51pubrtr001-ip",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "v50pubrtr002ip234",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "dr-pip-208.74.229.213_aag-appservice_countryfinancial.com",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "prod-pip-208.74.231.226_star.digitaldr.countryfinancial.com",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "ProdSS-RG-ACR-01",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "cloud_tags": [
+   {
+    "key": "department",
+    "value": "PLATFORM ENG"
+   }
+  ]
+ },
+ {
+  "name": "qa-pip-208.74.231.205_emsapiaz.countryfinancial.net",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "dr-pip-208.74.229.228_star.lhidr.countryfinancial.com",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "prodss-ip-ncuszscaler",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "5aa20947-7c0d-4353-b60a-a6faf5c0dde0",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "QA-RG-Net-01",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "224ef67d-ea2b-4687-9d5d-dc744ef93351",
+  "cloud_tags": [
+   {
+    "key": "department",
+    "value": "NETWORK ENG"
+   }
+  ]
+ },
+ {
+  "name": "azure_maintenance",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "224ef67d-ea2b-4687-9d5d-dc744ef93351",
+  "security_controls": [
+   "/subscriptions/224ef67d-ea2b-4687-9d5d-dc744ef93351/resourceGroups/qa-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentQAVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "QA-RG-Platform-01",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "224ef67d-ea2b-4687-9d5d-dc744ef93351"
+ },
+ {
+  "name": "QA-RG-Appliances-01",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "224ef67d-ea2b-4687-9d5d-dc744ef93351"
+ },
+ {
+  "name": "QA-RG-Appliances-02",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "224ef67d-ea2b-4687-9d5d-dc744ef93351"
+ },
+ {
+  "name": "QA-RG-Net-02",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "224ef67d-ea2b-4687-9d5d-dc744ef93351",
+  "cloud_tags": [
+   {
+    "key": "Department",
+    "value": "NETWORK ENG"
+   }
+  ]
+ },
+ {
+  "name": "azure_sys",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "224ef67d-ea2b-4687-9d5d-dc744ef93351",
+  "security_controls": [
+   "/subscriptions/224ef67d-ea2b-4687-9d5d-dc744ef93351/resourceGroups/qa-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentQAVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "QA-RG-Sec-02",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "224ef67d-ea2b-4687-9d5d-dc744ef93351",
+  "cloud_tags": [
+   {
+    "key": "department",
+    "value": "SECTY CTRL MGMT"
+   }
+  ]
+ },
+ {
+  "name": "master",
+  "cloud": "azure",
+  "type": "Microsoft.Sql/servers/databases",
+  "region": "northcentralus",
+  "state": "online",
+  "account_id": "224ef67d-ea2b-4687-9d5d-dc744ef93351",
+  "security_controls": [
+   "/subscriptions/224ef67d-ea2b-4687-9d5d-dc744ef93351/resourceGroups/qa-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentQAVNet1-DBaaS-NSG"
+  ]
+ },
+ {
+  "name": "QA-RG-Sec-01",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "224ef67d-ea2b-4687-9d5d-dc744ef93351",
+  "cloud_tags": [
+   {
+    "key": "department",
+    "value": "SECTY CTRL MGMT"
+   }
+  ]
+ },
+ {
+  "name": "qa-kv-network-pl_0470dbcb-8040-40fc-8b7e-3a96fd81a094",
+  "cloud": "azure",
+  "type": "Microsoft.KeyVault/vaults/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "224ef67d-ea2b-4687-9d5d-dc744ef93351",
+  "security_controls": [
+   "/subscriptions/224ef67d-ea2b-4687-9d5d-dc744ef93351/resourceGroups/qa-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentQAVNet1-PrivateLink-NSG"
+  ]
+ },
+ {
+  "name": "NetworkWatcherRG",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "224ef67d-ea2b-4687-9d5d-dc744ef93351",
+  "cloud_tags": [
+   {
+    "key": "department",
+    "value": "SECTY CTRL MGMT"
+   }
+  ]
+ },
+ {
+  "name": "postgres",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "224ef67d-ea2b-4687-9d5d-dc744ef93351",
+  "security_controls": [
+   "/subscriptions/224ef67d-ea2b-4687-9d5d-dc744ef93351/resourceGroups/qa-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentQAVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "master",
+  "cloud": "azure",
+  "type": "Microsoft.Sql/servers/databases",
+  "region": "northcentralus",
+  "state": "online",
+  "account_id": "224ef67d-ea2b-4687-9d5d-dc744ef93351",
+  "security_controls": [
+   "/subscriptions/224ef67d-ea2b-4687-9d5d-dc744ef93351/resourceGroups/qa-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentQAVNet1-DBaaS-NSG"
+  ]
+ },
+ {
+  "name": "mdmazstgq1",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "224ef67d-ea2b-4687-9d5d-dc744ef93351",
+  "security_controls": [
+   "/subscriptions/224ef67d-ea2b-4687-9d5d-dc744ef93351/resourceGroups/qa-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentQAVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "master",
+  "cloud": "azure",
+  "type": "Microsoft.Sql/servers/databases",
+  "region": "northcentralus",
+  "state": "online",
+  "account_id": "224ef67d-ea2b-4687-9d5d-dc744ef93351",
+  "security_controls": [
+   "/subscriptions/224ef67d-ea2b-4687-9d5d-dc744ef93351/resourceGroups/qa-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentQAVNet1-DBaaS-NSG"
+  ]
+ },
+ {
+  "name": "11644b6c-f006-4829-8446-9066a6657f82",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "matviewdb",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "aks-user-15540694-vmss",
+  "cloud": "azure",
+  "type": "Microsoft.Network/networkInterfaces",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkInterfaces"
+   }
+  ],
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/mc_nonprod-rg-aksdataanalytics-01_npaksdataanalytics_northcentralus/providers/Microsoft.Network/networkSecurityGroups/aks-agentpool-39018089-nsg"
+  ]
+ },
+ {
+  "name": "np-kv-appservice-pl",
+  "cloud": "azure",
+  "type": "Microsoft.KeyVault/vaults/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-PrivateLink-NSG"
+  ]
+ },
+ {
+  "name": "kube-apiserver.5911a89f-46c3-45b3-b38d-c9208a405cdb",
+  "cloud": "azure",
+  "type": "Microsoft.ContainerService/managedClusters/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf"
+ },
+ {
+  "name": "master",
+  "cloud": "azure",
+  "type": "Microsoft.Sql/servers/databases",
+  "region": "northcentralus",
+  "state": "online",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaS-NSG"
+  ]
+ },
+ {
+  "name": "master",
+  "cloud": "azure",
+  "type": "Microsoft.Sql/servers/databases",
+  "region": "northcentralus",
+  "state": "online",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaS-NSG"
+  ]
+ },
+ {
+  "name": "master",
+  "cloud": "azure",
+  "type": "Microsoft.Sql/servers/databases",
+  "region": "northcentralus",
+  "state": "online",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaS-NSG"
+  ]
+ },
+ {
+  "name": "azure_maintenance",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "kube-apiserver.7f425873-6f50-473f-b739-090aa27718a6",
+  "cloud": "azure",
+  "type": "Microsoft.ContainerService/managedClusters/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf"
+ },
+ {
+  "name": "postgres",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "NonProd-RG-Net-01",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "cloud_tags": [
+   {
+    "key": "ContactGroup",
+    "value": "Network Engineering"
+   },
+   {
+    "key": "Organization",
+    "value": "CI18510"
+   },
+   {
+    "key": "Owner",
+    "value": "David Douglas"
+   },
+   {
+    "key": "Department",
+    "value": "NETWORK ENG"
+   },
+   {
+    "key": "Environment",
+    "value": "NonProd"
+   }
+  ]
+ },
+ {
+  "name": "NonProd-RG-ContainerInstances-01",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "cloud_tags": [
+   {
+    "key": "Department",
+    "value": "DevSecOps COE"
+   },
+   {
+    "key": "ContactGroup",
+    "value": "DEVSECOPS COE"
+   },
+   {
+    "key": "Organization",
+    "value": "CI18630"
+   }
+  ]
+ },
+ {
+  "name": "azure_sys",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "3782ea15-aa83-4dac-ae79-55e47375ba81",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "aks-system-66050404-vmss",
+  "cloud": "azure",
+  "type": "Microsoft.Network/networkInterfaces",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkInterfaces"
+   }
+  ],
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/mc_nonprod-rg-aks-01_npaksdct_northcentralus/providers/Microsoft.Network/networkSecurityGroups/aks-agentpool-18257490-nsg"
+  ]
+ },
+ {
+  "name": "np-pip-agency",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "kubernetes-ab3feb9c0ce484cfb8c9f245a30bcbe1",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "iris_tasks",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "5e9357e0-c31a-4d2f-8a98-b1911b5086e2",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "NonProd-RG-Appliances-02",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf"
+ },
+ {
+  "name": "axon_data",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "np-kv-billing-pl",
+  "cloud": "azure",
+  "type": "Microsoft.KeyVault/vaults/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-PrivateLink-NSG"
+  ]
+ },
+ {
+  "name": "np-sa-agency-kv-pl",
+  "cloud": "azure",
+  "type": "Microsoft.KeyVault/vaults/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-PrivateLink-NSG"
+  ]
+ },
+ {
+  "name": "38f8b169-c4b1-49e5-b973-204cb1d2b1b4",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "aks-user-15540694-vmss",
+  "cloud": "azure",
+  "type": "Microsoft.Network/networkInterfaces",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkInterfaces"
+   }
+  ],
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/mc_nonprod-rg-aksdataanalytics-01_npaksdataanalytics_northcentralus/providers/Microsoft.Network/networkSecurityGroups/aks-agentpool-39018089-nsg"
+  ]
+ },
+ {
+  "name": "np-kv-aca-idauthmgmt-pl_5ecf37e6-e4c5-4624-bd50-c2c2ff91b082",
+  "cloud": "azure",
+  "type": "Microsoft.KeyVault/vaults/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-PrivateLink-NSG"
+  ]
+ },
+ {
+  "name": "axon_notification",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "np-sa-dss",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "master",
+  "cloud": "azure",
+  "type": "Microsoft.Sql/servers/databases",
+  "region": "northcentralus",
+  "state": "online",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaS-NSG"
+  ]
+ },
+ {
+  "name": "03da82ee-5722-4bd8-afab-05d0ae72c01b",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "azure_sys",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "kubernetes-ae46ef5c74abf402485c1bc582f129b4",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "azure_maintenance",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "marketplace",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "segmentation",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "94060ef3-ef40-4dcf-822b-9cf1a909c4e7",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "48151f15-470f-4c21-8096-138b53e16d89",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "NP-KV-Platform-01-pl",
+  "cloud": "azure",
+  "type": "Microsoft.KeyVault/vaults/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-PrivateLink-NSG"
+  ]
+ },
+ {
+  "name": "NonProd-RG-Sec-01",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "cloud_tags": [
+   {
+    "key": "Department",
+    "value": "SECTY CTRL MGMT"
+   },
+   {
+    "key": "Environment",
+    "value": "Development"
+   },
+   {
+    "key": "ContactGroup",
+    "value": "Network Security Engineering"
+   },
+   {
+    "key": "Organization",
+    "value": "CI18170"
+   },
+   {
+    "key": "owner",
+    "value": "Adam Kirsling"
+   }
+  ]
+ },
+ {
+  "name": "master",
+  "cloud": "azure",
+  "type": "Microsoft.Sql/servers/databases",
+  "region": "northcentralus",
+  "state": "online",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaS-NSG"
+  ]
+ },
+ {
+  "name": "postgres",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "np-kv-aca-platform-pl",
+  "cloud": "azure",
+  "type": "Microsoft.KeyVault/vaults/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-PrivateLink-NSG"
+  ]
+ },
+ {
+  "name": "master",
+  "cloud": "azure",
+  "type": "Microsoft.Sql/servers/databases",
+  "region": "northcentralus",
+  "state": "online",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaS-NSG"
+  ]
+ },
+ {
+  "name": "azure_maintenance",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "83045118-ac22-47f6-ad2b-ff8dfcdf3997",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "DefaultResourceGroup-SCUS",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf"
+ },
+ {
+  "name": "azure_maintenance",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "np-pip-commag",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "np-kv-investmentservices-pl",
+  "cloud": "azure",
+  "type": "Microsoft.KeyVault/vaults/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-PrivateLink-NSG"
+  ]
+ },
+ {
+  "name": "2b354cce-eea3-47e0-a200-ba85e688b2d6",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "np-sa-epayment-kv-pl",
+  "cloud": "azure",
+  "type": "Microsoft.KeyVault/vaults/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-PrivateLink-NSG"
+  ]
+ },
+ {
+  "name": "np-aag-aksdataanalytics-appgwpip",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "camunda",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "master",
+  "cloud": "azure",
+  "type": "Microsoft.Sql/servers/databases",
+  "region": "northcentralus",
+  "state": "online",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaS-NSG"
+  ]
+ },
+ {
+  "name": "azure_maintenance",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "947d0eb7-09b4-4105-a30c-abab288a8442",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "0fa63d3a-6255-4518-af9e-a1e6ad21c3ab",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "azure_sys",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "kubernetes-a6bdee1275054414da4909c7f2f37de2",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "mdmazstgd1",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "NetworkWatcherRG",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "cloud_tags": [
+   {
+    "key": "Organization",
+    "value": "CI18170"
+   },
+   {
+    "key": "department",
+    "value": "SECTY CTRL MGMT"
+   },
+   {
+    "key": "ContactGroup",
+    "value": "Network Security Engineering"
+   }
+  ]
+ },
+ {
+  "name": "bd7cc7ef-aacb-4c36-b35d-c0a1d11639b8",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "aks-system-10460772-vmss",
+  "cloud": "azure",
+  "type": "Microsoft.Network/networkInterfaces",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkInterfaces"
+   }
+  ],
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/mc_nonprod-rg-aks-01_npakstcoeanalytics_northcentralus/providers/Microsoft.Network/networkSecurityGroups/aks-agentpool-33780674-nsg"
+  ]
+ },
+ {
+  "name": "np-pip-lhi",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "np-sa-dss-pl",
+  "cloud": "azure",
+  "type": "Microsoft.KeyVault/vaults/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-PrivateLink-NSG"
+  ]
+ },
+ {
+  "name": "axon_docupload",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "aks-user02-11658223-vmss",
+  "cloud": "azure",
+  "type": "Microsoft.Network/networkInterfaces",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkInterfaces"
+   }
+  ],
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/mc_nonprod-rg-aks-01_npaksdct_northcentralus/providers/Microsoft.Network/networkSecurityGroups/aks-agentpool-18257490-nsg"
+  ]
+ },
+ {
+  "name": "LoadBalancernpdea-md1205178OUTBOUND-publicIp",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "DIIDB0D1",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "mdmazstgt1",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "7efd0a8b-ba0c-48c4-adb6-4d301dbc2174",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "master",
+  "cloud": "azure",
+  "type": "Microsoft.Sql/servers/databases",
+  "region": "northcentralus",
+  "state": "online",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaS-NSG"
+  ]
+ },
+ {
+  "name": "np-kv-aksoperations-pl_dc229f5c-22e3-4121-9b2c-a68826a1004e",
+  "cloud": "azure",
+  "type": "Microsoft.KeyVault/vaults/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-PrivateLink-NSG"
+  ]
+ },
+ {
+  "name": "NonProd-RG-Appliances-01",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf"
+ },
+ {
+  "name": "goalert",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "np-pip-epayment",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "df71f215-fcab-4faa-a1d3-6c35053ded6e",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "postgres",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "aks-system-88438886-vmss",
+  "cloud": "azure",
+  "type": "Microsoft.Network/networkInterfaces",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkInterfaces"
+   }
+  ],
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/mc_nonprod-rg-aksdataanalytics-01_npaksdataanalytics_northcentralus/providers/Microsoft.Network/networkSecurityGroups/aks-agentpool-39018089-nsg"
+  ]
+ },
+ {
+  "name": "kube-apiserver.d7dd80d0-13ee-4c8c-98f8-7b145b0b061b",
+  "cloud": "azure",
+  "type": "Microsoft.ContainerService/managedClusters/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf"
+ },
+ {
+  "name": "ControlCenter",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "master",
+  "cloud": "azure",
+  "type": "Microsoft.Sql/servers/databases",
+  "region": "northcentralus",
+  "state": "online",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaS-NSG"
+  ]
+ },
+ {
+  "name": "1572e60f-129a-42b9-bd27-70831832c875",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "axon_changerequest",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "azure_sys",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "azure_sys",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "kube-apiserver.307a6458-683d-4107-a60f-4ba55fac8f7d",
+  "cloud": "azure",
+  "type": "Microsoft.ContainerService/managedClusters/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf"
+ },
+ {
+  "name": "np-sa-marketing-kv-pl",
+  "cloud": "azure",
+  "type": "Microsoft.KeyVault/vaults/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-PrivateLink-NSG"
+  ]
+ },
+ {
+  "name": "master",
+  "cloud": "azure",
+  "type": "Microsoft.Sql/servers/databases",
+  "region": "northcentralus",
+  "state": "online",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaS-NSG"
+  ]
+ },
+ {
+  "name": "unison",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "np-kv-aca-invsrvs-pl",
+  "cloud": "azure",
+  "type": "Microsoft.KeyVault/vaults/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-PrivateLink-NSG"
+  ]
+ },
+ {
+  "name": "np-pip-marketing",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "azure_sys",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "axon",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "postgres",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "postgres",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "np-kv-aksdataanalytics-pl_dc229f5c-22e3-4121-9b2c-a68826a10029",
+  "cloud": "azure",
+  "type": "Microsoft.KeyVault/vaults/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-PrivateLink-NSG"
+  ]
+ },
+ {
+  "name": "DG_AXON_DEV",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "azure_maintenance",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "master",
+  "cloud": "azure",
+  "type": "Microsoft.Sql/servers/databases",
+  "region": "northcentralus",
+  "state": "online",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaS-NSG"
+  ]
+ },
+ {
+  "name": "np-kv-aca-digital-pl",
+  "cloud": "azure",
+  "type": "Microsoft.KeyVault/vaults/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-PrivateLink-NSG"
+  ]
+ },
+ {
+  "name": "np-sa-digital",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "np-kv-commag-pl",
+  "cloud": "azure",
+  "type": "Microsoft.KeyVault/vaults/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-PrivateLink-NSG"
+  ]
+ },
+ {
+  "name": "ae1d4ae4-ca13-4c22-b3cf-3ee562bfc8dd",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "np-sa-digital-kv-pl",
+  "cloud": "azure",
+  "type": "Microsoft.KeyVault/vaults/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-PrivateLink-NSG"
+  ]
+ },
+ {
+  "name": "5ce804cd-b03d-49e3-819c-205be87d6723",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "NonProd-RG-Net-02",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "cloud_tags": [
+   {
+    "key": "Department",
+    "value": "NETWORK ENG"
+   },
+   {
+    "key": "ContactGroup",
+    "value": "Network Engineering"
+   },
+   {
+    "key": "Organization",
+    "value": "CI18510"
+   }
+  ]
+ },
+ {
+  "name": "aks-user02-11658223-vmss",
+  "cloud": "azure",
+  "type": "Microsoft.Network/networkInterfaces",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkInterfaces"
+   }
+  ],
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/mc_nonprod-rg-aks-01_npaksdct_northcentralus/providers/Microsoft.Network/networkSecurityGroups/aks-agentpool-18257490-nsg"
+  ]
+ },
+ {
+  "name": "np-kv-vulnerabilitymgmt-pl",
+  "cloud": "azure",
+  "type": "Microsoft.KeyVault/vaults/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-PrivateLink-NSG"
+  ]
+ },
+ {
+  "name": "master",
+  "cloud": "azure",
+  "type": "Microsoft.Sql/servers/databases",
+  "region": "northcentralus",
+  "state": "online",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaS-NSG"
+  ]
+ },
+ {
+  "name": "np-sa-lhi-kv-pl",
+  "cloud": "azure",
+  "type": "Microsoft.KeyVault/vaults/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-PrivateLink-NSG"
+  ]
+ },
+ {
+  "name": "LoadBalancernonprod-dl-md205171OUTBOUND-publicIp",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "d1ba4a07-7d6c-42a6-bd05-66a5c4b9df0e",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "DFIRAZDB0T1",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "axon_bulkupload",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "master",
+  "cloud": "azure",
+  "type": "Microsoft.Sql/servers/databases",
+  "region": "northcentralus",
+  "state": "online",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaS-NSG"
+  ]
+ },
+ {
+  "name": "NonProd-RG-Sec-02",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "southcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "cloud_tags": [
+   {
+    "key": "Organization",
+    "value": "CI18170"
+   },
+   {
+    "key": "department",
+    "value": "SECTY CTRL MGMT"
+   },
+   {
+    "key": "ContactGroup",
+    "value": "Network Security Engineering"
+   }
+  ]
+ },
+ {
+  "name": "e6aba689-134c-4f30-8948-17ba1d214e51",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "postgres",
+  "cloud": "azure",
+  "type": "Microsoft.DBforPostgreSQL/flexibleServers/databases",
+  "region": "northcentralus",
+  "state": "Available",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-DBaaSPG-NSG"
+  ]
+ },
+ {
+  "name": "np-kv-policypro-pl",
+  "cloud": "azure",
+  "type": "Microsoft.KeyVault/vaults/privateEndpointConnections",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "security_controls": [
+   "/subscriptions/080d0f37-043f-4bab-8963-2084e25adaaf/resourceGroups/nonprod-rg-sec-01/providers/Microsoft.Network/networkSecurityGroups/NorCentNonProdVNet1-PrivateLink-NSG"
+  ]
+ },
+ {
+  "name": "73ab3e75-5555-4ae0-aad4-d98d391053c4",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "NP-PIP-Platform",
+  "cloud": "azure",
+  "type": "Microsoft.Network/publicIPAddresses",
+  "region": "northcentralus",
+  "state": "succeeded",
+  "account_id": "080d0f37-043f-4bab-8963-2084e25adaaf",
+  "labels": [
+   {
+    "key": "servicecategory",
+    "value": "Network Management"
+   },
+   {
+    "key": "servicerole",
+    "value": "NetworkPublicIPs"
+   }
+  ]
+ },
+ {
+  "name": "NetworkWatcherRG",
+  "cloud": "azure",
+  "type": "Microsoft.Resources/resourceGroups",
+  "region": "swedencentral",
+  "state": "succeeded",
+  "account_id": "c1fdcf76-cff7-41f4-a74a-2e27e70880a4"
+ }
+]
