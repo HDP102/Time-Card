@@ -1,17 +1,2 @@
-Hi team,
-
-Following up on REQ000004671431, submitted 10/20 per the SSO intake process (questionnaire and public certificate attached to the request). It still shows as Initiated with no activity.
-
-This registration is now the blocker for our end-to-end testing. MuleSoft has the MEA proxy working in the lower environment and is waiting on our client registration to enable the Entra ID token validation policy.
-
-Request: Entra ID OAuth client registration, client credentials with certificate, lab first.
-Certificate: CN=NPS-Firewall-Automation-MEA-Lab, SHA-1 D8:29:DF:01:54:01:DA:15:8C:E0:CC:EE:80:24:9A:0C:C9:04:2A:EB (attached again).
-What we need back: client ID, tenant ID, and the scope/audience for the MuleSoft MEA API.
-
-[If APP-3548 was used: Correction to the questionnaire: the AMPS ID should be APP-1593 (Tufin), not APP-3548.]
-
-Could you let me know the status and expected timeline, or if anything else is needed from our side?
-
-Thanks,
-Hardik Patel
-Network Protection Services
+py split_json.py ..\Workloads_AllLabels_JSON_2026_11_02_17_00_13.json 900 --slim --out ..\split\workloads
+py split_json.py ..\Inventory.json 900 --slim --out ..\split\inventory
