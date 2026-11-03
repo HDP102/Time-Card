@@ -1,13 +1,5 @@
-Name                          Type          In Use By
-                                            Policy      Cloud              Servers and Endpoints   Container   Rbac   Label Groups   Other
--------------------------------------------------------------------------------------------------------------------------------
-ICS_AKS Data Analytics        Application
-
-A: AKS - Azure Kubernetes Service
-                              Application                 Policies                            Workloads                      Label Groups
-
-R: AKS                        Role                        Policies                            Workloads
-
-ICS_AKS_DataAnalytics         Application                 Policies    Cloud Resources          Workloads                      Label Groups
-
-ICS_AKS_BlueVerse             Application
+Segmentation > Policy Objects > IP Lists, then Add:
+Name: IPL: AKS GitLab CI Nodes
+Description: Node subnet for AKS GitLab CI cluster (aks-azurelinux-21034586-vmss), per Elijah Robinson. Untagged, no ICS label. GitLab CI job calls GoAlert. Used in ICS_GoAlert | Production.
+IP Addresses: 10.192.48.0/24
+Save.
