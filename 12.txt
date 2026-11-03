@@ -1,5 +1,7 @@
-Segmentation > Policy Objects > IP Lists, then Add:
-Name: IPL: AKS GitLab CI Nodes
-Description: Node subnet for AKS GitLab CI cluster (aks-azurelinux-21034586-vmss), per Elijah Robinson. Untagged, no ICS label. GitLab CI job calls GoAlert. Used in ICS_GoAlert | Production.
-IP Addresses: 10.192.48.0/24
-Save.
+Yes. These are the ones that affect everyone migrating apps, not just FireMon and GoAlert:
+
+Core apps first: Dynatrace, AD, Exchange and Qualys all need ICS labels added to their policies (the hybrid approach Nick mentioned) before any app can go to enforcement. Is someone assigned to those, and is there a target order?
+Unlabeled resources: some Azure resources have no ICS labels at all because they’re untagged (for example some AVD desktops and an AKS cluster). What’s the process for getting those tagged: do we each raise our own Cloud Support tickets, or should one person own it?
+Labels in rule sources: for Azure resources that still have VENs, I’ve been using their ICS labels in source rules and Core labels only for on-prem or unmanaged objects. Can we agree on that as the standard so everyone builds the same way?
+Change requests: for Phase 3, are we doing one change request per app or batching several apps together? And when provisioning, is everyone selecting only their own items in Drafts & Versions? There are some old pending service-account rulesets in there.
+First enforcement: nothing in ICS is enforced yet. Do we want one app to go first as a pilot before others follow?
