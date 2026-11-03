@@ -1,1 +1,13 @@
-Hey Elijah, quick one. What’s the subnet CIDR for the AKS GitLab cluster node pool (aks-azurelinux-21034586-vmss, in mc_prod-rg-aks-01_aksgitlab_northcentralus)? Nodes are in 10.192.48.x. Need it for an Illumio rule.
+Name                          Type          In Use By
+                                            Policy      Cloud              Servers and Endpoints   Container   Rbac   Label Groups   Other
+-------------------------------------------------------------------------------------------------------------------------------
+ICS_AKS Data Analytics        Application
+
+A: AKS - Azure Kubernetes Service
+                              Application                 Policies                            Workloads                      Label Groups
+
+R: AKS                        Role                        Policies                            Workloads
+
+ICS_AKS_DataAnalytics         Application                 Policies    Cloud Resources          Workloads                      Label Groups
+
+ICS_AKS_BlueVerse             Application
