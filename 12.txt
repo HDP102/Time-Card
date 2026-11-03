@@ -1,1 +1,1 @@
-It’s the GitLab CI AKS cluster (K8sGitLabCI), so probably a pipeline job hitting GoAlert. Since nobody’s claiming it, I’ll leave it out of the allow list. If something on the GitLab side breaks after cutover we’ll know where to look. Thanks!
+Hey Elijah, quick one. What’s the subnet CIDR for the AKS GitLab cluster node pool (aks-azurelinux-21034586-vmss, in mc_prod-rg-aks-01_aksgitlab_northcentralus)? Nodes are in 10.192.48.x. Need it for an Illumio rule.
