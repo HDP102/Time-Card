@@ -1,2 +1,2 @@
-py split_json.py ..\Workloads_AllLabels_JSON_2026_11_02_17_00_13.json 900 --slim --out ..\split\workloads
-py split_json.py ..\Inventory.json 900 --slim --out ..\split\inventory
+py split_json.py Workloads_AllLabels_JSON_2026_11_02_17_00_13.json 900 --slim --out ..\split\workloads
+py split_json.py Inventory.json 900 --slim --out ..\split\inventory
