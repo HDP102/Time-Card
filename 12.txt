@@ -1,86 +1,17 @@
+Hi team,
 
-Meeting notes
-ICS Migration 
+Following up on REQ000004671431, submitted 10/20 per the SSO intake process (questionnaire and public certificate attached to the request). It still shows as Initiated with no activity.
 
-- Hardik reported good progress on the ICS migration; most of FireMon and the two Go alerts were deep into phases three and four, with some work remaining. They planned to move to another application and then return to FireMon to complete reintegration and tailor its use to their needs
-ICS Migration Risk 
+This registration is now the blocker for our end-to-end testing. MuleSoft has the MEA proxy working in the lower environment and is waiting on our client registration to enable the Entra ID token validation policy.
 
-- Nithin noted that the current work was in visibility-only mode, but moving to enforcement could affect product policy if the configuration was incorrect
-Policy Configuration 
+Request: Entra ID OAuth client registration, client credentials with certificate, lab first.
+Certificate: CN=NPS-Firewall-Automation-MEA-Lab, SHA-1 D8:29:DF:01:54:01:DA:15:8C:E0:CC:EE:80:24:9A:0C:C9:04:2A:EB (attached again).
+What we need back: client ID, tenant ID, and the scope/audience for the MuleSoft MEA API.
 
-- Nithin clarified that Go Alert was a hybrid application requiring updates to the existing policy: the duplicate rule set should be deleted, the scope should include the ICS version, and ICS traffic should be accounted for in the existing rule sets
-Application Classification 
+[If APP-3548 was used: Correction to the questionnaire: the AMPS ID should be APP-1593 (Tufin), not APP-3548.]
 
-- Nithin explained that the configuration approach varied by application: FireMon, as a cloud-only application without servers in Aurora, required a new rule set based on traffic logs, while Go Alert required work on its existing rule sets
-ICS Migration Guidance 
+Could you let me know the status and expected timeline, or if anything else is needed from our side?
 
-- Nithin recommended using Nick’s detailed document as a reference and taking application-specific notes; for hybrid applications, the documented process was to search for existing Illumio Core rule sets or rules referencing the application labels rather than create a separate policy
-Security AI Architecture 
-
-- Vitale said they were working on a long-term framework for a security AI platform that could connect agentic and LLM flows through Foundry and MCP servers, with predefined resources, technical architecture, identity, and platform components
-- Vitale described the framework as a centralized technical layer through which application and platform owners would connect their systems, while security would provide identity-based guardrails governing which users and agentic flows could access specific MCP servers
-- Vitale said the project was intended as a technical path toward implementation across business units, including detailed architecture and build steps for the identity team rather than only an architectural overview
-- Jonathan explained that Adam’s goal was to show the company a path for using AI across business units, with engineers from different groups contributing use cases; Vitale was currently focusing on the platform’s core
-Security AI Platform Strategy 
-
-- Vitale described a staged vision in which the framework could first investigate and cross-reference multiple platforms, then recommend changes based on gathered facts, and potentially apply changes through APIs or GitLab; they noted that the framework was intended for use by security and other business units without security owning those products
-- Vitale said the project had first been exposed to a broader group in a town hall where Adam presented it
-- Vitale said security would serve as the first demonstration of the framework because the team controlled most of the relevant platforms and could integrate with them more easily, while the framework was intended to support other business units as well
-Project Sponsorship 
-
-- Vitale said Adam had proposed sponsoring the project, with Jonathan and Seth Ellahant discussed as potential co-sponsors and technical contributors to help move it forward
-Vendor Incident Timeline 
-
-- Jonathan explained that Adam had been asking Illumio to provide written details about the sequence and correlation of related events, including clarification of dates beginning October 14th
-- Vitale said they reconstructed additional incident dates from an earlier verbal conversation with the vendor and provided them to Adam and Jonathan so they could follow up on how long the vendor had been making changes before the main incident
-Vendor Incident Analysis 
-
-- Vitale said their timeline had been based partly on a verbal conversation with Illumio’s platform engineering manager, which suggested Illumio had been addressing database and scaling issues before the problems affected their accounts
-- Nithin and Vitale said the vendor's RCA did not fully assess the impact or policy-calculation issue; Vitale said the vendor had taken a risk by expecting a recalculation without confirming that the policy would work correctly
-Vendor Resilience 
-
-- Jonathan said the team was seeking greater confidence in Illumio’s responses and wanted monitoring and other safeguards in place to be as proactive as possible about issues they could not control
-- Nithin reported that Illumio was not yet in a healthy state: the system showed active syncing, but policies were not synchronizing; enforcement was not enabled and there was no business impact
-Vendor Escalation 
-
-- Jonathan said the incident was not the first problem with Illumio and described the issues as evidence of a lack of resilient infrastructure design, while noting that legal or repayment discussions had not yet been reached
-- Jonathan said the vendor incident was a business-impacting technical problem and that continued mistakes could lead the company to change vendors
-ZPA Network Access 
-
-- Aksa reported that ZPA had been tested on a VDI app profile without trusted-network conditions, including tests with an on-site user and a CAESAR team member; the proposed approach was to target office networks rather than AD or LDAP groups, beginning with a smaller pilot before broader rollout
-- Aksa explained that broad wildcard segmentation could verify whether an app connector existed without verifying reachability to the destination; they discussed narrowing segmentation and continuously checking whether the connector could reach the application
-- Seth had requested two app connectors for the Sandbox environment, one in South Central and one in North Central, so it could be accessed through Sandbox rather than production; further details were expected through a ticket
-- Jonathan noted that ZPA app connectors were expected to move into Zscaler infrastructure as part of the upcoming renewal, and cautioned that access to the relevant locations should not be assumed beyond the next two months
-- Aksa reported that the location testing was complete and that the remaining work was to phase out access by subnet
-Sub-Cloud Testing 
-
-- Aksa said the sub-cloud pack was at its final review stage, with the work completed pending Anchit's confirmation that everything was acceptable; they planned to test it in a smaller phase rather than roll it out company-wide immediately
-Save-Copy Function 
-
-- Aksa reported that the save-copy function worked between workstations, while installation of ZPA Client Connector on the server remained delayed pending endpoint-team assistance
-Illumio Monitoring 
-
-- Nithin said Windows Server Illumio agent logs were being sent to a dedicated Splunk index, with UNIX-side changes scheduled for the following night; they expected support-bundle logs from every server in Splunk by Wednesday
-SD-WAN Routing 
-
-- Nithin reported that the server interface was showing both their public IP and Zscaler public IP. Sid recommended creating an address map on SD-WAN so the relevant traffic could bypass Zscaler and reach the Cloudflare or Illumio IPs; the team was considering IP-based bypassing because the existing domain-based bypass was not working
-Illumio Tag Governance 
-
-- Nithin reported that the cloud infrastructure team was not fully aware of how Illumio tags would be used in policy and was not prepared to modify tags manually across all resources
-CMDB Configuration 
-
-- Nithin said the issue was believed to require a fix at the CMDB root level, and the conversation was to be reinitiated through the relevant CMDB meetings
-Follow-up tasks
-
-Task	Assigned to	Due date	Bucket
-Review the first ICS application configurations together, including Nithin, before moving them to enforcement (Hardik, Mildred, Nithin)			
-Hold off on provisioning ICS applications until Nithin reviews the work during the first couple of months (Hardik)			
-Test the sub-cloud pack by disabling a data center and verifying that it functions as expected (blocked on: Anchit's confirmation that the final review is complete) (Aksa)			
-Start the basic Zscaler disaster-recovery setup, work with Zscaler, and follow the required work sessions to enable it for the country (Aksa)			
-Obtain the updated cleanup report from Anchit's team after the expected Wednesday delivery (Aksa)			
-Coordinate with Hardik on the cleanup work after receiving the updated report (Aksa, Hardik)			
-Coordinate with the network team to obtain the required subnets and network updates for the location phase-out (Aksa)			
-Complete the UNIX-side changes to send support-bundle logs to Splunk (Nithin)			
-Review Illumio support-bundle logs and configure alerts for relevant error codes with Jason (Nithin, Jason)			
-Review the importance and policy use of Illumio tags with the cloud infrastructure team in their weekly meeting (Nithin)			
-
+Thanks,
+Hardik Patel
+Network Protection Services
