@@ -1,1 +1,8 @@
-> Hey Nick, quick question on IP lists in ICS. In Draft View, rules that use an IP list only seem to match addresses Illumio doesn't recognize. Anything it already knows (a Core workload or an ICS cloud resource) gets matched by its own identity, even when it has no labels, and the IP list rule shows Denied. For example, FireMon to the storage account prodssstgsecurity02 is Denied even though its PE IP is in an IP list rule, and the flow doesn't show the IP list at all. Is that how real ICS enforcement works too, or is it just a Draft View thing? If it's real, outbound to known resources would need to go in the destination rulesets or get tagged, and IP lists would only work for unknown addresses.
+Hey Nithin, GoAlert is ready for you to review whenever you have time. I followed the hybrid approach: added the ICS_GoAlert scope to the existing A: GoAlert | E: Production and E: Test rulesets, kept the existing Core rules, and added the ICS rules inside them. I deleted the separate ICS_GoAlert rulesets. Jordan confirmed the flows, and Draft View shows everything legit as Allowed. The only things still denied are the untagged AVD desktops and the v50secapl002 scanner. A few questions for you:
+
+The App Proxy rule only goes to R: Server. Should I add the ICS Server label to its destination?
+Jordan says the Tableau to DB rule isn’t used anymore. Retire it now or in Phase 5?
+I added a ZPA IP list rule plus label-based ZPA rules. Draft View only matches the label ones, so okay to drop the IP list rule?
+The AKS GitLab cluster that calls GoAlert has no tags, so I don’t think the IP list rule I made for it will match. Can it go on the tagging list for the cloud infra meeting?
+
+Nothing is provisioned.
