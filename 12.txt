@@ -1,1 +1,11 @@
-Hi Elizabeth, Mildred said you’d know the campaign cadence for Security Awareness. When is the next campaign going out, and roughly how long is the Red Flags page open for review afterward? I want to capture the traffic to V50SECWIN002 during that window so the Illumio policy covers it. Nothing is changing on our side yet.
+Hi Ashish, Hardik here. I’m the one who sent the Entra ID OAuth client registration email on Tuesday. Non-prod first works for us; the certificate I sent is the lab/non-prod one.
+
+Quick recap of the request:
+
+Non-interactive client, client credentials with certificate (no user sign-in)
+Calls the MuleSoft MEA proxy API (Brindha is on the MuleSoft side)
+Certificate: CN=NPS-Firewall-Automation-MEA-Lab, SHA-1 D8:29:DF:01:54:01:DA:15:8C:E0:CC:EE:80:24:9A:0C:C9:04:2A:EB (attached to my email and to REQ000004671431)
+
+What we need back: client ID, tenant ID, and the scope/audience for the MuleSoft API, so Brindha can enable the token validation policy.
+
+Anything else you need from me? Happy to jump on a quick call.
