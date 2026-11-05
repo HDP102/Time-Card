@@ -1,11 +1,82 @@
-Hi Ashish, Hardik here. I’m the one who sent the Entra ID OAuth client registration email on Tuesday. Non-prod first works for us; the certificate I sent is the lab/non-prod one.
+1. Tufin Automation: Firewall Rule Recertification – Owner Notification & Ticketing (HRV)
 
-Quick recap of the request:
+Work Category: Improvement & Automation
+Priority: High
+Engagement Status: Active
+Primary Engineer: Patel, Hardik
+Project Manager: Chawande, Swapnil
+Environment: Production
+Start Date: 07/20/2026 ⚠
+Target Completion Date: 12/07/2026 (campaign deadline)
+Engineering Deliverable: Python automation that emails rule owners, tags App IDs in Tufin and creates SecureChange recertification tickets. 212 tickets created, covering 58,304 of 58,329 rules (99.96%). About 21.5k rules still need App IDs.
+Reference Link: GitHub pgetech/NPS-Automation (Firewall_HRV branch)
+Handoff Status: In progress (READMEs done; SOP for Swapnil’s team pending)
+Implementation Status: Implemented
 
-Non-interactive client, client credentials with certificate (no user sign-in)
-Calls the MuleSoft MEA proxy API (Brindha is on the MuleSoft side)
-Certificate: CN=NPS-Firewall-Automation-MEA-Lab, SHA-1 D8:29:DF:01:54:01:DA:15:8C:E0:CC:EE:80:24:9A:0C:C9:04:2A:EB (attached to my email and to REQ000004671431)
+2. Tufin Automation: Recertification Escalation Reminders & Job Monitoring
 
-What we need back: client ID, tenant ID, and the scope/audience for the MuleSoft API, so Brindha can enable the token validation policy.
+Work Category: Improvement & Automation
+Priority: High
+Engagement Status: Active
+Primary Engineer: Patel, Hardik
+Project Manager: Chawande, Swapnil
+Environment: Non-Prod (tested), Production pending
+Start Date: 10/06/2026
+Target Completion Date: 12/07/2026
+Engineering Deliverable: Daily escalating reminders to rule owners who haven’t recertified (SME → IT Lead → Director/Owner), with an audit evidence log, a disable list at the deadline and hourly health-check alerts.
+Target Implementation Date: 11/30/2026 ⚠
+Implementation Status: Pending (Sathish demo: waiting on the test vs. live decision; needs a server to run daily)
+Handoff Status: Not started
 
-Anything else you need from me? Happy to jump on a quick call.
+3. MEA Account Disable Integration (non-recertified owners)
+
+Work Category: Improvement & Automation
+Priority: High
+Engagement Status: Active
+Primary Engineer: Patel, Hardik
+Project Manager: Chawande, Swapnil
+Environment: Non-Prod
+Start Date: 10/19/2026
+Target Completion Date: 11/30/2026 ⚠ (prod date not yet confirmed)
+Engineering Deliverable: Script that sends the deadline disable list to MEA/SailPoint through the MuleSoft API, using Entra ID certificate authentication.
+Implementation Reference: REQ000004671431 (Entra ID registration, submitted 10/20, pending); MuleSoft WO 0000003454112
+Implementation Status: Blocked: waiting on the Entra ID client registration (Ashish Zokarkar), then MuleSoft JWT policy and end-to-end testing with MEA QA (Hareesh, Brindha)
+
+4. HRV Recertification Reporting – Power BI Data Feed
+
+Work Category: Improvement & Automation
+Priority: Medium
+Engagement Status: Active
+Primary Engineer: Patel, Hardik
+Secondary Engineer: Leon, Dave (Power BI)
+Environment: Production
+Start Date: 10/16/2026
+Target Completion Date: 11/30/2026 ⚠
+Engineering Deliverable: Weekly export of recertification status by App ID and owner from Tufin into Power BI, which feeds the Watch Tower page. RAG and due-date buckets included.
+Reference Link: SharePoint HRV Power BI folder
+Implementation Status: Implemented (weekly)
+
+5. Closed Loop Automation – Remove Excel/SharePoint Dependency
+
+Work Category: Improvement & Automation
+Priority: High
+Engagement Status: Not Started
+Primary Engineer: Patel, Hardik
+Secondary Engineer: Leonard
+Project Manager: Ayers, Rey
+Start Date: 11/09/2026 ⚠
+Target Completion Date: 03/31/2027 ⚠
+Engineering Deliverable: Remove the owner spreadsheets from the recertification scripts by pulling App ID owners from AMPS/ServiceNow via API. Move the scripts to a server with a service account and Safeguard credentials.
+Implementation Status: Not started (working session with Leonard, Swapnil and Rey pending; no AMPS API identified yet)
+
+6. Tufin Automation: Rule Decommission (Disable) Automation
+
+Work Category: Improvement & Automation
+Priority: Medium
+Engagement Status: On Hold
+Primary Engineer: Patel, Hardik
+Environment: Production
+Start Date: 09/25/2026
+Target Completion Date: TBD
+Engineering Deliverable: Automated disable tickets for rules marked for cleanup, with a traffic-hit check first. 1,496 rules staged.
+Implementation Status: On hold: needs sign-off on the last-hit threshold, and hit data from Panorama (Tufin is missing it for about 72% of rules)
