@@ -1,1 +1,4 @@
-Thanks Mildred, that helps a lot. Two quick follow ups. Are the Red Flags pages only viewed during campaign review windows, and if so when’s the next one? I want to capture that traffic. And I see GoAnywhere connecting to the server on file share (445). Is that how files get delivered to it, or is that something else?
+Mildred: The cadence is an Elizabeth McMorris question because she manages the program. But yes, when a campaign is sent, after users interact witht the campaign the red flags page is shared out for learning purposes. We have settings in Sharepoint that support limiting the permissions to a specific period.
+ 
+The goanywhere may be another process that support the Security Awareness team but isn't currently working as intended. The file is intended to be used for a script that is broken currently. I think we would want to allow that traffic to continue until we decide on a resolution 
+ 
