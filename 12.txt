@@ -1,8 +1,1 @@
-Hey Nithin, GoAlert is ready for you to review whenever you have time. I followed the hybrid approach: added the ICS_GoAlert scope to the existing A: GoAlert | E: Production and E: Test rulesets, kept the existing Core rules, and added the ICS rules inside them. I deleted the separate ICS_GoAlert rulesets. Jordan confirmed the flows, and Draft View shows everything legit as Allowed. The only things still denied are the untagged AVD desktops and the v50secapl002 scanner. A few questions for you:
-
-The App Proxy rule only goes to R: Server. Should I add the ICS Server label to its destination?
-Jordan says the Tableau to DB rule isn’t used anymore. Retire it now or in Phase 5?
-I added a ZPA IP list rule plus label-based ZPA rules. Draft View only matches the label ones, so okay to drop the IP list rule?
-The AKS GitLab cluster that calls GoAlert has no tags, so I don’t think the IP list rule I made for it will match. Can it go on the tagging list for the cloud infra meeting?
-
-Nothing is provisioned.
+Thanks Mildred, that helps a lot. Two quick follow ups. Are the Red Flags pages only viewed during campaign review windows, and if so when’s the next one? I want to capture that traffic. And I see GoAnywhere connecting to the server on file share (445). Is that how files get delivered to it, or is that something else?
