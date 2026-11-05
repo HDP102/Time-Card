@@ -1,4 +1,1 @@
-Mildred: The cadence is an Elizabeth McMorris question because she manages the program. But yes, when a campaign is sent, after users interact witht the campaign the red flags page is shared out for learning purposes. We have settings in Sharepoint that support limiting the permissions to a specific period.
- 
-The goanywhere may be another process that support the Security Awareness team but isn't currently working as intended. The file is intended to be used for a script that is broken currently. I think we would want to allow that traffic to continue until we decide on a resolution 
- 
+Hi Elizabeth, Mildred said you’d know the campaign cadence for Security Awareness. When is the next campaign going out, and roughly how long is the Red Flags page open for review afterward? I want to capture the traffic to V50SECWIN002 during that window so the Illumio policy covers it. Nothing is changing on our side yet.
