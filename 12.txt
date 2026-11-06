@@ -1,10 +1,1 @@
-Short description: Add Role tag to V50SECWIN002 (Security Awareness and PhishER) for Illumio CloudSecure
-
-Description: As part of the Illumio CloudSecure migration, please add the following Azure tag to the resources below. No other tags need to change.
-Tag: Role = Server
-Resources:
-
-V50SECWIN002 (VM), resource group qa/prod per portal, subscription aa93adc2-6201-48c7-817b-710f9e7f0643
-V50SECWIN002-nic (network interface)
-
-This lets Illumio apply the Server role label so policy can target the server. Contact: Hardik Patel, Network Security Engineering.
+Unfortunately Illumio only keeps 90 days of traffic, so March is too far back. I’ll plan for the usual ways people reach the page (office workstations, VPN/ZPA, and virtual desktops) so it keeps working. If you decide to retire the page, just let me know and I’ll drop that access.
