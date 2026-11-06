@@ -11,10 +11,14 @@ header fields (name, ID, IP, vendor, health) and each health check section
 (general, retrieval, change detection, usage), plus the parsed last revision.
 """
 import json
+import logging
 import re
 from pathlib import Path
 
 import pdfplumber
+
+# Silence harmless "Could not get FontBBox" warnings from the PDF's font metadata
+logging.getLogger("pdfminer").setLevel(logging.ERROR)
 
 PDF_FILE = "health.pdf"
 JSON_FILE = "health.json"
@@ -54,8 +58,11 @@ def lines_of(page, tol=3):
     return [sorted(l, key=lambda w: w["x0"]) for l in lines]
 
 
+ICON_RE = re.compile("[\ue000-\uf8ff]")  # icon-font glyphs (status icons) in the PDF
+
+
 def join(words):
-    return " ".join(w["text"] for w in words).strip()
+    return ICON_RE.sub("", " ".join(w["text"] for w in words)).replace("  ", " ").strip()
 
 
 def column_starts(line):
@@ -136,6 +143,10 @@ def main():
                     devices.append(dev)
                     continue
                 if dev is None:
+                    continue
+                # Health badge sometimes lands on its own line just below the name row
+                if not dev["health"] and len(line) <= 2 and text.split()[0] in HEALTH:
+                    dev["health"] = text.split()[0]
                     continue
                 s = column_starts(line)
                 if s and "DETECTION" in text.upper():         # section heading row
