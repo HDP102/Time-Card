@@ -1,35 +1,7 @@
-Subject: Bulk migration off data collector V01SECAPL067 + Azure normalization errors
+Thanks.  I was able to take a look and it appears the Illumio retrieval returned the expected files.  
 
-Hi team,
+Can you next perform another retrieval from the Illumio device, and then afterwards upload a mkdiag from the AS server? 
 
-We're decommissioning data collector V01SECAPL067 and moving everything to V50SECAPL008. I need help with the bulk migration and a few related issues.
+Let me know if you have any questions.
 
-1. Bulk collector migration
-The management stations (Azure, Zscaler ZIA, Cisco APIC, Illumio PCE) and their child devices are already on V50SECAPL008-Group and retrieving. About 2,440 devices are still assigned to V01SECAPL067.countrylan.com-Group:
-- ~2,428 discovered Azure Asset devices
-- 11 Cisco IOS/NX-OS routers (n01pubrtr001/002, n01aggrtr001/002, n02aggrtr001, n02disrtr001, n05aggrtr001, n09aggrtr001, n11disrtr001, n14aggrtr001, n01ipsrtr002)
-- 1 F5 (V51APPAPL001)
-The Check Point devices on 067 will be deleted separately and don't need to move.
-
-Editing an Azure Asset device individually (example: AZ-GW-REMOTE-CLIENT, ID 684) asks for the full Azure credentials and won't save, so doing them one at a time isn't practical.
-- What's the supported way to reassign these in bulk?
-- Is PUT /collector/group/{id}/assigned/{deviceId} safe for this, changing only the collector assignment and leaving credentials and settings untouched? If so, I'd script it using GET /collector/group/{id}/assigned.
-- Will discovered Azure assets follow the parent's collector group on the next discovery instead?
-- Is there anything else we should do before 067 is decommissioned, such as removing it from the ecosystem?
-
-2. Everything on 067 stopped retrieving around October 22
-All devices still on V01SECAPL067 started failing around 10/22 at ~2:30 PM UTC. For example, n01pubrtr002 (ID 135) and n01ipsrtr002 (ID 136) show Retrieval Error since then, and Azure Production (ID 6) failed while it was still on 067. Is there anything on 067 we should check, or should we just move everything off as above?
-
-3. Azure Asset normalization errors
-About 15 Azure Asset devices retrieve but end in Normalization Error, including our main Azure Firewalls:
-ncus-fwl-hub (341), scus-fwl-hub (345), NetEngExpressRouteGWHub (470), AzureRouteServerVNET (466), sandbox-fwl-nchub (697), sandbox-fwl-schub (699), sbt-vnet-nchub (610), sbt-vnet-schub (623), NorCentSBVNet1 (494), sc_sdwan_alip_nat_test_vnet (475), SouthCentralNetEngPSSVnet01 (504), SouthCentralNetEngSpoke01 (500), SouthCentralNetEngSpoke02 (483), SouthCentralNetEngVnet01 (489).
-Is there a newer Azure device pack that addresses these, or what logs would help?
-
-4. Health status shows Critical on devices that retrieve fine
-The Zscaler ZIA children and Cisco APIC tenants retrieve and normalize successfully but still show Critical. I believe this is from missing usage data. Can you confirm, and tell us what's needed to clear it?
-
-FYI, the Illumio PCE POC (normalization error and a 403 on hit counters) is being handled with Rick separately.
-
-Thanks,
-Hardik Patel
-Network Security - Security Control Management
+-Rick
