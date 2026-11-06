@@ -4,6 +4,10 @@ mea_token_test.py - get an Entra ID token for the MEA proxy and show what is in 
 Calls Entra ID only. It does NOT call MuleSoft or MEA, so no account is touched.
 Uses the same certificate login as mea_disable.py (put both files in the Escalation folder).
 
+One-time setup (also needed by mea_disable.py):
+    py -m pip install msal cryptography
+
+Run:
     py mea_token_test.py            show the token's claims
     py mea_token_test.py --raw      also print the token, to paste into Postman as {{jwt}}
 
