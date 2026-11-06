@@ -1,7 +1,1 @@
-Thanks.  I was able to take a look and it appears the Illumio retrieval returned the expected files.  
-
-Can you next perform another retrieval from the Illumio device, and then afterwards upload a mkdiag from the AS server? 
-
-Let me know if you have any questions.
-
--Rick
+Hi Rick, I ran a fresh retrieval on the Illumio PCE at [time], and it finished with [result]. I then ran fmos mkdiagpkg on the app server (v50secapl019) under “Country”, and the upload completed. Let me know what you find.
