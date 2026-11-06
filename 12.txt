@@ -1,3 +1,1 @@
-Thanks Ashish! Can you confirm the certificate is uploaded on the app registration (thumbprint D8:29:DF:...:2A:EB)?
-
-Brindha, the client registration is done: client ID 5035d019-f182-4373-85c9-bcb4040ea139, tenant e84bb675-81b1-4f49-985b-3e2d77c6c94d. What audience/scope should I request the token for, so it matches your JWT validation policy? Once you confirm and the policy is on, Hareesh can we schedule the end-to-end test in QA?
+Brindha, Ashish: requesting a token for api://e84bb675-81b1-4f49-985b-3e2d77c6c94d.lab.pge.com/.default returns AADSTS500011 (resource not found). Is there an app registration with that App ID URI, or should I use a different scope?
