@@ -1,5 +1,3 @@
-hanks Brindha! One small fix: the audience value shouldn’t include /.default. That’s only on the scope I request, and the token’s aud comes back without it. Could you set the Audience Claim Values to:
-api://5035d019-f182-4373-85c9-bcb4040ea139,5035d019-f182-4373-85c9-bcb4040ea139
-The second value covers the case where Entra issues the token with the bare client ID.
+Good news: our side authenticates. Using the certificate and scope 5035d019-f182-4373-85c9-bcb4040ea139/.default, Entra issues the token with aud = 5035d019-f182-4373-85c9-bcb4040ea139, which matches the MuleSoft policy. (Ashish, the App ID URI isn’t needed for now.)
 
-Ashish, my token request still returns AADSTS500011 (resource not found). Can you set the Application ID URI on the app (Expose an API → api://5035d019-f182-4373-85c9-bcb4040ea139)? Then I can test right away.
+Hareesh, which test LAN ID should I use for the disable call? Once I have it I’ll run the end-to-end test in QA, ideally today so we keep Wednesday’s deployment.
