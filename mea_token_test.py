@@ -27,8 +27,11 @@ m.TENANT_ID = "e84bb675-81b1-4f49-985b-3e2d77c6c94d"
 m.CLIENT_ID = "5035d019-f182-4373-85c9-bcb4040ea139"
 # PG&E pattern (MRAD wiki "Azure AD Client OAuth Client Authentication"): the app requests
 # a token for its OWN App ID URI, so aud = api://<our client ID>.
-m.SCOPE     = "api://5035d019-f182-4373-85c9-bcb4040ea139/.default"
-EXPECTED_AUD = "api://5035d019-f182-4373-85c9-bcb4040ea139"   # what MuleSoft should validate
+# The api:// form needs an Application ID URI on the app (AADSTS500011 until Ashish sets it).
+# The bare client ID works without one. MuleSoft accepts both (Brindha, 11/6).
+m.SCOPE     = "5035d019-f182-4373-85c9-bcb4040ea139/.default"
+EXPECTED_AUD = ["5035d019-f182-4373-85c9-bcb4040ea139",
+                "api://5035d019-f182-4373-85c9-bcb4040ea139"]   # MuleSoft audience values
 
 
 def claims(token):
@@ -64,7 +67,7 @@ def main():
             print(f"  {k:6} = {c[k]}")
     print(f"  expires = {datetime.fromtimestamp(c['exp']):%Y-%m-%d %H:%M:%S} (local)")
 
-    ok = c.get("aud") == EXPECTED_AUD
+    ok = c.get("aud") in EXPECTED_AUD
     print(f"\naud matches what MuleSoft checks: {'YES' if ok else 'NO'}")
     if not ok:
         print(f"  MuleSoft expects: {EXPECTED_AUD}\n  Token has:        {c.get('aud')}\n"
