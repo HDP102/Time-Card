@@ -1,1 +1,9 @@
-Hi Rick, I ran a fresh retrieval on the Illumio PCE at [time], and it finished with [result]. I then ran fmos mkdiagpkg on the app server (v50secapl019) under “Country”, and the upload completed. Let me know what you find.
+Brindha, Ashish: following the MRAD wiki Brindha shared, the sample token’s audience is the client app’s own App ID URI (aud = api://<client ID>), not the tenant. For us that would be:
+
+Scope I request: api://5035d019-f182-4373-85c9-bcb4040ea139/.default
+Audience to validate in MuleSoft: api://5035d019-f182-4373-85c9-bcb4040ea139
+
+Ashish, can you confirm the Application ID URI api://5035d019-f182-4373-85c9-bcb4040ea139 is set on the app (Expose an API)?
+Brindha, can you update the audience claim in the JWT policy to that value? Also note the token is v1, so the issuer is https://sts.windows.net/e84bb675-81b1-4f49-985b-3e2d77c6c94d/.
+
+Once both are in, I’ll test from our side and send the result.
