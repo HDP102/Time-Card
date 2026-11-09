@@ -1,1 +1,39 @@
-Hey Harish, I don’t have access to that subscription after all (401, no eligible roles in PIM). Could you update the Application tag on v51secapl007 and v51secapl008 from CheckPointUtility to Checkpoint? That’s what the ICS_Checkpoint definition matches on. Thanks!
+Here are the steps for both.
+
+A. Qualys rule in the FireMon ruleset
+Go to Segmentation > All Policies and open ICS_Firewall Policy Manager | Production.
+Click Add Rule > Extra-Scope.
+Source: ICS_Qualys and Production.
+Destination: Server.
+Destination Services: All Services.
+Action: Allow. Click Save.
+B. FireMon network devices IP list
+Go to Segmentation > Policy Objects > IP Lists and click Add.
+Name: IPL: FireMon Managed Network Devices
+Description: Network devices (routers, switches, APICs) managed by FireMon. Not servers.
+IP Addresses: paste these, one per line:
+10.16.31.11
+10.72.2.100
+10.16.1.7
+10.16.1.8
+10.16.1.11
+10.16.1.101
+10.16.1.102
+10.74.2.1
+10.76.0.3
+10.76.0.4
+10.76.2.1
+10.178.127.193
+Click Save.
+
+Later, add the remaining management IPs from FireMon’s device inventory export. The list above only covers what showed up in 24 hours of traffic.
+
+C. Rule in the FireMon ruleset
+Open ICS_Firewall Policy Manager | Production and click Add Rule > Intra-Scope.
+This one is Intra-Scope because the source is FireMon itself, which is inside the ruleset scope. Extra-Scope would apply the source label to Servers anywhere.
+Source: Server.
+Destination: IPL: FireMon Managed Network Devices.
+Destination Services: 22 TCP and 443 TCP.
+Action: Allow. Click Save.
+
+Don’t provision. If the console won’t take the IP list as a destination under Intra-Scope, send me a screenshot.
