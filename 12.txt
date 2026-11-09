@@ -1,3 +1,1 @@
-QA test done: api-ch-q → 200 OK, requestID a9fec649a19e176681a1c1d8539b30a4, users KXYB and DUL8. (An earlier send of the same two went to the dev URL by mistake: a9fec649a19e176681a1c1d5978230a2.)
-
-Hareesh, can you confirm both accounts were disabled in MEA QA and that the supervisor email went out? Then we’re good for Wednesday’s deployment.
+10.16.1.7, 10.16.1.8, 10.16.1.11, 10.16.1.101, 10.16.1.102, 10.74.2.1, 10.76.0.3, 10.76.0.4, 10.76.2.1 and 10.178.127.193
