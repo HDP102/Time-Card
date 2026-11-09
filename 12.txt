@@ -1,1 +1,1 @@
-Hareesh, the dry run through our script looks good. Can you re-enable KXYB and DUL8 (or give me two other QA accounts) so I can run the live test through the script itself?
+Hey Harish, I don’t have access to that subscription after all (401, no eligible roles in PIM). Could you update the Application tag on v51secapl007 and v51secapl008 from CheckPointUtility to Checkpoint? That’s what the ICS_Checkpoint definition matches on. Thanks!
