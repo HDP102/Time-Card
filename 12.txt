@@ -1,3 +1,3 @@
-End-to-end call works in non-prod 🎉 Entra token with our certificate → MuleSoft JWT policy → MEA proxy returned 200 with requestID a9fec649a19e176681a1b3391a493244.
+QA test done: api-ch-q → 200 OK, requestID a9fec649a19e176681a1c1d8539b30a4, users KXYB and DUL8. (An earlier send of the same two went to the dev URL by mistake: a9fec649a19e176681a1c1d5978230a2.)
 
-Heads-up Hareesh: that request used a placeholder user “TESTLANID” (not a real account), so it should fail on the MEA side. Can you check how the workflow handled it? Then send me a real QA test LAN ID and I’ll run the full disable test, so we’re done before Monday for Wednesday’s deployment.
+Hareesh, can you confirm both accounts were disabled in MEA QA and that the supervisor email went out? Then we’re good for Wednesday’s deployment.
