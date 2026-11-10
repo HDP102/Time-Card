@@ -1,7 +1,79 @@
-From the Firewall side, we’re fine with the MEA/MuleSoft prod deployment on 11/13. For our script to call prod, we still need the prod Entra app registration (Ashish). That can follow the deployment, but it’s needed before next week’s run.
+PS C:\Users\H2PR\OneDrive - PGE\Documents\Github Automation\NPS-Automation\NPS-Automation\NPS-Automation\Escalation> py mea_disable.py --input test.csv
+13:00:29 2 account(s) from test.csv | env=nonprod | dry_run=False
+13:00:32 Traceback (most recent call last):
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py", line 1106, in _validate_conn
+    conn.connect()
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\util\ssl_.py", line 433, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\util\ssl_.py", line 477, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python311\Lib\ssl.py", line 517, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python311\Lib\ssl.py", line 1104, in _create
+    self.do_handshake()
+  File "C:\Program Files\Python311\Lib\ssl.py", line 1382, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1006)
 
-Brindha, on a few of your questions, from what we saw in QA:
+During handling of the above exception, another exception occurred:
 
-13: the launch is asynchronous. It returns 200 with a requestID, complete:false and success:false; the final result shows up in MEA.
-15: our script never retries automatically, so it won’t send the same account twice by itself. Hareesh can confirm what MEA does with an already-disabled account.
-10: per Swapnil, 1–50 accounts per quarter, sent as one request.
+Traceback (most recent call last):
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1006)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\urllib3\util\retry.py", line 543, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api-ch-q.ss.pge.com', port=443): Max retries exceeded with url: /mea-udn-proxy-api/v1/accountdisable (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1006)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\H2PR\OneDrive - PGE\Documents\Github Automation\NPS-Automation\NPS-Automation\NPS-Automation\Escalation\mea_disable.py", line 262, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "C:\Users\H2PR\OneDrive - PGE\Documents\Github Automation\NPS-Automation\NPS-Automation\NPS-Automation\Escalation\mea_disable.py", line 241, in main
+    ok, status, body = submit(b, token)
+                       ^^^^^^^^^^^^^^^^
+  File "C:\Users\H2PR\OneDrive - PGE\Documents\Github Automation\NPS-Automation\NPS-Automation\NPS-Automation\Escalation\mea_disable.py", line 165, in submit
+    r = requests.post(MULESOFT_URL, json=payload(users), headers=headers,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\requests\api.py", line 134, in post
+    return request("post", url, data=data, json=json, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\H2PR\AppData\Roaming\Python\Python311\site-packages\requests\adapters.py", line 727, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='api-ch-q.ss.pge.com', port=443): Max retries exceeded with url: /mea-udn-proxy-api/v1/accountdisable (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1006)')))
