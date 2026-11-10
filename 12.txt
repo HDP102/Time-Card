@@ -1,5 +1,7 @@
-Team, status for prod: QA end-to-end passed (200 OK, KXYB and DUL8 disabled). The last item on my side is one live run through our script; Hareesh, can you re-enable KXYB and DUL8 for that?
+From the Firewall side, we’re fine with the MEA/MuleSoft prod deployment on 11/13. For our script to call prod, we still need the prod Entra app registration (Ashish). That can follow the deployment, but it’s needed before next week’s run.
 
-For production, one dependency on our side: our Entra app registration and certificate are non-prod only. Ashish, to call the prod MEA API we need a prod app registration (and a CRQ). I’ll generate a prod certificate today; what else do you need to start it? Brindha, the prod JWT policy will need the prod client ID as the audience once we have it.
+Brindha, on a few of your questions, from what we saw in QA:
 
-Otherwise nothing blocking from the Firewall side for this week’s MEA prod deployment.
+13: the launch is asynchronous. It returns 200 with a requestID, complete:false and success:false; the final result shows up in MEA.
+15: our script never retries automatically, so it won’t send the same account twice by itself. Hareesh can confirm what MEA does with an already-disabled account.
+10: per Swapnil, 1–50 accounts per quarter, sent as one request.
