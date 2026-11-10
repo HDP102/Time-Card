@@ -19,7 +19,7 @@ From escalation_notify.py:  DISABLE_HANDOFF = "command"
                             DISABLE_COMMAND = ["py", r"<path>\\mea_disable.py", "--input", "{file}"]
 Exit code 0 = submitted (or dry run), 1 = failed - escalation_notify treats non-zero as failure.
 
-Requires: py -m pip install msal requests cryptography
+Requires: py -m pip install msal requests cryptography truststore
 """
 import argparse
 import csv
@@ -35,6 +35,15 @@ from html import escape
 from pathlib import Path
 
 import requests
+
+# Trust the Windows certificate store, which already has PG&E's internal root CA
+# (Python's own bundle doesn't, which fails with CERTIFICATE_VERIFY_FAILED).
+# One-time: py -m pip install truststore
+try:
+    import truststore
+    truststore.inject_into_ssl()
+except ImportError:
+    truststore = None
 
 # ═══════════════════════════════ CONFIG ═══════════════════════════════
 DRY_RUN          = True    # True = build and log the request, call nothing. Default until tested.
@@ -162,8 +171,17 @@ def submit(users, token):
     headers = {"Content-Type": "application/json"}
     if token:
         headers["Authorization"] = f"Bearer {token}"
-    r = requests.post(MULESOFT_URL, json=payload(users), headers=headers,
-                      verify=VERIFY_TLS, timeout=TIMEOUT)
+    try:
+        r = requests.post(MULESOFT_URL, json=payload(users), headers=headers,
+                          verify=VERIFY_TLS, timeout=TIMEOUT)
+    except requests.exceptions.SSLError as e:
+        hint = ("" if truststore else
+                " -> run: py -m pip install truststore (uses the Windows certificate store)")
+        return False, "TLS", {"error": f"TLS certificate check failed: {e}{hint}"}
+    except requests.exceptions.RequestException as e:
+        # Connection or timeout: the request may or may not have reached MEA, so it is
+        # recorded as failed and NOT retried. Check with MEA before re-running.
+        return False, "NO RESPONSE", {"error": f"{type(e).__name__}: {e}"}
     try:
         body = r.json()
     except ValueError:
