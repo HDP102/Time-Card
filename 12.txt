@@ -3,4 +3,4 @@ Hi Giuseff, thanks for the device packs. The bulk migration is complete, and all
 The azure_subscription pack (2602.6.15) installed fine, but the other four (azure_vnet 2602.6.14, azure_manager 2602.6.13, azure_subscription_provider 2602.6.18, azure_firewall 2602.6.11) fail with:
 “500 Internal Server Error – Unable to license product ‘vnet-northcentralus-1’: license expired on 11/7/26.”
 
-We applied an evaluation license from our SE on 10/23 for an Illumio POC, and I suspect that’s what expired. Is there a way to install the packs without the license check, or do we need the license sorted out first? I’ll retry the retrieval once they’re in.
+Can you check what license expired on 11/7 and how we get it renewed, so I can finish installing the packs and retry the retrieval?
