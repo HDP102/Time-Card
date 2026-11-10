@@ -1,1 +1,5 @@
-ZIA-SSL-Insp-Pilot-MS-Tenant-Restrictions
+Team, status for prod: QA end-to-end passed (200 OK, KXYB and DUL8 disabled). The last item on my side is one live run through our script; Hareesh, can you re-enable KXYB and DUL8 for that?
+
+For production, one dependency on our side: our Entra app registration and certificate are non-prod only. Ashish, to call the prod MEA API we need a prod app registration (and a CRQ). I’ll generate a prod certificate today; what else do you need to start it? Brindha, the prod JWT policy will need the prod client ID as the audience once we have it.
+
+Otherwise nothing blocking from the Firewall side for this week’s MEA prod deployment.
