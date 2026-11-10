@@ -1,6 +1,1 @@
-Hi Giuseff, thanks for the device packs. The bulk migration is complete, and all devices are now on V50SECAPL008 with nothing left on V01SECAPL067.
-
-The azure_subscription pack (2602.6.15) installed fine, but the other four (azure_vnet 2602.6.14, azure_manager 2602.6.13, azure_subscription_provider 2602.6.18, azure_firewall 2602.6.11) fail with:
-“500 Internal Server Error – Unable to license product ‘vnet-northcentralus-1’: license expired on 11/7/26.”
-
-Can you check what license expired on 11/7 and how we get it renewed, so I can finish installing the packs and retry the retrieval?
+ZIA-SSL-Insp-Pilot-MS-Tenant-Restrictions
