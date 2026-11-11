@@ -1,1 +1,12 @@
-Quick update: I worked with FireMon support today. The license is temporarily fixed and the Azure device packs are installed, so the Azure devices are normalizing again. For usage, support is confirming whether FireMon can pull hit counts from Azure Firewall and what it needs on the Azure side. I’ll let you know as soon as I hear back. What reports do you need, so I can make sure we’re targeting the right firewalls?
+Subject: FireMon diag package uploaded + permanent license plan
+
+Hi Rick,
+
+As requested, I ran a retrieval and then generated the diagnostic package from the application server (v50secapl019). It's uploaded now and tagged with our case number, 182481.
+
+Thanks again for the temporary license. It got device pack installs and Log Monitoring working again. Since it expires 11/17, I'd like to sort out the next step before then. What do we still need to do to wrap up the Illumio POC so we can move back to a permanent license? If something on our side is holding it up, such as normalization or a configuration change, let me know and I'll get it done this week.
+
+Azure rule usage is a top priority for us right now, so we can't afford another license lapse.
+
+Thanks,
+Hardik
