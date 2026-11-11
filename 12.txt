@@ -1,8 +1,1 @@
-Hi Dri,
-
-Following up on Silver Peak from our working session. Did you get confirmation on its support status? Our SD-WAN (Aruba EdgeConnect) carries a big share of our policy, so having it in FireMon would be really valuable for our team. We'd love to find a way to make it work.
-
-Are there any workarounds that would let us bring our EdgeConnect policies into FireMon, such as an older device pack, a generic or custom device type, or an import option?
-
-Thanks,
-Hardik
+Thanks Giuseff, sorry for the duplicate. That makes sense, it’s the Illumio POC evaluation license. We’re pausing the POC for now, so I’d like to get back on our production license so I can install the Azure device packs and enable log monitoring. Let’s walk through the steps on the call, including what needs to be unlicensed first.
