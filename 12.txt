@@ -1,3 +1,41 @@
-Retrieval is back for all the live platforms: Cisco, Azure, Zscaler and the Cisco APICs. I also moved everything off the 067 collector onto 008 ahead of its decommission. What's left to get back to where we were is a short list. About 15 Azure assets, including the ncus and scus hub firewalls, retrieve but fail to normalize. FireMon sent updated Azure device packs for that, but the install is blocked by a license that expired on 11/7, and I have a ticket open with support on it. Two Cisco routers, n01pubrtr002 and n01ipsrtr002, still fail on the device side, so I'm working those with Sid. SAML login is also flaky, and Nick couldn't get in, which I'm working with Mark.
+Here’s prep for the workshop: first the questions, then the reasoning to give for each decision.
 
-The other gap is usage data, which feeds the unused-rule reports and real-time change detection. None of the devices are sending syslog to the collector right now, so that needs the logging config updated on the device side. Check Point cleanup is waiting on Nithin's export. Once the license is sorted and the device packs are in, the core of FireMon is back. The Illumio POC and the six-month recert setup with FireMon come after that.
+Questions for Nithin
+
+Illumio ICS: FireMon
+
+AD DNS (53 → v50dclwin021/022). Can we add an ICS_Active Directory + Production scope to A: Active Directory? It has 31 rules across all environments, or should DNS get its own ruleset? This is the last FireMon outbound flow still denied.
+Qualys scanner. We added ICS_Qualys → All Services in each ruleset (FireMon, GoAlert, PhishER). Should that be one global rule instead?
+Network devices IP list. Is IPL: FireMon Managed Network Devices an acceptable exception to “no IP lists”? Who keeps it in sync with the FireMon device inventory?
+Auto-generated ICS rulesets. We put the Vendor B2B SSH rule in App: ICS_Vendor B2B Env: Production. Is adding rules to the auto-generated ones OK, or should they stay empty?
+Check Point Azure VMs (v51secapl007/008). OK to change their tag to Application = Checkpoint and add an ICS scope to A: Checkpoint | E: Production?
+Provisioning. After your review, who provisions, and does it need a change request (Phase 3)? When does FireMon move to enforcement, and who watches denies afterward?
+ServiceNow MID (V50APPWIN019/024) is scanning FireMon and getting denied. Allow it, and who owns getting it tagged?
+Rule 4 (A: Firemon + L: Aurora). Remove it once V01SECAPL067 is decommissioned?
+
+FireMon tool
+
+Illumio device in FireMon. Did you review the one normalized device? Rick is still working the normalization error.
+API key role. Hit-counter usage returns 403. Which role does the key need beyond Viewer?
+Check Point stations still on 067 (BLM, QA, SB, VSX-DMS). Is your export done so we can remove them?
+
+Other apps
+
+GoAlert: review the rules, where App Proxy should be the destination, Tableau retirement, and the untagged AVD desktops and AKS GitLab cluster.
+PhishER: the server has a VEN, so Draft View evaluates it with Core labels. Do we still add the ICS scope now (GoAlert pattern), or wait?
+IP list hygiene: 10.72.2.100 (an APIC) is inside IPL: Genetec Devices, and IPL: MID discovery covers all of 10.16.0.0/16.
+The reasoning behind what we did
+Decision	Why
+FireMon got its own ICS ruleset; GoAlert went hybrid	FireMon’s Azure VMs have no Core ruleset to extend. GoAlert has an existing Core ruleset, so we added the ICS scope there, per your correction.
+Removed the 7 server IP lists	IP lists only match unknown addresses, never a known resource. We confirmed this in Draft View in both directions, and Nick confirmed it. Servers use their labels.
+Outbound rules live in the destination’s ruleset (Mainframe, Exchange, Check Point, Vendor B2B, storage)	In a scoped ruleset, extra-scope only frees the source. The destination has to be in scope, so the rule belongs to the app being reached. All of these now show Allowed in Draft View.
+Network devices on an IP list	Routers, switches and APICs aren’t workloads or ICS resources, so there’s no label to use. That’s the case IP lists are for. Nick’s guidance covered servers. All 12 IPs were checked with znslookup and are FireMon-managed Cisco gear.
+That rule is Intra-Scope	The source (FireMon) is inside the scope. Extra-Scope would let Server from anywhere use it.
+Intra rule is Server → Server, not picked VMs	The version built from picked VMs still showed Denied. The label version shows Allowed (15k flows).
+Mainframe NTP destination has two roles	sys3 is R: Server and zos is R: Single Node App. With only one role, zos would be missed.
+Approved app definitions (Illumio Cloud Secure, Qualys)	Labels don’t apply until a deployment is approved, so the rules had nothing to match. We approved after getting the OK.
+Fix the tag, not the definition (Check Point)	A discovery rule created the ICS_Checkpoint definition, and it matches Application = Checkpoint. The VMs say CheckPointUtility. Fixing the tag keeps the definition clean.
+DC NetBIOS (137) left blocked	FireMon doesn’t need it.
+Nothing provisioned	Everything is drafted for your review. Only our own items were touched, and never select-all, since other people’s drafts are pending.
+
+Evidence to have open: the latest FireMon Draft View export. Everything shows Allowed except AD DNS and the two untagged Check Point VMs.
