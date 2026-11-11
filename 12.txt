@@ -1,1 +1,3 @@
-Agreed. Then the priority is Azure Firewall. Right now ncus-fwl-hub and scus-fwl-hub retrieve but fail to normalize, so their rules aren’t reliable for attestation yet. FireMon sent device packs to fix that, but they’re blocked by a license issue, and I’m pushing that ticket today. In parallel, I’m asking FireMon how they collect usage for Azure Firewall, since it logs to Log Analytics rather than syslog. I’ll park Illumio and the Cisco items until those two are working. Is Azure Firewall the main one for attestation, or is anything else in scope?
+Following up on the license issue we discussed. It has become urgent on our side. Our team needs to enable log monitoring on the Azure subscriptions to pull rule usage reports for an urgent issue, and the expired license is blocking that, along with the device packs for our Azure Firewalls.
+
+Could we prioritize this and get on a call today? I'm available whenever works for you.
