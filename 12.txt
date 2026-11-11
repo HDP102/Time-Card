@@ -1,3 +1,8 @@
-Following up on the license issue we discussed. It has become urgent on our side. Our team needs to enable log monitoring on the Azure subscriptions to pull rule usage reports for an urgent issue, and the expired license is blocking that, along with the device packs for our Azure Firewalls.
+Hi Dri,
 
-Could we prioritize this and get on a call today? I'm available whenever works for you.
+Following up on Silver Peak from our working session. Did you get confirmation on its support status? Our SD-WAN (Aruba EdgeConnect) carries a big share of our policy, so having it in FireMon would be really valuable for our team. We'd love to find a way to make it work.
+
+Are there any workarounds that would let us bring our EdgeConnect policies into FireMon, such as an older device pack, a generic or custom device type, or an import option?
+
+Thanks,
+Hardik
