@@ -1,1 +1,1 @@
-Not yet. I asked Ashish on Tuesday whether prod needs a PG&E-CA-issued certificate or whether self-signed is OK like non-prod, and I’m still waiting on his answer. Once I have it, I’ll generate the cert and he can do the prod app registration. For the deployment date, I’ll check with Swapnil and get back to you.
+Ashish, following up: for the prod Entra app registration (NPS Firewall Automation – MEA, APP-1593 S2S), does prod need a certificate from the PG&E CA, or is self-signed OK? Brindha needs this to submit the prod CRQ.
