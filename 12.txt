@@ -1,1 +1,13 @@
-Ashish, following up: for the prod Entra app registration (NPS Firewall Automation – MEA, APP-1593 S2S), does prod need a certificate from the PG&E CA, or is self-signed OK? Brindha needs this to submit the prod CRQ.
+Subject: SAML login loops back to FireMon login page
+
+Description:
+
+Opening this as a reminder to follow up on the SAML issue I showed Giuseff during our call.
+
+SAML (Okta / MS365) login to FireMon intermittently fails. After authenticating, the user is sent back to the FireMon login page instead of being logged in. It usually works on the second try, but sometimes it keeps looping. Okta logs show the authentication succeeded, so the issue appears to be on the FireMon side. I reproduced it live during the call, and it was also happening on our previous FMOS version.
+
+FMOS version: 2026.2.6
+App server: v50secapl019
+ACS URL: https://v50secapl019.countrylan.com/securitymanager/api/saml/SSO
+
+A diagnostic package was uploaded under the name “Country”.
