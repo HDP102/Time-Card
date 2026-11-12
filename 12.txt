@@ -1,12 +1,1 @@
-Subject: FireMon diag package uploaded + permanent license plan
-
-Hi Rick,
-
-As requested, I ran a retrieval and then generated the diagnostic package from the application server (v50secapl019). It's uploaded now and tagged with our case number, 182481.
-
-Thanks again for the temporary license. It got device pack installs and Log Monitoring working again. Since it expires 11/17, I'd like to sort out the next step before then. What do we still need to do to wrap up the Illumio POC so we can move back to a permanent license? If something on our side is holding it up, such as normalization or a configuration change, let me know and I'll get it done this week.
-
-Azure rule usage is a top priority for us right now, so we can't afford another license lapse.
-
-Thanks,
-Hardik
+So in FireMon, I think those would be the VEN workloads, and there’s a setting on the Illumio management station that controls what gets pulled. Right now it’s only pulling servers, and the workstation option is unchecked. Do the 1700+ servers all have VENs, or would some of them show up differently?
