@@ -1,5 +1,1 @@
-device { name ~ 'ncus' }
-
-device { id = 7 } AND policy { name ~ 'ncus' }
-
-device { id = 7 } AND policy { name ~ 'fwl' }
+device { name = 'Azure-COUNTRY Financial Production Shared Services Subscription' }
