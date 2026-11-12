@@ -1,1 +1,1 @@
-device { name = 'Azure-COUNTRY Financial Production Shared Services Subscription' }
+device { name ~ 'Shared Services' }
