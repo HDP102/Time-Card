@@ -1,4 +1,3 @@
-timedatectl
-chronyc tracking
-chronyc sources -v
-date -u
+Hi Pavan, I checked NTP and the time looks good. The server is synced to our internal NTP servers zos.countrylan.com (current source) and sys3.countrylan.com, both reachable, with an offset under 1 ms (“System clock synchronized: yes”). Screenshot attached. Our IdP is Okta (cloud), so it uses its own time source.
+
+Since time is in sync, can we look at what FireMon logged when the assertion was rejected? The diagnostic package from 11/11 (fmos-diag_202611112056.v50secapl019.Country) was generated right after I reproduced the issue live with Giuseff, so it should capture the failed attempts. The issue is intermittent and usually succeeds on the second attempt, which makes me wonder about session, cookie, or RelayState handling. What should we check next?
