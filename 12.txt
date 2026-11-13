@@ -1,1 +1,4 @@
-Thanks Ashish! For the name I’m planning: APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com (CN and DNS). Does that look right? And who signs internal PG&E CA certs? Is there a Front Door request or a PKI team I should send the CSR to?
+timedatectl
+chronyc tracking
+chronyc sources -v
+date -u
