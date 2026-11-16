@@ -7,3 +7,18 @@ mkdir C:\Users\H2PR\certs\mea-prod
   -out    C:\Users\H2PR\certs\mea-prod\nps_fw_mea_prod.csr `
   -subj   "/C=US/ST=California/L=Oakland/O=Pacific Gas and Electric Company/OU=Production/CN=APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com" `
   -addext "subjectAltName=DNS:APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com"
+
+
+Here’s the whole list, in order:
+
+Generate the CSR. Paste the PowerShell command from my last message into your terminal. It creates two files in C:\Users\H2PR\certs\mea-prod\: the .key (keep it private) and the .csr (you’ll upload that).
+Ask Swapnil who to list as the two contacts (I’d suggest him and Rey):
+
+Swapnil, I’m requesting the prod certificate for the MEA integration from PKI. They need two accountable contacts for expiry alerts. OK to list you and Rey?
+
+Give Victor the heads-up from my last message, since the certificate is under APP-1593.
+Submit the request in the Keyfactor portal (https://pgecerts.cloud.pge.com/Keyfactorportal): upload the .csr, pick the PGE Server template, and add the two contacts.
+When the signed .crt comes back, save it as nps_fw_mea_prod.crt in the same folder and send it to Ashish for the prod app registration.
+When Ashish returns the prod client ID, send it to me and I’ll fill in the prod settings in mea_disable.py.
+
+If the portal asks something you’re unsure about, screenshot it and send it to me.
