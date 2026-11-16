@@ -1,54 +1,15 @@
-Hi Hardik,
+Brindha, end-to-end testing sign-off from the Firewall team (NPS Firewall Automation):
 
-As it stands right now, it seems like we only support up to level 2, which is Retrievals and normalizations via the aruba_silverpeak_ochestrator.
-https://docs.firemon.com/enterprise/Content/ADMINISTRATION/DEVICE/Management_Stations/Aruba_EdgeConnect.htm?Highlight=Aruba%20silver [docs.firemon.com]
+Environment: QA (api-ch-q.ss.pge.com/mea-udn-proxy-api/v1/accountdisable) → MEA/SailPoint QA
+Auth: Entra ID client credentials with certificate (client ID 5035d019-f182-4373-85c9-bcb4040ea139); MuleSoft JWT validation passed
+Test 1 (Postman), 11/9: 200 OK, requestID a9fec649a19e176681a1c1d8539b30a4. KXYB and DUL8 disabled, confirmed by Hareesh.
+Test 2 (our automation script), 11/10: 200 OK, requestID a9feece1a1c0164881a1c74d5a602907. KXYB and DUL8 disabled, confirmed by Hareesh.
 
-Here is the breakdown of what it can support today: 
-Level 1: Text-Based Configuration Retrieval — Supported
-Capabilities: Scheduled retrieval of raw configuration data directly from the Aruba / Silver Peak Orchestrator via REST API.
+Result: passed. Approved from the Firewall side to proceed with the prod CRQ.
 
-Features Enabled: Revision history, raw config comparison, and scheduled change detection with alerts.
-
-Level 2: Normalized Configuration Retrieval — Supported
-Capabilities: Normalization of security rules, policies, network objects, interfaces, routes, and services into FireMon’s Normalized Data Model.
-
-Features Enabled:
-
-Table-based rule and object displays in Security Manager.
-
-Policy query/search, shadowed/redundant rule analysis, and standard compliance/audit reporting.
-
-Representation of interfaces and basic routing in network inventory.
-
-Level 3: Usage Analysis & Real-Time Change Detection — Not Supported / Limited
-Capabilities: Rule and object hit count processing and real-time change detection via syslog.
-
-Current Status: SD-WAN orchestrator hit-count attribution and real-time syslog usage tracking are not generally supported for Silver Peak/EdgeConnect policies in the same manner as traditional enterprise firewalls.
-
-Level 4: Behavior Analysis & Access Path Analysis (APA) — Not Supported (Open RFE)
-Capabilities: Evaluating routing logic, policy decisions, and traffic simulation through Access Path Analysis (APA) and Risk Analysis.
-
-Current Status: Not currently implemented.
-
-Tracked under Jira issue
-
-FMCX-1063: [Aruba SilverPeak] Level 4 Support [firemon.atlassian.net]
-To Do [firemon.atlassian.net]
-("[Aruba SilverPeak] Level 4 Support"), which requests modeling Silver Peak routing behavior for network APA evaluations.
-Level 5: Automation Support — Partial / Manual Staging Only
-Capabilities: Automated change design, rule creation/modification/deletion, and direct API provisioning.
-
-Current Status:
-
-FireMon supports Manual Rule Changes and Manual Network Object Changes via supported device forms for Aruba | SilverPeak | Orchestrator in Policy Planner workflows
-
-Manual Rule Changes - Supported Device Forms [firemon.atlassian.net].
-Automated push, automated Rule Recommendation (PP/rr), and full provisioning orchestration are not supported.
+Note for prod: our prod Entra registration needs a CA-signed certificate (per Ashish). I’m waiting on Ashish for the signing process; our script will call the prod endpoint once it’s registered.
 
 
-Does this help answer your question?
-
-My best,
 
 
-Dri Erebara
+Hi Ashish, following up on Friday: (1) is APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com OK as the CN/DNS name, and (2) who signs internal PG&E CA certificates? Is there a Front Door request or a PKI team I should send the CSR to? This is the last item before we can run in prod.
