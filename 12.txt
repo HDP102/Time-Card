@@ -25,3 +25,6 @@ When the signed .crt comes back, save it as nps_fw_mea_prod.crt in the same fold
 When Ashish returns the prod client ID, send it to me and I’ll fill in the prod settings in mea_disable.py.
 
 If the portal asks something you’re unsure about, screenshot it and send it to me.
+
+
+Get-Content C:\Users\H2PR\certs\mea-prod\nps_fw_mea_prod.csr | Set-Clipboard
