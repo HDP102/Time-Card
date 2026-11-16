@@ -1,14 +1,15 @@
 Victor, FYI: I’m requesting an internal PG&E CA certificate for the MEA account-disable integration (CN APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com), since the Entra registration is under APP-1593. PKI may check with you as the app’s IT SME.
 
 
-mkdir C:\Users\H2PR\certs\mea-prod
-& "C:\Program Files\Git\usr\bin\openssl.exe" req -new -sha256 -newkey rsa:4096 -nodes `
-  -keyout C:\Users\H2PR\certs\mea-prod\nps_fw_mea_prod.key `
-  -out    C:\Users\H2PR\certs\mea-prod\nps_fw_mea_prod.csr `
-  -subj   "/C=US/ST=California/L=Oakland/O=Pacific Gas and Electric Company/OU=Production/CN=APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com" `
-  -addext "subjectAltName=DNS:APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com"
+$o = Get-ChildItem "$env:LOCALAPPDATA\Programs\Git" -Recurse -Filter openssl.exe -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName
+Set-Alias openssl $o
+openssl version
 
-Get-ChildItem -Path "C:\Program Files\Git","$env:LOCALAPPDATA\Programs\Git","C:\Program Files (x86)\Git" -Filter openssl.exe -Recurse -ErrorAction SilentlyContinue | Select-Object FullName
+cd C:\Users\H2PR\certs\mea-prod
+openssl req -new -sha256 -newkey rsa:4096 -nodes -keyout nps_fw_mea_prod.key -out nps_fw_mea_prod.csr -subj "/C=US/ST=California/L=Oakland/O=Pacific Gas and Electric Company/OU=Production/CN=APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com" -addext "subjectAltName=DNS:APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com"
+
+openssl req -in nps_fw_mea_prod.csr -noout -subject
+icacls nps_fw_mea_prod.key /inheritance:r /grant:r "${env:USERNAME}:(R)"
 
 
 Here’s the whole list, in order:
