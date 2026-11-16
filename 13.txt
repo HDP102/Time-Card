@@ -1,82 +1,14 @@
-Here’s the order with the “how” for each. Each one has the steps, who’s involved, and what it depends on.
+FMOS 2026.2.6. Config retrieval for our Azure management station and all subscriptions is working, but no rule usage is being collected. The Rule Usage Report for “Azure-COUNTRY Financial Production Shared Services Subscription” (device ID 7), 30 days, shows Used 0 / Unused 0 / Disabled or Logging Disabled 311, with every rule “Last Used: Never”. The dashboard shows 0 unused rules over 90 days, and every Azure rule in a rules export has a hit count of 0.
 
-1. Production license (today, the temp license expires tomorrow)
+Our Azure Firewalls (ncus and scus hubs) log in legacy AzureDiagnostics mode to Log Analytics and to an Event Hub. There is no storage account destination on the diagnostic settings today.
 
-Why first: if the license lapses, Log Monitoring and device packs break again, and that blocks Azure usage too.
-How:
-Save Rick’s production license somewhere durable, like CyberArk or a secure note.
-Unlicense the Illumio POC device. Rick said the prod license errors out if anything is over-licensed, and the prod license doesn’t include Illumio.
-Apply the prod license.
-Re-check that Azure retrieval, Log Monitoring and the device packs still work.
-What you need from Jonathan: OK to end the Illumio POC. Applying the license ends it.
-Check with Rick first: that the prod license includes Log Monitoring. If it doesn’t, Azure usage can’t work.
-Time: about an hour on your side.
+This is our top priority. Please confirm:
 
-2. Silver Peak onboarding (short-term demand, gets the SD-WAN rules into FireMon for attestation)
+How FireMon collects usage for Azure Firewall: storage account, Log Analytics, or hit counts. Which value should “Track Usage Via” be set to?
+Which log categories are required, and whether legacy AzureDiagnostics mode is supported or we need resource-specific tables.
+What permissions the service principal needs (Reader and Data Access, Storage Blob Data Reader, other).
+When to use “Use Alternate Subscription ID for Diagnostic Settings”. The firewall and the diagnostic storage may sit in different subscriptions.
+Why all 311 rules show “Disabled or Logging Disabled”.
+Whether usage is supported for NSG rules, and if so what it needs (for example NSG flow logs).
 
-What we get: the SD-WAN rules in FireMon, searchable and reviewable. No hit counts.
-How:
-Account: get a Read-Write service account on the Orchestrator from Shahul or the SD-WAN owner. FireMon’s doc requires Read-Write even though it only reads.
-CSRF setting: Orchestrator has to have its CSRF check turned off, or FireMon’s retrieval fails. It’s a security setting change, so it goes through a change request with the owner’s sign-off.
-Network path: confirm 008 can reach the Orchestrator on 443. If the Orchestrator is cloud-hosted, the same SD-WAN deny that blocked Zscaler could block this too, and we’d need an allow like Shahul’s last one.
-FireMon side: confirm with Dri whether it’s Level 1 or Level 2 on our version (her email and the doc page disagree), and whether we need a separate device pack.
-Onboard: create the management station (Aruba > EdgeConnect SD-WAN), put it on 008, retrieve, and check that the rules normalize.
-Owners: you, Shahul (account and path), the Orchestrator owner (CSRF sign-off), Dri/FireMon (device pack and level).
-Time: your FireMon work is a day or less. The real timeline is the change request for CSRF, plus the network path if it’s needed.
-Where Jonathan helps: pushing the change request through.
-
-3. Azure rule usage (the long-term main goal, running in parallel)
-
-What we get: hit counts on the Azure Firewall rules, so we can find unused rules and clean them up.
-Where it stands: FireMon pulls the Azure rules fine, but no usage data is coming in. The usage report shows zero across the board.
-How:
-FireMon confirms the method. Giuseff needs to tell us exactly how they collect it: most likely a storage account receiving the firewall logs, plus which log types and which permissions. I don’t want to guess and get it wrong.
-Azure change request (Cloud Engineering, Elijah):
-add a storage account destination to the firewall diagnostic settings on both hubs (ncus and scus)
-give the FireMon service account read access to it
-FireMon config: turn on Log Monitoring on the Azure subscription and point it at the storage account.
-Wait for data: usage builds from the day it’s turned on, so a meaningful 30-day cleanup report comes about a month later.
-Meanwhile: pull hit counts directly from Log Analytics so Aksa can start cleanup now instead of waiting a month.
-Where Jonathan helps: pushing FireMon for a firm answer, and Cloud Engineering for the change.
-
-4. Lower priority (do when there’s room)
-
-SAML login loop: the ticket is open with FireMon. Time is ruled out and Mark cleared the Okta side. A few browser tests and FireMon’s log review are next. It’s an annoyance, not an outage.
-Cisco stragglers: three routers failing on the device side. Sid needs to check them.
-Check Point cleanup: delete the old Check Point entries once Nithin confirms his policy export is done.
-Backups: they run nightly but stay on the same server. An off-box copy is the only real rollback if the server dies, so this is worth a CR eventually.
-
-If he asks for one line:
-“License today so nothing breaks tomorrow. Silver Peak next for the short-term ask, mostly gated by a change request on the Orchestrator side. Azure usage running in parallel as the long-term goal, waiting on FireMon to confirm the method, and I’m using Log Analytics for hit counts until then.”
-
-Yes, attestation and cleanup are the two goals Jonathan set. Here’s the step by step for each, and what’s still unknown.
-
-Foundation (both goals depend on this)
-Apply the production license today. Without it, retrieval and Log Monitoring break.
-Agree the in-scope device list with Jonathan. Likely the 7 Azure subscriptions, the Cisco devices, ZIA, and Silver Peak once it’s onboarded. Check Point is out.
-Make sure every in-scope device retrieves and normalizes. Check in Security Manager that each device shows its rules in the policy table, not just “retrieved”. This also covers Nithin’s open question about the Azure subscriptions showing “Unlicensed”.
-Attestation (review and sign off on the rules)
-
-Rules visible: this is mostly done for Azure, Cisco and ZIA. Silver Peak gets added through onboarding.
-Rule owners and justifications. This is the real gap. The Shared Services dashboard shows 277 rules without an owner and 212 without comments. You can’t attest a rule nobody owns. Decide where owner data comes from: a field in FireMon, or descriptions on the Azure rules themselves.
-Decide how the review actually happens. [?] FireMon has a rule recertification workflow, but I believe it sits in Policy Planner, and I don’t know if our license includes it. Ask Giuseff or Rick. If it isn’t included, the fallback is exporting rule reports per device and having owners sign off.
-Pilot on one device. Azure Shared Services is a good pilot because it’s the most visible. Run a full review cycle there before rolling it out.
-
-Cleanup (find and remove rules that aren’t needed)
-Use what works today. Shadowed and redundant rule analysis is Level 2, so it works now for Azure, Cisco and eventually Silver Peak. That’s cleanup value right away without hit counts.
-Get usage data flowing, platform by platform:
-Azure: wait for Giuseff’s answer, then the Cloud Engineering change request (storage account on both hub firewalls, read access for the FireMon account), then turn on Log Monitoring.
-Cisco: [?] confirm with Giuseff how usage is collected for our routers and ASAs. It’s syslog or hit counters, and either may need device-side config from Sid.
-ZIA: [?] confirm whether FireMon gets usage for ZIA at all.
-Silver Peak: not possible (no Level 3).
-Verify it’s real. Run dc debug on 008 to see logs arriving, then check that the Rule Usage Report shows non-zero numbers.
-Build a baseline. Wait 30 days at minimum, ideally 90, before calling a rule unused.
-Produce the cleanup list. Run the Rule Usage Report filtered to unused rules, send it to the owners for confirmation, then submit change requests to remove what they confirm.
-
-Meanwhile for Azure: pull hit counts from Log Analytics now, so Aksa can start step 12 without waiting a month.
-
-Questions to put to FireMon in one email (one per open item):
-
-How Azure Firewall usage is collected and what it needs.
-How usage works for our Cisco devices and for ZIA.
-Whether rule recertification is included in our license.
+We’ll make the Azure side changes once we have the requirements.
