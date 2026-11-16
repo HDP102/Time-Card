@@ -1,3 +1,54 @@
-Hi Pavan, I checked NTP and the time looks good. The server is synced to our internal NTP servers zos.countrylan.com (current source) and sys3.countrylan.com, both reachable, with an offset under 1 ms (“System clock synchronized: yes”). Screenshot attached. Our IdP is Okta (cloud), so it uses its own time source.
+Hi Hardik,
 
-Since time is in sync, can we look at what FireMon logged when the assertion was rejected? The diagnostic package from 11/11 (fmos-diag_202611112056.v50secapl019.Country) was generated right after I reproduced the issue live with Giuseff, so it should capture the failed attempts. The issue is intermittent and usually succeeds on the second attempt, which makes me wonder about session, cookie, or RelayState handling. What should we check next?
+As it stands right now, it seems like we only support up to level 2, which is Retrievals and normalizations via the aruba_silverpeak_ochestrator.
+https://docs.firemon.com/enterprise/Content/ADMINISTRATION/DEVICE/Management_Stations/Aruba_EdgeConnect.htm?Highlight=Aruba%20silver [docs.firemon.com]
+
+Here is the breakdown of what it can support today: 
+Level 1: Text-Based Configuration Retrieval — Supported
+Capabilities: Scheduled retrieval of raw configuration data directly from the Aruba / Silver Peak Orchestrator via REST API.
+
+Features Enabled: Revision history, raw config comparison, and scheduled change detection with alerts.
+
+Level 2: Normalized Configuration Retrieval — Supported
+Capabilities: Normalization of security rules, policies, network objects, interfaces, routes, and services into FireMon’s Normalized Data Model.
+
+Features Enabled:
+
+Table-based rule and object displays in Security Manager.
+
+Policy query/search, shadowed/redundant rule analysis, and standard compliance/audit reporting.
+
+Representation of interfaces and basic routing in network inventory.
+
+Level 3: Usage Analysis & Real-Time Change Detection — Not Supported / Limited
+Capabilities: Rule and object hit count processing and real-time change detection via syslog.
+
+Current Status: SD-WAN orchestrator hit-count attribution and real-time syslog usage tracking are not generally supported for Silver Peak/EdgeConnect policies in the same manner as traditional enterprise firewalls.
+
+Level 4: Behavior Analysis & Access Path Analysis (APA) — Not Supported (Open RFE)
+Capabilities: Evaluating routing logic, policy decisions, and traffic simulation through Access Path Analysis (APA) and Risk Analysis.
+
+Current Status: Not currently implemented.
+
+Tracked under Jira issue
+
+FMCX-1063: [Aruba SilverPeak] Level 4 Support [firemon.atlassian.net]
+To Do [firemon.atlassian.net]
+("[Aruba SilverPeak] Level 4 Support"), which requests modeling Silver Peak routing behavior for network APA evaluations.
+Level 5: Automation Support — Partial / Manual Staging Only
+Capabilities: Automated change design, rule creation/modification/deletion, and direct API provisioning.
+
+Current Status:
+
+FireMon supports Manual Rule Changes and Manual Network Object Changes via supported device forms for Aruba | SilverPeak | Orchestrator in Policy Planner workflows
+
+Manual Rule Changes - Supported Device Forms [firemon.atlassian.net].
+Automated push, automated Rule Recommendation (PP/rr), and full provisioning orchestration are not supported.
+
+
+Does this help answer your question?
+
+My best,
+
+
+Dri Erebara
