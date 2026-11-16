@@ -1,1 +1,14 @@
-The design follows the established pattern, with encrypted transport only, no port translation and ingress constrained to Cloudflare. Three items to confirm. Twilio webhook traffic originates from Twilio’s published address ranges rather than Cloudflare, so please confirm the inbound path is proxied through Cloudflare, as otherwise this rule will not pass the traffic and a second source would need adding later. Please verify the Cloudflare source group is current against their published ranges. Lastly, please confirm the application validates the Twilio request signature, as the source restriction controls where requests arrive from but not that they are genuinely from Twilio.
+FMOS 2026.2.6. Config retrieval for our Azure management station and all subscriptions is working, but no rule usage is being collected. The Rule Usage Report for “Azure-COUNTRY Financial Production Shared Services Subscription” (device ID 7), 30 days, shows Used 0 / Unused 0 / Disabled or Logging Disabled 311, with every rule “Last Used: Never”. The dashboard shows 0 unused rules over 90 days, and every Azure rule in a rules export has a hit count of 0.
+
+Our Azure Firewalls (ncus and scus hubs) log in legacy AzureDiagnostics mode to Log Analytics and to an Event Hub. There is no storage account destination on the diagnostic settings today.
+
+This is our top priority and supports our PCI DSS rule review and cleanup. Please confirm:
+
+How FireMon collects usage for Azure Firewall: storage account, Log Analytics, or hit counts. Which value should “Track Usage Via” be set to?
+Which log categories are required, and whether legacy AzureDiagnostics mode is supported or we need resource-specific tables.
+What permissions the service principal needs (Reader and Data Access, Storage Blob Data Reader, other).
+When to use “Use Alternate Subscription ID for Diagnostic Settings”. The firewall and the diagnostic storage may sit in different subscriptions.
+Why all 311 rules show “Disabled or Logging Disabled”.
+Whether usage is supported for NSG rules, and if so what it needs (for example NSG flow logs). Several of our in-scope applications are protected by NSGs, so this matters for us.
+
+We’ll make the Azure side changes once we have the requirements.
