@@ -1,14 +1,1 @@
-FMOS 2026.2.6. Config retrieval for our Azure management station and all subscriptions is working, but no rule usage is being collected. The Rule Usage Report for “Azure-COUNTRY Financial Production Shared Services Subscription” (device ID 7), 30 days, shows Used 0 / Unused 0 / Disabled or Logging Disabled 311, with every rule “Last Used: Never”. The dashboard shows 0 unused rules over 90 days, and every Azure rule in a rules export has a hit count of 0.
-
-Our Azure Firewalls (ncus and scus hubs) log in legacy AzureDiagnostics mode to Log Analytics and to an Event Hub. There is no storage account destination on the diagnostic settings today.
-
-This is our top priority. Please confirm:
-
-How FireMon collects usage for Azure Firewall: storage account, Log Analytics, or hit counts. Which value should “Track Usage Via” be set to?
-Which log categories are required, and whether legacy AzureDiagnostics mode is supported or we need resource-specific tables.
-What permissions the service principal needs (Reader and Data Access, Storage Blob Data Reader, other).
-When to use “Use Alternate Subscription ID for Diagnostic Settings”. The firewall and the diagnostic storage may sit in different subscriptions.
-Why all 311 rules show “Disabled or Logging Disabled”.
-Whether usage is supported for NSG rules, and if so what it needs (for example NSG flow logs).
-
-We’ll make the Azure side changes once we have the requirements.
+This adds Elias Sahyouni, Zach Matl, Will Sager and Jeff Foote to the Filehost_Box_URL_Allow_Temp rule so Cyber Defense personnel can access CrowdStrike’s Box tenant during a vendor migration, with a 120 day expiry. The named user scope and the stated expiry are appropriate, and the requester has confirmed that no COUNTRY customer data will be transferred. Two items. Please confirm the 120 day expiry is set on the rule at implementation rather than tracked separately, as the earlier Box exceptions in this series have relied on manual review. File upload is enabled, so please also confirm DLP inspection applies. One note, the entry covers the Box platform domains rather than the CrowdStrike tenant specifically, which is unavoidable given how Box serves content, so the user scope and expiry are doing the containment here.
