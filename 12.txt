@@ -8,6 +8,8 @@ mkdir C:\Users\H2PR\certs\mea-prod
   -subj   "/C=US/ST=California/L=Oakland/O=Pacific Gas and Electric Company/OU=Production/CN=APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com" `
   -addext "subjectAltName=DNS:APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com"
 
+Get-ChildItem -Path "C:\Program Files\Git","$env:LOCALAPPDATA\Programs\Git","C:\Program Files (x86)\Git" -Filter openssl.exe -Recurse -ErrorAction SilentlyContinue | Select-Object FullName
+
 
 Here’s the whole list, in order:
 
