@@ -56,10 +56,12 @@ Apply the production license today. Without it, retrieval and Log Monitoring bre
 Agree the in-scope device list with Jonathan. Likely the 7 Azure subscriptions, the Cisco devices, ZIA, and Silver Peak once it’s onboarded. Check Point is out.
 Make sure every in-scope device retrieves and normalizes. Check in Security Manager that each device shows its rules in the policy table, not just “retrieved”. This also covers Nithin’s open question about the Azure subscriptions showing “Unlicensed”.
 Attestation (review and sign off on the rules)
+
 Rules visible: this is mostly done for Azure, Cisco and ZIA. Silver Peak gets added through onboarding.
 Rule owners and justifications. This is the real gap. The Shared Services dashboard shows 277 rules without an owner and 212 without comments. You can’t attest a rule nobody owns. Decide where owner data comes from: a field in FireMon, or descriptions on the Azure rules themselves.
 Decide how the review actually happens. [?] FireMon has a rule recertification workflow, but I believe it sits in Policy Planner, and I don’t know if our license includes it. Ask Giuseff or Rick. If it isn’t included, the fallback is exporting rule reports per device and having owners sign off.
 Pilot on one device. Azure Shared Services is a good pilot because it’s the most visible. Run a full review cycle there before rolling it out.
+
 Cleanup (find and remove rules that aren’t needed)
 Use what works today. Shadowed and redundant rule analysis is Level 2, so it works now for Azure, Cisco and eventually Silver Peak. That’s cleanup value right away without hit counts.
 Get usage data flowing, platform by platform:
