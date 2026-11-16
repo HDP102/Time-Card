@@ -1,9 +1,201 @@
-mkdir C:\Users\H2PR\certs\mea-prod
-& "C:\Program Files\Git\usr\bin\openssl.exe" req -new -sha256 -newkey rsa:4096 -nodes `
-  -keyout C:\Users\H2PR\certs\mea-prod\nps_fw_mea_prod.key `
-  -out    C:\Users\H2PR\certs\mea-prod\nps_fw_mea_prod.csr `
-  -subj   "/CN=APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com" `
-  -addext "subjectAltName=DNS:APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com"
+Dinesh Prabu, Brindha Selvi
+9:33 AM
+https://pge.sharepoint.com/sites/PKI/default.aspx?xsdata=MDV8MDJ8fDZjYjU4MDgzNTU3ZjQ2NjI1NGEzMDhkZjQ…
+Its PKI team. Please refer this. by Dinesh Prabu, Brindha Selvi
+Dinesh Prabu, Brindha Selvi
+9:34 AM
+Its PKI team. Please refer this.
+Link https://wiki.comp.pge.com/display/CCE/... by Dinesh Prabu, Brindha Selvi
+Dinesh Prabu, Brindha Selvi
+9:34 AM
+https://wiki.comp.pge.com/display/CCE/Standard+Work+-+PKI+Services
+has context menu
 
 
-Brindha, quick one: for our prod Entra registration I need a certificate signed by the internal PG&E CA. Do you know how your team requests those (Front Door item or PKI team contact)? I have the CSR ready.
+Announcements
+Attachments
+Title
+Modified
+
+PG&E Enterprise Certificate Authority
+12/7/2020 5:10 PM
+​
+
+In order to enhance security and compliance, ensure trust, and maximize information security investments, PG&E has deployed an internal Certificate Authority (CA). This CA is a central trust anchor and an integral part of the our enterprise Public Key Infrastructure (PKI).
+
+For the past four years, we have used Entrust's certificate services for all of our digital certificate needs. Starting Monday, February 8, 2016, most of the INTERNAL certificate requirements will be met by the new internal PG&E CA.
+
+To submit a certificate request, visit the following URL:
+
+https://pgecerts.cloud.pge.com/Keyfactorportal (new)
+https://pgeca.utility.pge.com/certsrv/certrqxt.asp (legacy)
+
+If you have any PKI-related questions, please contact: PKICertificateSupport@pge.com
+
+Note: We will continue to use Entrust SSL certificates for all EXTERNAL-facing (i.e., public) web servers or websites.
+
+The internal PG&E Microsoft Active Directory Certificate Services (AD CS) will support two types of standard SSL certificate requests for up to two years:
+
+• PGE Web Server – Intended to ensure the identity of your server, which should be the selection for most cases.
+• PGE Server – Intended for ensuring the identity of your server and for proving that identity to a remote computer.
+
+Note: Both certificate request types will support multiple fully qualified domain names (UC/SAN) in the certificate.
+
+Requirements for certificate signing requests (CSR):
+1. a minimum of two contacts (PG&E employee or valid email distribution list) must be included in the CSR.
+2. the contacts MUST be owners/managers of the server (or application) who are accountable if the certificate expires.  These should not be IT operations personnel, project manager, IT architect, submitter on behalf of the client, etc., unless they are truly accountable.
+3. Non-Windows server clients (UNIX, appliances, etc.) need to begin importing the new PG&E Enterprise CA Root certificates into the certificate stores of their applications/servers/systems to support secure SSL communications with infrastructure applications/services/systems that will be issued PG&E Enterprise CA certificates going forward. The Root certificate chain is hosted in the PGE Downloads section (xPGE Downloads for dev/lab/test)
+4. By May 2016, Active Directory secure LDAP clients will need to have the PG&E Enterprise CA Root certificate chain imported into their application/system certificate stores and tested or they risk not being able to authenticate against Active Directory.  Besides importing the new PG&E Enterprise CA certificate chain into their respective application/system certificate stores, they should really test their applications/systems against the xPGE environment to confirm their application will still authenticate properly when the Active Directory domain controllers are issued new certificates.
+
+
+
+Attachment	
+PGECA
+4/19/2013 2:52 PM
+As of 3/2/2013 PGECA has been replaced with the Entrust Certificate Authority.  No new certificate requests can be submitted through PGECA. Active PGECA certs will continue to work until 3/2/14.  PGECA will then be shutdown.  You are encouraged to renew your PGECA certs using Entrust before the deadline next year to alleviate any certificate issues or interruptions in service.  For more information on how to request a certificate from Entrust, please see the attachment in this article or by following this link.  http://wss/sites/PKI/Shared%20Documents/Forms/AllItems.aspx
+
+
+Created by Popov, Anton on Oct 23, 2026
+Standard Work – PKI Services (Certificates)
+Lean Play 4 – Standard Work | Team: Cloud Security Engineering – PKI Services | Page Owner: Anton Popov | Review Cycle: Quarterly, or after any incident, CA change, or audit finding
+
+1. Purpose
+This page lists and ranks the Standard Work for PKI Services by importance to the business. PG&E's PKI covers:
+
+The internal Microsoft ADCS (ODN) hierarchy: an offline Root CA and Issuing CAs
+The Sectigo-managed Private CA for mTLS machine identity
+The Cyber Recovery Vault CA
+Publicly trusted certificates managed through Sectigo
+Certificates support authentication, encryption, and trust between systems. If one expires or a CA fails, the result is an outage right away.
+
+Ranking criteria: How many systems lose trust, and how much security risk we take on, if the task is done inconsistently.
+
+2. Standard Work Catalog (Ranked)
+1	Root & Issuing CA Key Protection and CA Certificate Renewal	Process	Event-driven, tracked against CA expiry	If a CA expires or is compromised, every certificate under it stops being trusted	TBD
+2	CRL / CDP / AIA / OCSP Publication & Availability	Process + Activity	Daily checks; per CRL cycle	If revocation endpoints can't be reached, authentication fails (e.g., Entra CBA, Citrix)	TBD
+3	Certificate Expiry Monitoring & Renewal	Process + Activity	Weekly monitoring; event-driven renewal	An expired end-entity certificate causes an immediate app outage	TBD
+4	Certificate Revocation & Key Compromise Response	Process	Event-driven	Removes trust from compromised or misissued certificates	TBD
+5	Certificate Request, Validation & Issuance (RA)	Process	Per request	Makes sure only authorized owners get correctly named certificates	TBD
+6	HSM Lifecycle & Key Ceremony Management	Process	Per event + yearly check	Protects CA signing keys; nShield replacement due before hardware end of life	TBD
+7	Sectigo Private CA (mTLS) Operations	Process	Per request + quarterly review	Machine-to-machine trust for apps, APIs, and partners	TBD
+8	Public (Sectigo) Certificate Lifecycle	Process	Per request + renewal cycle	Public-facing sites; validity periods are getting shorter across the industry	TBD
+9	Certificate Automation (ACME / CLM)	Process + Automation	Continuous	Reduces manual renewals and human error	TBD
+10	CP/CPS Governance & Cyber Vault PKI	Process	Annual / per material change	Keeps policy, audit, and recovery trust in place	TBD
+3. Standard Work Details
+3.1 Root & Issuing CA Key Protection and CA Certificate Renewal
+Validity Periods (ODN):
+
+PG&E Root CA	15 years
+PG&E ODN Issuing CAs	5 years
+Prerequisites for Root CA work: Access to the Root CA laptop, the Root CA HSM, and the Operator Card Set (OCS) with assigned passphrases.
+
+Root CA Renewal Steps:
+
+Start the offline Root CA and log on as CA Administrator (OCS required)
+Renew the CA certificate (certutil -renewCert) and issue a new CRL (certutil -crl)
+Copy the CA certificate and CRL to approved media
+Back up the CA database, key material, and registry settings
+Shut down the Root CA; store the laptop, HSM, and OCS cards in a secure location
+Record every use in the audit log
+Publish the new certificate and CRL to AD (certutil -dspublish) and validate with pkiview.msc
+Issuing CA Renewal: Generate a renewal request on the Issuing CA, sign it on the Root CA with a 5-year validity, then install and publish it.
+
+Standard: CA certificates must be renewed and distributed before they expire. Track CA expiry dates in the MOR.
+
+3.2 CRL / CDP / AIA / OCSP Publication & Availability
+Standard:
+
+Publish CRLs before their Next Update time on every cycle
+CDP and AIA/OCSP endpoints must be reachable from every relying platform, including externally reachable identity services such as Entra ID certificate-based authentication
+Check endpoint reachability every day and as part of every PKI change
+Results feed the Daily Operational Review (DOR)
+3.3 Certificate Expiry Monitoring & Renewal
+Standard:
+
+Keep an inventory of certificates with owner, environment, expiry date, and issuing CA
+Send expiry alerts at 90 / 60 / 30 / 14 days
+Private CA (Sectigo): end-entity validity is 2 years; renew within 6 weeks of expiry
+Cyber Vault: renew or replace at least 2 weeks before expiry; server admins review vault certificates quarterly
+Run an RCA for any outage caused by an expired certificate and feed the lessons back into this standard
+3.4 Certificate Revocation & Key Compromise Response
+Standard:
+
+Revoke promptly on suspected or confirmed key compromise, misissuance, decommissioning, or redeployment
+Re-key, don't just renew, after a compromise or algorithm change; each key is used for one purpose only
+Verify the certificate before revoking it, update the CRL, and notify the subscriber
+Escalate suspected compromise to the SOC through incident response
+3.5 Certificate Request, Validation & Issuance (RA)
+Who may request: Application owners, service owners, platform administrators, and approved integration teams.
+
+Validation:
+
+Ownership is verified against the application inventory (APM / APP-ID)
+A properly formatted PKCS #10 CSR is required; the private key stays on the endpoint wherever possible
+Naming requirements:
+CN	FQDN, or an approved service identifier
+SAN	Approved FQDNs / service identifiers
+OU	Test, Development, QA, or Production
+O	Pacific Gas and Electric Company
+L / ST / C	Oakland / California / US
+Standard: RA staff approve manual requests after validation passes. Rejections are recorded with a reason, and the requester is notified.
+
+3.6 HSM Lifecycle & Key Ceremony Management
+Standard:
+
+Document every key ceremony with dual control, witnesses, and audit log entries
+Track who holds OCS cards and verify custody every year
+Replace the UDN nShield HSMs that protect the CA signing keys, with zero signing outage, by Jul 30, 2027 (hardware end of life Dec 2027)
+3.7 Sectigo Private CA (mTLS) Operations
+Allowed uses: mTLS client and server authentication, API authentication, and workload authentication. Prohibited uses: Public TLS, code signing, document signing, email, smart cards, user identity, and domain controller certificates.
+
+Standard:
+
+Usage is enforced technically through EKU restrictions
+External partners must accept the External Subscriber Agreement before participating
+Support contact: PKICertificateSupport@pge.com
+3.8 Public (Sectigo) Certificate Lifecycle
+Standard:
+
+Request public certificates only through the approved Sectigo account
+Validate domains and check CAA records before issuance
+Plan for the industry-wide reduction in public TLS certificate validity, which makes automation mandatory over time
+Track the public certificate inventory and licensing against the Sectigo contract
+3.9 Certificate Automation (ACME / CLM)
+Standard:
+
+Use ACME / Sectigo CLM automated issuance and renewal wherever the endpoint supports it
+Prioritize automating high-volume and high-impact endpoints
+Automatic private-key rotation is targeted for 2027
+Endpoints that can't be automated stay in the manual renewal process (3.3) with a documented exception
+3.10 CP/CPS Governance & Cyber Vault PKI
+Standard:
+
+The PG&E Private CA CP/CPS (RFC 3647) is reviewed every year or after any material change; approval authority is the Director, Cybersecurity
+Cryptographic controls follow SEC-3202S (Cryptography Technology Standard)
+Cyber Vault CA: servers must be domain-joined and registered in vault DNS before enrollment; the Vault PKI Administrator handles CSRs when web enrollment can't be used, plus renewals and CRL updates
+4. Roles & Responsibilities
+Policy Authority	Approves the CP/CPS and governs the private PKI
+PKI Administrators	Operate, monitor, and maintain the CAs, CRLs, HSMs, and automation
+Registration Authority (RA)	Validates and approves certificate requests
+Subscribers / App Owners	Submit accurate requests, protect private keys, and coordinate renewals
+CA Service Provider (Sectigo)	Runs the managed Private CA and CLM under contract
+Leaders	Make sure Standard Work is current and followed; review adherence in DOR / WOR / MOR
+5. Continuous Improvement (PDCA)
+Plan – Capture the current best-known method
+Do – Publish the standard and train the team
+Check – Review adherence and results in operating reviews
+Act – Update the standard after improvements, incidents, or audit findings
+Every improvement must be captured back into the Standard Work.
+
+6. Related Resources
+Clear Sky Playbook – Play 4: Standard Work
+PG&E Private CA CP/CPS (Draft v0.5)
+PGE ODN PKI Runbook
+PKI Procedures – Certificate Issuance, Renewal, and Revocation (Cyber Vault)
+SEC-3202S – Cryptography Technology Standard
+PG&E Internal PKI Repository (http://pki)
+Page Owner: Anton Popov | Last Reviewed: Oct 22, 2026 | Next Review: Jan 22, 2027
+
+No labels
+User icon: Anonymous
+Write a comment...
