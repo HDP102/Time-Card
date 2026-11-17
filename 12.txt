@@ -1,6 +1,7 @@
-Hi Rick and Dri,
+To: PKICertificateSupport@pge.com
+Subject: Pending CSR approval: APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com
 
-Quick update: after talking with our team, we do want to fully onboard Illumio onto FireMon. Usage and hit counts are the priority for us, since we need them for our end of year rule cleanup. We’d like to get this done as soon as possible. Let me know what you need from us.
+Hi PKI team, I submitted a CSR in Keyfactor (template PGE Server, AMPS APP-1593) for the Entra ID client certificate used by NPS Firewall Automation to call the MEA account-disable API. Production is waiting on it. Could you review and approve it, or let me know if anything else is needed?
 
 Thanks,
-Hardik
+Hardik Patel
