@@ -1,17 +1,1 @@
-Hi Giuseff, an update on our side, plus a few questions. Azure is now our top priority since it supports our PCI DSS rule review and cleanup.
-
-License: Rick extended the evaluation license to 11/25, so licensing is no longer blocking us. We’ll switch to the production license after we finish with the Illumio POC.
-
-Normalization: the Azure normalization errors are still there. The most important is ncus-fwl-hub (ID 341), our main Azure Firewall. Its latest revision (142520, 11/17 2:59 PM UTC) ended in Normalization Error. scus-fwl-hub (ID 345) is still in Raw state, and sandbox-fwl-nchub (697), sandbox-fwl-schub (699) and about 11 VNets and gateways also show normalization errors. On 11/7 only the azure_subscription pack (2602.6.15) installed. azure_firewall 2602.6.11, azure_vnet 2602.6.14, azure_manager 2602.6.13 and azure_subscription_provider 2602.6.18 failed on the license error.
-
-Usage: today we enabled Log Monitoring on “Azure-COUNTRY Financial Production Shared Services Subscription” (ID 7), with Track Usage Via = Hit Counters, a 10 minute interval, and Storage Accounts and Alternate Subscription ID blank. After 30+ minutes, the Rule Usage Report still shows Used 0 / Unused 0, with 325 rules under “Disabled or Logging Disabled”. All of them are NSG rules showing Logging: Disabled. Our firewalls log in legacy AzureDiagnostics mode to Log Analytics and an Event Hub, with no storage account.
-
-Questions:
-
-Should we reinstall the four Azure device packs now that the license is working, and will that fix the normalization error on ncus-fwl-hub?
-Once it normalizes, is Hit Counters the right setting for Azure Firewall usage, or does it need a storage account or Log Analytics? Is legacy AzureDiagnostics mode supported?
-What permissions does the service principal need for usage?
-For NSG rules, does usage require NSG flow logs, and is that what “Flow Log Search Window” uses?
-What makes FireMon count a rule as logging enabled, since all 325 show “Disabled or Logging Disabled”?
-
-Happy to jump on a call whenever works for you.
+This adds the LTM tenant ID ff355289-721e-4dd7-a663-afec62ab9d54 to the existing Tenant ID Profile countryfinancial.com in Zscaler Internet Access PROD, to allow access to the LTM-hosted Performance Delivery Dashboard replacing the current Excel-based SLA tracking. The change is scoped to a single tenant within the existing profile, so tenant restrictions remain enforced for all other external tenants and no category or URL policy is modified. Two items to confirm. Please verify the tenant ID matches what LTM provided, as an incorrect GUID would either fail to grant access or permit an unintended tenant. Please also confirm LTM is an approved third party with vendor security review completed, since permitting their tenant allows COUNTRY users to authenticate into an externally controlled environment.
