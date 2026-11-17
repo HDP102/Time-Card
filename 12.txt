@@ -1,5 +1,23 @@
-Additional finding: the Service Provider Metadata generated under Access > Authentication Servers lists the AssertionConsumerService Location as https://v50secapl019.countrylan.com/securitymanager/api/saml/logout instead of /securitymanager/api/saml/SSO. Okta is configured to post to /saml/SSO. Could this mismatch cause FireMon to reject some SAML responses, and how do we correct the generated ACS value? Also, Max Authentication Age is set to 120 minutes. Could assertions from an older Okta session be rejected and cause the loop back to the login page?
+Hi Jonathan, here’s the FireMon platform list from our call. Level 2 = we see the rules (attestation), Level 3 = we also get hit counts (cleanup). Since ePayments is our PCI app, I’m starting with Azure.
 
-Updated message to Ben:
+Onboarded, need usage turned on:
+Azure Firewall: rules working. Turned on log monitoring this morning and testing it. Also have a ticket open with FireMon
+Cisco ASA VPN: rules working, needs logs sent to FireMon
+Cisco IOS routers: rules working, usage to confirm with FireMon and Sid
+Cisco APIC: rules working, usage to set up
+Zscaler ZIA: rules working, needs a log feed from Zscaler, will work with Aksa
 
-Hi Ben, Jonathan pointed me your way on a FireMon SSO issue. SAML login to FireMon (v50secapl019) works most of the time, but it often sends us back to the FireMon login page and we have to click it again. Okta logs show successful auth, so it’s likely on the FireMon side. Could you help me confirm a few things on the Okta app (countrypassport_firemon_1)? What’s our Okta session lifetime (FireMon rejects logins older than 120 minutes), does the active signing cert fingerprint match 5D:51:00:89:83:2D:FA:F1:6B:23:D0:D4:55:6A:E1:2F:11:37:17:1D, and are the attribute names exactly firstname, lastname, email and role?
+Onboarded, rules only:
+Cisco Nexus: FireMon doesn’t do usage on Nexus
+Azure NSGs: checking with FireMon if usage is supported
+
+To decide:
+F5: unlicensed right now, keep only if it’s tied to ePayments
+ASA B2B firewalls: need to check if they’re in FireMon
+
+Not onboarding:
+Silver Peak: rules only, no hit counts
+Illumio: extra license cost and doesn’t help cleanup. Rick extended our license to 11/25, so I’ll bring it up at the team meeting
+Check Point: decommissioned, removing once Nithin’s export is done
+
+Next I’m mapping what sits in front of ePayments and checking with FireMon which modules we’re licensed for (recertification, automation).
