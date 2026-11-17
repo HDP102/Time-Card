@@ -1,30 +1,27 @@
-Victor, FYI: I’m requesting an internal PG&E CA certificate for the MEA account-disable integration (CN APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com), since the Entra registration is under APP-1593. PKI may check with you as the app’s IT SME.
 
+Identity Provider Metadata
+<?xml version="1.0" encoding="UTF-8"?><md:EntityDescriptor entityID="http://www.okta.com/exkp6qzs3155hBXXW697" xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"><md:IDPSSODescriptor WantAuthnRequestsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"><md:KeyDescriptor use="signing"><ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#"><ds:X509Data><ds:X509Certificate>MIIDrjCCApagAwIBAgIGAZVDLLM0MA0GCSqGSIb3DQEBCwUAMIGXMQswCQYDVQQGEwJVUzETMBEG
+A1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzENMAsGA1UECgwET2t0YTEU
+MBIGA1UECwwLU1NPUHJvdmlkZXIxGDAWBgNVBAMMD2NvdW50cnlwYXNzcG9ydDEcMBoGCSqGSIb3
+DQEJARYNaW5mb0Bva3RhLmNvbTAeFw0yNTAyMjYxNjUxMzdaFw0zNTAyMjYxNjUyMzdaMIGXMQsw
+CQYDVQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzEN
+MAsGA1UECgwET2t0YTEUMBIGA1UECwwLU1NPUHJvdmlkZXIxGDAWBgNVBAMMD2NvdW50cnlwYXNz
+cG9ydDEcMBoGCSqGSIb3DQEJARYNaW5mb0Bva3RhLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEP
+ADCCAQoCggEBANwohTWWeGI1wNhWUPXPBlDGGMqbV0/urYfdfVsiDCXWut/zSWW7XsLLnpbfmpJH
+4yBIlaV8YNC1ZXIgjn4UFbHPXXrlVToxqLsQ7BVq1/XQKcfEIhq64FmyZku4dQ4Mom2Pd0UtKnCS
+FRtZ4uW7MGexYCDJ/K6A2+TD5RVxv2XboyGrCZLcIs8jj50itIfipgsT9UjqSBBYjwMxpLvgMiPu
+71UF2XQoEPekjc+2rc27Nv/Xvbm4cM+t37HGelLl7FX2WdkaSnHISmdTrwUPr+p6LCcSDNPEqzE7
+Nac7kgC5bhwMLP1IJBx1/JoZys/z8lmKRN+8Lro2II6TkBnVEiECAwEAATANBgkqhkiG9w0BAQsF
+AAOCAQEAVNUmc53+vkYAJ/u3oc0L8MCCax1weDkZRkHisvDkzl4stTKqdQKJ4cNk3YXgje/h6k4K
+FgyHPujbp+iIitF7vrGJFafYtehRnaktBilpdngWqvGhW7PK2dx0+HC5TyV7gBJ2Ytur4XkivUtG
+BYnd/HsErr+r9v1wrgW7Vw2Brgl2i2f0ALW5UwJqlPHOoFyahL7o0AufqfhJX6EykYBRAoMlLRXX
+2RwY2SpozvF0Y5ogmG9zxJA19/+JpE5xyn9K1tRNBY1KAPJluC/x1V1S1ls040wtmFdsstf2sKzQ
+iRAKKQrd7GS2IGwjbux+4T90mhsT+MqZY/QcD34TrwgP7A==</ds:X509Certificate></ds:X509Data></ds:KeyInfo></md:KeyDescriptor><md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat><md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</md:NameIDFormat><md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://identity.countrypassport.com/app/countrypassport_firemon_1/exkp6qzs3155hBXXW697/sso/saml"/><md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://identity.countrypassport.com/app/countrypassport_firemon_1/exkp6qzs3155hBXXW697/sso/saml"/></md:IDPSSODescriptor></md:EntityDescriptor>
 
-$o = Get-ChildItem "$env:LOCALAPPDATA\Programs\Git" -Recurse -Filter openssl.exe -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName
-Set-Alias openssl $o
-openssl version
-
-cd C:\Users\H2PR\certs\mea-prod
-openssl req -new -sha256 -newkey rsa:4096 -nodes -keyout nps_fw_mea_prod.key -out nps_fw_mea_prod.csr -subj "/C=US/ST=California/L=Oakland/O=Pacific Gas and Electric Company/OU=Production/CN=APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com" -addext "subjectAltName=DNS:APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com"
-
-openssl req -in nps_fw_mea_prod.csr -noout -subject
-icacls nps_fw_mea_prod.key /inheritance:r /grant:r "${env:USERNAME}:(R)"
-
-
-Here’s the whole list, in order:
-
-Generate the CSR. Paste the PowerShell command from my last message into your terminal. It creates two files in C:\Users\H2PR\certs\mea-prod\: the .key (keep it private) and the .csr (you’ll upload that).
-Ask Swapnil who to list as the two contacts (I’d suggest him and Rey):
-
-Swapnil, I’m requesting the prod certificate for the MEA integration from PKI. They need two accountable contacts for expiry alerts. OK to list you and Rey?
-
-Give Victor the heads-up from my last message, since the certificate is under APP-1593.
-Submit the request in the Keyfactor portal (https://pgecerts.cloud.pge.com/Keyfactorportal): upload the .csr, pick the PGE Server template, and add the two contacts.
-When the signed .crt comes back, save it as nps_fw_mea_prod.crt in the same folder and send it to Ashish for the prod app registration.
-When Ashish returns the prod client ID, send it to me and I’ll fill in the prod settings in mea_disable.py.
-
-If the portal asks something you’re unsure about, screenshot it and send it to me.
-
-
-Get-Content C:\Users\H2PR\certs\mea-prod\nps_fw_mea_prod.csr | Set-Clipboard
+Service Provider Metadata
+<?xml version="1.0" encoding="UTF-8"?><md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="https://v50secapl019.countrylan.com/sp">
+    <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://v50secapl019.countrylan.com/securitymanager/api/saml/logout" ResponseLocation="https://v50secapl019.countrylan.com/securitymanager/api/saml/logout"/>
+        <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://v50secapl019.countrylan.com/securitymanager/api/saml/logout" index="1"/>
+    </md:SPSSODescriptor>
+</md:EntityDescriptor>
