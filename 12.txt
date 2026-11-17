@@ -1,7 +1,1 @@
-Hi Giuseff, a follow-up from our team meeting today.
-
-We have Azure onboarded at both the tenant level (the “Azure” management station) and the subscription level (the 7 subscription stations). Log Monitoring was enabled on the root “Azure” station about one to two weeks ago and shows healthy, and I enabled it on the Shared Services subscription this morning. Should Log Monitoring be enabled at the root, at each subscription, or both? And could having both affect usage?
-
-Our team was able to pull hit count reports for these firewalls about three months ago. We’re not sure what changed. It could be the upgrade, or a setting lost when we reintegrated Azure and the subscription management stations were discovered under it. Either way, we aren’t getting hit counts now.
-
-We need usage working for our end of year rule review. Could you send us a list of everything needed to get Azure fully working (normalization, usage, permissions and log settings) so we can work through it on our side?
+Hey Seth, we’re looking to onboard the B2B ASAs into FireMon so we can use it for rule review and cleanup. Could you send me the names and management IPs for the B2B ASAs? Nithin mentioned you have some test or sandbox ones, so I’d like to start with those and then move to prod. Also, would z_firemon work for logging into them, or is there a different account we should use? Thanks!
