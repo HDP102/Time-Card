@@ -1,27 +1,5 @@
+Additional finding: the Service Provider Metadata generated under Access > Authentication Servers lists the AssertionConsumerService Location as https://v50secapl019.countrylan.com/securitymanager/api/saml/logout instead of /securitymanager/api/saml/SSO. Okta is configured to post to /saml/SSO. Could this mismatch cause FireMon to reject some SAML responses, and how do we correct the generated ACS value? Also, Max Authentication Age is set to 120 minutes. Could assertions from an older Okta session be rejected and cause the loop back to the login page?
 
-Identity Provider Metadata
-<?xml version="1.0" encoding="UTF-8"?><md:EntityDescriptor entityID="http://www.okta.com/exkp6qzs3155hBXXW697" xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"><md:IDPSSODescriptor WantAuthnRequestsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"><md:KeyDescriptor use="signing"><ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#"><ds:X509Data><ds:X509Certificate>MIIDrjCCApagAwIBAgIGAZVDLLM0MA0GCSqGSIb3DQEBCwUAMIGXMQswCQYDVQQGEwJVUzETMBEG
-A1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzENMAsGA1UECgwET2t0YTEU
-MBIGA1UECwwLU1NPUHJvdmlkZXIxGDAWBgNVBAMMD2NvdW50cnlwYXNzcG9ydDEcMBoGCSqGSIb3
-DQEJARYNaW5mb0Bva3RhLmNvbTAeFw0yNTAyMjYxNjUxMzdaFw0zNTAyMjYxNjUyMzdaMIGXMQsw
-CQYDVQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzEN
-MAsGA1UECgwET2t0YTEUMBIGA1UECwwLU1NPUHJvdmlkZXIxGDAWBgNVBAMMD2NvdW50cnlwYXNz
-cG9ydDEcMBoGCSqGSIb3DQEJARYNaW5mb0Bva3RhLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEP
-ADCCAQoCggEBANwohTWWeGI1wNhWUPXPBlDGGMqbV0/urYfdfVsiDCXWut/zSWW7XsLLnpbfmpJH
-4yBIlaV8YNC1ZXIgjn4UFbHPXXrlVToxqLsQ7BVq1/XQKcfEIhq64FmyZku4dQ4Mom2Pd0UtKnCS
-FRtZ4uW7MGexYCDJ/K6A2+TD5RVxv2XboyGrCZLcIs8jj50itIfipgsT9UjqSBBYjwMxpLvgMiPu
-71UF2XQoEPekjc+2rc27Nv/Xvbm4cM+t37HGelLl7FX2WdkaSnHISmdTrwUPr+p6LCcSDNPEqzE7
-Nac7kgC5bhwMLP1IJBx1/JoZys/z8lmKRN+8Lro2II6TkBnVEiECAwEAATANBgkqhkiG9w0BAQsF
-AAOCAQEAVNUmc53+vkYAJ/u3oc0L8MCCax1weDkZRkHisvDkzl4stTKqdQKJ4cNk3YXgje/h6k4K
-FgyHPujbp+iIitF7vrGJFafYtehRnaktBilpdngWqvGhW7PK2dx0+HC5TyV7gBJ2Ytur4XkivUtG
-BYnd/HsErr+r9v1wrgW7Vw2Brgl2i2f0ALW5UwJqlPHOoFyahL7o0AufqfhJX6EykYBRAoMlLRXX
-2RwY2SpozvF0Y5ogmG9zxJA19/+JpE5xyn9K1tRNBY1KAPJluC/x1V1S1ls040wtmFdsstf2sKzQ
-iRAKKQrd7GS2IGwjbux+4T90mhsT+MqZY/QcD34TrwgP7A==</ds:X509Certificate></ds:X509Data></ds:KeyInfo></md:KeyDescriptor><md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat><md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</md:NameIDFormat><md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://identity.countrypassport.com/app/countrypassport_firemon_1/exkp6qzs3155hBXXW697/sso/saml"/><md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://identity.countrypassport.com/app/countrypassport_firemon_1/exkp6qzs3155hBXXW697/sso/saml"/></md:IDPSSODescriptor></md:EntityDescriptor>
+Updated message to Ben:
 
-Service Provider Metadata
-<?xml version="1.0" encoding="UTF-8"?><md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="https://v50secapl019.countrylan.com/sp">
-    <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
-        <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://v50secapl019.countrylan.com/securitymanager/api/saml/logout" ResponseLocation="https://v50secapl019.countrylan.com/securitymanager/api/saml/logout"/>
-        <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://v50secapl019.countrylan.com/securitymanager/api/saml/logout" index="1"/>
-    </md:SPSSODescriptor>
-</md:EntityDescriptor>
+Hi Ben, Jonathan pointed me your way on a FireMon SSO issue. SAML login to FireMon (v50secapl019) works most of the time, but it often sends us back to the FireMon login page and we have to click it again. Okta logs show successful auth, so it’s likely on the FireMon side. Could you help me confirm a few things on the Okta app (countrypassport_firemon_1)? What’s our Okta session lifetime (FireMon rejects logins older than 120 minutes), does the active signing cert fingerprint match 5D:51:00:89:83:2D:FA:F1:6B:23:D0:D4:55:6A:E1:2F:11:37:17:1D, and are the attribute names exactly firstname, lastname, email and role?
