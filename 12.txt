@@ -1,1 +1,6 @@
-This adds bidirectional access between C2APP728, C2APP729, c1app589 and c1app590 and np-database-sql-051.database.windows.net to support the Driver IQ database migration from on-premises SQL to Azure SQL, implemented in Illumio as an unmanaged workload at 10.194.32.79 with labels A: PolicyWriter/PolicyPro, E: Development, R: SQL, Database, L: Azure. The scope is Development only and limited to four named application servers, which keeps exposure contained. Three items to confirm before implementation. The Service column is blank on both rows, so please confirm the rule will be scoped to TCP 1433 only rather than built without a port restriction. The return direction from the database to the four application servers is not typical for client-initiated SQL traffic, as responses return on the established session, so please confirm whether that row is genuinely required or can be dropped. Finally, please confirm the 10.194.32.79 address corresponds to a Private Endpoint for this Azure SQL instance, as the hostname otherwise resolves to a public endpoint.
+Hi Rick and Dri,
+
+Quick update: after talking with our team, we do want to fully onboard Illumio onto FireMon. Usage and hit counts are the priority for us, since we need them for our end of year rule cleanup. We’d like to get this done as soon as possible. Let me know what you need from us.
+
+Thanks,
+Hardik
