@@ -1,7 +1,1 @@
-To: PKICertificateSupport@pge.com
-Subject: Pending CSR approval: APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com
-
-Hi PKI team, I submitted a CSR in Keyfactor (template PGE Server, AMPS APP-1593) for the Entra ID client certificate used by NPS Firewall Automation to call the MEA account-disable API. Production is waiting on it. Could you review and approve it, or let me know if anything else is needed?
-
-Thanks,
-Hardik Patel
+This adds an extra-scope rule to the A: Tableau - v10.4.3 (PCE_Local) | E: Test ruleset permitting 168.63.129.16 to reach the two Tableau Server TEST Azure VMs on TCP 443, so that Azure load balancer health probes can reach the backend pool. The source is Azure’s fixed platform address for health probes, the destination is limited to two named workloads, the service is a single encrypted port and the scope is Test only, so the exposure is minimal and the change is appropriate as written. One note for consistency: the source object is labelled E: Production while the ruleset and destination workloads are E: Test. This has no practical effect here, since the address is an Azure platform endpoint rather than a workload, but please confirm the Azure Wire Server object is labelled consistently so that Production-scoped objects are not referenced from Test rulesets in future changes.
