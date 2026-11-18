@@ -1,5 +1,1 @@
-No, it’s not a TLS server cert. It’s a client-authentication cert our script uses to sign its token request to Entra ID (OAuth client credentials with a certificate). Nothing terminates TLS with it, and there’s no F5 VIP or DNS record behind it.
-
-The CN/DNS name follows the Azure SSO team’s required format for Entra ID OAuth clients: {App ID}-{Application Name}.EntraID.AuthN.pge.com (per the “PG&E Entra ID Client Credential OAuth Flow” wiki, Abhishek Chauhan’s page). Prod requires it to be signed by the internal PG&E CA.
-
-I picked the PGE Server template.
+Hot makes sense. It’s self hosted on two Azure VMs in North Central: the app server v50secapl019 (10.192.24.123) and the data collector V50SECAPL008 (10.192.24.52), both in prod-rg-appliances-01. The collector is what pulls from Azure. One thing to keep in mind is these servers don’t have general outbound internet, so the storage account would probably need a private endpoint or some other private path for the collector to reach it.
