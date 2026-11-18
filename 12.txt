@@ -1,1 +1,7 @@
-Hey Walker, Jonathan pointed me your way. We’re trying to get rule hit counts from our Azure Firewalls into FireMon for our year end rule review, and we’re not getting any data right now. FireMon says it needs to read the firewall logs from a storage account. When I looked at ncus-fwl-hub, the diagnostic settings only send to Log Analytics and the Splunk event hub, with no storage destination. I haven’t checked scus-fwl-hub yet, but it would probably need the same. Hit counts were working a few months ago, so something may have changed along the way. Would you be able to help us look into it and figure out the right approach on the Azure side?
+Hi Scott, Swapnil suggested I reach out to you. On Monday I submitted a CSR in Keyfactor for a prod certificate, and it’s showing as pending:
+
+CN: APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com
+Template: PGE Server, AMPS APP-1593
+Purpose: Entra ID client certificate for NPS Firewall Automation to call the MEA account-disable API in prod
+
+I also emailed PKICertificateSupport on Tuesday. Who should I work with to get it reviewed and approved? Production is waiting on it.
