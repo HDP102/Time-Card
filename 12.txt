@@ -1,7 +1,2 @@
-Hi Scott, Swapnil suggested I reach out to you. On Monday I submitted a CSR in Keyfactor for a prod certificate, and it’s showing as pending:
-
-CN: APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com
-Template: PGE Server, AMPS APP-1593
-Purpose: Entra ID client certificate for NPS Firewall Automation to call the MEA account-disable API in prod
-
-I also emailed PKICertificateSupport on Tuesday. Who should I work with to get it reviewed and approved? Production is waiting on it.
+Hi Hardik, sure I can take a look for you. My guess is those are going to a LAWS and a Splunk index. Splunk would be your best best if FireMon needs data from the whole year. Most of our log analytics workspaces only have 90 days of retention.
+ 
