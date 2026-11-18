@@ -1,2 +1,1 @@
-Hi Hardik, sure I can take a look for you. My guess is those are going to a LAWS and a Splunk index. Splunk would be your best best if FireMon needs data from the whole year. Most of our log analytics workspaces only have 90 days of retention.
- 
+Thanks Walker, that’s helpful. The catch is FireMon can’t pull from Splunk or Log Analytics, it only reads the logs from a storage account, so we’d need that set up for FireMon to collect hit counts going forward. Good call on Splunk for the full year of history though, that could cover our year end review in the meantime. One thing I noticed on ncus-fwl-hub is a warning that the event hub prodss-firewall01 can’t be found under ProdSSSplunk, so could you also check that the logs are still making it to Splunk?
