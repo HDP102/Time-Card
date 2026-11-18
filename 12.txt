@@ -1,7 +1,3 @@
-Hello Hardik,
- 
-Please try increasing the Max Authentication Age in FireMon from 120 to 600 minutes (or to at least the length of your Okta global session lifetime). The Okta session limit should be equal to or shorter than FireMon’s value, otherwise FireMon may reject assertions from older Okta sessions and send users back to the login page.
-Once changed, please test SAML login again and let us know whether the loop still occurs.
-Best Regards,
-Pavan Sabbavarapu
-FireMon Product Support
+Hi Pavan, thanks. I’ve increased Max Authentication Age from 120 to 600 minutes. For reference, our Okta global session has no maximum lifetime, only a 2-hour idle timeout. Before making the change, I captured a HAR file of the login, which is with our Okta admin, and I can share it here if useful.
+
+Two other things we noticed: the browser console shows two errors from main.4d93d9caba967807.js where an inline event handler is blocked by the Content Security Policy (screenshot attached). Also, the generated Service Provider Metadata lists the AssertionConsumerService location as /securitymanager/api/saml/logout instead of /saml/SSO. Could either of these contribute to the loop? I’ll test the login over the next couple of days and report back.
