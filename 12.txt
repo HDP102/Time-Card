@@ -1,1 +1,6 @@
-nps_fw_mea_prod.crt
+Hi Ashish, attached is the CA-signed certificate for the prod Entra app registration (MEA account-disable integration):
+
+CN: APP-1593-NPSFirewallAutomation.EntraID.AuthN.pge.com
+Issued by PGE Issuing CA 1, valid 11/18/2026–11/17/2028
+
+Can you create the prod app registration with this cert and send me the client ID, tenant ID and scope? Brindha will need the client ID for the prod JWT policy. Thanks!
