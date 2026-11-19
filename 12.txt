@@ -1,10 +1,15 @@
-Totally agree, I’ll push back on FireMon about Entra ID and see if there’s a roadmap or workaround. If it turns out to be a hard limitation, would an exception be doable? The account would be dedicated to just the firewall logs, private endpoint only, with about 7 days retention, and from their docs FireMon pulls the keys through the service principal using listKeys rather than storing a static key. And yes, if you can take a quick look for an existing one first, that’d be great.
+Hi Swapnil, here’s the MEA status:
 
-Hi Giuseff, thanks, this is very helpful. A few follow-ups:
+Completed
 
-Child devices: when you say enable Log Monitoring on the child devices, do you mean the subscription management stations, or every discovered Azure device (we have about 2,400)? We want to avoid enabling it on devices that don’t need it.
-Authentication: our cloud team flagged that storage account key access is against our security baseline and only allowed by exception. Is Entra ID (RBAC) authentication for storage on FireMon’s roadmap, or is there an existing RFE we can add our vote to?
-How keys are used: does FireMon retrieve the storage account keys dynamically through the service principal (listKeys) each time, or does it store a key? That will help us with the exception request if we need one.
+Non-prod Entra app registration (Ashish, 11/6)
+MuleSoft JWT policy in non-prod/QA (Brindha)
+End-to-end QA test: Postman 11/9, our script 11/10, both 200 OK; KXYB and DUL8 disabled (confirmed by Hareesh)
+QA testing sign-off provided to Brindha for the prod CRQ
+Prod certificate issued by PKI (11/18, valid to 11/17/2028) and sent to Ashish today
+MuleSoft prod CRQ approvals in place (Brindha)
 
-Thanks,
-Hardik
+Pending
+
+Prod Entra app registration and client ID: Ashish (Azure SSO). I sent the cert today and have had no response. This is the only blocker: Brindha can’t deploy tomorrow without the client ID.
+After that: Brindha adds the prod client ID to the prod JWT policy, and I run a prod token test and confirm.
