@@ -1,4 +1,10 @@
-Hey Walker, FireMon got back to me with the details. They only need the newer firewall log categories (Network Rule, Application Rule, NAT Rule), not the legacy ones. The FireMon data collector V50SECAPL008 is what reads the storage account. One thing to note: FireMon authenticates with the storage account keys, so shared key access needs to stay enabled, since they don’t support Entra ID yet. One storage account for both firewalls is fine on their side. Retention only needs to be a few days since FireMon pulls the data in, so something like 7 days should give us plenty of buffer. Let me know if any of that is a problem on your end.
+Totally agree, I’ll push back on FireMon about Entra ID and see if there’s a roadmap or workaround. If it turns out to be a hard limitation, would an exception be doable? The account would be dedicated to just the firewall logs, private endpoint only, with about 7 days retention, and from their docs FireMon pulls the keys through the service principal using listKeys rather than storing a static key. And yes, if you can take a quick look for an existing one first, that’d be great.
 
+Hi Giuseff, thanks, this is very helpful. A few follow-ups:
 
-Thanks Giuseff, this is very helpful. For “child devices”, do you mean the subscription management stations, or every discovered Azure device (we have about 2,400)? Just want to avoid enabling it on devices that don’t need it.
+Child devices: when you say enable Log Monitoring on the child devices, do you mean the subscription management stations, or every discovered Azure device (we have about 2,400)? We want to avoid enabling it on devices that don’t need it.
+Authentication: our cloud team flagged that storage account key access is against our security baseline and only allowed by exception. Is Entra ID (RBAC) authentication for storage on FireMon’s roadmap, or is there an existing RFE we can add our vote to?
+How keys are used: does FireMon retrieve the storage account keys dynamically through the service principal (listKeys) each time, or does it store a key? That will help us with the exception request if we need one.
+
+Thanks,
+Hardik
