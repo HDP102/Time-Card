@@ -1,11 +1,13 @@
-Got it, easy. All of our resources are on private endpoints when/where possible. Since the collector is running in norcentprodvnet1 it shouldn't have any issues reaching the storage account via private endpoint.
- 
-I assume the collector needs a service principal for auth?
- 
-Where do you want that storage account?
-I assume it should be tagged/billed to Security Control Management? (CI18510)?
-If you need a service principal let me know.
-For this, I'd just stick with one storage account in NCUS and have all Azure Firewalls send to it
-One blob container for all or separate containers for each?
-Will you or anyone else need the ability to download the logs from the storage account, or do you just want to keep that locked down to the SP used by the FireMon collector?
+Hi Giuseff, thanks for the documentation. Our cloud team is going to add a blob storage account (hot tier, going forward only, on a private endpoint) as a diagnostic setting destination on our Azure Firewalls, ncus-fwl-hub and scus-fwl-hub. A few things so we set it up right:
+
+Log categories: our firewalls currently log the newer categories (Azure Firewall Network Rule, Application Rule, NAT Rule). Does FireMon read those, or does it need the “Legacy Azure Diagnostics” ones? We’d like to send only what FireMon needs.
+Which server reads it: is it the data collector (V50SECAPL008) or the app server (v50secapl019) that reads from the storage account? We want to make sure it can reach the private endpoint.
+Authentication: the documentation lists the listKeys permission. Does FireMon use storage account keys, meaning shared key access must stay enabled, or can it read with Entra ID (Storage Blob Data Reader) only?
+One storage account: we plan to use one storage account in North Central US for both firewalls. Is that supported, and how do we set it up if the storage account is in a different subscription than a firewall? Is that what “Use Alternate Subscription ID” is for?
+FireMon settings: what goes in the “Storage Accounts” field (account name, container, or resource ID)?
+Where to enable it: Log Monitoring is on at the root “Azure” management station and on the Shared Services subscription. Should it be enabled at the root, each subscription, or both?
+Retention: how long does the data need to stay in storage, or does FireMon keep the usage data once it’s read?
+NSGs: for our NSGs, can FireMon read the NSG rule counter logs and VNet flow logs from the same storage account?
+
+Device packs: you recommended deleting Azure and uploading the device packs again. Could you send the latest Azure device pack files? We don’t have them on our side anymore. Also, can you clarify the steps: do we upload the new packs over the existing ones, delete the packs first, or delete the Azure management stations? We want to avoid losing our existing Azure devices and revision history. If it’s easier, we can do it together on a call.
  
