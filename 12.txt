@@ -1,1 +1,13 @@
-Hey Nithin, before we set anything new up I wanted to check with you first. I talked with Walker on the cloud team about getting Azure Firewall hit counts into FireMon. He suggested adding a blob storage account as a new destination on the firewall diagnostic settings, going forward only, since FireMon reads the logs from storage and not from Log Analytics or Splunk. Right now ncus-fwl-hub only sends to Log Analytics and the Splunk event hub. Since Aksa said hit counts were working a few months ago, do you know where FireMon was pulling the logs from before? If there was a storage account or another setup that got changed or removed, I’d rather put that back than build something new.
+Hi Giuseff, thanks for the documentation. Our cloud team is going to add a blob storage account (hot tier, going forward only) as a diagnostic setting destination on our Azure Firewalls, ncus-fwl-hub and scus-fwl-hub. A few things so we set it up right:
+
+Log categories: our firewalls currently log the newer categories (Azure Firewall Network Rule, Application Rule, NAT Rule). Does FireMon read those, or does it need the “Legacy Azure Diagnostics” ones? We’d like to send only what FireMon needs.
+Network access: which FireMon server reads the storage account, the data collector (V50SECAPL008) or the app server (v50secapl019)? Our servers don’t have general outbound internet, so we’re planning a private path to the storage account.
+FireMon settings: what should go in the “Storage Accounts” field (account name, container, or resource ID)? If the storage account is in a different subscription than the firewall, is that what “Use Alternate Subscription ID” is for?
+Where to enable it: Log Monitoring is on at the root “Azure” management station and on the Shared Services subscription. Should it be enabled at the root, each subscription, or both?
+Retention: how long does the data need to stay in storage, or does FireMon keep the usage data once it’s read?
+NSGs: for our NSGs, can FireMon read the NSG rule counter logs and VNet flow logs from the same storage account?
+
+Device packs: you recommended deleting Azure and uploading the device packs again. Could you send the latest Azure device pack files? We don’t have them on our side anymore. Also, can you clarify the steps: do we upload the new packs over the existing ones, delete the packs first, or delete the Azure management stations? We want to avoid losing our existing Azure devices and revision history. If it’s easier, we can do it together on a call.
+
+Thanks,
+Hardik
