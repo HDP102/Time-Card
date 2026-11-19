@@ -1,4 +1,11 @@
-were getting usage before
+“Quick correction on my email from Tuesday. When I said we want to fully onboard Illumio, I didn’t mean we’re ready to buy. Like Jonathan said, we want to keep testing the POC to see if FireMon gives us what we need for Illumio, mainly hit counts and usage on our rules. If it does, we can talk pricing after that. Also, the year-end cleanup I mentioned is really our Azure firewalls, and that’s going through our support ticket with Giuseff, so it’s separate from Illumio.”
 
-Hi Jonathan, quick one on the Azure hit counts. FireMon confirmed they need the Azure Firewall logs in a blob storage account to read the hit counts. Since we were getting usage before, I checked with Nithin on what storage we used to use, but he doesn’t remember how it was set up and is fine with us building a new one. Walker recommended one storage account in North Central that both firewalls send to, going forward only, on a private endpoint, and just the rule logs to keep costs down. He asked if it should be billed to Security Control Management. Are you OK with that?
- 
+Then the asks:
+
+License: “Since we’re still testing, can the eval stay active past 11/25, including Illumio, while we finish the POC?”
+Normalization fix: “Rick, the overnight retrieval showed [X devices].” Fill in what the Illumio station showed.
+Next step: “What do we need to do to get hit counts working on Illumio so we can test that piece?”
+
+If Ryan’s quote comes up: “We’ll revisit pricing once we’ve confirmed it meets our needs.”
+
+Keep it short. Jonathan already made the point in his email, so you’re just confirming you’re on the same page and moving on to the next steps.
