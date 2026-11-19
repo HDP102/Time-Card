@@ -1,1 +1,25 @@
-For auth, FireMon already uses the service principal prod-sp-firemon for Azure, so we can reuse that. It just needs Storage Blob Data Reader and Reader and Data Access on the storage account. One thing I noticed in FireMon’s doc is that it lists the listKeys permission, so it may be using storage account keys, meaning shared key access would need to stay enabled on the account. I’m confirming that with FireMon. One storage account in NCUS works for me, but I thought diagnostic settings needed the storage account in the same region as the firewall. Would scus-fwl-hub be able to send to an NCUS account? For containers, I believe Azure creates them automatically per log category, so whatever it does by default should be fine. For billing, I’m checking with Jonathan and will confirm. And let’s keep access locked down to the FireMon SP for now. We can add read access for our team later if we need it for troubleshooting.
+Hey Hardik,
+ 
+To answer your questions:
+ 
+Log categories -  send the newer categories only, you don't need to enable legacy azure diagnostics.
+Which server reads it: - Data Collector only, the one pointing to the Azure Subscriptions.
+Authentication - Firemon needs the storage account keys and it must stay enabled. Entra ID is not supported for now.
+One storage account - That's correct, you can use one storage account for both Firewalls and you should use the "Alternate subscription ID" for this.
+
+FireMon settings: - The only important thing for FireMon is the name if you want to enter the specific name in "Storage Accounts", else, as the tooltip says, leave it blank and it will scan all storage accounts in the subscription.
+Where to enable it: Log Monitoring - Enable it both on the management station as well as the child devices.
+Retention - Once FireMon reads the data, it's pulled to the Security manager and populates the hit counts, 1-3 days should be enough for Firemon to pull this data. If you have any issues with servers communicating or crashing, that may not be enough time if you don't catch the problem on time.
+ 
+NSGs - Yes, FireMon can read both on the same storage account.
+ 
+Device packs: you cannot delete device packs, you should just upload the newer ones and they will be overwritten with the new ones.
+ 
+Attaching all of the Azure device packs again on this comment!
+Attachment(s)
+azure_vnet-2602.6.14.jar [supportcenter.firemon.com]
+azure_manager-2602.6.13.jar [supportcenter.firemon.com]
+azure_subscription-2602.6.15.jar [supportcenter.firemon.com]
+azure_subscription_provider-2602.6.18.jar [supportcenter.firemon.com]
+azure_firewall-2602.6.11.jar [supportcenter.firemon.com]
+
