@@ -1,29 +1,9 @@
-Hardik, can you check this documentation on Azure hit counters and make sure everything looks right on your end? 
+Giuseff Rivas (FireMon Support Center)
+
+Nov 19, 2026, 17:06 CST
+
+Hardik, based on a research I just finished, you can enable the log monitoring at the management station level and it should map the usage for your child devices accordingly, you don't need to enable it on the 2400 devices one at a time.
  
-https://docs.firemon.com/enterprise/Content/ADMINISTRATION/DEVICE/Devices/Microsoft/Configure_Hit_Counts.htm?tocpath=Administration%7CDevice%7CDevices%7CChoose%20a%20Device%20to%20Onboard%7CMicrosoft%20Azure%7C_____1 [docs.firemon.com]
+About the RBAC, this is a feature that's been requested at a high priority and it's currently being worked on, but this was just requested 8 days ago. ETA for this is unknown.
  
-I've been asking and checking documentation among back to back meetings, Hardik - I'm sorry for the late reply.
- 
-I also found this: 
- 
-Here is azure documentation on how to enable azure firewall logs
-https://learn.microsoft.com/en-us/azure/firewall/monitor-firewall?source=recommendations [learn.microsoft.com]
- 
-Please bee sure the destination table is a storage account.
- 
-Diagnostic settings enables the logs, while NSG Flow logs store those logs in a file where FireMon can read them.
- 
-To answer some of your questions, 
- 
-Should we reinstall the four Azure device packs now that the license is working, and will that fix the normalization error on ncus-fwl-hub? - Yes, try to reinstall/update the device packs.
- 
-Once it normalizes, is Hit Counters the right setting for Azure Firewall usage, or does it need a storage account or Log Analytics? Is legacy AzureDiagnostics mode supported?
-Hit counters should be the right setting.
- 
-What permissions does the service principal need for usage?
-Explained in the documentation shared.
- 
-For NSG rules, does usage require NSG flow logs, and is that what “Flow Log Search Window” uses?
-Explained in the documentation shared.
- 
- 
+How keys are used: FireMon retrieves the storage account access key dynamically via the Service Principal using the Azure Resource Manager listKeys API, you do not configure or store a static storage account key in FireMon. However, because listKeys returns a Shared Key for blob authentication, Allow storage account key access must remain enabled on the Storage Account.
