@@ -1,8 +1,1 @@
-Hi Rick,
-
-Yes, that would make sense. Our Azure VMs that run the Illumio VEN have the same hostname in both, so any Azure server with a VEN would show up as both an Azure asset and an Illumio workload with the same name. That covers a good portion of our Azure servers.
-
-Attached are the support files for the Azure management station. Let me know if you need anything else.
-
-Thanks,
-Hardik
+This creates an intra-scope allow rule in the A: ePension | E: Development ruleset permitting V50APPWIN4332 to reach V50DBSWIN504 using the SQL_DB Access service, following the migration of the ePension database from on-premises to Azure. The rule is intra-scope within a single application and environment, limited to Development, and covers one source and one destination, so the exposure is minimal. Two items to confirm before implementation. Please verify the SQL_DB Access service object resolves to TCP 1433 only, so the rule is not broader than the stated requirement. Please also confirm V50DBSWIN504 is the Azure-hosted database instance rather than the on-premises server being decommissioned, and that any legacy rule pointing at the retired host is removed once the migration is complete.
