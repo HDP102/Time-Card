@@ -1,15 +1,1 @@
-Hi Swapnil, here’s the MEA status:
-
-Completed
-
-Non-prod Entra app registration (Ashish, 11/6)
-MuleSoft JWT policy in non-prod/QA (Brindha)
-End-to-end QA test: Postman 11/9, our script 11/10, both 200 OK; KXYB and DUL8 disabled (confirmed by Hareesh)
-QA testing sign-off provided to Brindha for the prod CRQ
-Prod certificate issued by PKI (11/18, valid to 11/17/2028) and sent to Ashish today
-MuleSoft prod CRQ approvals in place (Brindha)
-
-Pending
-
-Prod Entra app registration and client ID: Ashish (Azure SSO). I sent the cert today and have had no response. This is the only blocker: Brindha can’t deploy tomorrow without the client ID.
-After that: Brindha adds the prod client ID to the prod JWT policy, and I run a prod token test and confirm.
+Outlook blocked the .crt attachment. I’ve attached the cert to the work order instead: REQ000004671431.
