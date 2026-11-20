@@ -62,13 +62,14 @@ PROFILES = {
         "CERT_FILE":    r"C:\Users\H2PR\certs\mea-lab\nps_fw_mea_lab.crt",
         "KEY_FILE":     r"C:\Users\H2PR\certs\mea-lab\nps_fw_mea_lab.key",
     },
-    "prod": {      # TBD - needs its own Entra app registration, certificate and CRQ
-        "MULESOFT_URL": "TBD",
-        "TENANT_ID":    "TBD",
-        "CLIENT_ID":    "TBD",
-        "SCOPE":        "TBD",
-        "CERT_FILE":    "TBD",
-        "KEY_FILE":     "TBD",
+    "prod": {      # Entra app "NPS Firewall Automation APP-1593 (S2S)", registered by Ashish 11/20/2026.
+                   # Cert: CA-signed by PGE Issuing CA 1, valid to 11/17/2028 - renew before then.
+        "MULESOFT_URL": "TBD",   # prod proxy URL from Brindha
+        "TENANT_ID":    "44ae661a-ece6-41aa-bc96-7c2c85a08941",   # prod tenant (differs from non-prod)
+        "CLIENT_ID":    "21d184ec-94cb-4288-81e6-28cac202b59a",
+        "SCOPE":        "21d184ec-94cb-4288-81e6-28cac202b59a/.default",   # token aud = client ID
+        "CERT_FILE":    r"C:\Users\H2PR\certs\mea-prod\nps_fw_mea_prod.crt",
+        "KEY_FILE":     r"C:\Users\H2PR\certs\mea-prod\nps_fw_mea_prod.key",
     },
 }
 VERIFY_TLS       = True
