@@ -5,11 +5,12 @@ Calls Entra ID only. It does NOT call MuleSoft or MEA, so no account is touched.
 Uses the same certificate login as mea_disable.py (put both files in the Escalation folder).
 
 One-time setup (also needed by mea_disable.py):
-    py -m pip install msal cryptography
+    py -m pip install msal cryptography truststore
 
 Run:
     py mea_token_test.py            show the token's claims
     py mea_token_test.py --raw      also print the token, to paste into Postman as {{jwt}}
+    py mea_token_test.py --env prod test the prod app registration instead of non-prod
 
 The token is a short-lived bearer credential (about an hour): don't save it in
 files, chats or git.
@@ -20,18 +21,16 @@ import json
 import sys
 from datetime import datetime
 
+import os
+if "--env" in sys.argv:                      # must be set before mea_disable loads its settings
+    os.environ["MEA_ENV"] = sys.argv[sys.argv.index("--env") + 1]
 import mea_disable as m
 
-# ── Non-prod values (Ashish / Brindha, 11/6/2026) ──
-m.TENANT_ID = "e84bb675-81b1-4f49-985b-3e2d77c6c94d"
-m.CLIENT_ID = "5035d019-f182-4373-85c9-bcb4040ea139"
-# PG&E pattern (MRAD wiki "Azure AD Client OAuth Client Authentication"): the app requests
-# a token for its OWN App ID URI, so aud = api://<our client ID>.
-# The api:// form needs an Application ID URI on the app (AADSTS500011 until Ashish sets it).
-# The bare client ID works without one. MuleSoft accepts both (Brindha, 11/6).
-m.SCOPE     = "5035d019-f182-4373-85c9-bcb4040ea139/.default"
-EXPECTED_AUD = ["5035d019-f182-4373-85c9-bcb4040ea139",
-                "api://5035d019-f182-4373-85c9-bcb4040ea139"]   # MuleSoft audience values
+# Tenant, client ID, scope and certificate come from mea_disable.py (ENVIRONMENT / PROFILES),
+# so both scripts always use the same values.
+# Audiences the MuleSoft JWT policy accepts (Brindha, 11/6): the bare client ID (what we get
+# with scope "<client ID>/.default") and api://<client ID> (needs an App ID URI on the app).
+EXPECTED_AUD = [m.CLIENT_ID, f"api://{m.CLIENT_ID}"]
 
 
 def claims(token):
@@ -41,10 +40,11 @@ def claims(token):
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--env", choices=["nonprod", "prod"], default="nonprod")
     ap.add_argument("--raw", action="store_true", help="print the token itself (for Postman)")
     args = ap.parse_args()
 
-    print(f"Tenant: {m.TENANT_ID}\nClient: {m.CLIENT_ID}\nScope:  {m.SCOPE}\n")
+    print(f"Env:    {m.ENVIRONMENT}\nTenant: {m.TENANT_ID}\nClient: {m.CLIENT_ID}\nScope:  {m.SCOPE}\n")
     try:
         token = m.entra_token()
     except SystemExit as e:
