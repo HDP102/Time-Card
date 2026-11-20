@@ -1,9 +1,8 @@
-Giuseff Rivas (FireMon Support Center)
+Hi Rick,
 
-Nov 19, 2026, 17:06 CST
+Yes, that would make sense. Our Azure VMs that run the Illumio VEN have the same hostname in both, so any Azure server with a VEN would show up as both an Azure asset and an Illumio workload with the same name. That covers a good portion of our Azure servers.
 
-Hardik, based on a research I just finished, you can enable the log monitoring at the management station level and it should map the usage for your child devices accordingly, you don't need to enable it on the 2400 devices one at a time.
- 
-About the RBAC, this is a feature that's been requested at a high priority and it's currently being worked on, but this was just requested 8 days ago. ETA for this is unknown.
- 
-How keys are used: FireMon retrieves the storage account access key dynamically via the Service Principal using the Azure Resource Manager listKeys API, you do not configure or store a static storage account key in FireMon. However, because listKeys returns a Shared Key for blob authentication, Allow storage account key access must remain enabled on the Storage Account.
+Attached are the support files for the Azure management station. Let me know if you need anything else.
+
+Thanks,
+Hardik
