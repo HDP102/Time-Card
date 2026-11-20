@@ -1,32 +1,6 @@
-Fill in the form like this:
+Brindha, the prod Entra app is registered. For the prod JWT policy:
 
-Work Type: Create new resources
+Audience: 21d184ec-94cb-4288-81e6-28cac202b59a,api://21d184ec-94cb-4288-81e6-28cac202b59a
+Tenant (prod is a different tenant from non-prod): 44ae661a-ece6-41aa-bc96-7c2c85a08941. The JWKS URL changes to https://login.microsoftonline.com/44ae661a-ece6-41aa-bc96-7c2c85a08941/discovery/v2.0/keys
 
-Summary:
-
-New storage account for Azure Firewall logs (FireMon rule usage) - per discussion with Walker Sasser
-
-Description:
-
-Please create a new storage account in North Central US to receive Azure Firewall rule logs for FireMon.
-
-Storage account:
-- Region: North Central US, private endpoint only (reachable from FireMon data collector V50SECAPL008 in norcentprodvnet1)
-- Access tier: Hot
-- Retention: about 7 days (lifecycle management rule)
-- Allow storage account key access: Enabled (requires Azure Policy exception, per Walker)
-- Billing/tag: Security Control Management (CI18510)
-
-Diagnostic settings:
-- Add a new diagnostic setting on ncus-fwl-hub and scus-fwl-hub that archives to this storage account
-- Categories: Azure Firewall Network Rule, Application Rule, NAT Rule (newer categories only, no legacy)
-- Leave the existing "Firewall Logging" diagnostic setting (Log Analytics and Event Hub) unchanged
-
-Access:
-- Grant service principal prod-sp-firemon Storage Blob Data Reader and Reader and Data Access on the storage account
-
-Additional Information:
-
-FireMon reads Azure Firewall rule hit counts from storage, which we need for rule cleanup and our year-end PCI DSS firewall rule review.
-
-Account key access is required because FireMon does not support Entra ID for storage yet (in progress on their side, no ETA). FireMon does not store a static key. It retrieves the key dynamically through the service principal using listKeys, so key rotation will not break it.
+Can you also send me the prod proxy URL?
