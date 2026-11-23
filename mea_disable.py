@@ -52,7 +52,7 @@ DRY_RUN          = True    # True = build and log the request, call nothing. Def
 # None of these values are secrets (IDs and URLs). The only secret is the private .key
 # file: it stays on the machine, never in git. Set MEA_CERT_FILE / MEA_KEY_FILE env vars
 # to point at the files on a server instead of these defaults.
-ENVIRONMENT      = "nonprod"   # "nonprod" (MuleSoft QA -> SailPoint QA) | "prod"
+ENVIRONMENT      = os.environ.get("MEA_ENV", "nonprod")   # or run with --env prod   # "nonprod" (MuleSoft QA -> SailPoint QA) | "prod"
 PROFILES = {
     "nonprod": {   # QA tested 11/9/2026 (KXYB, DUL8 disabled). Entra app: Ashish; JWT policy: Brindha
         "MULESOFT_URL": "https://api-ch-q.ss.pge.com/mea-udn-proxy-api/v1/accountdisable",   # QA (dev was api-ch-d.nonprod)
@@ -64,7 +64,7 @@ PROFILES = {
     },
     "prod": {      # Entra app "NPS Firewall Automation APP-1593 (S2S)", registered by Ashish 11/20/2026.
                    # Cert: CA-signed by PGE Issuing CA 1, valid to 11/17/2028 - renew before then.
-        "MULESOFT_URL": "TBD",   # prod proxy URL from Brindha
+        "MULESOFT_URL": "https://api-ch.ss.pge.com/mea-udn-proxy-api/v1/accountdisable",   # prod (Brindha, 11/23)
         "TENANT_ID":    "44ae661a-ece6-41aa-bc96-7c2c85a08941",   # prod tenant (differs from non-prod)
         "CLIENT_ID":    "21d184ec-94cb-4288-81e6-28cac202b59a",
         "SCOPE":        "21d184ec-94cb-4288-81e6-28cac202b59a/.default",   # token aud = client ID
