@@ -1,1 +1,103 @@
-This creates a new workload for V50APPWIN031 labelled R: App Server, A: Xtraction, E: Production, L: Azure, and adds an extra-scope rule to the A: Shared Database (PCE_Local) | E: Production ruleset permitting it to reach V50DBSWIN033 on TCP 1433, in support of standing up XTraction in Azure to close a reporting gap. The service is limited to a single encrypted SQL port, which is appropriate. Two items to confirm before implementation. The request specifies access in both directions, but SQL connections are client-initiated with responses returning on the established session, so please confirm whether the database to application direction is genuinely required or can be omitted. Please also confirm the destination is scoped to V50DBSWIN033 specifically rather than to the full Shared Database scope, so this Azure-hosted application server does not gain SQL access to every workload within that scope.
+Enable Illumio Usage
+Review Illumio documentation: Rule Hit Count and Rule Hit Count Report
+
+Illumio Requirements:
+PCE Version: SaaS 24.2.0 or later; On-prem 23.5.10 or later
+
+VEN Version: 23.2.30 or later
+
+Supported: up to 25k VENs, 75k total rules
+
+Rule count data retained 90 days; Last Hit timestamps retained for life of PCE
+
+Only active rules counted; essential rules (platform functions) excluded
+
+Maximum 100 rule IDs reported per flow; additional matches truncated
+
+Illumio Specifications:
+No Supercluster support
+
+Report includes active rule IDs + all deny rules
+
+Due to PCE policy optimization, some non-overlapping rules may have counters increment together
+
+VEN enablement uses label scopes similar to firewall co-existence and SecureConnect
+
+Illumio Rule Hit Count APIs
+Enable Rule Hit Count on a VEN:
+
+PUT api/v2/orgs/:xorg_id/sec_policy/draft/firewall_settings
+
+{
+
+"rule_hit_count_enabled_scopes":[[]]
+
+}
+
+Example — enable on specific label scopes (labels 7 and 12):
+
+{
+
+"rule_hit_count_enabled_scopes": [
+
+[
+
+{
+
+"label": {
+
+"href": "/orgs/1/labels/7"
+
+}
+
+},
+
+{
+
+"label": {
+
+"href": "/orgs/1/labels/12"
+
+}
+
+}
+
+]
+
+]
+
+}
+
+Commit/provision changes:
+
+POST /api/v2/orgs/:xorg_id/sec_policy
+
+{
+
+"update_description":"Enable rule hit count",
+
+"change_subset": {
+
+"firewall_settings": [
+
+{
+
+"href":"/orgs/1/sec_policy/draft/firewall_settings"
+
+}
+
+]
+
+}
+
+}
+
+Enable Rule Hit Count on a PCE:
+
+PUT /api/v2/orgs/:xorg_id/report_templates/rule_hit_count_report
+
+{
+
+"enabled": true
+
+}
