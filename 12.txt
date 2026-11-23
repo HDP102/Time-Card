@@ -1,1 +1,1 @@
-py mea_token_test.py --env prod
+Prod token test passed from our side: we get a valid token from the prod tenant and the audience matches the JWT policy. Ready to validate as soon as the deployment is done.
