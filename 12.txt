@@ -1,7 +1,1 @@
-Sounds good, Brindha. Ping me here when it’s deployed and I’ll validate right away:
-
-Token check from our side (Entra only)
-A call with no token, which should be rejected (confirms the proxy and JWT policy are live)
-One real disable call, once Hareesh confirms a prod test account. Hareesh, can you set one or two up?
-
-If the deployment finishes late tonight, I’ll do steps 1 and 2 then and step 3 tomorrow morning.
+This creates a new workload for V50APPWIN031 labelled R: App Server, A: Xtraction, E: Production, L: Azure, and adds an extra-scope rule to the A: Shared Database (PCE_Local) | E: Production ruleset permitting it to reach V50DBSWIN033 on TCP 1433, in support of standing up XTraction in Azure to close a reporting gap. The service is limited to a single encrypted SQL port, which is appropriate. Two items to confirm before implementation. The request specifies access in both directions, but SQL connections are client-initiated with responses returning on the established session, so please confirm whether the database to application direction is genuinely required or can be omitted. Please also confirm the destination is scoped to V50DBSWIN033 specifically rather than to the full Shared Database scope, so this Azure-hosted application server does not gain SQL access to every workload within that scope.
