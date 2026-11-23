@@ -1,1 +1,7 @@
-This adds an extra-scope rule to the A: Active Directory | E: Production ruleset permitting the OneTrust worker nodes, labelled R: Web and A: Data Privacy and Compliance Tool, to reach ten domain controllers on TCP 1433 from 10.192.50.0/26, to support data inventory scanning for identification and compliance purposes. Before implementation, please confirm the port and destination set, as TCP 1433 is SQL Server while the destinations are labelled R: Domain Controller, including the PDC. If OneTrust is intended to scan SQL instances, those instances should be the destinations rather than the domain controllers, and if the targets are genuinely the domain controllers then the required ports would be AD-related rather than 1433. Please also populate the Service column in the Firewall Access Change Details table so the approved port is recorded on the request itself rather than only in the description, and confirm that scanning access to the primary domain controller is approved by the Active Directory team.
+Sounds good, Brindha. Ping me here when it’s deployed and I’ll validate right away:
+
+Token check from our side (Entra only)
+A call with no token, which should be rejected (confirms the proxy and JWT policy are live)
+One real disable call, once Hareesh confirms a prod test account. Hareesh, can you set one or two up?
+
+If the deployment finishes late tonight, I’ll do steps 1 and 2 then and step 3 tomorrow morning.
