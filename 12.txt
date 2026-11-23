@@ -1,7 +1,2 @@
-Brindha, here’s how I’ll validate prod:
-
-Before your deployment: prod token test from our side (Entra only, touches no accounts).
-After deployment: a call with no token, which should be rejected (confirms the proxy and JWT policy are live).
-One real disable call through our script with a prod test account. Hareesh, can you set up one or two prod test accounts like KXYB/DUL8 in QA? After the test, please confirm the disable in SailPoint and re-enable them.
-
-Please send me the prod proxy URL once it’s deployed.
+Brinda: https://api-ch.ss.pge.com/mea-udn-proxy-api/v1/accountdisable
+ this will be the Prod proxy URL. 
