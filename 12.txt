@@ -1,26 +1,27 @@
+Health Check Results for Azure-COUNTRY Financial Production Shared Services Subscription
 GENERAL
  DEVICE LICENSED
  DC GROUP ASSIGNED
 A data collector group has been assigned to this device (V50SECAPL008.countrylan.com-Group)
 RETRIEVAL
  LAST RETRIEVAL
-Successfully retrieved configuration (Automatic) File count: 34. Last updated on 11/18/26 at 2:53:50 PM
+Successfully retrieved configuration (Manual) File count: 34. Last updated on 11/24/26 at 3:15:13 PM
  LAST REVISION
-The last revision for this device had a retrieval error
-Revision ID:  149785
-Type: Automatic Retrieval - On Change
-Date/Time: 11/24/2026 9:57 AM
-User: DC_automated
+The last revision status received for this device is not defined: SKIPPED
+Revision ID:  149793
+Type: Manual Retrieval
+Date/Time: 11/24/2026 10:15 AM
+User: id93590
 Change Count: 0
-Result: Retrieval Error
+Result: %%KEY_NOT_FOUND%%
 CHANGE DETECTION
  CHANGE MONITORING
 Enabled
  CHANGE DATA
-Changes were detected by an automatic retrieval
+Changes were retrieved by a manual retrieval instead of an automatic retrieval
 USAGE
  LOG MONITORING
-Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app 'aa6bd634-3d99-4f28-93c6-153d9ba72891'. Trace ID: 9104b2ae-edfa-49cf-a446-3fcf09680c00 Correlation ID: f4405c8f-6d5d-4446-993c-df262be236fd Timestamp: 2026-11-24 14:48:21Z. Last updated on 11/24/26 at 2:48:22 PM
+Enabled
  USAGE DATA
-Usage data has not been received for 2 days which exceeds the configured threshold in settings
-Logged Connections (Last 24 hours): 0
+Received as expected
+Logged Connections (Last 24 hours): 189400
