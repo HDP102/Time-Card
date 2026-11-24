@@ -1,64 +1,78 @@
-Mudrock, Leonard
-8:16 AM
-Login to Tufin PROD = 172.24.102.175
- 
-sudo su -
- 
-cd /opt/tufin/data/securechange/scripts/opt/PGE/scripts/SecureAPP_DNS_AMPS_Tenable/
- 
-1)
- 
-vi ServiceNowAPI.py
- 
-scroll down and look at before the line of "---- main program ------"
- 
-Look for ''' #REMOVE this line
- 
-scroll up a little
- 
-Look for '''REMOVE this line
- 
-save it :wq!
- 
- 
-2)
- 
-cp LastDesignValidationCheck2.py LastDesignValidationCheck.py
- 
-3)
- 
-cp ValidationClose2.py ValidationClose.py
- 
-=============================================
- 
-4)
- 
-crontab -e
- 
-Look for #40 01 * * * /opt/PGE/scripts/other/ServiceNowCloseCancel.sh &
- 
-remove first character = #
- 
-save it :wq!
- 
-=============================================
- 
-Later time.  Check logs of creating a ticket with a date stamped.
- 
-cd /opt/tufin/data/securechange/scripts/opt/PGE/logs
- 
-for example,
- 
--rw-r--r-- 1 root root  11260 Nov 24 07:17 output-141732_pge_automation.log
- 
-more output-141732_pge_automation.log
- 
-scroll down slowly and check everything ok.
-I will add latest files in GitHub.  Hybrid_... by Mudrock, Leonard
-Mudrock, Leonard
-8:22 AM
-I will add latest files in GitHub.  Hybrid_automation.py, LastDesignValidationCheck.py, and ValidationClose.py when I return to work from vacation on Dec 14.
-has context menu
+[12:44:30.314] Log Level: 2
+[12:44:30.399] SSH Resolver called for "ssh-remote+172.24.102.175", attempt 1
+[12:44:30.477] remote.SSH.useLocalServer = false
+[12:44:30.480] remote.SSH.useExecServer = true
+[12:44:30.483] remote.SSH.bindHost = {}
+[12:44:30.490] remote.SSH.showLoginTerminal = false
+[12:44:30.493] remote.SSH.remotePlatform = {}
+[12:44:30.496] remote.SSH.path = 
+[12:44:30.499] remote.SSH.configFile = 
+[12:44:30.506] remote.SSH.useFlock = true
+[12:44:30.510] remote.SSH.lockfilesInTmp = false
+[12:44:30.513] remote.SSH.localServerDownload = auto
+[12:44:30.519] remote.SSH.remoteServerListenOnSocket = false
+[12:44:30.530] remote.SSH.defaultExtensions = []
+[12:44:30.536] remote.SSH.defaultExtensionsIfInstalledLocally = []
+[12:44:30.546] remote.SSH.loglevel = 2
+[12:44:30.551] remote.SSH.enableDynamicForwarding = true
+[12:44:30.556] remote.SSH.enableRemoteCommand = false
+[12:44:30.560] remote.SSH.serverPickPortsFromRange = {}
+[12:44:30.563] remote.SSH.serverInstallPath = {}
+[12:44:30.565] remote.SSH.permitPtyAllocation = false
+[12:44:30.567] remote.SSH.preferredLocalPortRange = undefined
+[12:44:30.572] remote.SSH.useCurlAndWgetConfigurationFiles = false
+[12:44:30.575] remote.SSH.experimental.chat = true
+[12:44:30.579] remote.SSH.experimental.enhancedSessionLogs = true
+[12:44:30.581] remote.SSH.httpProxy = {"*":""}
+[12:44:30.584] remote.SSH.httpsProxy = {"*":""}
+[12:44:30.663] VS Code version: 1.147.0
+[12:44:30.666] Remote-SSH version: remote-ssh@0.128.0
+[12:44:30.668] win32 x64
+[12:44:30.761] SSH Resolver called for host: 172.24.102.175
+[12:44:30.763] Setting up SSH remote "172.24.102.175"
+[12:44:30.853] Using commit id "8a14f0cc1b08d531eb83255ea3764ae22aa932b5" and quality "stable" for server
+[12:44:30.864] Extensions to install: 
+[12:44:31.048] Install and start server if needed
+[12:44:53.394] Checking ssh with "C:\WINDOWS\system32\ssh.exe -V"
+[12:44:53.399] Got error from ssh: spawn C:\WINDOWS\system32\ssh.exe ENOENT
+[12:44:53.401] Checking ssh with "C:\WINDOWS\ssh.exe -V"
+[12:44:53.405] Got error from ssh: spawn C:\WINDOWS\ssh.exe ENOENT
+[12:44:53.406] Checking ssh with "C:\WINDOWS\System32\Wbem\ssh.exe -V"
+[12:44:53.410] Got error from ssh: spawn C:\WINDOWS\System32\Wbem\ssh.exe ENOENT
+[12:44:53.411] Checking ssh with "C:\WINDOWS\System32\WindowsPowerShell\v1.0\ssh.exe -V"
+[12:44:53.414] Got error from ssh: spawn C:\WINDOWS\System32\WindowsPowerShell\v1.0\ssh.exe ENOENT
+[12:44:53.415] Checking ssh with "C:\WINDOWS\System32\OpenSSH\ssh.exe -V"
+[12:44:54.363] > OpenSSH_for_Windows_9.5p2, LibreSSL 3.8.2
+
+[12:44:54.387] Running script with connection command: "C:\WINDOWS\System32\OpenSSH\ssh.exe" -T -D 61030 "172.24.102.175" sh
+[12:44:54.397] Generated SSH command: 'type "C:\Users\H2PR\AppData\Local\Temp\vscode-linux-multi-line-command-172.24.102.175-132080530.sh" | "C:\WINDOWS\System32\OpenSSH\ssh.exe" -T -D 61030 "172.24.102.175" sh'
+[12:44:54.399] Using connect timeout of 17 seconds
+[12:44:54.401] Terminal shell path: C:\WINDOWS\System32\cmd.exe
+[12:44:55.484] > 
+[12:44:55.488] Got some output, clearing connection timeout
+[12:44:55.495] > 
+[12:44:55.708] > 
+[12:44:57.442] > Corrupted MAC on input.
+> ssh_dispatch_run_fatal: Connection to 172.24.102.175 port 22: message authentication code incorrect
+[12:44:57.458] > The process tried to write to a nonexistent pipe.
+[12:44:57.710] > 
+[12:44:58.041] "install" terminal command done
+[12:44:58.045] Install terminal quit with output: ssh_dispatch_run_fatal: Connection to 172.24.102.175 port 22: message authentication code incorrect
+[12:44:58.047] Received install output: ssh_dispatch_run_fatal: Connection to 172.24.102.175 port 22: message authentication code incorrect
+[12:44:58.054] WARN: $PLATFORM is undefined in installation script output.  Errors may be dropped.
+[12:44:58.059] Failed to parse remote port from server output
+[12:44:58.062] Resolver error: Error
+    at y.Create (c:\Users\H2PR\.vscode\extensions\ms-vscode-remote.remote-ssh-0.128.0\out\extension.js:2:725701)
+    at t.handleInstallOutput (c:\Users\H2PR\.vscode\extensions\ms-vscode-remote.remote-ssh-0.128.0\out\extension.js:2:723782)
+    at t.tryInstall (c:\Users\H2PR\.vscode\extensions\ms-vscode-remote.remote-ssh-0.128.0\out\extension.js:2:846379)
+    at async c:\Users\H2PR\.vscode\extensions\ms-vscode-remote.remote-ssh-0.128.0\out\extension.js:2:805393
+    at async t.withShowDetailsEvent (c:\Users\H2PR\.vscode\extensions\ms-vscode-remote.remote-ssh-0.128.0\out\extension.js:2:808630)
+    at async A (c:\Users\H2PR\.vscode\extensions\ms-vscode-remote.remote-ssh-0.128.0\out\extension.js:2:801858)
+    at async t.resolve (c:\Users\H2PR\.vscode\extensions\ms-vscode-remote.remote-ssh-0.128.0\out\extension.js:2:806044)
+    at async c:\Users\H2PR\.vscode\extensions\ms-vscode-remote.remote-ssh-0.128.0\out\extension.js:2:1099174
+[12:44:58.112] ------
 
 
-has context menu
+
+
+[12:44:58.118] No hints found in the recent session.
