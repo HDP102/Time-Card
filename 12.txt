@@ -1,1 +1,5 @@
-ssh -c aes256-gcm@openssh.com h2pradmin@172.24.102.175
+Brindha, validation so far on prod:
+
+Prod token from Entra: ✅ (audience matches the JWT policy)
+Call without a token: ✅ rejected with “JWT Token is required”, so the proxy and JWT policy are live
+Call with a valid token: any valid call launches a real disable, so I need a prod test account for this one. Hareesh, can you set up one or two (like KXYB/DUL8 in QA)? I’ll run it as soon as I have them and confirm here.
