@@ -1,1 +1,1 @@
-ssh -c aes256-gcm@openssh.com <your-admin-id>@172.24.102.175
+Victor, for the Dec 3 ServiceNow CRQ (covering Leonard), I need SSH + sudo on Tufin prod 172.24.102.175. Leonard’s cutover steps run as root there. My h2prAdmin login is denied at SSH, so I think I need a server-level account like Leonard’s l6m4admin. Can you set that up, or tell me who to request it from? Also, should I have the same on the standby (172.24.103.175) in case of failover?
