@@ -1,6 +1,7 @@
-For azure nsg cleanup we have other SPOT tool to look at usage
- 
-Yes makes sense
- 
-Go with it
- 
+To Walker:
+
+Checked with Nithin and he’s good with it. Could you add the FireMon service principal to prodssstgsecurity01 and 02, probably easiest through the Role-AzAdmin-Prod-stgfiremon-Reader group, with the same Reader and Data Access and Storage Blob Data Reader roles? And just let me know if shared key access needs an exception on those like the others.
+
+Reply to Nithin:
+
+Sounds good, thanks! I’ll get it set up with Walker. What’s the SPOT tool you mentioned? I’d like to take a look so we’re not doubling up.
