@@ -1,1 +1,24 @@
-Thanks Walker! A few quick things so I set it up right on the FireMon side: are prodssstgsecurity01 and 02 both in the Shared Services subscription (5aa20947...)? Is shared key access enabled on them? And do all of our VNets send flow logs there, or just some? Mainly want to make sure the Prod and DR VNets are covered.
+The NSG flow logs would go on the subscription stations that hold NSGs, one at a time. Here’s my take on each:
+
+#	Station	Do it?	Why
+4	Production	Yes, first	Likely holds ePayments prod NSGs (PCI)
+2	Disaster Recovery	Yes, second	ePayments DR NSGs (ap-app_dr-sa-epayment... showed up in the rules export)
+3	Non Prod	Later	Useful for Nithin’s Illumio cleanup, but not PCI
+6	QA	Later	Same as Non Prod
+7, 8	Sandbox, Sandbox-NextGen	Skip	Being cut off from the network, not PCI
+5	Shared Services	Don’t touch yet	Its Alternate Subscription ID points at Prod for the firewall logs. Wait for Giuseff
+1	Azure (root)	No change	It’s the parent. Leave it as is
+
+On Production (4) and then DR (2), under Monitoring:
+
+Enable Log Monitoring: checked
+Track Usage Via: Hit Counters
+Alternate Subscription ID: 5aa20947-7c0d-4353-b60a-a6faf5c0dde0 (Shared Services). Confirm that with Walker.
+Storage Accounts: prodssstgsecurity01 and prodssstgsecurity02, both as separate entries, since NCUS and SCUS VNets log to different accounts.
+
+Wait for Walker’s answers before saving:
+
+Shared key access on 01 and 02. Without it FireMon can’t read, and you’d get errors on every NSG.
+Coverage: whether the Prod and DR VNets actually send flow logs there.
+
+Once that’s confirmed, do Production only, check its health and Usage section after about 30 minutes, then do DR.
