@@ -1,6 +1,6 @@
 Hi Rick,
 
-Thanks for the call and the documentation. I reviewed it with our Illumio SME. Rule Hit Count isn’t available in the Illumio console, so it has to be enabled through the API, on both the PCE and the VENs. Since the VEN piece gets provisioned to our workloads, we’re running it through our change process and plan to start with a limited scope before expanding. I’ll let you know as soon as it’s enabled so we can test in FireMon.
+Thanks for sending this over. I talked with our Illumio SME earlier today, and he confirmed there’s no option for this in the Illumio console, so this API approach lines up. Since enabling it on the VENs gets provisioned to our workloads, we’ll review the doc with him and run it through our change process, likely starting with a limited scope. I’ll let you know once it’s enabled so we can test in FireMon.
 
 A couple of questions in the meantime:
 
