@@ -1,1 +1,1 @@
-ticketAPI = using HTTPS only  (no ssh).   try your LANIDadmin  if not ask Victor to set for you.   
+ssh -c aes256-gcm@openssh.com h2pradmin@172.24.102.175
