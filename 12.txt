@@ -1,2 +1,1 @@
-You might just be able to export that using Illumio Cloud Secure since it's already managing all of the NSGs connected to our subnets in our virtual networks.
- 
+Good point, since ICS is managing the NSGs, cleanup there would really happen in Illumio anyway. I’ll check with Nithin on what ICS already gives us before we add anything else on the FireMon side. Out of curiosity, are the flow logs ICS uses already going to a storage account?
