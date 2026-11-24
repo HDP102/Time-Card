@@ -1,1 +1,26 @@
-This permits TCP 443 from workloads labelled L: Azure, A: Imaging, E: QA, R: Reporting to workloads labelled L: Azure, A: SpringApps_DSS (PCE_Local), E: Development, R: DSS, enabling the imaging applications to communicate with each other. Both label sets are fully specified, the environments are non-production, and the service is limited to a single encrypted port, so the change is appropriately scoped. Two notes for the record. The source is labelled E: QA while the destination is E: Development, consistent with the other requests in this series, so please confirm the environment crossing is intended. This is also one of several related rules building out the Imaging QA communication paths, so it would be worth reviewing the resulting ruleset as a whole once the set is complete, to confirm the overall access pattern matches the application design.
+GENERAL
+ DEVICE LICENSED
+ DC GROUP ASSIGNED
+A data collector group has been assigned to this device (V50SECAPL008.countrylan.com-Group)
+RETRIEVAL
+ LAST RETRIEVAL
+Successfully retrieved configuration (Automatic) File count: 34. Last updated on 11/18/26 at 2:53:50 PM
+ LAST REVISION
+The last revision for this device had a retrieval error
+Revision ID:  149785
+Type: Automatic Retrieval - On Change
+Date/Time: 11/24/2026 9:57 AM
+User: DC_automated
+Change Count: 0
+Result: Retrieval Error
+CHANGE DETECTION
+ CHANGE MONITORING
+Enabled
+ CHANGE DATA
+Changes were detected by an automatic retrieval
+USAGE
+ LOG MONITORING
+Authentication failed: AADSTS7000215: Invalid client secret provided. Ensure the secret being sent in the request is the client secret value, not the client secret ID, for a secret added to app 'aa6bd634-3d99-4f28-93c6-153d9ba72891'. Trace ID: 9104b2ae-edfa-49cf-a446-3fcf09680c00 Correlation ID: f4405c8f-6d5d-4446-993c-df262be236fd Timestamp: 2026-11-24 14:48:21Z. Last updated on 11/24/26 at 2:48:22 PM
+ USAGE DATA
+Usage data has not been received for 2 days which exceeds the configured threshold in settings
+Logged Connections (Last 24 hours): 0
