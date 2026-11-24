@@ -1,1 +1,7 @@
-Good point, since ICS is managing the NSGs, cleanup there would really happen in Illumio anyway. I’ll check with Nithin on what ICS already gives us before we add anything else on the FireMon side. Out of curiosity, are the flow logs ICS uses already going to a storage account?
+Walker:
+
+That’s great, reusing the existing flow logs would be ideal, no extra storage or cost. It would also help with our Illumio cleanup, since ICS manages those NSGs and we’d be able to see which rules are actually being hit. Since those storage accounts are tied to ICS, let me check with Nithin first before we add FireMon to them. One thing to check: FireMon needs shared key access on the storage account, like the firewall ones. Do prodssstgsecurity01 and 02 have that enabled, or would that need the same exception? 30 days retention is plenty for FireMon."
+
+Nithin:
+
+Hey Nithin, Azure Firewall hit counts are now working in FireMon. Walker set up storage accounts for the firewall logs and they’re coming in. This could also help with the Illumio cleanup on the cloud side. Since ICS manages the NSGs, getting NSG usage into FireMon would show which ICS rules are actually being hit. Walker mentioned the VNet flow logs already go to prodssstgsecurity01 and 02 for ICS, so we could just give the FireMon service principal read access there instead of creating anything new. Would you be OK with that?
