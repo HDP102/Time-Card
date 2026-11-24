@@ -1,1 +1,2 @@
-It’s working! FireMon is showing hit counts on the ncus firewall rules now, about 189k logged connections in the last 24 hours. Thanks so much for getting this set up so quickly. Next, we’d like to do the same for our NSGs, starting with the ones in front of our ePayments app since that’s our PCI scope. FireMon says it can read NSG logs from the same storage accounts, using either the NSG rule counter logs or VNet flow logs. What would you recommend on your side, and roughly what would the cost look like? I want to run it by Jonathan before we expand.
+You might just be able to export that using Illumio Cloud Secure since it's already managing all of the NSGs connected to our subnets in our virtual networks.
+ 
