@@ -1,7 +1,24 @@
-To Walker:
+Update
 
-Checked with Nithin and he’s good with it. Could you add the FireMon service principal to prodssstgsecurity01 and 02, probably easiest through the Role-AzAdmin-Prod-stgfiremon-Reader group, with the same Reader and Data Access and Storage Blob Data Reader roles? And just let me know if shared key access needs an exception on those like the others.
+Azure (the big one)
 
-Reply to Nithin:
+“Azure Firewall hit counts are working in FireMon as of this morning. We’re seeing hit counts and last-used dates on the ncus firewall rules, about 189k logged connections in the last 24 hours.”
+“Two things fixed it. Walker set up dedicated storage accounts for the firewall logs, since FireMon reads usage from storage. And the Azure secret had rotated in CyberArk around 11/18, so I updated it in FireMon. That rotation also explains the retrieval errors last week.”
+“Usage only builds from today. For this year’s review we’ll still use Log Analytics or Splunk for history, and FireMon is the go-forward source.”
+“Next is NSG usage. Walker found the VNet flow logs already go to the ICS storage accounts, so we’re giving FireMon read access there instead of building anything new. Nithin’s OK’d it.”
 
-Sounds good, thanks! I’ll get it set up with Walker. What’s the SPOT tool you mentioned? I’d like to take a look so we’re not doubling up.
+Other platforms
+
+“The B2B ASAs are already in FireMon. They’re the same VPN ASAs, so the next step there is turning on usage.”
+“Silver Peak is off the list for now, since it’s rules only with no hit counts. Dri is checking on the Level 3 roadmap.”
+“On Illumio, FireMon found the discovery issue: Azure servers with VENs have the same name in both systems, and FireMon’s dev team is working on it. Hit counts also need to be enabled on the Illumio side.”
+
+Housekeeping
+
+“SAML login loop looks fixed after a setting change. No issues since.”
+“Still to do: install the Azure device packs to fix the normalization errors.”
+
+Questions for the team
+
+Nithin, SPOT tool: “What does SPOT cover for NSG usage? I don’t want to double up with FireMon.”
+Nithin, Illumio hit count: “Illumio needs Rule Hit Count enabled on the PCE and the VENs. Can we start with a narrow scope, like one non-prod app? And does it need an admin account or a change request?”
