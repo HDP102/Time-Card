@@ -1,9 +1,1 @@
-$pce  = "https://us-scp41.illum.io:443"
-$org  = "4325389"
-$cred = Get-Credential   # username = API key ID (api_xxxx), password = API secret
-
-# Is hit count enabled on the PCE?
-Invoke-RestMethod -Uri "$pce/api/v2/orgs/$org/report_templates/rule_hit_count_report" -Credential $cred -Authentication Basic
-
-# Which VEN scopes have it enabled (active policy)?
-(Invoke-RestMethod -Uri "$pce/api/v2/orgs/$org/sec_policy/active/firewall_settings" -Credential $cred -Authentication Basic).rule_hit_count_enabled_scopes
+This request adds an extra-scope rule in the A: Mainframe (PCE_Local) | E: Production ruleset to support the Billing Modernization effort, where the MuleSoft application on v50apprhl534 cannot reach http://sys5.countrylan.com:9030/AutoPolicyExtract. DNS resolution is working correctly, with sys5.countrylan.com resolving to 10.16.250.50, so the failure is connectivity rather than name resolution and a policy change is the appropriate remediation. However the rule as submitted specifies TCP 5701 and a destination labelled R: Log Server, neither of which matches the requirement. Port 5701 is listed on the request as the MuleSoft server's own port rather than the destination port, and the requester explicitly asks for connectivity between 10.194.20.70 and 10.16.250.50 on port 9030. Please correct the rule to permit 10.194.20.70 to reach 10.16.250.50 on TCP 9030, and update the destination to the correct role for that host rather than R: Log Server. Please also populate the Firewall Access Change Details table with the source, destination and service, confirm that access from the Integration environment into the production mainframe ruleset is approved by the mainframe owners, and confirm whether this endpoint can be served over HTTPS rather than cleartext HTTP.
