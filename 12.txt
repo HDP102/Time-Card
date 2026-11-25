@@ -1,82 +1,29 @@
-From: Coakley, Evan <E2CW@pge.com>
-Date: Monday, November 23, 2026 at 5:00 PM
-To: Mudrock, Leonard <L6M4@pge.com>; Ayers, Rey <R1AU@pge.com>
-Cc: Chawande, Swapnil <S9CH@pge.com>; Bhatia, Nitin <N6B4@pge.com>; Mudrock, Leonard <L6M4@pge.com>
-Subject: Re: Tenable / infoblox MAP
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
 
-Hello,
+PS C:\WINDOWS\system32> $pce = "https://us-scp41.illum.io:443"
+PS C:\WINDOWS\system32> $org = "4325389"
+PS C:\WINDOWS\system32> [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+PS C:\WINDOWS\system32>
+PS C:\WINDOWS\system32> $id  = Read-Host "API key ID"
+API key ID: api_1047e1cd99ddc56a4
+PS C:\WINDOWS\system32> $sec = Read-Host "API secret" -AsSecureString
+API secret: ****************************************************************
+PS C:\WINDOWS\system32> $plain = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($sec))
+PS C:\WINDOWS\system32> $h = @{ Authorization = "Basic " + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("$($id):$plain")) }
+PS C:\WINDOWS\system32> Remove-Variable plain
+PS C:\WINDOWS\system32>
+PS C:\WINDOWS\system32> # Is hit count enabled on the PCE?
+PS C:\WINDOWS\system32> Invoke-RestMethod -Uri "$pce/api/v2/orgs/$org/report_templates/rule_hit_count_report" -Headers $h
+Invoke-RestMethod : The remote server returned an error: (403) Forbidden.
+At line:1 char:1
++ Invoke-RestMethod -Uri "$pce/api/v2/orgs/$org/report_templates/rule_h ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-RestMethod], WebExc
+   eption
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeRestMethodCommand
 
-We have talked about this for several weeks now. This is a project that I’m working on.  We had discussed this in detail that we would use the file you had previously provided to me and it would simply be sent to our team email.I will setup a call for us all tomorrow calendars permitting. 
-
-
-Evan Coakley 
-Supervisor Cybersecurity
-Vulnerability, Config, and Event  Management
-Pacific Gas and Electric Company  
-Evan.coakley@pge.com
-916-337-6606 │
-Type security/ in your web browser for our intranet site to find the Security Service Catalog, Standards and more.
--- 
-
-From: Mudrock, Leonard <L6M4@pge.com>
-Date: Monday, November 23, 2026 at 4:57 PM
-To: Coakley, Evan <E2CW@pge.com>; Ayers, Rey <R1AU@pge.com>
-Cc: Chawande, Swapnil <S9CH@pge.com>; Bhatia, Nitin <N6B4@pge.com>; Mudrock, Leonard <L6M4@pge.com>
-Subject: Re: Tenable / infoblox MAP
-
-Evan,
-
-This project is new to me.  I had never seen this info before.   
-Do you have your own linux machine for using crontab ?
-Tufin servers are for Tufin works and my teams' projects.      
-
-I don't have info how to send to your BCSI SharePoint.
-
-
-Please send me your code so that I can review.
-
-Thanks,
-Leonard 
-
-
-From: Coakley, Evan <E2CW@pge.com>
-Sent: Monday, November 23, 2026 4:54 PM
-To: Mudrock, Leonard <L6M4@pge.com>; Ayers, Rey <R1AU@pge.com>
-Cc: Chawande, Swapnil <S9CH@pge.com>; Bhatia, Nitin <N6B4@pge.com>
-Subject: Re: Tenable / infoblox MAP
- 
-Hello,
-
-Following up @Mudrock, Leonard. 
-
-
-Evan Coakley 
-Supervisor Cybersecurity
-Vulnerability, Config, and Event  Management
-Pacific Gas and Electric Company  
-Evan.coakley@pge.com
-916-337-6606 │
-Type security/ in your web browser for our intranet site to find the Security Service Catalog, Standards and more.
--- 
-
-From: Coakley, Evan <E2CW@pge.com>
-Date: Monday, November 23, 2026 at 10:43 AM
-To: Mudrock, Leonard <L6M4@pge.com>; Ayers, Rey <R1AU@pge.com>
-Cc: Chawande, Swapnil <S9CH@pge.com>; Bhatia, Nitin <N6B4@pge.com>
-Subject: Tenable / infoblox MAP
-
-Hello team,
-
-There seems to have been some confusion between Leonard and me, so I wanted to consolidate everything in an email to make sure we're aligned and can get this MAP behind us.
-
-I had expected the scripting and automation to be completed today, but we're not quite there yet. For background, we need a file available on the Tufin server that contains the current Infoblox data for created networks. Originally, the plan was to create a new file, which is still an option since we only need new networks and their extensible attributes. We were shown a file and understood that it would be generated automatically on a weekly basis. After speaking with Leonard today, however, it sounds like the file currently being provided is not what we need and will not resolve the MAP.
-
-For additional context, the intended workflow is:
-
-The file is sent to tenableadmins@pge.com.
-The required data is extracted and sent to our BCSI SharePoint.
-A script checks whether a new network has been created and whether the Not Scannable field is set to None.
-If those conditions are met, a Remedy ticket—and soon a ServiceNow ticket—is created under the user's LAN ID.
-Our team receives an alert for awareness, and the user completes the required form.
-
-Leonard, I can provide the actual code if that would help. What do you need from our end to complete this and close out the MAP?
+PS C:\WINDOWS\system32>
+PS C:\WINDOWS\system32> # Which VEN scopes have it enabled?
+PS C:\WINDOWS\system32> (Invoke-RestMethod -Uri "$pce/api/v2/orgs/$org/sec_policy/active/firewall_settings" -Headers $h).rule_hit_count_enabled_scopes
+PS C:\WINDOWS\system32>
