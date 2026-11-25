@@ -1,1 +1,15 @@
-This adds approximately twenty-five MuleSoft servers to the MuleSoft_Servers_DEV_INT object group in the Aruba SD-WAN MuleSoft policy, so that those servers can communicate with the monitoring agent in Anypoint Platform, resolving INC0348617. The servers are enumerated individually rather than added by subnet, which is appropriate. Two items to address. The object group is named for the development and integration environments while the associated application is Anypoint Platform QA, so please confirm whether these servers belong in this group or whether a QA-scoped group should be used; if the group is intended to span environments, it should be renamed so its contents are clear at recertification. Please also record on the request what access membership of this group confers, as no destination or service is listed and adding members grants whatever the existing rules referencing the group already permit. For Anypoint Platform monitoring this should be outbound TCP 443 to MuleSoft's published endpoints, and confirming that keeps the scope visible for future review rather than being inherited implicitly.
+$pce = "https://us-scp41.illum.io:443"
+$org = "4325389"
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
+$id  = Read-Host "API key ID"
+$sec = Read-Host "API secret" -AsSecureString
+$plain = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($sec))
+$h = @{ Authorization = "Basic " + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("$($id):$plain")) }
+Remove-Variable plain
+
+# Is hit count enabled on the PCE?
+Invoke-RestMethod -Uri "$pce/api/v2/orgs/$org/report_templates/rule_hit_count_report" -Headers $h
+
+# Which VEN scopes have it enabled?
+(Invoke-RestMethod -Uri "$pce/api/v2/orgs/$org/sec_policy/active/firewall_settings" -Headers $h).rule_hit_count_enabled_scopes
