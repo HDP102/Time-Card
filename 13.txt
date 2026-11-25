@@ -1,15 +1,1 @@
-$pce = "https://us-scp41.illum.io:443"
-$org = "4325389"
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-
-$id  = Read-Host "API key ID"
-$sec = Read-Host "API secret" -AsSecureString
-$plain = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($sec))
-$h = @{ Authorization = "Basic " + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("$($id):$plain")) }
-Remove-Variable plain
-
-# Is hit count enabled on the PCE?
-Invoke-RestMethod -Uri "$pce/api/v2/orgs/$org/report_templates/rule_hit_count_report" -Headers $h
-
-# Which VEN scopes have it enabled?
-(Invoke-RestMethod -Uri "$pce/api/v2/orgs/$org/sec_policy/active/firewall_settings" -Headers $h).rule_hit_count_enabled_scopes
+This request supports the migration of the CommAg Certificates application from Azure Spring Apps to Azure Container Apps, permitting the ACACommAg subnets 10.193.139.112, 10.201.139.254 and 10.194.139.29 to reach v01dbswin743, v01dbswin744 and v01dbswin747 on TCP 1433 and v01dbdrhl518 on TCP 50110, resolving the JDBC connection timeouts reported during migration testing. The sources are enumerated and the destinations are named individually, so the scoping is appropriate. Before implementation, please correct the port in the implementation notes, as all four Illumio policies specify tcp 1443 while the change details and business justification both specify TCP 1433; 1433 is the SQL Server port and 1443 appears to be a transposition, and built as written the rules would not restore connectivity. Please also confirm the environment labels, as two of the four policies target E: PreProd while the destinations are allianceqa.lan hosts and the justification describes QA and non-production testing. Finally, please confirm whether the DB2 connection to v01dbdrhl518 on TCP 50110 is TLS-encrypted, as DB2 requires a separately configured SSL listener. The note regarding the associated application being set to Azure Container Apps PROD in the absence of a non-production entry is acknowledged and recorded.
