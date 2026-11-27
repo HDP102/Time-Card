@@ -4,7 +4,7 @@
 ================================================================================================================================
 Created on Mar 19, 2019
 Updated on January 21, 2026 : changing from a hard-code password to a variable name and a new email notification
-Updated on July 30, 2026: adding ADMS 
+Updated on July 30, 2026: adding ADMS AWS Azure
 
 Pacific Gas and Electric - Network Protection - CyberSecurity 
 
@@ -30,10 +30,19 @@ import sys
 import smtplib
 import shutil
 import csv
+import ipaddress
 import urllib3 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-def load_spreadsheet_csv_selected_columns(filepath, newpathfile):
+IPADDRESS_PATTERN = "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." + \
+                    "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." + \
+                    "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." + \
+                    "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$"
+
+def cidr_to_netmask(cidr):
+    return str(ipaddress.ip_network(f"0.0.0.0/{cidr}").netmask)
+
+def load_spreadsheet_csv_selected_columns(net_env, filepath, newpathfile):
     writer = write_csv_header(newpathfile)
     
     try:
@@ -41,14 +50,48 @@ def load_spreadsheet_csv_selected_columns(filepath, newpathfile):
         
         reader = csv.DictReader(csvfile)
         for row in reader:
-
-            writer.writerow({
-                "ip" : row['address*'],
-                "netmask" : row['netmask*'],
-                "comment" : row['comment'],
-                "description" : row['EA-Easy Name'],
-                "zoneName" : row['EA-Trust Level']
-            })
+            if net_env == 'UDN' or net_env == 'ODN' or net_env == 'ADMS':
+                if net_env == 'ADMS':
+                    zoneName = row['EA-Trust Level']
+                    if 'Trust Level 1' in zoneName:
+                        zoneName = 'ODN TL1'
+                    elif 'Trust Level 2' in zoneName:
+                        zoneName = 'ODN TL2'
+                    elif 'Trust Level 3' in zoneName:
+                        zoneName = 'ODN TL3'
+                else:
+                    zoneName = row['EA-Trust Level']
+                writer.writerow({
+                    "ip" : row['address*'],
+                    "netmask" : row['netmask*'],
+                    "comment" : row['comment'],
+                    "zoneName" : zoneName
+                })
+            elif net_env == 'AWS' or net_env == 'Azure':   # because AWS and Azure downloading via curl are not available, manual exporting spreadsheets show different colunm' names and others
+                network = row['Network']
+                ipAddr = ''
+                netmask = ''
+                if '/' in network:
+                    try:
+                        ipAddr = network.split('/')[0]
+                        cidr = network.split('/')[1]
+                        netmask = cidr_to_netmask(cidr)
+                    except:
+                        ipAddr = ''
+                        netmask = ''
+                else:
+                    isIP = re.match(IPADDRESS_PATTERN, network)
+                    if isIP: 
+                        ipAddr = network
+                        netmask = '255.255.255.255' # maybe host in case, note: always / in AWS sheet anyway. back-up if human typing error in case.  
+                
+                writer.writerow({
+                    "ip" : ipAddr,
+                    "netmask" : netmask,
+                    "comment" : row['Comment'],
+                    "zoneName" : row['Trust Level']
+                })
+                
         csvfile.close()
 
     except:
@@ -137,16 +180,18 @@ def convert_to_selected_columns_to_networkCSV(net_env, local_directory):
     sourceFile = local_directory+'Networks.csv'
     destinationFile = local_directory+net_env+'_Networks.csv'
     
-    try:
-        shutil.move(sourceFile, destinationFile)
-    except:
-        errorMessage = "\n Function: convert_to_selected_columns_to_networkCSV: failed.  cannot move CSV file for renaming: "+sourceFile+"\n"
-        print(errorMessage)
-        sys.exit(1)
+    # temp due to manual put AWS_Networks.csv and Azure_Networks.csv where AWS and Azure downloading is not available at that time.
+    if not net_env == 'AWS' and not net_env == 'Azure':
+        try:
+            shutil.move(sourceFile, destinationFile)
+        except:
+            errorMessage = "\n Function: convert_to_selected_columns_to_networkCSV: failed.  cannot move CSV file for renaming: "+sourceFile+"\n"
+            print(errorMessage)
+            sys.exit(1)
 
     csvfilepath=local_directory+'Tufin_'+net_env+'_Networks.csv'
     
-    load_spreadsheet_csv_selected_columns(destinationFile, csvfilepath)
+    load_spreadsheet_csv_selected_columns(net_env, destinationFile, csvfilepath)
     
     if not os.path.exists(csvfilepath):
         print('\n')
@@ -160,8 +205,8 @@ def write_csv_header(newpathfile):
 
     try:
         newcsvfile = open(newpathfile, 'w', newline='', encoding='utf-8')
-        
-        headerNames=['ip', 'netmask', 'comment', 'description', 'zoneName']
+
+        headerNames=['ip', 'netmask', 'comment', 'zoneName']
         
         writer = csv.DictWriter(newcsvfile, fieldnames=headerNames)
         writer.writeheader()
@@ -225,7 +270,7 @@ LANID = "L6M4" # for email notification if failed.
 #  Using UDN password for ODN what Matt Carter suggested.
 #
 userName = 'SVC-A1593-Prd-IB'
-password = '<password here for the sevice account = SVC-A1593-Prd-IB>'
+password = '<password here = check Safeguard for the service account = SVC-A1593-Prd-IB>'
 
 # NOTE: ============================================
 #  Infoblox security groups are:
@@ -234,11 +279,11 @@ password = '<password here for the sevice account = SVC-A1593-Prd-IB>'
 #    Apr-A2182-Prod-ODN_Infoblox_ReadOnly_API
 #===================================================
 
-if (net_env != 'ODN') and (net_env != 'UDN') and (net_env != 'ADMS'):
+if (net_env != 'ODN') and (net_env != 'UDN') and (net_env != 'ADMS') and (net_env != 'AWS') and (net_env != 'Azure'):
     print('\n')
     print('your input is not correct = %s' % net_env)
-    print("please specify which ODN or UDN or ADMS; e.g.,") 
-    print("python export_Infoblox_Tufin_csv.py <ODN or UDN or ADMS> <local_directory>")
+    print("please specify which ODN or UDN or ADMS or AWS or Azure; e.g.,") 
+    print("python export_Infoblox_Tufin_csv.py <ODN or UDN or ADMS or AWS or Azure> <local_directory>")
     print('\n')
     sys.exit(1)   
 
@@ -246,10 +291,10 @@ if not os.path.isdir(local_directory):
     print('\n')
     print('your input is not correct = %s' % local_directory)
     print("please specify your correct local directory; e.g.,") 
-    print("python export_Infoblox_Tufin_csv.py <ODN or UDN> '/opt/PGE/output ' ")
+    print("python export_Infoblox_Tufin_csv.py <ODN or UDN or ADMS or AWS or Azure> '/opt/PGE/output ' ")
     print(" OR ")
     print("please use below:")
-    print('python export_Infoblox_Tufin_csv.py <ODN or UDN> "'+os.getcwd()+'"')
+    print('python export_Infoblox_Tufin_csv.py <ODN or UDN or ADMS or AWS or Azure> "'+os.getcwd()+'"')
     print("don't forget to use a quotation in a directory path when you see a space")
     print('\n')
     sys.exit(1) 
@@ -269,19 +314,25 @@ elif net_env == 'UDN':
 elif net_env == 'ADMS':
     # ibcondccns01.pcore.adms.pge.com
     IPAddress = '10.146.4.14' 
-    password = '<special temporary password until Jan 2027 or so - ask Matt Carter>' 
+    password = '<special password here - ask Matt Carter >' 
+elif net_env == 'AWS':
+    IPAddress = 'TBA'
+elif net_env == 'Azure':
+    IPAddress = 'TBA'
 
-print('\n')
-print('please wait for getting a token from Infoblox...')
-print('\n')
+#temp for skipping AWS and Azure downloading due to put AWS and Azure sheets manually at that time.
+if not net_env == 'AWS' and not net_env == 'Azure':
+    print('\n')
+    print('please wait for getting a token from Infoblox...')
+    print('\n')
 
-req_num = get_req_id(IPAddress, userName, password, local_directory, LANID, net_env)
+    req_num = get_req_id(IPAddress, userName, password, local_directory, LANID, net_env)
 
-print('\n')
-print(' download Infoblox CSV file...')
-print('\n')
+    print('\n')
+    print(' download Infoblox CSV file...')
+    print('\n')
 
-get_Infoblox_download(req_num, IPAddress, userName, password, local_directory, LANID, net_env)
+    get_Infoblox_download(req_num, IPAddress, userName, password, local_directory, LANID, net_env)
 
 print('\n')
 print(' Convert to selected columns into networks CSV file...')
