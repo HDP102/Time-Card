@@ -1,21 +1,17 @@
-Must have: the daily Infoblox → Tufin pipeline (Infoblox_TrustLevels/)
+You're right, sorry. SSH isn't set up yet, so it all comes from GitHub. In the Tufin branch:
 
-Infoblox_TufinAPI.sh, the wrapper cron runs at about 18:30, which shows the order everything runs in
-export_Infoblox_Tufin_csv.py, which pulls from Infoblox and writes the *_Networks.csv files
-Get_Infoblox_UDN_TL4_networks.py
-Infoblox_collect_UDN_TL4_networks.py
-Tufin_get_zones_update_subnet_networks.py
+In the SecureAPP_DNS_AMPS_Tenable/ folder:
 
-Also useful: the SecureAPP Infoblox checks (SecureAPP/Infoblox/)
-6. Infoblox_Download.sh
-7. TufinSecureAPP_check_for_new_subnets_from_Infoblox.py
-8. TufinSecureAPP_collectExistSubnets.py
+ServiceNowAPI.py
+ServiceNowAPIupdate.py
+LastDesignValidationCheck.py and LastDesignValidationCheck2.py
+ValidationClose.py and ValidationClose2.py
 
-Shared library, if you didn't already grab it for the ServiceNow set
-9. Firewall_Automation_SecureAPP_FER/Libraries/: TufinUtilities.py and RESTapiUtilities.py
+In the other/ folder:
 
-Not code, but most important: Evan's ask. Your notes from the call plus the emails Swapnil forwards. I need to know which column he wants, for which networks, in what format, and how often.
+ServiceNowCloseCancelAPI.py
+ServiceNowCloseCancel.sh
 
-The server listing showed copies changed today, such as Tufin_get_zones_update_subnet_networks2.py and some zz_ files, so GitHub may be behind on the Infoblox scripts too. Send the GitHub versions anyway and we'll check them against the server once you have SSH access.
+Also handy: the crontab file and Tufin_Workflow_Directories_files_list.txt, which sit near the top of the Tufin branch.
 
-Scrub them before sending, same as before: search for password, secret, token, key and Bearer. These scripts almost certainly contain the Infoblox login.
+Hybrid_automation_ServiceNow.py isn't in GitHub. We'll get that one once you have server access.
