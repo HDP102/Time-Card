@@ -1,29 +1,21 @@
-Windows PowerShell
-Copyright (C) Microsoft Corporation. All rights reserved.
+Must have: the daily Infoblox → Tufin pipeline (Infoblox_TrustLevels/)
 
-PS C:\WINDOWS\system32> $pce = "https://us-scp41.illum.io:443"
-PS C:\WINDOWS\system32> $org = "4325389"
-PS C:\WINDOWS\system32> [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-PS C:\WINDOWS\system32>
-PS C:\WINDOWS\system32> $id  = Read-Host "API key ID"
-API key ID: api_1047e1cd99ddc56a4
-PS C:\WINDOWS\system32> $sec = Read-Host "API secret" -AsSecureString
-API secret: ****************************************************************
-PS C:\WINDOWS\system32> $plain = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($sec))
-PS C:\WINDOWS\system32> $h = @{ Authorization = "Basic " + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("$($id):$plain")) }
-PS C:\WINDOWS\system32> Remove-Variable plain
-PS C:\WINDOWS\system32>
-PS C:\WINDOWS\system32> # Is hit count enabled on the PCE?
-PS C:\WINDOWS\system32> Invoke-RestMethod -Uri "$pce/api/v2/orgs/$org/report_templates/rule_hit_count_report" -Headers $h
-Invoke-RestMethod : The remote server returned an error: (403) Forbidden.
-At line:1 char:1
-+ Invoke-RestMethod -Uri "$pce/api/v2/orgs/$org/report_templates/rule_h ...
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-RestMethod], WebExc
-   eption
-    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeRestMethodCommand
+Infoblox_TufinAPI.sh, the wrapper cron runs at about 18:30, which shows the order everything runs in
+export_Infoblox_Tufin_csv.py, which pulls from Infoblox and writes the *_Networks.csv files
+Get_Infoblox_UDN_TL4_networks.py
+Infoblox_collect_UDN_TL4_networks.py
+Tufin_get_zones_update_subnet_networks.py
 
-PS C:\WINDOWS\system32>
-PS C:\WINDOWS\system32> # Which VEN scopes have it enabled?
-PS C:\WINDOWS\system32> (Invoke-RestMethod -Uri "$pce/api/v2/orgs/$org/sec_policy/active/firewall_settings" -Headers $h).rule_hit_count_enabled_scopes
-PS C:\WINDOWS\system32>
+Also useful: the SecureAPP Infoblox checks (SecureAPP/Infoblox/)
+6. Infoblox_Download.sh
+7. TufinSecureAPP_check_for_new_subnets_from_Infoblox.py
+8. TufinSecureAPP_collectExistSubnets.py
+
+Shared library, if you didn't already grab it for the ServiceNow set
+9. Firewall_Automation_SecureAPP_FER/Libraries/: TufinUtilities.py and RESTapiUtilities.py
+
+Not code, but most important: Evan's ask. Your notes from the call plus the emails Swapnil forwards. I need to know which column he wants, for which networks, in what format, and how often.
+
+The server listing showed copies changed today, such as Tufin_get_zones_update_subnet_networks2.py and some zz_ files, so GitHub may be behind on the Infoblox scripts too. Send the GitHub versions anyway and we'll check them against the server once you have SSH access.
+
+Scrub them before sending, same as before: search for password, secret, token, key and Bearer. These scripts almost certainly contain the Infoblox login.
