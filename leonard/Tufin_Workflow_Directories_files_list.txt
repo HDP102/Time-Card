@@ -1,0 +1,132 @@
+
+# 
+# ls -l /opt/tufin/data/securechange/scripts/opt/PGE/
+total 88
+drwxr-x---  2 root root 16384 Sep  9 16:35 AMPSList
+drwxr-x---  2 root root  8192 Sep  8 23:30 CSVfiles
+drwxr-x---  2 root root 86016 Sep  9 16:34 logs
+drwxr-x--- 10 root root   245 Aug 17 16:08 scripts
+# 
+# ls -l /opt/tufin/data/securechange/scripts/opt/PGE/scripts/
+total 8
+drwxr-x--- 2 root root   65 Oct 21  2025 F5Verification
+drwxr-x--- 2 root root  134 Oct 21  2025 Firewall_Intake_Form_Sizing_Consulation
+drwxr-x--- 3 root root  225 Oct 21  2025 Libraries
+drwxr-x--- 2 root root 4096 Oct 21  2025 readCSVfiles
+drwxr-x--- 3 root root 4096 Oct 23  2025 SecureAPP_DNS_AMPS_Tenable
+drwxr-x--- 2 root root   54 Oct 21  2025 WF_AWS_CCOE
+drwxr-x--- 2 root root   59 Aug 17 16:08 WF_ChangeOwner
+drwxr-x--- 2 root root   67 Oct 21  2025 WF_VIPcreation
+# 
+# ls -l /opt/tufin/data/securechange/scripts/opt/PGE/scripts/F5Verification
+total 20
+-rwxr-x--- 1 root root  3255 Oct 21  2025 F5Verification
+-rwxr-x--- 1 root root 12454 Oct 21  2025 F5Verification.py
+# 
+# ls -l /opt/tufin/data/securechange/scripts/opt/PGE/scripts/Firewall_Intake_Form_Sizing_Consulation/
+total 40
+-rwxr-x--- 1 root root  3318 Oct 21  2025 ApproveAndClose
+-rwxr-x--- 1 root root 13447 Oct 21  2025 ApproveAndClose.py
+-rwxr-x--- 1 root root  3330 Oct 21  2025 AssignToFwConsultant
+-rwxr-x--- 1 root root 14258 Oct 21  2025 AssignToFwConsultant.py
+#
+# ls -l /opt/tufin/data/securechange/scripts/opt/PGE/scripts/Libraries/
+total 220
+-rwxr-x--- 1 root root  9657 Oct 21  2025 Mulesoft.py
+-rwxr-x--- 1 root root 50430 Jan  2  2026 RESTapiUtilities.py
+-rwxr-x--- 1 root root  1340 Oct 21  2025 send_failed_email_notification.py
+-rwxr-x--- 1 root root 50233 Oct 21  2025 TufinUtilities.py
+#   
+# ls -l /opt/tufin/data/securechange/scripts/opt/PGE/scripts/readCSVfiles/
+total 33236
+-rwxr-x--- 1 root root  1327195 Oct 21  2025 AllODNnetworks.csv
+-rwxr-x--- 1 root root      822 Apr 24 14:08 Collect_Inputs_FER_system.csv
+-rwxr-x--- 1 root root  1627457 Sep  8 08:39 CyberAssetsReport.csv
+-rwxr-x--- 1 root root  3617847 Sep  8 08:39 DatabaseReport.csv
+-rwxr-x--- 1 root root 10827481 Sep  8 08:39 ITAssetsReport.csv
+-rwxr-x--- 1 root root   483643 Aug 14 18:33 TenableSubnetsExceptionList.csv
+-rwxr-x--- 1 root root     2505 Oct 21  2025 Tenable_Validation_Current_Exceptions.csv
+# 
+# ls -l /opt/tufin/data/securechange/scripts/opt/PGE/scripts/SecureAPP_DNS_AMPS_Tenable/
+total 1172
+-rwxr-x--- 1 root root 13550 Oct 21  2025 2DaysAgo_mulesoftAPI.py
+-rwxr-x--- 1 root root 13550 Oct 21  2025 3DaysAgo_mulesoftAPI.py
+-rwxr-x--- 1 root root   375 Oct 21  2025 3DaysAgo_MuleSoftCloseRejectCancel
+-rwxr-x--- 1 root root  2726 Oct 21  2025 AMPS_Email_Designer
+-rwxr-x--- 1 root root  7781 Oct 21  2025 AMPS_Email_Designer.py
+-rwxr-x--- 1 root root  2771 Oct 21  2025 AMPS_Email_FailedTestsVerification
+-rwxr-x--- 1 root root  8599 Oct 21  2025 AMPS_Email_FailedTestsVerification.py
+-rwxr-x--- 1 root root  2746 Oct 21  2025 AMPS_Email_ValidationTest
+-rwxr-x--- 1 root root  9076 Oct 21  2025 AMPS_Email_ValidationTest.py
+-rwxr-x--- 1 root root  8632 Oct 21  2025 AMPSvalidation.py
+-rwxr-x--- 1 root root 43402 Oct 21  2025 checkAMPS.py
+-rwxr-x--- 1 root root  2693 Oct 21  2025 copyAMPS
+-rwxr-x--- 1 root root  9535 Oct 21  2025 copyAMPS.py
+-rwxr-x--- 1 root root  1624 Oct 21  2025 decommission_automation_ScriptedTestStep
+-rwxr-x--- 1 root root 39238 Oct 21  2025 EmailTemplates_before_status.py
+-rwxr-x--- 1 root root 63314 Nov  5  2025 EmailTemplates.py
+-rwxr-x--- 1 root root  3006 Oct 21  2025 Hybrid_automation
+-rwxr-x--- 1 root root  3041 Oct 21  2025 Hybrid_automation_decommission
+-rwxr-x--- 1 root root 11209 Oct 21  2025 Hybrid_automation_decommission.py
+-rwxr-x--- 1 root root 14170 May  5 15:55 Hybrid_automation.py
+-rwxr-x--- 1 root root  3010 Oct 21  2025 LAB_Hybrid_automation
+-rwxr-x--- 1 root root 13501 Oct 21  2025 LAB_Hybrid_automation.py
+-rwxr-x--- 1 root root  2907 Oct 21  2025 LastDesignValidationCheck
+-rwxr-x--- 1 root root 16647 Oct 21  2025 LastDesignValidationCheck.py
+-rwxr-x--- 1 root root  2731 Oct 21  2025 LeadRuleReview
+-rwxr-x--- 1 root root  2739 Oct 21  2025 LeadRuleReview_new
+-rwxr-x--- 1 root root 23584 Oct 21  2025 LeadRuleReview_new.py
+-rwxr-x--- 1 root root  8036 Oct 21  2025 LeadRuleReview.py
+-rwxr-x--- 1 root root  9215 Oct 21  2025 mulesoftAPI_10days.py
+-rwxr-x--- 1 root root  9215 Oct 21  2025 mulesoftAPI_11days.py
+-rwxr-x--- 1 root root  9215 Oct 21  2025 mulesoftAPI_12days.py
+-rwxr-x--- 1 root root  9294 Oct 21  2025 mulesoftAPI_2days.py
+-rwxr-x--- 1 root root  9293 Oct 21  2025 mulesoftAPI_3days.py
+-rwxr-x--- 1 root root  9211 Oct 21  2025 mulesoftAPI_4days.py
+-rwxr-x--- 1 root root  9213 Oct 21  2025 mulesoftAPI_5days.py
+-rwxr-x--- 1 root root  9213 Oct 21  2025 mulesoftAPI_6days.py
+-rwxr-x--- 1 root root  9213 Oct 21  2025 mulesoftAPI_7days.py
+-rwxr-x--- 1 root root  9213 Oct 21  2025 mulesoftAPI_8days.py
+-rwxr-x--- 1 root root  9214 Oct 21  2025 mulesoftAPI_9days.py
+-rwxr-x--- 1 root root 17238 Oct 21  2025 mulesoftAPI.py
+-rwxr-x--- 1 root root   366 Oct 21  2025 MuleSoftCloseRejectCancel
+-rwxr-x--- 1 root root   380 Oct 21  2025 MuleSoftCloseRejectCancel_10days
+-rwxr-x--- 1 root root   380 Oct 21  2025 MuleSoftCloseRejectCancel_11days
+-rwxr-x--- 1 root root   380 Oct 21  2025 MuleSoftCloseRejectCancel_12days
+-rwxr-x--- 1 root root   378 Oct 21  2025 MuleSoftCloseRejectCancel_2days
+-rwxr-x--- 1 root root   378 Oct 21  2025 MuleSoftCloseRejectCancel_3days
+-rwxr-x--- 1 root root   378 Oct 21  2025 MuleSoftCloseRejectCancel_4days
+-rwxr-x--- 1 root root   378 Oct 21  2025 MuleSoftCloseRejectCancel_5days
+-rwxr-x--- 1 root root   378 Oct 21  2025 MuleSoftCloseRejectCancel_6days
+-rwxr-x--- 1 root root   378 Oct 21  2025 MuleSoftCloseRejectCancel_7days
+-rwxr-x--- 1 root root   378 Oct 21  2025 MuleSoftCloseRejectCancel_8days
+-rwxr-x--- 1 root root   378 Oct 21  2025 MuleSoftCloseRejectCancel_9days
+-rwxr-x--- 1 root root 12494 Jan 13  2026 OpenRequestVerification.py
+-rwxr-x--- 1 root root 13550 Oct 21  2025 orig_mulesoftAPI.py
+-rwxr-x--- 1 root root  1598 Oct 21  2025 pge_automation_ScriptedTestStep
+-rwxr-x--- 1 root root  2729 Oct 21  2025 SecureAppValidations
+-rwxr-x--- 1 root root 13023 Oct 21  2025 SecureAppValidations.py
+-rwxr-x--- 1 root root 21282 Oct 21  2025 SendEmailResults.py
+-rwxr-x--- 1 root root  1363 Oct 23  2025 send_failed_email_notification.py
+-rwxr-x--- 1 root root 63233 Apr 20 12:03 TenableKeys_scan.py
+-rwxr-x--- 1 root root 74976 Oct 21  2025 Tenable_scan.py
+-rwxr-x--- 1 root root 28043 Oct 21  2025 Tufin_Validate_DNS.py
+-rwxr-x--- 1 root root  3205 Oct 21  2025 ValidationClose
+-rwxr-x--- 1 root root  1356 Oct 21  2025 ValidationCloseManual
+-rwxr-x--- 1 root root 12033 Oct 21  2025 ValidationClose.py
+#  
+# ls -l /opt/tufin/data/securechange/scripts/opt/PGE/scripts/WF_AWS_CCOE/
+total 92
+-rwxr-x--- 1 root root  2969 Oct 21  2025 AWS_CCOE
+-rwxr-x--- 1 root root 87088 Oct 21  2025 AWS_Steps.py
+# 
+# ls -l /opt/tufin/data/securechange/scripts/opt/PGE/scripts/WF_ChangeOwner/
+total 32
+-rwxr-xr-x 1 root root  3062 Aug 17 16:08 ChangeOwner
+-rwxr-xr-x 1 root root 27337 Aug 17 16:08 ChangeOwner.py
+# 
+# ls -l /opt/tufin/data/securechange/scripts/opt/PGE/scripts/WF_VIPcreation/
+total 100
+-rwxr-x--- 1 root root 96086 Oct 21  2025 F5_VIPcreation_FQDN.py
+-rwxr-x--- 1 root root  3103 Oct 21  2025 VIPcreation
+# 
