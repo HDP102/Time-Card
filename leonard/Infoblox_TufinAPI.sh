@@ -6,6 +6,8 @@ thisdir="/opt/PGE/scripts/Infoblox_TrustLevels"
 inUDNfile="$thisdir/Tufin_UDN_Networks.csv"
 inODNfile="$thisdir/Tufin_ODN_Networks.csv"
 inADMSfile="$thisdir/Tufin_ADMS_Networks.csv"
+inAWSfile="$thisdir/Tufin_AWS_Networks.csv"
+inAzurefile="$thisdir/Tufin_Azure_Networks.csv"
 
 echo "Removing old output files."
 find $thisdir -type f -name "output-*" -mtime +14 -exec rm {} \;
@@ -25,11 +27,23 @@ if [ -f $inADMSfile ]; then
   echo "old $inADMSfile is removing before downloading."
 fi
 
+if [ -f $inAWSfile ]; then
+  rm $inAWSfile
+  echo "old $inAWSfile is removing before downloading."
+fi
+
+if [ -f $inAzurefile ]; then
+  rm $inAzurefile
+  echo "old $inAzurefile is removing before downloading."
+fi
+
 #-------------------------
 
 UDNfile="$thisdir/UDN_Networks.csv"
 ODNfile="$thisdir/ODN_Networks.csv"
 ADMSfile="$thisdir/ADMS_Networks.csv"
+AWSfile="$thisdir/AWS_Networks.csv"
+Azurefile="$thisdir/Azure_Networks.csv"
 networksfile="$thisdir/Networks.csv"
 
 if [ -f $UDNfile ]; then
@@ -46,6 +60,18 @@ if [ -f $ADMSfile ]; then
   rm $ADMSfile
   echo "old $ADMSfile is removing before downloading."
 fi
+
+# HOLD
+#if [ -f $AWSfile ]; then
+#  rm $AWSfile
+#  echo "old $AWSfile is removing before downloading."
+#fi
+
+# HOLD
+#if [ -f $Azurefile ]; then
+#  rm $Azurefile
+#  echo "old $Azurefile is removing before downloading."
+#fi
 
 if [ -f $networksfile ]; then
   rm $networksfile
@@ -78,6 +104,22 @@ ${pythonPath} $thisdir/export_Infoblox_Tufin_csv.py ADMS $thisdir > $thisdir/$ou
 
 echo "Review $thisdir/$outfile3 for items requiring intervention."
 
+outfile4=$(echo "output-AWS-`date +"%y%m%d"`.txt")
+
+echo ""
+echo "Download AWS Infoblox networks to csv."
+${pythonPath} $thisdir/export_Infoblox_Tufin_csv.py AWS $thisdir > $thisdir/$outfile4
+
+echo "Review $thisdir/$outfile4 for items requiring intervention."
+
+outfile5=$(echo "output-Azure-`date +"%y%m%d"`.txt")
+
+echo ""
+echo "Download Azure Infoblox networks to csv."
+${pythonPath} $thisdir/export_Infoblox_Tufin_csv.py Azure $thisdir > $thisdir/$outfile5
+
+echo "Review $thisdir/$outfile5 for items requiring intervention."
+
 if [ ! -f $inUDNfile ]; then
   echo "$inUDNfile is missing. Aborting"
   exit 1
@@ -88,19 +130,28 @@ if [ ! -f $inODNfile ]; then
   exit 1
 fi
 
-# HOLD
-#if [ ! -f $inADMSfile ]; then
-#  echo "$inADMSfile is missing. Aborting"
-#  exit 1
-#fi
+if [ ! -f $inADMSfile ]; then
+  echo "$inADMSfile is missing. Aborting"
+  exit 1
+fi
 
-outfile4=$(echo "output-TufinAPI-`date +"%y%m%d"`.txt")
+if [ ! -f $inAWSfile ]; then
+  echo "$inAWSfile is missing. Aborting"
+  exit 1
+fi
+
+if [ ! -f $inAzurefile ]; then
+  echo "$inAzurefile is missing. Aborting"
+  exit 1
+fi
+
+outfile6=$(echo "output-TufinAPI-`date +"%y%m%d"`.txt")
 
 echo ""
 echo "executing Tufin API for checking Trust Level updates..."
-${pythonPath} $thisdir/Tufin_get_zones_update_subnet_networks.py > $thisdir/$outfile4
+${pythonPath} $thisdir/Tufin_get_zones_update_subnet_networks.py > $thisdir/$outfile6
 
-echo "Review $thisdir/$outfile3 for items requiring intervention."
+echo "Review $thisdir/$outfile5 for items requiring intervention."
 echo ""
 echo "Review $thisdir/TufinAPI_status.log for items requiring intervention."
 
